@@ -29,11 +29,25 @@ Or use the install script:
 curl -sSL https://raw.githubusercontent.com/AxDSan/mnemosyne/main/deploy_hermes_provider.sh | bash
 ```
 
+**Alternative:** If you prefer an interactive setup, or if the auto-installer did not activate Mnemosyne:
+
+```bash
+hermes memory setup
+# Select "mnemosyne" from the list (it may be option 9 or higher)
+```
+
+> **Note:** The `hermes memory setup` picker always defaults to "Built-in only" when opened. This is normal Hermes UI behavior — it does **not** mean your previous selection was lost. After selecting Mnemosyne and pressing Enter, your choice is saved to `config.yaml`. Verify with `hermes memory status` instead of re-opening the picker.
+
 Verify:
 ```bash
 hermes memory status
 hermes mnemosyne stats
 ```
+
+**Troubleshooting persistence:**
+- Run `hermes memory status` to confirm `Provider: mnemosyne` is shown.
+- If it says "built-in only" despite having selected Mnemosyne, check that the symlink exists: `ls -la ~/.hermes/plugins/mnemosyne`
+- If the symlink is broken, re-run `python -m mnemosyne.install`.
 
 ---
 
