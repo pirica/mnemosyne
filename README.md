@@ -17,10 +17,13 @@ git clone https://github.com/AxDSan/mnemosyne.git
 cd mnemosyne
 pip install -e .
 
-# 2. Connect to Hermes (one command)
+# 2. Register the Mnemosyne plugin with Hermes
 python -m mnemosyne.install
 
-# Done. Hermes now uses Mnemosyne as its memory provider.
+# 3. Activate Mnemosyne as your memory provider
+hermes memory setup
+# → Select "mnemosyne" from the list (it may be option 9 or higher)
+# → Press Enter to confirm
 ```
 
 Or use the install script:
@@ -29,25 +32,18 @@ Or use the install script:
 curl -sSL https://raw.githubusercontent.com/AxDSan/mnemosyne/main/deploy_hermes_provider.sh | bash
 ```
 
-**Alternative:** If you prefer an interactive setup, or if the auto-installer did not activate Mnemosyne:
+> **Note:** The `hermes memory setup` picker defaults to "Built-in only" every time it opens. This is normal Hermes UI behavior — it does **not** mean your previous selection was lost. After selecting Mnemosyne and pressing Enter, your choice is saved to `~/.hermes/config.yaml`. Verify with `hermes memory status` instead of re-opening the picker.
 
-```bash
-hermes memory setup
-# Select "mnemosyne" from the list (it may be option 9 or higher)
-```
-
-> **Note:** The `hermes memory setup` picker always defaults to "Built-in only" when opened. This is normal Hermes UI behavior — it does **not** mean your previous selection was lost. After selecting Mnemosyne and pressing Enter, your choice is saved to `config.yaml`. Verify with `hermes memory status` instead of re-opening the picker.
-
-Verify:
+Verify everything is active:
 ```bash
 hermes memory status
 hermes mnemosyne stats
 ```
 
-**Troubleshooting persistence:**
-- Run `hermes memory status` to confirm `Provider: mnemosyne` is shown.
-- If it says "built-in only" despite having selected Mnemosyne, check that the symlink exists: `ls -la ~/.hermes/plugins/mnemosyne`
-- If the symlink is broken, re-run `python -m mnemosyne.install`.
+**Troubleshooting:**
+- `hermes memory status` should show `Provider: mnemosyne`.
+- If it shows "built-in only" after running the steps above, check the symlink: `ls -la ~/.hermes/plugins/mnemosyne`
+- If the symlink is missing or broken, re-run `python -m mnemosyne.install`.
 
 ---
 
