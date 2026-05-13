@@ -16,8 +16,8 @@ from typing import List, Optional, Set, Tuple
 # STOP WORDS — filtered from entity extraction
 # =============================================================================
 
-ENTITY_EXTRACTION_STOP_WORDS: Set[str] = {
-    # Standard stop words
+# Standard English stop words — basic function words never meaningful as entities
+_STANDARD_STOP_WORDS: Set[str] = {
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
     "of", "with", "by", "from", "as", "is", "was", "are", "were", "be",
     "been", "being", "have", "has", "had", "do", "does", "did", "will",
@@ -26,17 +26,26 @@ ENTITY_EXTRACTION_STOP_WORDS: Set[str] = {
     "us", "them", "my", "your", "his", "its", "our", "their",
     "this", "that", "these", "those", "here", "there", "where",
     "when", "what", "which", "who", "whom", "whose", "how", "why",
-    # Meta/system words that are NOT meaningful entities — extracted noise
-    # from LLM-generated summaries and extraction prompts
+}
+
+# Meta/system words that are NOT meaningful entities — extracted noise
+# from LLM-generated summaries and extraction prompts
+_META_STOP_WORDS: Set[str] = {
     "assistant", "user", "skill", "review", "target", "class",
     "level", "signals", "phase", "api", "pi", "summary", "added",
-    "active", "be", "not", "whether", "all", "no", "replying",
+    "active", "not", "whether", "all", "no", "replying",
     "ai", "memory", "mnemosyne", "conversation", "fact",
     "false", "true", "none", "null", "signal",
-    "hermes", "assistant", "agent", "model", "system", "memory",
+    "hermes", "agent", "model", "system",
     "note", "task", "project", "result", "output", "input", "data",
     "step", "process", "point", "way", "thing", "time", "work",
 }
+
+# Combined stopword set — the single source of truth for all callers.
+# Separate named groups above so each set is independently auditable
+# (no cross-set duplicates) and downstream importers can pick up the
+# combined set for consistency.
+ENTITY_EXTRACTION_STOP_WORDS: Set[str] = _STANDARD_STOP_WORDS | _META_STOP_WORDS
 
 # Backward compatibility alias
 _STOP_WORDS = ENTITY_EXTRACTION_STOP_WORDS

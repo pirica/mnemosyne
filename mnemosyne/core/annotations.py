@@ -29,6 +29,10 @@ import sqlite3
 from pathlib import Path
 from typing import List, Dict, Optional
 
+# Import the canonical stopword set from entities.py so annotations.py
+# and the cleanup script share the single source of truth.
+from mnemosyne.core.entities import ENTITY_EXTRACTION_STOP_WORDS as _ENTITY_STOP_WORDS_SOURCE
+
 
 DEFAULT_DB = Path.home() / ".hermes" / "mnemosyne" / "data" / "triples.db"
 
@@ -40,16 +44,7 @@ DEFAULT_DB = Path.home() / ".hermes" / "mnemosyne" / "data" / "triples.db"
 # leaked in before the write-time stopword fix (entities.py).  This is
 # non-destructive defense-in-depth — avoids DELETE from the DB.
 
-_ENTITY_STOP_WORDS: frozenset[str] = frozenset({
-    "assistant", "user", "skill", "review", "target", "class",
-    "level", "signals", "phase", "api", "pi", "summary", "added",
-    "active", "be", "not", "whether", "all", "no", "replying",
-    "ai", "memory", "mnemosyne", "conversation", "fact",
-    "false", "true", "none", "null", "signal",
-    "hermes", "agent", "model", "system", "note", "task", "project",
-    "result", "output", "input", "data", "step", "process", "point",
-    "way", "thing", "time", "work",
-})
+_ENTITY_STOP_WORDS: frozenset[str] = frozenset(_ENTITY_STOP_WORDS_SOURCE)
 
 
 def _is_noisy_mention(value: str) -> bool:
