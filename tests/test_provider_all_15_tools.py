@@ -1,9 +1,10 @@
 """
-Tests for MnemosyneMemoryProvider — all 15 tools wired in provider mode.
+Tests for MnemosyneMemoryProvider — all 24 tools wired in provider mode.
 
 Verifies schema registration, dispatch routing, and handler execution
-for each of the 8 tools ported from hermes_plugin (scratchpad, export,
-update, forget, import, diagnose) plus the 7 already-existing tools.
+for the tools ported from hermes_plugin (scratchpad, export, update,
+forget, import, diagnose), the core memory/triple tools, the validate
+tool, and the shared-surface tools.
 """
 
 import json
@@ -47,7 +48,7 @@ def _tool_names(provider) -> set[str]:
 # ---------------------------------------------------------------------------
 
 class TestToolRegistration:
-    """Verify the provider registers and dispatches all 15 tools."""
+    """Verify the provider registers and dispatches all 24 tools."""
 
     def test_all_tools_registered(self, tmp_path):
         provider = _provider(tmp_path)
