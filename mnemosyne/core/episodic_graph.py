@@ -54,21 +54,37 @@ def _is_low_quality_subject(subject: str) -> bool:
     return first in _LOW_QUALITY_SUBJECT_LEADERS
 
 
+# Lone lowercase tokens that carry no nameable value — transient-state
+# adjectives and fillers. A common-noun object ("developer", "engineer") is
+# legitimate, so we cannot reject all lone lowercase words; we reject only
+# this curated state/filler set plus -ly adverbs. Keyed lowercased.
+_LOW_QUALITY_OBJECT_WORDS = frozenset({
+    "different", "same", "similar", "fine", "okay", "ok", "good", "bad",
+    "here", "there", "ready", "already", "done", "gone", "back",
+    "nothing", "something", "anything", "everything",
+})
+
+
 def _is_low_quality_object(obj: str) -> bool:
-    """True if `obj` is a lone, value-free object token — an adverb/adjective
-    fragment ("different", "definitely"), an -ly adverb, or a truncation artifact
-    ("lready", "pparently"). A real object is a multi-word phrase or a proper
-    noun (kept: capitalized tokens like "ComfyUI", "Rust"). Mirrors
-    _is_low_quality_subject for the object side, which the four extraction
-    patterns previously left unguarded."""
+    """True if `obj` is a lone, value-free object token — an -ly adverb
+    ("definitely", "apparently") or a transient-state/filler word
+    ("different", "already"); see _LOW_QUALITY_OBJECT_WORDS. A real object is
+    a multi-word phrase, a proper noun ("ComfyUI", "Rust"), or a lone common
+    noun ("developer"). Mirrors _is_low_quality_subject for the object side,
+    which the four extraction patterns previously left unguarded."""
     if not obj:
         return True
     o = obj.strip()
+    if not o:                       # whitespace-only -> noise
+        return True
     if len(o.split()) > 1:          # multi-word objects always pass
         return False
     if o[:1].isupper():            # lone proper noun ("ComfyUI", "Rust") passes
         return False
-    return True                     # lone lowercase token -> noise
+    low = o.lower()
+    if low.endswith("ly"):         # adverb ("definitely", "apparently")
+        return True
+    return low in _LOW_QUALITY_OBJECT_WORDS
 
 
 @dataclass
