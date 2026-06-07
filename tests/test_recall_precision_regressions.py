@@ -115,6 +115,46 @@ class TestRecallPrecisionRegressions(unittest.TestCase):
         results = self.beam.recall("customer invoices quantum", top_k=5)
         self.assertEqual([], results)
 
+    def test_broad_nonsense_query_abstains_despite_distributed_single_token_hits(self):
+        """Several one-token overlaps across rows should not become synthetic relevance.
+
+        This mirrors live long-term-memory noise where a broad nonsense query can
+        retrieve unrelated high-importance preferences because each row shares a
+        different weak token.
+        """
+        noise_rows = [
+            "Purple project labels are reserved for design QA.",
+            "Toaster oven maintenance is documented in the kitchen binder.",
+            "Skateboard wheels are stored in the garage cabinet.",
+            "Quantum sandbox notes are low priority archival material.",
+            "The operator prefers not to spend strong models on low-stakes nonsense work.",
+        ]
+        for content in noise_rows:
+            self.beam.remember(
+                content,
+                source="imported_fixture",
+                importance=0.9,
+                scope="global",
+                veracity="imported",
+            )
+
+        results = self.beam.recall(
+            "purple toaster skateboard quantum banana nonsense", top_k=5
+        )
+        self.assertEqual([], results)
+
+    def test_specific_single_token_lookup_still_recalls_distinctive_memory(self):
+        self.beam.remember(
+            "HermesBridge is the codename for the localhost memory adapter.",
+            source="imported_fixture",
+            importance=0.6,
+            scope="global",
+            veracity="imported",
+        )
+        results = self.beam.recall("HermesBridge", top_k=3)
+        self.assertTrue(results)
+        self.assertIn("HermesBridge", results[0]["content"])
+
     def test_memoria_date_or_sequence_fact_does_not_force_top_slot(self):
         results = self.beam.recall("Where is the Orion runner jar and how should it bind?", top_k=5)
         self.assertTrue(results)

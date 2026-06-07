@@ -37,7 +37,13 @@ from mnemosyne.core.beam import BeamMemory
 try:
     from mnemosyne_hermes.tools import ALL_TOOL_SCHEMAS
 except ImportError:
-    ALL_TOOL_SCHEMAS = []
+    try:
+        # Source-tree fallback for editable/local checkouts where the packaged
+        # mnemosyne_hermes adapter is not installed on sys.path. Keep MCP schema
+        # tests and CLI usable without requiring a separate adapter install.
+        from hermes_memory_provider import ALL_TOOL_SCHEMAS
+    except ImportError:
+        ALL_TOOL_SCHEMAS = []
 
 # ---------------------------------------------------------------------------
 # Tool Definitions
