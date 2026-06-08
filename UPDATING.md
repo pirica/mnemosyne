@@ -3,9 +3,10 @@
 Covers all upgrade paths: v2.7 → latest, source installs, PyPI installs,
 and systems with Python's `externally-managed-environment` (PEP 668).
 
-If you're on **v3.1.0** and want the latest (v3.1.2), jump to
-[Upgrading to v3.1.2](#upgrading-to-v312-strict-fact-matching--entity-prefix-guard).
+If you're on **v3.3.0** and want the latest (v3.4.0), jump to
+[Upgrading to v3.4.0](#upgrading-to-v340-llm-fallback--multilingual-recall).
 
+Already on v3.1.0? See [Upgrading to v3.1.2](#upgrading-to-v312-strict-fact-matching--entity-prefix-guard).
 Already on v3.0.0? See [Upgrading to v3.1.0](#upgrading-to-v310-shared-surface--multilingual-memoria).
 
 ---
@@ -73,6 +74,61 @@ Editable mode means future `git pull` is all you need — no re-install
 for most updates.
 
 ---
+
+---
+
+## Upgrading to v3.4.0 — LLM Fallback + Multilingual Recall
+
+**v3.3.0 → v3.4.0 is a safe upgrade: no schema migrations, no breaking API changes.**
+
+### New env vars
+
+| Env var | Default | Purpose |
+|---|---|---|
+| `MNEMOSYNE_LLM_FALLBACK_MODELS` | (empty) | Comma-separated model fallback chain (e.g. `model1,model2`) |
+| `MNEMOSYNE_LLM_FALLBACK_BASE_URL` | (empty) | Optional different endpoint for fallback models |
+| `MNEMOSYNE_LLM_FALLBACK_API_KEY` | (empty) | Optional different API key for fallback models |
+| `MNEMOSYNE_PREFETCH_PROFILE` | `general` | Prefetch strategy: `general` (prior behavior) or `social-chat` (recency-weighted) |
+
+### What changed
+
+- **LLM summarization is more resilient.** If your primary model is evicted from the
+  provider's cache or returns 404/400, the fallback chain tries the next model
+  automatically. Auth failures (401/403) and rate limits (429) stop the chain.
+- **Fact extraction is much quieter.** Pronoun subjects (This, It, There) and
+  possessive fragments (My report) no longer flood the conflict detector.
+- **Russian / Italian / Spanish date extraction works.** Regex patterns now have
+  proper capture groups. Even if a future regex bug sneaks in, try/except guards
+  prevent it from blocking `remember()` writes.
+- **Prefetch quality improved.** Single-token extraction junk no longer
+  dominates the prefetch window, and you can plug in custom retrieval sources.
+- **Starlette 1.2.1+ MCP server works.** If you updated Starlette past 1.2.1
+  and the MCP SSE transport broke, v3.4.0 fixes it.
+
+### Upgrade steps
+
+```bash
+# PyPI
+pip install --upgrade mnemosyne-memory
+# Or source
+git pull && pip install -e .
+# Restart Hermes
+```
+
+### Rollback
+
+```bash
+pip install mnemosyne-memory==3.3.0
+# No DB changes, no migration needed
+```
+
+### Known issues
+
+- **sqlite-vec 0.x normalization bug at 1024-dim.** v3.4.0 works around it by
+  pre-normalizing embeddings. A proper fix is pending upstream in sqlite-vec.
+- **`install.sh` removed.** Use `pip install mnemosyne-memory` instead.
+  The legacy one-liner `curl | bash` was removed as part of the pip-only
+  transition. Source installs via `git clone` + `pip install -e .` still work.
 
 ---
 
