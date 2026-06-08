@@ -99,22 +99,25 @@ automatically on the next Hermes start.
 
 ### Disable legacy memory
 
-When Mnemosyne is active, disable Hermes' built-in memory to avoid
-duplication and token waste:
+When Mnemosyne is active, disable Hermes' built-in MEMORY.md/USER.md storage
+to avoid duplication and token waste.
 
-```bash
-# Disable built-in MEMORY.md / USER.md storage
-hermes tools disable memory
+**DO NOT run `hermes tools disable memory`** — this kills Mnemosyne's tool
+surface along with the built-in memory. The `"memory"` toolset key gates
+both the built-in tool AND memory provider tools (source: `agent/agent_init.py:1163-1172`).
 
-# Also disable in config.yaml to cover startup paths:
-# memory:
-#   enabled: false
-#   user_profile_enabled: false
+Instead, add to `~/.hermes/config.yaml`:
+
+```yaml
+memory:
+  enabled: false
+  user_profile_enabled: false
+  provider: mnemosyne
 ```
 
-Add these to `~/.hermes/config.yaml` under the `memory:` block. Both
-the CLI disable AND the config keys are needed — the CLI handles
-runtime, the config handles startup.
+That's it. The `enabled: false` + `user_profile_enabled: false` disables
+the built-in file-based memory store while keeping the `"memory"` toolset
+active so Mnemosyne's 23 tools surface correctly.
 
 ### Verify
 
