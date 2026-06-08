@@ -131,20 +131,26 @@ _PREFETCH_FRAGMENT_STOPWORDS = frozenset({
     "even", "very", "really", "again", "away", "off", "out", "up",
     "down", "over", "that", "this", "it", "so",
 })
-_PREFETCH_MIN_FRAGMENT_CHARS = 8   # lone tokens shorter than this are dropped
+_PREFETCH_MIN_FRAGMENT_CHARS = 12  # lone tokens shorter than this are dropped
 _PREFETCH_OVERFETCH = 16           # recall more, then filter junk and cap
 _PREFETCH_TOP_K = 8                # final injected count (unchanged behavior)
 
 
 def _is_low_quality_prefetch(content: str) -> bool:
     """True if recalled content is a bare single-token fragment with no value as
-    injected context. Multi-word phrases always pass."""
+    injected context. Multi-word phrases always pass; a lone *capitalized* token
+    (a proper noun like "ComfyUI"/"Rust") passes; any other lone token — including
+    longer adverb/adjective fragments ("basically", "different") that slipped past
+    the old length+stopword gate — is dropped."""
     c = (content or "").strip()
     if not c:
         return True
-    if len(c.split()) <= 1 and (len(c) <= _PREFETCH_MIN_FRAGMENT_CHARS
-                                or c.lower() in _PREFETCH_FRAGMENT_STOPWORDS):
-        return True
+    if len(c.split()) <= 1:
+        # A lone capitalized token is a proper noun ("ComfyUI", "Rust") — keep it;
+        # any other lone token is an adverb/adjective/truncation fragment — drop.
+        # (_PREFETCH_MIN_FRAGMENT_CHARS / _PREFETCH_FRAGMENT_STOPWORDS retained as
+        # documented intent; the capitalization rule now subsumes them.)
+        return not c[:1].isupper()
     return False
 
 
