@@ -2827,9 +2827,13 @@ class BeamMemory:
         the experiment Arm B's "ADD-only" guarantee collapses at 24h.
         """
         cutoff = (datetime.now() - timedelta(hours=WORKING_MEMORY_TTL_HOURS)).isoformat()
-        self.conn.execute("""
-            DELETE FROM working_memory
-            WHERE session_id = ?
+        # The trim selection, expressed once so the annotation cascade and the
+        # working_memory DELETE target an identical set. A memory's annotations
+        # must not outlive the memory: like forget_working(), the trim has to
+        # cascade, or the annotations table accumulates orphans (rows whose
+        # memory_id no longer exists) that no later write reclaims.
+        trim_where = """
+            session_id = ?
               AND consolidated_at IS NULL
               AND (
                 timestamp < ? OR
@@ -2840,8 +2844,22 @@ class BeamMemory:
                     LIMIT ?
                 )
               )
-        """, (self.session_id, cutoff, self.session_id, WORKING_MEMORY_MAX_ITEMS))
-        self.conn.commit()
+        """
+        params = (self.session_id, cutoff, self.session_id, WORKING_MEMORY_MAX_ITEMS)
+        try:
+            # Cascade first, while the working_memory rows still exist to resolve
+            # the subquery; then delete the rows themselves. Both statements use
+            # the same predicate + params, so they act on an identical row set.
+            self.conn.execute(
+                f"DELETE FROM annotations WHERE memory_id IN "
+                f"(SELECT id FROM working_memory WHERE {trim_where})",
+                params,
+            )
+            self.conn.execute(f"DELETE FROM working_memory WHERE {trim_where}", params)
+            self.conn.commit()
+        except Exception:
+            self.conn.rollback()
+            raise
 
     def get_context(self, limit: int = 10) -> List[Dict]:
         """Get working_memory for prompt injection.
@@ -7228,6 +7246,9 @@ class BeamMemory:
                 continue
             if exists and force:
                 cursor.execute("DELETE FROM working_memory WHERE id = ?", (mid,))
+                # Cascade annotations so a force-overwrite import does not strand
+                # the replaced row's annotations as orphans (see forget_working).
+                cursor.execute("DELETE FROM annotations WHERE memory_id = ?", (mid,))
                 stats["working_memory"]["overwritten"] += 1
             else:
                 stats["working_memory"]["inserted"] += 1
@@ -7312,6 +7333,9 @@ class BeamMemory:
                             existing["rowid"], cleanup_exc,
                         )
                 cursor.execute("DELETE FROM episodic_memory WHERE id = ?", (mid,))
+                # Cascade annotations for the replaced episodic row, matching the
+                # working_memory path above; a no-op when the row had none.
+                cursor.execute("DELETE FROM annotations WHERE memory_id = ?", (mid,))
                 stats["episodic_memory"]["overwritten"] += 1
             else:
                 stats["episodic_memory"]["inserted"] += 1
