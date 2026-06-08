@@ -20,16 +20,34 @@ def main():
     args = parser.parse_args()
 
     repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    docs = os.path.join(os.path.dirname(repo), "mnemosyne-docs", "src")
     generator = os.path.join(repo, "scripts", "generate-docs.py")
+
+    # Check committed canonical copies first (they live in the mnemosyne repo)
+    canonical = os.path.join(repo, "docs", "api")
+
+    # Fallback: sibling mnemosyne-docs repo (for website mirror verification)
+    sibling = os.path.join(os.path.dirname(repo), "mnemosyne-docs", "src")
 
     if not os.path.isfile(generator):
         print("ERROR: generator not found at", generator)
         sys.exit(1)
 
-    if not os.path.isdir(docs):
-        print("ERROR: docs dir not found at", docs)
+    # Determine what exists
+    has_canonical = os.path.isdir(canonical)
+    has_sibling = os.path.isdir(sibling)
+
+    if not has_canonical and not has_sibling:
+        print("ERROR: Neither canonical docs/ nor sibling mnemosyne-docs/ found")
+        print("       Run generate-docs.py first to create committed copies.")
         sys.exit(1)
+
+    if has_canonical:
+        docs = canonical
+        print(f"Checking committed copies: {canonical}")
+    else:
+        docs = sibling
+        print(f"WARNING: No committed copies. Checking sibling repo: {sibling}")
+        print(f"         Consider running generate-docs.py and committing docs/api/")
 
     # Run the generator (idempotent - no-op if already up to date)
     print("Running generator...")

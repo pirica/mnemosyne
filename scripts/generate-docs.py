@@ -138,25 +138,45 @@ def main():
     # Use absolute paths relative to known repo locations
     _script_dir = os.path.dirname(os.path.abspath(__file__))
     _repo_root = os.path.dirname(_script_dir)
+
+    # Canonical copies committed inside mnemosyne repo (CI verifies these)
+    canonical_root = os.path.join(_repo_root, 'docs', 'api')
+    os.makedirs(canonical_root, exist_ok=True)
+
+    # Website sibling repo
     docs_root = os.path.normpath(os.path.join(_repo_root, '..', 'mnemosyne-docs', 'src'))
 
-    # 1. Tool schema page
-    tool_page = os.path.join(
+    # 1. Tool schema page — dual write
+    # Website
+    tool_page_www = os.path.join(
         docs_root, 'app/(docs)', 'api', 'tool-schema', 'page.mdx'
     )
-    os.makedirs(os.path.dirname(tool_page), exist_ok=True)
-    with open(tool_page, 'w') as f:
+    os.makedirs(os.path.dirname(tool_page_www), exist_ok=True)
+    with open(tool_page_www, 'w') as f:
         f.write(_gen_tool_schema(ALL_TOOL_SCHEMAS, version))
     print('  Tool schema page (' + str(len(ALL_TOOL_SCHEMAS)) + ' tools)')
 
-    # 2. Config table injection
-    config_page = os.path.join(
+    # Canonical
+    tool_page_canon = os.path.join(canonical_root, 'tool-schema.mdx')
+    with open(tool_page_canon, 'w') as f:
+        f.write(_gen_tool_schema(ALL_TOOL_SCHEMAS, version))
+    print('  canonical: ' + tool_page_canon)
+
+    # 2. Config table injection — dual write
+    # Website
+    config_page_www = os.path.join(
         docs_root, 'app/(docs)', 'getting-started', 'configuration', 'page.mdx'
     )
-    _inject_config_table(config_page, _gen_config_table(schema))
+    _inject_config_table(config_page_www, _gen_config_table(schema))
     print('  Config table injected (' + str(len(schema)) + ' keys)')
 
-    # 3. Metadata
+    # Canonical
+    config_page_canon = os.path.join(canonical_root, 'configuration.mdx')
+    with open(config_page_canon, 'w') as f:
+        f.write(_gen_config_page(schema) if '_gen_config_page' in dir() else '# Configuration\n\n' + _gen_config_table(schema))
+    print('  canonical: ' + config_page_canon)
+
+    # 3. Metadata — dual write
     meta = {
         'version': version,
         'tool_count': len(ALL_TOOL_SCHEMAS),
@@ -168,11 +188,21 @@ def main():
         'pypi_package': 'mnemosyne-memory',
         'provider_class': 'MnemosyneMemoryProvider',
     }
-    meta_dir = os.path.join(docs_root, 'api')
-    os.makedirs(meta_dir, exist_ok=True)
-    with open(os.path.join(meta_dir, '.provider-metadata.json'), 'w') as f:
+
+    # Website
+    meta_dir_www = os.path.join(docs_root, 'api')
+    os.makedirs(meta_dir_www, exist_ok=True)
+    with open(os.path.join(meta_dir_www, '.provider-metadata.json'), 'w') as f:
         json.dump(meta, f, indent=2)
+
+    # Canonical
+    meta_dir_canon = os.path.join(canonical_root)
+    os.makedirs(meta_dir_canon, exist_ok=True)
+    with open(os.path.join(meta_dir_canon, '.provider-metadata.json'), 'w') as f:
+        json.dump(meta, f, indent=2)
+
     print('  Provider metadata')
+    print('  canonical: ' + os.path.join(meta_dir_canon, '.provider-metadata.json'))
     print('')
 
 
