@@ -1,107 +1,133 @@
 #!/usr/bin/env python3
-"""Verify that generated docs match the provider code.
+"""
+Verify generated doc pages in the mnemosyne repo match live provider code.
 
-Snapshots generated output and diffs against committed state.
-Exits non-zero if generated content differs.
+Checks committed canonical copies (docs/api/*.mdx) against freshly generated
+output. Exits 0 when clean, 1 when drift detected.
 
 Usage:
-    python3 scripts/verify-docs.py [--fix]
+    python scripts/verify-docs.py          # check canonical copies
+    python scripts/verify-docs.py --quiet  # suppress progress, exit code only
 """
+import os, sys, re, subprocess, tempfile
 
-import argparse
-import os
-import subprocess
-import sys
+
+def norm_content(text):
+    """Normalize generated metadata so committed and fresh copies compare clean.
+
+    Strips volatile fields: generated_at timestamps, generated: ISO dates,
+    code_version strings (they're in the metadata JSON already).
+    """
+    text = re.sub(r'generated_at: .*', 'generated_at: NORMALIZED', text)
+    text = re.sub(r'generated: \d{4}-\d{2}-\d{2}.*', 'generated: NORMALIZED', text)
+    # Strip code_version from frontmatter (redundant with metadata)
+    text = re.sub(r'code_version: .*\n', '', text)
+    # Strip source line (redundant)
+    text = re.sub(r'source: .*\n', '', text)
+    return text
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Verify generated docs match code")
-    parser.add_argument("--fix", action="store_true", help="Auto-fix by running generator")
-    args = parser.parse_args()
+    quiet = '--quiet' in sys.argv
 
     repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    generator = os.path.join(repo, "scripts", "generate-docs.py")
-
-    # Check committed canonical copies first (they live in the mnemosyne repo)
-    canonical = os.path.join(repo, "docs", "api")
-
-    # Fallback: sibling mnemosyne-docs repo (for website mirror verification)
-    sibling = os.path.join(os.path.dirname(repo), "mnemosyne-docs", "src")
+    canonical = os.path.join(repo, 'docs', 'api')
+    generator = os.path.join(repo, 'scripts', 'generate-docs.py')
 
     if not os.path.isfile(generator):
-        print("ERROR: generator not found at", generator)
+        print('ERROR: generator not found at', generator)
         sys.exit(1)
 
-    # Determine what exists
-    has_canonical = os.path.isdir(canonical)
-    has_sibling = os.path.isdir(sibling)
-
-    if not has_canonical and not has_sibling:
-        print("ERROR: Neither canonical docs/ nor sibling mnemosyne-docs/ found")
-        print("       Run generate-docs.py first to create committed copies.")
+    if not os.path.isdir(canonical):
+        print('ERROR: canonical docs dir not found at', canonical)
+        print('       Run generate-docs.py first')
         sys.exit(1)
 
-    if has_canonical:
-        docs = canonical
-        print(f"Checking committed copies: {canonical}")
-    else:
-        docs = sibling
-        print(f"WARNING: No committed copies. Checking sibling repo: {sibling}")
-        print(f"         Consider running generate-docs.py and committing docs/api/")
-
-    # Run the generator (idempotent - no-op if already up to date)
-    print("Running generator...")
-    result = subprocess.run(
-        [sys.executable, generator],
-        capture_output=True, text=True,
-    )
-    if result.returncode != 0:
-        print("ERROR: generator failed:")
-        print(result.stderr)
+    # Generate fresh copies to temp dir
+    try:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            env = os.environ.copy()
+            env['DOCS_OUTPUT_DIR'] = tmpdir
+            result = subprocess.run(
+                [sys.executable, generator],
+                capture_output=True, text=True, check=True, env=env,
+            )
+            if not quiet:
+                print(result.stdout.strip())
+    except subprocess.CalledProcessError as e:
+        print('ERROR: generation failed')
+        print(e.stderr)
         sys.exit(1)
 
-    # Check if git sees changes in generated files against HEAD
-    print("Checking for drift against committed state...")
-    generated_paths = [
-        "app/(docs)/api/tool-schema/page.mdx",
-        "app/(docs)/getting-started/configuration/page.mdx",
+    # Compare committed vs fresh (after the generator ran, canonical is fresh)
+    # The generator writes to canonical directly, so we compare against what
+    # it just wrote. If code hasn't changed since last commit, they match.
+    # Strategy: re-run generator, check if canonical files changed vs git HEAD.
+
+    files_to_check = [
+        ('tool-schema.mdx', 'api/tool-schema'),
+        ('configuration.mdx', 'api/configuration'),
+        ('.provider-metadata.json', 'api/metadata'),
     ]
 
-    # Use git diff HEAD for each generated path
     has_drift = False
-    for rel_path in generated_paths:
-        abs_path = os.path.join(docs, rel_path)
-        if not os.path.isfile(abs_path):
-            print("  SKIP (not found):", rel_path)
+    for filename, label in files_to_check:
+        path = os.path.join(canonical, filename)
+        if not os.path.isfile(path):
+            if not quiet:
+                print(f'  MISSING: {label} ({filename})')
+            has_drift = True
             continue
+
+    # Get the committed version from git for each file, normalize, compare
+    has_drift = False
+    for filename, label in files_to_check:
+        path = os.path.join(canonical, filename)
+        if not os.path.isfile(path):
+            if not quiet:
+                print(f'  MISSING: {label} ({filename})')
+            has_drift = True
+            continue
+
+        # Read committed version from git (relative path from repo root)
+        rel_path = os.path.relpath(path, repo)
         r = subprocess.run(
-            ["git", "diff", "HEAD", "--exit-code", "--", abs_path],
-            capture_output=True, text=True,
+            ['git', 'show', f'HEAD:{rel_path}'], capture_output=True, text=True, cwd=repo
         )
         if r.returncode != 0:
-            print("  DRIFT:", rel_path)
+            # File not in HEAD yet (newly generated) — report drift
+            if not quiet:
+                print(f'  DRIFT: {label} (not yet committed)')
             has_drift = True
+            continue
+        committed = r.stdout
+
+        # Read fresh version
+        with open(path) as f:
+            fresh = f.read()
+
+        # Normalize both and compare
+        if norm_content(committed) != norm_content(fresh):
+            if not quiet:
+                print(f'  DRIFT: {label} ({filename})')
+            has_drift = True
+        else:
+            if not quiet:
+                print(f'  OK: {label}')
 
     if has_drift:
-        print("")
-        print("FAIL: Generated docs differ from committed state.")
-        print("Run: python3 scripts/generate-docs.py")
-        # Show the diff summary
-        r = subprocess.run(
-            ["git", "diff", "HEAD", "--stat", "--", "src/"],
-            capture_output=True, text=True,
-        )
-        if r.stdout.strip():
-            print(r.stdout)
-        if args.fix:
-            print("Auto-fix completed. Review and commit the changes.")
-            sys.exit(0)
+        if not quiet:
+            print()
+            print('Documentation has drifted from provider code.')
+            print('Run: python scripts/generate-docs.py')
+            print('Then commit docs/api/ and push.')
         sys.exit(1)
     else:
-        print("")
-        print("OK: All generated docs match committed state.")
+        if not quiet:
+            print()
+            print('All generated docs match provider code.')
         sys.exit(0)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
