@@ -77,6 +77,25 @@ def _gen_tool_schema(schemas, version):
     return '\n'.join(lines)
 
 
+def _gen_config_page(schema):
+    """Generate a standalone configuration page (for canonical copies)."""
+    import datetime as dt
+    lines = [
+        '---',
+        'title: Configuration',
+        'description: Generated reference for all Mnemosyne config.yaml keys with defaults.',
+        'generated: true',
+        'source: hermes_memory_provider/__init__.py:get_config_schema()',
+        f'generated_at: {dt.datetime.now(dt.timezone.utc).isoformat()}',
+        '---',
+        '',
+        'This page is auto-generated from the provider code. Do not hand-edit.',
+        '',
+        _gen_config_table(schema),
+    ]
+    return '\n'.join(lines)
+
+
 def _gen_config_table(schema):
     lines = []
     lines.append('| Key | Default | Description |')
@@ -116,16 +135,23 @@ def _inject_config_table(config_page_path, table):
             # No change needed (already up to date)
             return
     else:
-        anchor = 'ignore_patterns:              # Content patterns to skip during remember()\n'
-        anchor += '      - "be ACTIVE"               # Skill refinement boilerplate\n'
-        anchor += '      - "nothing to change"       # No-op responses\n'
-        anchor += '      - "skill.*refined"          # Wildcard match\n'
-        anchor += '```\n'
-        if anchor not in content:
-            print('  ERROR: could not find insertion point in config page')
-            print('  (looked for end of YAML example block)')
-            sys.exit(1)
-        result = content.replace(anchor, anchor + '\n' + callout + '\n\n', 1)
+        # No marker found — inject after the ### Generated section header or before the first |
+        # The current config page format doesn't have the old YAML block, so insert before the table
+        if '## Generated' in content or '## Auto-generated' in content:
+            # Insert right after the generated section header
+            result = re.sub(
+                r'(## (?:Generated|Auto-generated).*?\n\n)',
+                r'\1' + callout + '\n\n',
+                content, count=1
+            )
+        else:
+            # Fallback: insert before the first pipe table
+            first_pipe = content.find('\n| ')
+            if first_pipe == -1:
+                print('  ERROR: could not find insertion point in config page')
+                print('  (looked for ## Generated section or pipe table)')
+                sys.exit(1)
+            result = content[:first_pipe+1] + '\n' + callout + '\n' + content[first_pipe+1:]
 
     with open(config_page_path, 'w') as f:
         f.write(result)
@@ -173,7 +199,7 @@ def main():
     # Canonical
     config_page_canon = os.path.join(canonical_root, 'configuration.mdx')
     with open(config_page_canon, 'w') as f:
-        f.write(_gen_config_page(schema) if '_gen_config_page' in dir() else '# Configuration\n\n' + _gen_config_table(schema))
+        f.write(_gen_config_page(schema))
     print('  canonical: ' + config_page_canon)
 
     # 3. Metadata — dual write
