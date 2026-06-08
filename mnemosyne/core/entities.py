@@ -211,6 +211,13 @@ def find_similar_entities(entity: str, known_entities: List[str], threshold: flo
 
     Returns list of (entity_name, similarity_score) tuples, sorted by score descending.
     """
+    # Bound the fuzzy-match cost: entity names are short, so an over-long input is
+    # a sentence/query, not an entity. Matching it against every known entity is
+    # O(len(entity) * N) pure-Python Levenshtein and can pin a CPU core for
+    # minutes; refuse it rather than melt down. Callers should pass extracted
+    # entities, not raw text.
+    if len(entity) > 64:
+        return []
     matches: List[Tuple[str, float]] = []
     for known in known_entities:
         if known == entity:

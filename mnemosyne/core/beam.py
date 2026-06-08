@@ -1340,19 +1340,36 @@ def _find_memories_by_entity(beam: "BeamMemory", entity_name: str, threshold: fl
     because of auto-invalidation on (subject, predicate).
     """
     try:
-        from mnemosyne.core.entities import find_similar_entities
+        from mnemosyne.core.entities import find_similar_entities, extract_entities_regex
 
         # Get all known entities (uses BeamMemory's cached AnnotationStore)
         known_entities = beam.annotations.get_distinct_values("mentions")
         if not known_entities:
             return []
 
-        # Find similar entities
-        matches = find_similar_entities(entity_name, known_entities, threshold=threshold)
+        # Bound the fuzzy-match cost. entity_name is the raw recall query here, and
+        # Levenshtein-matching the WHOLE query against every known entity is
+        # O(len(query) * N) -- pathological for a long query against a large
+        # mentions store (a multi-KB query vs a few thousand entities can pin a CPU
+        # core for minutes, and because the loop holds the GIL it stalls the whole
+        # event loop). Match against entities EXTRACTED from the query instead; only
+        # fall back to the raw string when it is already short enough to be an
+        # entity name.
+        candidates = extract_entities_regex(entity_name)
+        if not candidates and len(entity_name) <= 64:
+            candidates = [entity_name]
+
+        # Find similar entities for each candidate (dedup by matched name)
+        matched_names: Set[str] = set()
+        for cand in candidates:
+            for matched_entity, _ in find_similar_entities(
+                cand, known_entities, threshold=threshold
+            ):
+                matched_names.add(matched_entity)
 
         # Collect memory IDs for all matched entities
         memory_ids: Set[str] = set()
-        for matched_entity, _ in matches:
+        for matched_entity in matched_names:
             results = beam.annotations.query_by_kind("mentions", value=matched_entity)
             for row in results:
                 memory_ids.add(row["memory_id"])
