@@ -1,9 +1,10 @@
 """
-Tests for MnemosyneMemoryProvider — all 15 tools wired in provider mode.
+Tests for MnemosyneMemoryProvider — all 24 tools wired in provider mode.
 
 Verifies schema registration, dispatch routing, and handler execution
-for each of the 8 tools ported from hermes_plugin (scratchpad, export,
-update, forget, import, diagnose) plus the 7 already-existing tools.
+for the tools ported from hermes_plugin (scratchpad, export, update,
+forget, import, diagnose), the core memory/triple tools, the validate
+tool, and the shared-surface tools.
 """
 
 import json
@@ -47,12 +48,12 @@ def _tool_names(provider) -> set[str]:
 # ---------------------------------------------------------------------------
 
 class TestToolRegistration:
-    """Verify the provider registers and dispatches all 15 tools."""
+    """Verify the provider registers and dispatches all 24 tools."""
 
     def test_all_tools_registered(self, tmp_path):
         provider = _provider(tmp_path)
         names = _tool_names(provider)
-        assert len(names) == 23, f"Expected 23 tools, got {len(names)}"
+        assert len(names) == 24, f"Expected 24 tools, got {len(names)}"
 
     def test_new_8_tools_present(self, tmp_path):
         provider = _provider(tmp_path)
@@ -67,6 +68,11 @@ class TestToolRegistration:
         for tool in ("remember", "recall", "sleep", "stats",
                      "invalidate", "triple_add", "triple_query"):
             assert f"mnemosyne_{tool}" in names
+
+    def test_triple_end_tool_present(self, tmp_path):
+        provider = _provider(tmp_path)
+        names = _tool_names(provider)
+        assert "mnemosyne_triple_end" in names
 
     def test_validate_tool_present(self, tmp_path):
         provider = _provider(tmp_path)
