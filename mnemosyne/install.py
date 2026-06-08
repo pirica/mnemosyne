@@ -134,8 +134,8 @@ def _configure_hermes() -> bool:
         config_text = config_path.read_text(encoding="utf-8")
 
     # Check if already configured
-    if "provider: mnemosyne" in config_text:
-        print("✅ Hermes config already has memory.provider = mnemosyne")
+    if "provider: hermes-mnemosyne" in config_text:
+        print("✅ Hermes config already has memory.provider = hermes-mnemosyne")
         return True
 
     # Simple append approach (YAML-compatible)
@@ -145,7 +145,7 @@ def _configure_hermes() -> bool:
         # Find memory: block and replace provider
         new_config = re.sub(
             r'(memory:\s*)\n(\s*provider:\s*\S+)?',
-            r'\1\n  provider: mnemosyne\n',
+            r'\1\n  provider: hermes-mnemosyne\n',
             config_text,
             count=1,
         )
@@ -153,15 +153,15 @@ def _configure_hermes() -> bool:
             # No provider line found, insert one
             new_config = config_text.replace(
                 "memory:",
-                "memory:\n  provider: mnemosyne"
+                "memory:\n  provider: hermes-mnemosyne"
             )
         config_path.write_text(new_config, encoding="utf-8")
     else:
         # Append memory block
         with open(config_path, "a", encoding="utf-8") as f:
-            f.write("\nmemory:\n  provider: mnemosyne\n")
+            f.write("\nmemory:\n  provider: hermes-mnemosyne\n")
 
-    print(f"✅ Updated {config_path}: memory.provider = mnemosyne")
+    print(f"✅ Updated {config_path}: memory.provider = hermes-mnemosyne")
     return True
 
 
@@ -178,7 +178,7 @@ def _verify() -> bool:
 
     try:
         from plugins.memory import load_memory_provider
-        provider = load_memory_provider("mnemosyne")
+        provider = load_memory_provider("hermes-mnemosyne")
         if provider and provider.is_available():
             print(f"✅ Provider verified: {provider.name} is_available=True")
             return True
@@ -216,7 +216,7 @@ def install():
     print("Next steps:")
     print("  • Restart Hermes (if running)")
     print("  • Run: hermes memory status")
-    print("  • Run: hermes mnemosyne stats")
+    print("  • Run: hermes hermes-mnemosyne stats")
     print()
 
 
@@ -244,7 +244,11 @@ def uninstall():
     config_path = hermes_home / "config.yaml"
     if config_path.exists():
         text = config_path.read_text(encoding="utf-8")
-        if "provider: mnemosyne" in text:
+        if "provider: hermes-mnemosyne" in text:
+            new_text = text.replace("provider: hermes-mnemosyne", "provider: null")
+            config_path.write_text(new_text, encoding="utf-8")
+            print("✅ Reset memory.provider to null")
+        elif "provider: mnemosyne" in text:
             new_text = text.replace("provider: mnemosyne", "provider: null")
             config_path.write_text(new_text, encoding="utf-8")
             print("✅ Reset memory.provider to null")
