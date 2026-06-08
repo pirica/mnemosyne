@@ -26,7 +26,7 @@ import math
 
 logger = logging.getLogger(__name__)
 from datetime import datetime, timedelta, timezone
-from typing import List, Dict, Optional, Any, Set, Union
+from typing import List, Dict, Optional, Any, Set, Union, Iterable
 from pathlib import Path
 
 
@@ -1450,6 +1450,69 @@ def _minimum_recall_relevance(query_tokens: List[str]) -> float:
     if len(query_tokens) == 3:
         return 0.5
     return 0.15
+
+
+def _allow_distributed_single_token_hits(query_lower: str, query_tokens: List[str],
+                                         rows: Iterable[Any], min_relevance: float) -> bool:
+    """Allow multi-row assembly only for real synthesis-style queries.
+
+    The old broad-query relaxation admitted one-token rows whenever several
+    distinct query tokens appeared somewhere in the candidate set. That helped
+    multi-fact recall, but it also turned nonsense bags of nouns into plausible
+    low-score memories. Keep the relaxation only when the query asks for a
+    combined answer and at least one candidate is already strong enough under
+    the normal lexical gate.
+    """
+    if len(query_tokens) < 4:
+        return False
+    query_token_set = set(query_tokens)
+    matched_query_tokens: Set[str] = set()
+    for row in rows:
+        try:
+            content = row["content"]
+        except Exception:
+            content = getattr(row, "content", "")
+        matched_query_tokens.update(query_token_set & set(_recall_tokens(str(content).lower())))
+    if len(matched_query_tokens) < 2:
+        return False
+    # Four-token browse/prefetch-style queries are commonly used as broad
+    # topic probes. Keep the old distributed matching there, but don't extend
+    # that generosity to longer noun-bag queries.
+    if len(query_tokens) == 4:
+        return True
+    synthesis_markers = {
+        "also", "and", "both", "combined", "compare", "including", "preference",
+        "preferences", "profile", "relationship", "summary", "together", "url",
+    }
+    if not (synthesis_markers & query_token_set or " and " in f" {query_lower} " or "&" in query_lower):
+        return False
+    for row in rows:
+        try:
+            content = row["content"]
+        except Exception:
+            content = getattr(row, "content", "")
+        if _lexical_relevance(query_tokens, str(content), query_lower) >= min_relevance:
+            return True
+    return False
+
+
+def _final_recall_score_floor(query_tokens: List[str]) -> float:
+    """Minimum final hybrid score before a result is worth returning.
+
+    Relevance gates operate per row before scoring. This final floor catches
+    low-confidence leftovers where importance/recency keeps a weak candidate
+    barely alive. Operators can tune it with MNEMOSYNE_RECALL_SCORE_FLOOR; the
+    default is intentionally modest so exact imported facts still surface.
+    """
+    raw = os.environ.get("MNEMOSYNE_RECALL_SCORE_FLOOR", "").strip()
+    if raw:
+        try:
+            return max(0.0, float(raw))
+        except ValueError:
+            pass
+    if len(query_tokens) >= 5:
+        return 0.18
+    return 0.0
 
 
 def _fact_match_tokens(text: str) -> Set[str]:
@@ -4532,7 +4595,9 @@ class BeamMemory:
                 matched_query_tokens.update(
                     query_word_set & set(_recall_tokens(candidate_row["content"].lower()))
                 )
-        broad_multi_hit_query = len(query_words) >= 4 and len(matched_query_tokens) >= 2
+        broad_multi_hit_query = _allow_distributed_single_token_hits(
+            query_lower, query_words, rows, min_relevance
+        )
         for row in rows:
             content_lower = row["content"].lower()
             content_words_list = content_lower.split()
@@ -5320,6 +5385,10 @@ class BeamMemory:
                 covered.update(set(_recall_tokens(picked.get("content", "").lower())) & q_word_set)
             results = selected + pool
 
+        final_score_floor = _final_recall_score_floor(query_words)
+        if final_score_floor > 0:
+            results = [r for r in results if r.get("score", 0.0) >= final_score_floor]
+
         final_results = results[:top_k]
 
         # --- Recall tracking: increment counts + set last_recalled ---
@@ -5477,8 +5546,13 @@ class BeamMemory:
         if cached is not None:
             return cached[:top_k]
 
-        # 4. Run base recall with expanded query
+        # 4. Run base recall with expanded query. The synonym expander emits
+        # pipe-delimited parenthesized groups for FTS-style search; the base
+        # recall path may reject that syntax in strict lexical gates, so fall
+        # back to the original query before declaring an enhanced recall miss.
         results = self.recall(expanded_query, top_k=top_k * 2, **kwargs)
+        if not results and expanded_query != original_query:
+            results = self.recall(original_query, top_k=top_k * 2, **kwargs)
 
         # 5. Weibull re-scoring (if not already using temporal_weight)
         if use_weibull and weibull_boost is not None:
