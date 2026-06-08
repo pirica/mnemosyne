@@ -38,16 +38,53 @@ _LOW_QUALITY_SUBJECT_LEADERS = frozenset({
     "i", "you", "he", "she", "they", "we",
     "him", "her", "them", "us",
     "my", "your", "his", "their", "our", "its",
+    # Article-led subjects ("The silence is different", "A frame has something")
+    # are, on conversational/narrative traffic, the same transient-state noise as
+    # the pronoun class above — a named-entity subject never opens with an article.
+    "the", "a", "an",
 })
 
 
 def _is_low_quality_subject(subject: str) -> bool:
-    """True if `subject` is a pronoun/demonstrative/possessive-led phrase that
-    should not become a fact triple. See _LOW_QUALITY_SUBJECT_LEADERS."""
+    """True if `subject` is a pronoun/demonstrative/possessive/article-led phrase
+    that should not become a fact triple. See _LOW_QUALITY_SUBJECT_LEADERS."""
     if not subject:
         return True
     first = subject.strip().split(None, 1)[0].strip(".,!?;:'\"").lower()
     return first in _LOW_QUALITY_SUBJECT_LEADERS
+
+
+# Lone lowercase tokens that carry no nameable value — transient-state
+# adjectives and fillers. A common-noun object ("developer", "engineer") is
+# legitimate, so we cannot reject all lone lowercase words; we reject only
+# this curated state/filler set plus -ly adverbs. Keyed lowercased.
+_LOW_QUALITY_OBJECT_WORDS = frozenset({
+    "different", "same", "similar", "fine", "okay", "ok", "good", "bad",
+    "here", "there", "ready", "already", "done", "gone", "back",
+    "nothing", "something", "anything", "everything",
+})
+
+
+def _is_low_quality_object(obj: str) -> bool:
+    """True if `obj` is a lone, value-free object token — an -ly adverb
+    ("definitely", "apparently") or a transient-state/filler word
+    ("different", "already"); see _LOW_QUALITY_OBJECT_WORDS. A real object is
+    a multi-word phrase, a proper noun ("ComfyUI", "Rust"), or a lone common
+    noun ("developer"). Mirrors _is_low_quality_subject for the object side,
+    which the four extraction patterns previously left unguarded."""
+    if not obj:
+        return True
+    o = obj.strip()
+    if not o:                       # whitespace-only -> noise
+        return True
+    if len(o.split()) > 1:          # multi-word objects always pass
+        return False
+    if o[:1].isupper():            # lone proper noun ("ComfyUI", "Rust") passes
+        return False
+    low = o.lower()
+    if low.endswith("ly"):         # adverb ("definitely", "apparently")
+        return True
+    return low in _LOW_QUALITY_OBJECT_WORDS
 
 
 @dataclass
@@ -310,11 +347,13 @@ class EpisodicGraph:
             content = content[: self._EXTRACT_FACTS_MAX_CONTENT_LEN]
 
         # Pattern 1: "X is Y"
-        is_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+is\s+(?:a|an|the)?\s*([a-zA-Z\s]+?)\b"
+        # Article alternation must be a whole word (trailing \s+), else "is already"
+        # matches article "a" + object "lready" (leading-letter truncation bug).
+        is_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+is\s+(?:(?:a|an|the)\s+)?([a-zA-Z\s]+?)\b"
         for match in re.finditer(is_pattern, content):
             subject = match.group(1).strip()
             obj = match.group(2).strip()
-            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject):
+            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject) and not _is_low_quality_object(obj):
                 facts.append(Fact(
                     id=f"fact_{memory_id}_{len(facts)}",
                     subject=subject,
@@ -325,11 +364,11 @@ class EpisodicGraph:
                 ))
         
         # Pattern 2: "X has Y"
-        has_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+has\s+(?:a|an|the)?\s*([a-zA-Z\d\s]+?)\b"
+        has_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+has\s+(?:(?:a|an|the)\s+)?([a-zA-Z\d\s]+?)\b"
         for match in re.finditer(has_pattern, content):
             subject = match.group(1).strip()
             obj = match.group(2).strip()
-            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject):
+            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject) and not _is_low_quality_object(obj):
                 facts.append(Fact(
                     id=f"fact_{memory_id}_{len(facts)}",
                     subject=subject,
@@ -340,11 +379,11 @@ class EpisodicGraph:
                 ))
         
         # Pattern 3: "X uses Y"
-        uses_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+(uses?|using|used)\s+(?:a|an|the)?\s*([a-zA-Z\s]+?)\b"
+        uses_pattern = r"\b([A-Z][a-zA-Z\s]+?)\s+(uses?|using|used)\s+(?:(?:a|an|the)\s+)?([a-zA-Z\s]+?)\b"
         for match in re.finditer(uses_pattern, content):
             subject = match.group(1).strip()
             obj = match.group(3).strip()
-            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject):
+            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject) and not _is_low_quality_object(obj):
                 facts.append(Fact(
                     id=f"fact_{memory_id}_{len(facts)}",
                     subject=subject,
@@ -359,7 +398,7 @@ class EpisodicGraph:
         for match in re.finditer(works_pattern, content):
             subject = match.group(1).strip()
             obj = match.group(2).strip()
-            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject):
+            if len(subject) > 2 and len(obj) > 2 and not _is_low_quality_subject(subject) and not _is_low_quality_object(obj):
                 facts.append(Fact(
                     id=f"fact_{memory_id}_{len(facts)}",
                     subject=subject,
