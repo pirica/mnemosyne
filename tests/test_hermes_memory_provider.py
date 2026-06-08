@@ -681,7 +681,11 @@ class TestInitializeProfileIsolation:
         monkeypatch.setattr("hermes_memory_provider._get_beam_class", lambda: beam_constructor)
 
         provider.initialize(session_id="test123", hermes_home="/some/path")
-        beam_constructor.assert_called_once_with(session_id="hermes_test123")
+        beam_constructor.assert_called_once()
+        kwargs = beam_constructor.call_args.kwargs
+        assert kwargs["session_id"] == "hermes_test123"
+        # db_path is now always passed — verify it's a real path
+        assert "db_path" in kwargs
 
     def test_uses_default_bank_when_no_profile_signal(self, monkeypatch):
         """Isolation ON but no profile signal -> 'default' bank."""

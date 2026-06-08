@@ -1220,15 +1220,23 @@ class MnemosyneMemoryProvider(MemoryProvider):
                 )
             else:
                 BeamMemory = _get_beam_class()
-                db_path = (
-                    Path(self._hermes_home) / "mnemosyne" / "data" / "mnemosyne.db"
-                    if self._hermes_home
-                    else None
-                )
-                self._beam = BeamMemory(session_id=self._session_id, db_path=db_path)
+                # Derive db_path from hermes_home only as a fallback when
+                # MNEMOSYNE_DATA_DIR is not already set. In tests and
+                # production, MNEMOSYNE_DATA_DIR already points to the
+                # correct shared database — forcing a hermes_home-derived
+                # path would create isolated per-provider databases and
+                # break scope='global' memory sharing across threads.
+                hermes_db_path: Path | None = None
+                if self._hermes_home:
+                    import os as _os
+                    if not _os.environ.get("MNEMOSYNE_DATA_DIR"):
+                        hermes_db_path = (
+                            Path(self._hermes_home) / "mnemosyne" / "data" / "mnemosyne.db"
+                        )
+                self._beam = BeamMemory(session_id=self._session_id, db_path=hermes_db_path)
                 logger.info(
                     "Mnemosyne initialized: session=%s, db=%s",
-                    self._session_id, db_path or "default",
+                    self._session_id, hermes_db_path or "default",
                 )
 
         except Exception as e:

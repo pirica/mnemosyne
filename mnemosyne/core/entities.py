@@ -239,8 +239,15 @@ def extract_entities_regex(text: str) -> List[str]:
             # proper nouns (e.g. "About", "Today", "Different", "Actually")
             # Multi-word phrases always pass; proper nouns pass because they
             # are not in _COMMON_WORDS.
+            # BUT: hashtags and @mentions always pass — "#Awesome" and
+            # "@support" are deliberate references, not sentence-initial
+            # common words.
             if len(words) == 1 and entity[0].isupper() and entity.lower() in _COMMON_WORDS:
-                continue
+                match_start = match.start(1)
+                if match_start > 0 and text[match_start - 1] in ('@', '#'):
+                    pass  # Allow #Awesome, @Maybe, etc.
+                else:
+                    continue
             # Filter entities where ANY word is a stopword (e.g. "The USER",
             # "Active Signal" -- the stopword contaminates the whole phrase)
             if any(w.lower() in _STOP_WORDS for w in words):
