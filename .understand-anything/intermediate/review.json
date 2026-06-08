@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "projectName": "mnemosyne",
+  "summary": "Mnemosyne is a multi-bank memory system for AI agents, providing persistent memory with hybrid retrieval (vector, graph, fact, temporal). 916 nodes across 206 files, 1356 edges. Core is in ~45K lines of Python.",
+  "stats": {
+    "totalNodes": 916,
+    "totalEdges": 1356,
+    "fileNodes": 206,
+    "functionNodes": 364,
+    "classNodes": 280,
+    "complexFiles": 49,
+    "testedProductionFiles": 20
+  },
+  "layers": [
+    {
+      "name": "Core Engine",
+      "path": "mnemosyne/core/",
+      "description": "Memory banks, hybrid recall, embeddings, annotations, triples, beam (sleep/dream pipeline), conflict detection, query pipeline (cache, intent, synonyms, temporal parsing, weibull decay), content sanitization, MMR re-ranking, orchestrator",
+      "keyFiles": [
+        "mnemosyne/core/beam.py",
+        "mnemosyne/core/memory.py",
+        "mnemosyne/core/embeddings.py",
+        "mnemosyne/core/banks.py",
+        "mnemosyne/core/chat_normalize.py",
+        "mnemosyne/core/polyphonic_recall.py",
+        "mnemosyne/core/annotations.py",
+        "mnemosyne/core/triples.py",
+        "mnemosyne/core/entities.py",
+        "mnemosyne/core/veracity_consolidation.py",
+        "mnemosyne/core/query_cache.py",
+        "mnemosyne/core/query_intent.py",
+        "mnemosyne/core/weibull.py",
+        "mnemosyne/core/synonyms.py",
+        "mnemosyne/core/temporal_parser.py",
+        "mnemosyne/core/token_counter.py",
+        "mnemosyne/core/content_sanitizer.py",
+        "mnemosyne/core/llm_conflict_detector.py",
+        "mnemosyne/core/cost_log.py",
+        "mnemosyne/core/aaak.py",
+        "mnemosyne/core/mmr.py",
+        "mnemosyne/core/binary_vectors.py",
+        "mnemosyne/core/episodic_graph.py",
+        "mnemosyne/core/polyphonic_recall.py",
+        "mnemosyne/core/typed_memory.py"
+      ]
+    },
+    {
+      "name": "Extraction & Diagnostics",
+      "path": "mnemosyne/extraction/",
+      "description": "LLM-based fact extraction from user messages, tiered diagnostics (C13.b observability layer), OpenRouter multi-model client with fallback and retry",
+      "keyFiles": [
+        "mnemosyne/extraction/client.py",
+        "mnemosyne/extraction/diagnostics.py",
+        "mnemosyne/extraction/prompts.py"
+      ]
+    },
+    {
+      "name": "Memory Importers",
+      "path": "mnemosyne/core/importers/",
+      "description": "8 provider importers (Cognee, Hindsight, Honcho, Letta, Mem0, SuperMemory, Zep) plus AgenticImporter for script/document generation. All extend BaseImporter except AgenticImporter",
+      "keyFiles": [
+        "mnemosyne/core/importers/base.py",
+        "mnemosyne/core/importers/agentic.py"
+      ]
+    },
+    {
+      "name": "Hermes Provider (Plugin)",
+      "path": "hermes_memory_provider/",
+      "description": "Hermes Agent memory provider plugin. MnemosyneMemoryProvider with 55+ methods, 20+ tool schemas, audit log, thread isolation, shared-surface support, LLM adapter",
+      "keyFiles": [
+        "hermes_memory_provider/__init__.py",
+        "hermes_memory_provider/hermes_llm_adapter.py",
+        "hermes_memory_provider/audit.py"
+      ]
+    },
+    {
+      "name": "CLI & Operations",
+      "path": "mnemosyne/cli.py + tools/ + scripts/",
+      "description": "CLI commands, diagnostics, install, recovery backup, 5 maintenance scripts (noise cleanup, legacy migration, LLM quality healing, memoria audit, stats dashboard), 5 benchmark tools (audit log, unified recall, validation, BEAM charts, SOTA report)",
+      "keyFiles": [
+        "mnemosyne/cli.py",
+        "mnemosyne/diagnose.py",
+        "mnemosyne/install.py",
+        "mnemosyne/dr/recovery.py"
+      ]
+    },
+    {
+      "name": "Hermes Integration (pip install)",
+      "path": "integrations/hermes/",
+      "description": "Version-tracked Hermes plugin integration with audited CLI, LLM adapter, installer. v0.1.1 vs provider's v3.1.0 — denotes packaging duality",
+      "keyFiles": [
+        "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+        "integrations/hermes/src/mnemosyne_hermes/tools.py",
+        "integrations/hermes/src/mnemosyne_hermes/audit.py"
+      ]
+    },
+    {
+      "name": "VS Code Extension",
+      "path": "integrations/vscode-mnemosyne/",
+      "description": "4-TypeScript-file VS Code extension: client (Python subprocess bridge), extension entry (4 commands), provider (sidebar WebviewView), webview (detail panel)",
+      "keyFiles": [
+        "integrations/vscode-mnemosyne/src/client.ts",
+        "integrations/vscode-mnemosyne/src/extension.ts",
+        "integrations/vscode-mnemosyne/src/provider.ts"
+      ]
+    },
+    {
+      "name": "Obsidian Plugin",
+      "path": "integrations/obsidian-mnemosyne/",
+      "description": "Obsidian plugin for memory browsing and search, TypeScript, esbuild build, 6 features (sidebar, search, store, stats, auto-refresh)",
+      "keyFiles": [
+        "integrations/obsidian-mnemosyne/main.ts"
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "path": ".github/ + Dockerfile + .githooks/",
+      "description": "CI matrix (Python 3.10-3.13), PyPI release workflow via Trusted Publishing, Docker multi-stage build for Railway, pre-commit PII blocker, pre-push SemVer tag validator",
+      "keyFiles": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/release.yml",
+        "Dockerfile"
+      ]
+    }
+  ],
+  "architectureInsights": [
+    "Hierarchical bank architecture: short-term → working → archival → consolidated, with typed memory classification (13 types, zero-LLM)",
+    "Polyphonic recall: 4 parallel retrieval voices (vector, graph, fact, temporal) with RRF re-ranking",
+    "BEAM (Bayesian Episodic Active Memory): sleep/dream cycle for memory consolidation and conflict detection",
+    "Two-tier conflict detection: heuristic base tier + LLM-powered tier (gated via MNEMOSYNE_LLM_CONFLICT_DETECTION env var)",
+    "Veracity system: tracks confidence levels across extraction sources, consolidates conflicting facts",
+    "Binary vector compression (MIB): 32x compression ratio for memory embeddings",
+    "Dual packaging: direct provider plugin (v3.1.0) vs pip-installable integration (v0.1.1)",
+    "Query pipeline: intent classification → synonym expansion → cache tier (5 tiers) → temporal decay (Weibull per memory type)",
+    "C13.b extraction diagnostics: process-global thread-safe observability for LLM extraction failures that were previously silent"
+  ],
+  "coverageGaps": [
+    "4 import edge batches (10, 11, 14, 17, 19, 20) had malformed output — some subagents wrote analysis-only JSON instead of node/edge format",
+    "175 nodes defaulted to moderate complexity (None assigned by analyzer)",
+    "18 unknown node types (data) — mostly JSON fixtures and test data files",
+    "Missing and planned docs: 11 of 17 doc files in batch 15 don't exist on disk",
+    "orchestrator.py is a stub/placeholder with no real recall logic"
+  ]
+}

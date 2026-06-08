@@ -1,0 +1,192 @@
+{
+  "nodes": [
+    {
+      "id": "file:integrations/vscode-mnemosyne/src/client.ts",
+      "type": "file",
+      "name": "client.ts",
+      "filePath": "integrations/vscode-mnemosyne/src/client.ts",
+      "summary": "Provides the MnemosyneClient class that wraps a Python subprocess bridge to the Mnemosyne memory backend, exposing search, stats, store, and list-recent operations via inline Python code execution.",
+      "tags": ["client", "api-wrapper", "python-bridge", "memory-access"],
+      "complexity": "moderate",
+      "languageNotes": "TypeScript class that generates and executes Python code strings via child_process.execAsync, using JSON as the serialization format across the language boundary."
+    },
+    {
+      "id": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "type": "file",
+      "name": "extension.ts",
+      "filePath": "integrations/vscode-mnemosyne/src/extension.ts",
+      "summary": "VS Code extension entry point that activates the Mnemosyne integration, registering the sidebar webview provider, search/remember/refresh/openMcpConfig commands, and a status bar indicator.",
+      "tags": ["entry-point", "extension", "vscode", "activation"],
+      "complexity": "moderate",
+      "languageNotes": "Standard VS Code extension activation pattern using context.subscriptions for disposal management and vscode.commands.registerCommand for command registration."
+    },
+    {
+      "id": "file:integrations/vscode-mnemosyne/src/provider.ts",
+      "type": "file",
+      "name": "provider.ts",
+      "filePath": "integrations/vscode-mnemosyne/src/provider.ts",
+      "summary": "Implements the MemoriesProvider webview view provider for the VS Code sidebar, rendering memory search results and stats with inline HTML/CSS and bidirectional message passing via the VS Code webview API.",
+      "tags": ["webview-provider", "ui", "vscode", "sidebar"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:integrations/vscode-mnemosyne/src/webview.ts",
+      "type": "file",
+      "name": "webview.ts",
+      "filePath": "integrations/vscode-mnemosyne/src/webview.ts",
+      "summary": "Provides a minimal MemoryWebview class that opens a standalone webview panel displaying placeholder memory detail content for a given memory ID.",
+      "tags": ["webview", "placeholder", "vscode", "detail-view"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:integrations/vscode-mnemosyne/src/client.ts:MnemosyneClient",
+      "type": "class",
+      "name": "MnemosyneClient",
+      "filePath": "integrations/vscode-mnemosyne/src/client.ts",
+      "lineRange": [22, 190],
+      "summary": "Core bridge class that executes Python snippets via child_process to interact with the Mnemosyne memory system, providing search, stats, remember, and listRecent operations.",
+      "tags": ["client", "python-bridge", "memory-service", "async"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:integrations/vscode-mnemosyne/src/extension.ts:activate",
+      "type": "function",
+      "name": "activate",
+      "filePath": "integrations/vscode-mnemosyne/src/extension.ts",
+      "lineRange": [9, 85],
+      "summary": "Extension activation entry point that initializes the Mnemosyne client, registers the webview provider, sets up search/remember/refresh/openMcpConfig commands, creates a status bar item, and wires up auto-refresh on save.",
+      "tags": ["entry-point", "activation", "vscode", "registration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:integrations/vscode-mnemosyne/src/extension.ts:deactivate",
+      "type": "function",
+      "name": "deactivate",
+      "filePath": "integrations/vscode-mnemosyne/src/extension.ts",
+      "lineRange": [87, 89],
+      "summary": "Extension deactivation hook that logs a shutdown message.",
+      "tags": ["lifecycle", "cleanup", "vscode"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:integrations/vscode-mnemosyne/src/provider.ts:MemoriesProvider",
+      "type": "class",
+      "name": "MemoriesProvider",
+      "filePath": "integrations/vscode-mnemosyne/src/provider.ts",
+      "lineRange": [4, 168],
+      "summary": "WebviewViewProvider implementation that renders the Mnemosyne sidebar with a search bar, memory cards, stats display, and bidirectional message handling for search, refresh, remember, and openDetail actions.",
+      "tags": ["webview-provider", "ui", "sidebar", "messaging"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:integrations/vscode-mnemosyne/src/webview.ts:MemoryWebview",
+      "type": "class",
+      "name": "MemoryWebview",
+      "filePath": "integrations/vscode-mnemosyne/src/webview.ts",
+      "lineRange": [6, 18],
+      "summary": "Placeholder webview panel class that creates a standalone detail view for a specific memory ID with minimal HTML content.",
+      "tags": ["webview", "placeholder", "detail-view"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/client.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/client.ts:MnemosyneClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "function:integrations/vscode-mnemosyne/src/extension.ts:activate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "function:integrations/vscode-mnemosyne/src/extension.ts:deactivate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/provider.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/provider.ts:MemoriesProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/webview.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/webview.ts:MemoryWebview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/client.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/client.ts:MnemosyneClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "function:integrations/vscode-mnemosyne/src/extension.ts:activate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "function:integrations/vscode-mnemosyne/src/extension.ts:deactivate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/provider.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/provider.ts:MemoriesProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/webview.ts",
+      "target": "class:integrations/vscode-mnemosyne/src/webview.ts:MemoryWebview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "file:integrations/vscode-mnemosyne/src/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "file:integrations/vscode-mnemosyne/src/provider.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "target": "file:integrations/vscode-mnemosyne/src/webview.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/vscode-mnemosyne/src/provider.ts",
+      "target": "file:integrations/vscode-mnemosyne/src/client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

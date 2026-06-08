@@ -1,0 +1,1332 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_extract_parity.py",
+      "type": "file",
+      "name": "test_extract_parity.py",
+      "filePath": "tests/test_extract_parity.py",
+      "summary": "Tests verifying parity between wrapper-based fact/entity extraction and direct extraction paths in terms of table state.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extract_parity.py:fake_extract_facts",
+      "type": "function",
+      "name": "fake_extract_facts",
+      "filePath": "tests/test_extract_parity.py",
+      "lineRange": [
+        27,
+        41
+      ],
+      "summary": "Function fake_extract_facts in tests/test_extract_parity.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_extract_parity.py:_facts_table_count",
+      "type": "function",
+      "name": "_facts_table_count",
+      "filePath": "tests/test_extract_parity.py",
+      "lineRange": [
+        44,
+        56
+      ],
+      "summary": "Function _facts_table_count in tests/test_extract_parity.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_extract_parity.py:_triples_table_count",
+      "type": "function",
+      "name": "_triples_table_count",
+      "filePath": "tests/test_extract_parity.py",
+      "lineRange": [
+        59,
+        68
+      ],
+      "summary": "Function _triples_table_count in tests/test_extract_parity.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_extract_parity.py:TestWrapperExtractFactsTableParity",
+      "type": "class",
+      "name": "TestWrapperExtractFactsTableParity",
+      "filePath": "tests/test_extract_parity.py",
+      "lineRange": [
+        71,
+        185
+      ],
+      "summary": "Class TestWrapperExtractFactsTableParity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_extract_parity.py:TestWrapperExtractEntitiesParity",
+      "type": "class",
+      "name": "TestWrapperExtractEntitiesParity",
+      "filePath": "tests/test_extract_parity.py",
+      "lineRange": [
+        188,
+        213
+      ],
+      "summary": "Class TestWrapperExtractEntitiesParity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_hermes_hindsight_cli.py",
+      "type": "file",
+      "name": "test_hermes_hindsight_cli.py",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "summary": "Tests for Hermes hindsight CLI import command covering file import, base URL, bank forwarding, dry-run, and provider API key validation.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:_sample_items",
+      "type": "function",
+      "name": "_sample_items",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        10,
+        21
+      ],
+      "summary": "Function _sample_items in tests/test_hermes_hindsight_cli.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:_args",
+      "type": "function",
+      "name": "_args",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        24,
+        45
+      ],
+      "summary": "Function _args in tests/test_hermes_hindsight_cli.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:_patch_cli_memory",
+      "type": "function",
+      "name": "_patch_cli_memory",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        48,
+        59
+      ],
+      "summary": "Function _patch_cli_memory in tests/test_hermes_hindsight_cli.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:_write_export",
+      "type": "function",
+      "name": "_write_export",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        62,
+        65
+      ],
+      "summary": "Function _write_export in tests/test_hermes_hindsight_cli.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:_db_counts_and_row",
+      "type": "function",
+      "name": "_db_counts_and_row",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        68,
+        81
+      ],
+      "summary": "Function _db_counts_and_row in tests/test_hermes_hindsight_cli.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_file_import_preserves_timestamp",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_file_import_preserves_timestamp",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        84,
+        96
+      ],
+      "summary": "Test case: hermes cli hindsight file import preserves timestamp.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_accepts_input_alias",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_accepts_input_alias",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        99,
+        111
+      ],
+      "summary": "Test case: hermes cli hindsight accepts input alias.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        114,
+        141
+      ],
+      "summary": "Test case: hermes cli hindsight base url does not require api key.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_forwards_non_default_bank",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_forwards_non_default_bank",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        144,
+        157
+      ],
+      "summary": "Test case: hermes cli hindsight forwards non default bank.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_dry_run_writes_no_rows",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_dry_run_writes_no_rows",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        160,
+        173
+      ],
+      "summary": "Test case: hermes cli hindsight dry run writes no rows.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_requires_file_or_base_url",
+      "type": "function",
+      "name": "test_hermes_cli_hindsight_requires_file_or_base_url",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        176,
+        184
+      ],
+      "summary": "Test case: hermes cli hindsight requires file or base url.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_other_provider_still_requires_api_key",
+      "type": "function",
+      "name": "test_hermes_cli_other_provider_still_requires_api_key",
+      "filePath": "tests/test_hermes_hindsight_cli.py",
+      "lineRange": [
+        187,
+        196
+      ],
+      "summary": "Test case: hermes cli other provider still requires api key.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_mcp_server.py",
+      "type": "file",
+      "name": "test_mcp_server.py",
+      "filePath": "tests/test_mcp_server.py",
+      "summary": "Tests for MCP tool schemas, tool handler logic, server integration, and import guard for missing MCP dependencies.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_mcp_server.py:TestToolSchemas",
+      "type": "class",
+      "name": "TestToolSchemas",
+      "filePath": "tests/test_mcp_server.py",
+      "lineRange": [
+        22,
+        73
+      ],
+      "summary": "Class TestToolSchemas.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_mcp_server.py:TestToolHandlers",
+      "type": "class",
+      "name": "TestToolHandlers",
+      "filePath": "tests/test_mcp_server.py",
+      "lineRange": [
+        76,
+        251
+      ],
+      "summary": "Class TestToolHandlers.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_mcp_server.py:TestMCPIntegration",
+      "type": "class",
+      "name": "TestMCPIntegration",
+      "filePath": "tests/test_mcp_server.py",
+      "lineRange": [
+        254,
+        346
+      ],
+      "summary": "Class TestMCPIntegration.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_mcp_server.py:TestImportGuard",
+      "type": "class",
+      "name": "TestImportGuard",
+      "filePath": "tests/test_mcp_server.py",
+      "lineRange": [
+        349,
+        370
+      ],
+      "summary": "Class TestImportGuard.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_memory_banks.py",
+      "type": "file",
+      "name": "test_memory_banks.py",
+      "filePath": "tests/test_memory_banks.py",
+      "summary": "Tests for BankManager CRUD operations, bank isolation, module-level bank switching, and edge case validation.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_memory_banks.py:TestBankManager",
+      "type": "class",
+      "name": "TestBankManager",
+      "filePath": "tests/test_memory_banks.py",
+      "lineRange": [
+        33,
+        178
+      ],
+      "summary": "Class TestBankManager.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_memory_banks.py:TestMnemosyneBankIsolation",
+      "type": "class",
+      "name": "TestMnemosyneBankIsolation",
+      "filePath": "tests/test_memory_banks.py",
+      "lineRange": [
+        185,
+        265
+      ],
+      "summary": "Class TestMnemosyneBankIsolation.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_memory_banks.py:TestModuleLevelBankSwitching",
+      "type": "class",
+      "name": "TestModuleLevelBankSwitching",
+      "filePath": "tests/test_memory_banks.py",
+      "lineRange": [
+        272,
+        333
+      ],
+      "summary": "Class TestModuleLevelBankSwitching.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_memory_banks.py:TestBankEdgeCases",
+      "type": "class",
+      "name": "TestBankEdgeCases",
+      "filePath": "tests/test_memory_banks.py",
+      "lineRange": [
+        340,
+        370
+      ],
+      "summary": "Class TestBankEdgeCases.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_multi_agent_identity.py",
+      "type": "file",
+      "name": "test_multi_agent_identity.py",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "summary": "Tests for multi-agent identity columns (author, author_type, channel_id) in working and episodic memory, including recall filtering and backward compatibility.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_multi_agent_identity.py:temp_db",
+      "type": "function",
+      "name": "temp_db",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        25,
+        36
+      ],
+      "summary": "Function temp_db in tests/test_multi_agent_identity.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestSchemaMigration",
+      "type": "class",
+      "name": "TestSchemaMigration",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        39,
+        62
+      ],
+      "summary": "Class TestSchemaMigration.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestRememberIdentity",
+      "type": "class",
+      "name": "TestRememberIdentity",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        65,
+        111
+      ],
+      "summary": "Class TestRememberIdentity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestRecallIdentity",
+      "type": "class",
+      "name": "TestRecallIdentity",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        114,
+        174
+      ],
+      "summary": "Class TestRecallIdentity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestStatsIdentity",
+      "type": "class",
+      "name": "TestStatsIdentity",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        177,
+        198
+      ],
+      "summary": "Class TestStatsIdentity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestMcpIdentity",
+      "type": "class",
+      "name": "TestMcpIdentity",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        201,
+        231
+      ],
+      "summary": "Class TestMcpIdentity.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_multi_agent_identity.py:TestBackwardCompatibility",
+      "type": "class",
+      "name": "TestBackwardCompatibility",
+      "filePath": "tests/test_multi_agent_identity.py",
+      "lineRange": [
+        234,
+        250
+      ],
+      "summary": "Class TestBackwardCompatibility.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_streaming.py",
+      "type": "file",
+      "name": "test_streaming.py",
+      "filePath": "tests/test_streaming.py",
+      "summary": "Tests for MemoryEvent, MemoryStream, DeltaSync, and SyncCheckpoint classes with all event types and synchronization scenarios.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_streaming.py:stream",
+      "type": "function",
+      "name": "stream",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        22,
+        23
+      ],
+      "summary": "Function stream in tests/test_streaming.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_streaming.py:sample_event",
+      "type": "function",
+      "name": "sample_event",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        27,
+        35
+      ],
+      "summary": "Function sample_event in tests/test_streaming.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_streaming.py:mnemosyne",
+      "type": "function",
+      "name": "mnemosyne",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "Function mnemosyne in tests/test_streaming.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_streaming.py:TestMemoryEvent",
+      "type": "class",
+      "name": "TestMemoryEvent",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        46,
+        82
+      ],
+      "summary": "Class TestMemoryEvent.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_streaming.py:TestMemoryStream",
+      "type": "class",
+      "name": "TestMemoryStream",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        87,
+        209
+      ],
+      "summary": "Class TestMemoryStream.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_streaming.py:TestDeltaSync",
+      "type": "class",
+      "name": "TestDeltaSync",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        214,
+        300
+      ],
+      "summary": "Class TestDeltaSync.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_streaming.py:TestSyncCheckpoint",
+      "type": "class",
+      "name": "TestSyncCheckpoint",
+      "filePath": "tests/test_streaming.py",
+      "lineRange": [
+        305,
+        316
+      ],
+      "summary": "Class TestSyncCheckpoint.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:fake_extract_facts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:fake_extract_facts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:_facts_table_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:_facts_table_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:_triples_table_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "function:tests/test_extract_parity.py:_triples_table_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "class:tests/test_extract_parity.py:TestWrapperExtractFactsTableParity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "class:tests/test_extract_parity.py:TestWrapperExtractFactsTableParity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "class:tests/test_extract_parity.py:TestWrapperExtractEntitiesParity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "class:tests/test_extract_parity.py:TestWrapperExtractEntitiesParity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_sample_items",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_sample_items",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_patch_cli_memory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_patch_cli_memory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_write_export",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_write_export",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_db_counts_and_row",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:_db_counts_and_row",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_file_import_preserves_timestamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_file_import_preserves_timestamp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_accepts_input_alias",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_accepts_input_alias",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_forwards_non_default_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_forwards_non_default_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_dry_run_writes_no_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_dry_run_writes_no_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_requires_file_or_base_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_hindsight_requires_file_or_base_url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_other_provider_still_requires_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "function:tests/test_hermes_hindsight_cli.py:test_hermes_cli_other_provider_still_requires_api_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestToolSchemas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestToolSchemas",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestToolHandlers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestToolHandlers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestMCPIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestMCPIntegration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestImportGuard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "class:tests/test_mcp_server.py:TestImportGuard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestBankManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestBankManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestMnemosyneBankIsolation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestMnemosyneBankIsolation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestModuleLevelBankSwitching",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestModuleLevelBankSwitching",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestBankEdgeCases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "class:tests/test_memory_banks.py:TestBankEdgeCases",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "function:tests/test_multi_agent_identity.py:temp_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "function:tests/test_multi_agent_identity.py:temp_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestSchemaMigration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestSchemaMigration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestRememberIdentity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestRememberIdentity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestRecallIdentity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestRecallIdentity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestStatsIdentity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestStatsIdentity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestMcpIdentity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestMcpIdentity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestBackwardCompatibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "class:tests/test_multi_agent_identity.py:TestBackwardCompatibility",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:stream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:stream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:sample_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:sample_event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:mnemosyne",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "function:tests/test_streaming.py:mnemosyne",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestMemoryEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestMemoryEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestMemoryStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestMemoryStream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestDeltaSync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestDeltaSync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestSyncCheckpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "class:tests/test_streaming.py:TestSyncCheckpoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extract_parity.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "file:hermes_memory_provider/cli.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "file:mnemosyne/core/importers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_hindsight_cli.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_mcp_server.py",
+      "target": "file:mnemosyne/mcp_tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "file:mnemosyne/core/banks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_memory_banks.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_multi_agent_identity.py",
+      "target": "file:mnemosyne/mcp_tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_streaming.py",
+      "target": "file:mnemosyne/core/streaming.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

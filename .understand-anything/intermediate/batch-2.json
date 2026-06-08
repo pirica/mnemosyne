@@ -1,0 +1,1497 @@
+{
+  "batchIndex": 2,
+  "totalFiles": 20,
+  "nodes": [
+    {
+      "id": "file:mnemosyne/core/__init__.py",
+      "type": "file",
+      "label": "mnemosyne/core/__init__.py",
+      "kind": "package_init",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1
+      },
+      "exports": []
+    },
+    {
+      "id": "file:mnemosyne/core/embeddings.py",
+      "type": "file",
+      "label": "mnemosyne/core/embeddings.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 382,
+        "nonEmptyLines": 310,
+        "functionCount": 16,
+        "classCount": 0,
+        "exportCount": 16
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/extraction.py",
+      "type": "file",
+      "label": "mnemosyne/core/extraction.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 748,
+        "nonEmptyLines": 618,
+        "functionCount": 5,
+        "classCount": 7,
+        "exportCount": 12
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/llm_backends.py",
+      "type": "file",
+      "label": "mnemosyne/core/llm_backends.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 329,
+        "nonEmptyLines": 278,
+        "functionCount": 2,
+        "classCount": 6,
+        "exportCount": 8
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/local_llm.py",
+      "type": "file",
+      "label": "mnemosyne/core/local_llm.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 329,
+        "nonEmptyLines": 268,
+        "functionCount": 6,
+        "classCount": 3,
+        "exportCount": 9
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/patterns.py",
+      "type": "file",
+      "label": "mnemosyne/core/patterns.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 423,
+        "nonEmptyLines": 348,
+        "functionCount": 0,
+        "classCount": 4,
+        "exportCount": 4
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/plugins.py",
+      "type": "file",
+      "label": "mnemosyne/core/plugins.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 676,
+        "nonEmptyLines": 553,
+        "functionCount": 2,
+        "classCount": 6,
+        "exportCount": 8
+      }
+    },
+    {
+      "id": "file:mnemosyne/core/shmr.py",
+      "type": "file",
+      "label": "mnemosyne/core/shmr.py",
+      "kind": "module",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 656,
+        "nonEmptyLines": 547,
+        "functionCount": 13,
+        "classCount": 0,
+        "exportCount": 13
+      }
+    },
+    {
+      "id": "file:tests/benchmark_beam_sota.py",
+      "type": "file",
+      "label": "tests/benchmark_beam_sota.py",
+      "kind": "test_benchmark",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 1056,
+        "nonEmptyLines": 884,
+        "functionCount": 14,
+        "classCount": 4,
+        "exportCount": 18
+      }
+    },
+    {
+      "id": "file:tests/test_beam.py",
+      "type": "file",
+      "label": "tests/test_beam.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 1762,
+        "nonEmptyLines": 1473,
+        "functionCount": 1,
+        "classCount": 20,
+        "exportCount": 21
+      }
+    },
+    {
+      "id": "file:tests/test_degrade_vector.py",
+      "type": "file",
+      "label": "tests/test_degrade_vector.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 443,
+        "nonEmptyLines": 343,
+        "functionCount": 5,
+        "classCount": 1,
+        "exportCount": 6
+      }
+    },
+    {
+      "id": "file:tests/test_embeddings_multilingual.py",
+      "type": "file",
+      "label": "tests/test_embeddings_multilingual.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 121,
+        "nonEmptyLines": 91,
+        "functionCount": 14,
+        "classCount": 0,
+        "exportCount": 14
+      }
+    },
+    {
+      "id": "file:tests/test_extraction.py",
+      "type": "file",
+      "label": "tests/test_extraction.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 425,
+        "nonEmptyLines": 325,
+        "functionCount": 20,
+        "classCount": 0,
+        "exportCount": 20
+      }
+    },
+    {
+      "id": "file:tests/test_hermes_llm_adapter.py",
+      "type": "file",
+      "label": "tests/test_hermes_llm_adapter.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 295,
+        "nonEmptyLines": 228,
+        "functionCount": 0,
+        "classCount": 1,
+        "exportCount": 1
+      }
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider.py",
+      "type": "file",
+      "label": "tests/test_hermes_memory_provider.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 738,
+        "nonEmptyLines": 585,
+        "functionCount": 28,
+        "classCount": 3,
+        "exportCount": 31
+      }
+    },
+    {
+      "id": "file:tests/test_llm_backends.py",
+      "type": "file",
+      "label": "tests/test_llm_backends.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 388,
+        "nonEmptyLines": 323,
+        "functionCount": 26,
+        "classCount": 1,
+        "exportCount": 27
+      }
+    },
+    {
+      "id": "file:tests/test_local_llm.py",
+      "type": "file",
+      "label": "tests/test_local_llm.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 101,
+        "nonEmptyLines": 79,
+        "functionCount": 6,
+        "classCount": 1,
+        "exportCount": 7
+      }
+    },
+    {
+      "id": "file:tests/test_multilingual_local_recall.py",
+      "type": "file",
+      "label": "tests/test_multilingual_local_recall.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 288,
+        "nonEmptyLines": 228,
+        "functionCount": 5,
+        "classCount": 1,
+        "exportCount": 6
+      }
+    },
+    {
+      "id": "file:tests/test_patterns.py",
+      "type": "file",
+      "label": "tests/test_patterns.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 120,
+        "nonEmptyLines": 93,
+        "functionCount": 8,
+        "classCount": 0,
+        "exportCount": 8
+      }
+    },
+    {
+      "id": "file:tests/test_plugins.py",
+      "type": "file",
+      "label": "tests/test_plugins.py",
+      "kind": "test",
+      "fileCategory": "code",
+      "metrics": {
+        "totalLines": 599,
+        "nonEmptyLines": 468,
+        "functionCount": 0,
+        "classCount": 8,
+        "exportCount": 8
+      }
+    },
+    {
+      "id": "func:embeddings.get_embedding_dim",
+      "type": "function",
+      "label": "get_embedding_dim",
+      "parent": "file:mnemosyne/core/embeddings.py",
+      "lineStart": 1,
+      "params": ["model_name"]
+    },
+    {
+      "id": "func:embeddings.is_api_model",
+      "type": "function",
+      "label": "is_api_model",
+      "parent": "file:mnemosyne/core/embeddings.py",
+      "lineStart": 1,
+      "params": ["model_name"]
+    },
+    {
+      "id": "func:embeddings.get_embedding_dim_names",
+      "type": "function",
+      "label": "get_embedding_dim_names",
+      "parent": "file:mnemosyne/core/embeddings.py"
+    },
+    {
+      "id": "func:embeddings.embed",
+      "type": "function",
+      "label": "embed",
+      "parent": "file:mnemosyne/core/embeddings.py",
+      "params": ["text", "model"]
+    },
+    {
+      "id": "func:embeddings.available",
+      "type": "function",
+      "label": "available",
+      "parent": "file:mnemosyne/core/embeddings.py"
+    },
+    {
+      "id": "func:extraction.build_extraction_prompt",
+      "type": "function",
+      "label": "build_extraction_prompt",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "params": ["messages", "config"]
+    },
+    {
+      "id": "func:extraction.parse_facts",
+      "type": "function",
+      "label": "parse_facts",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "params": ["llm_output", "source"]
+    },
+    {
+      "id": "func:extraction.parse_entities",
+      "type": "function",
+      "label": "parse_entities",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "params": ["llm_output"]
+    },
+    {
+      "id": "func:extraction.extract",
+      "type": "function",
+      "label": "extract",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "params": ["messages", "config"]
+    },
+    {
+      "id": "func:extraction.call_llm_with_extraction",
+      "type": "function",
+      "label": "call_llm_with_extraction",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "params": ["messages", "config"]
+    },
+    {
+      "id": "func:local_llm.check_llama_cpp",
+      "type": "function",
+      "label": "check_llama_cpp",
+      "parent": "file:mnemosyne/core/local_llm.py"
+    },
+    {
+      "id": "func:local_llm.get_llama_cpp_path",
+      "type": "function",
+      "label": "get_llama_cpp_path",
+      "parent": "file:mnemosyne/core/local_llm.py"
+    },
+    {
+      "id": "func:local_llm.load_model",
+      "type": "function",
+      "label": "load_model",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "params": ["model_path", "n_ctx", "n_gpu_layers"]
+    },
+    {
+      "id": "func:local_llm.get_embedding",
+      "type": "function",
+      "label": "get_embedding",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "params": ["text"]
+    },
+    {
+      "id": "func:local_llm.call_local_llm",
+      "type": "function",
+      "label": "call_local_llm",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "params": ["prompt", "system"]
+    },
+    {
+      "id": "func:local_llm.unload_model",
+      "type": "function",
+      "label": "unload_model",
+      "parent": "file:mnemosyne/core/local_llm.py"
+    },
+    {
+      "id": "func:shmr._init_schema",
+      "type": "function",
+      "label": "_init_schema",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["conn"]
+    },
+    {
+      "id": "func:shmr._embed",
+      "type": "function",
+      "label": "_embed",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["text"]
+    },
+    {
+      "id": "func:shmr._cosine_similarity",
+      "type": "function",
+      "label": "_cosine_similarity",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["a", "b"]
+    },
+    {
+      "id": "func:shmr._cluster_by_similarity",
+      "type": "function",
+      "label": "_cluster_by_similarity",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["items", "threshold"]
+    },
+    {
+      "id": "func:shmr.harmonize",
+      "type": "function",
+      "label": "harmonize",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["beam", "batch_size", "max_iterations", "similarity_threshold"]
+    },
+    {
+      "id": "func:shmr.recall_beliefs",
+      "type": "function",
+      "label": "recall_beliefs",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["beam", "query", "top_k"]
+    },
+    {
+      "id": "func:shmr.reflect",
+      "type": "function",
+      "label": "reflect",
+      "parent": "file:mnemosyne/core/shmr.py",
+      "params": ["beam", "question", "facts", "top_k"]
+    },
+    {
+      "id": "func:plugins.get_manager",
+      "type": "function",
+      "label": "get_manager",
+      "parent": "file:mnemosyne/core/plugins.py"
+    },
+    {
+      "id": "func:plugins.reset_manager",
+      "type": "function",
+      "label": "reset_manager",
+      "parent": "file:mnemosyne/core/plugins.py"
+    },
+    {
+      "id": "func:benchmark_beam_sota.main",
+      "type": "function",
+      "label": "main",
+      "parent": "file:tests/benchmark_beam_sota.py"
+    },
+    {
+      "id": "func:benchmark_beam_sota.load_beam_dataset",
+      "type": "function",
+      "label": "load_beam_dataset",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "params": ["scales", "max_conversations"]
+    },
+    {
+      "id": "func:benchmark_beam_sota.run_benchmark_scale",
+      "type": "function",
+      "label": "run_benchmark_scale",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "params": ["scale", "conversations", "modes", "top_k"]
+    },
+    {
+      "id": "cls:extraction.ExtractionConfig",
+      "type": "class",
+      "label": "ExtractionConfig",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 38,
+      "methods": ["__init__", "from_dict", "to_dict"]
+    },
+    {
+      "id": "cls:extraction.ExtractionClient",
+      "type": "class",
+      "label": "ExtractionClient",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 60,
+      "methods": ["__init__", "chat"]
+    },
+    {
+      "id": "cls:extraction.Fact",
+      "type": "class",
+      "label": "Fact",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 77,
+      "methods": ["__init__", "to_dict", "from_dict"]
+    },
+    {
+      "id": "cls:extraction.Entity",
+      "type": "class",
+      "label": "Entity",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 91,
+      "methods": ["__init__", "to_dict", "from_dict"]
+    },
+    {
+      "id": "cls:extraction.ExtractionResult",
+      "type": "class",
+      "label": "ExtractionResult",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 120,
+      "methods": ["__init__", "to_dict", "to_json", "from_dict"]
+    },
+    {
+      "id": "cls:extraction.LLMExtractor",
+      "type": "class",
+      "label": "LLMExtractor",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 170,
+      "methods": ["__init__", "extract_from_messages", "extract_facts", "extract_entities"]
+    },
+    {
+      "id": "cls:extraction.TripleStore",
+      "type": "class",
+      "label": "TripleStore",
+      "parent": "file:mnemosyne/core/extraction.py",
+      "lineStart": 300,
+      "methods": ["__init__", "add_fact", "query_by_subject", "query_by_object", "query_by_predicate", "search", "get_all"]
+    },
+    {
+      "id": "cls:llm_backends.LLMBackend",
+      "type": "class",
+      "label": "LLMBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 30,
+      "methods": ["__init__", "chat", "embed", "get_embedding_dim"]
+    },
+    {
+      "id": "cls:llm_backends.OpenAIBackend",
+      "type": "class",
+      "label": "OpenAIBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 80,
+      "methods": ["__init__", "chat", "embed"]
+    },
+    {
+      "id": "cls:llm_backends.AnthropicBackend",
+      "type": "class",
+      "label": "AnthropicBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 130,
+      "methods": ["__init__", "chat"]
+    },
+    {
+      "id": "cls:llm_backends.OllamaBackend",
+      "type": "class",
+      "label": "OllamaBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 170,
+      "methods": ["__init__", "chat", "embed"]
+    },
+    {
+      "id": "cls:llm_backends.OpenRouterBackend",
+      "type": "class",
+      "label": "OpenRouterBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 210,
+      "methods": ["__init__", "chat"]
+    },
+    {
+      "id": "cls:llm_backends.LocalBackend",
+      "type": "class",
+      "label": "LocalBackend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "lineStart": 250,
+      "methods": ["__init__", "chat", "embed"]
+    },
+    {
+      "id": "cls:local_llm.CachedEmbeddingStore",
+      "type": "class",
+      "label": "CachedEmbeddingStore",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "lineStart": 30,
+      "methods": ["__init__", "get", "put", "flush"]
+    },
+    {
+      "id": "cls:local_llm.LocalLLMEngine",
+      "type": "class",
+      "label": "LocalLLMEngine",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "lineStart": 60,
+      "methods": ["__init__", "load", "generate", "embed", "unload"]
+    },
+    {
+      "id": "cls:local_llm.ModelRegistry",
+      "type": "class",
+      "label": "ModelRegistry",
+      "parent": "file:mnemosyne/core/local_llm.py",
+      "lineStart": 150,
+      "methods": ["__init__", "register", "get", "list_models", "unregister"]
+    },
+    {
+      "id": "cls:patterns.CompressionStats",
+      "type": "class",
+      "label": "CompressionStats",
+      "parent": "file:mnemosyne/core/patterns.py",
+      "lineStart": 27,
+      "methods": ["__init__", "to_dict"],
+      "properties": ["original_size", "compressed_size", "ratio", "method"]
+    },
+    {
+      "id": "cls:patterns.MemoryCompressor",
+      "type": "class",
+      "label": "MemoryCompressor",
+      "parent": "file:mnemosyne/core/patterns.py",
+      "lineStart": 44,
+      "methods": ["__init__", "compress", "decompress", "compress_batch"],
+      "properties": ["dictionary"]
+    },
+    {
+      "id": "cls:patterns.DetectedPattern",
+      "type": "class",
+      "label": "DetectedPattern",
+      "parent": "file:mnemosyne/core/patterns.py",
+      "lineStart": 225,
+      "methods": ["to_dict"],
+      "properties": ["pattern_type", "description", "confidence", "samples", "metadata"]
+    },
+    {
+      "id": "cls:patterns.PatternDetector",
+      "type": "class",
+      "label": "PatternDetector",
+      "parent": "file:mnemosyne/core/patterns.py",
+      "lineStart": 243,
+      "methods": ["__init__", "detect_temporal", "detect_content", "detect_sequence", "detect_all", "summarize_patterns"]
+    },
+    {
+      "id": "cls:plugins.MnemosynePlugin",
+      "type": "class",
+      "label": "MnemosynePlugin",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 35,
+      "methods": ["__init__", "initialize", "shutdown", "on_remember", "on_recall", "on_consolidate", "on_invalidate", "to_dict"],
+      "properties": ["name", "version", "enabled"]
+    },
+    {
+      "id": "cls:plugins.LoggingPlugin",
+      "type": "class",
+      "label": "LoggingPlugin",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 91,
+      "methods": ["__init__", "on_remember", "on_recall", "on_consolidate", "on_invalidate", "get_log", "clear_log"]
+    },
+    {
+      "id": "cls:plugins.MetricsPlugin",
+      "type": "class",
+      "label": "MetricsPlugin",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 167,
+      "methods": ["__init__", "on_remember", "on_recall", "on_consolidate", "on_invalidate", "record_timing", "get_counters", "get_summary"]
+    },
+    {
+      "id": "cls:plugins.FilterPlugin",
+      "type": "class",
+      "label": "FilterPlugin",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 245,
+      "methods": ["__init__", "add_rule", "remove_rule", "on_remember", "on_recall", "on_consolidate", "on_invalidate", "is_blocked"]
+    },
+    {
+      "id": "cls:plugins.CompressionPlugin",
+      "type": "class",
+      "label": "CompressionPlugin",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 322,
+      "methods": ["__init__", "compress_lines", "on_remember", "on_recall", "on_consolidate", "on_invalidate"]
+    },
+    {
+      "id": "cls:plugins.PluginManager",
+      "type": "class",
+      "label": "PluginManager",
+      "parent": "file:mnemosyne/core/plugins.py",
+      "lineStart": 428,
+      "methods": ["__init__", "register_plugin", "load_plugin", "unload_plugin", "list_plugins", "get_plugin", "load_all", "unload_all", "discover_plugins", "notify_remember", "notify_recall", "notify_consolidate", "notify_invalidate"]
+    },
+    {
+      "id": "func:llm_backends.get_backend",
+      "type": "function",
+      "label": "get_backend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "params": ["backend_name", "config"]
+    },
+    {
+      "id": "func:llm_backends.register_backend",
+      "type": "function",
+      "label": "register_backend",
+      "parent": "file:mnemosyne/core/llm_backends.py",
+      "params": ["name", "backend_class"]
+    },
+    {
+      "id": "cls:benchmark_beam_sota.BaselineRetriever",
+      "type": "class",
+      "label": "BaselineRetriever",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "lineStart": 565,
+      "methods": ["__init__", "search", "close"]
+    },
+    {
+      "id": "cls:benchmark_beam_sota.KeywordRetriever",
+      "type": "class",
+      "label": "KeywordRetriever",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "lineStart": 581,
+      "methods": ["search"]
+    },
+    {
+      "id": "cls:benchmark_beam_sota.FTS5OnlyRetriever",
+      "type": "class",
+      "label": "FTS5OnlyRetriever",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "lineStart": 621,
+      "methods": ["search"]
+    },
+    {
+      "id": "cls:benchmark_beam_sota.VecOnlyRetriever",
+      "type": "class",
+      "label": "VecOnlyRetriever",
+      "parent": "file:tests/benchmark_beam_sota.py",
+      "lineStart": 670,
+      "methods": ["search"]
+    },
+    {
+      "id": "cls:test_beam.TestFactAnnotationMatching",
+      "type": "class",
+      "label": "TestFactAnnotationMatching",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 38,
+      "methods": ["test_strict_fact_match_ignores_stopword_only_matches", "test_strict_fact_match_allows_exact_entity_phrase", "test_legacy_fact_match_preserved_when_flag_off", "test_strict_fact_match_default"]
+    },
+    {
+      "id": "cls:test_beam.TestBeamSchema",
+      "type": "class",
+      "label": "TestBeamSchema",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 89,
+      "methods": ["test_init_creates_tables", "test_vec_type_probe_does_not_rollback_schema_ddl"]
+    },
+    {
+      "id": "cls:test_beam.TestWorkingMemory",
+      "type": "class",
+      "label": "TestWorkingMemory",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 127,
+      "methods": ["test_remember_and_context", "test_trim_old_memories"]
+    },
+    {
+      "id": "cls:test_beam.TestEpisodicMemory",
+      "type": "class",
+      "label": "TestEpisodicMemory",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 154,
+      "methods": ["test_consolidate_and_recall", "test_recall_hybrid_ranking"]
+    },
+    {
+      "id": "cls:test_beam.TestSleepCycle",
+      "type": "class",
+      "label": "TestSleepCycle",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 189,
+      "methods": ["test_sleep_consolidates_old_memories", "test_sleep_dry_run", "test_sleep_remains_session_scoped", "test_sleep_loads_compression_plugin", "test_sleep_all_sessions_consolidates_inactive_sessions", "test_sleep_writes_dense_embedding", "test_sleep_consolidated_content_is_recallable"]
+    },
+    {
+      "id": "cls:test_beam.TestTieredDegradation",
+      "type": "class",
+      "label": "TestTieredDegradation",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 1006,
+      "methods": ["test_schema_migration_adds_tier_columns", "test_episodic_memory_defaults_to_tier_1", "test_degrade_episodic_tier1_to_tier2", "test_degrade_episodic_tier2_to_tier3", "test_degrade_episodic_dry_run", "test_degrade_episodic_respects_batch_limit", "test_tier_weighting_in_recall", "test_sleep_includes_degradation", "test_old_memory_still_recallable_after_degradation"]
+    },
+    {
+      "id": "cls:test_beam.TestVeracity",
+      "type": "class",
+      "label": "TestVeracity",
+      "parent": "file:tests/test_beam.py",
+      "lineStart": 1361,
+      "methods": ["test_schema_adds_veracity_columns", "test_remember_defaults_to_unknown", "test_remember_explicit_veracity", "test_recall_veracity_filter", "test_veracity_weighting_in_recall", "test_get_contaminated_returns_non_stated", "test_recall_still_works_without_veracity_filter"]
+    },
+    {
+      "id": "cls:test_plugins.TestPluginRegistration",
+      "type": "class",
+      "label": "TestPluginRegistration",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 23
+    },
+    {
+      "id": "cls:test_plugins.TestPluginLifecycle",
+      "type": "class",
+      "label": "TestPluginLifecycle",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 80
+    },
+    {
+      "id": "cls:test_plugins.TestLoggingPlugin",
+      "type": "class",
+      "label": "TestLoggingPlugin",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 150
+    },
+    {
+      "id": "cls:test_plugins.TestMetricsPlugin",
+      "type": "class",
+      "label": "TestMetricsPlugin",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 220
+    },
+    {
+      "id": "cls:test_plugins.TestFilterPlugin",
+      "type": "class",
+      "label": "TestFilterPlugin",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 290
+    },
+    {
+      "id": "cls:test_plugins.TestCompressionPlugin",
+      "type": "class",
+      "label": "TestCompressionPlugin",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 360
+    },
+    {
+      "id": "cls:test_plugins.TestPluginDiscovery",
+      "type": "class",
+      "label": "TestPluginDiscovery",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 430
+    },
+    {
+      "id": "cls:test_plugins.TestPluginNotifications",
+      "type": "class",
+      "label": "TestPluginNotifications",
+      "parent": "file:tests/test_plugins.py",
+      "lineStart": 510
+    },
+    {
+      "id": "cls:test_hermes_llm_adapter.TestHermesAuxLLMBackend",
+      "type": "class",
+      "label": "TestHermesAuxLLMBackend",
+      "parent": "file:tests/test_hermes_llm_adapter.py",
+      "lineStart": 12
+    },
+    {
+      "id": "cls:test_hermes_memory_provider.TestSanitizeBankName",
+      "type": "class",
+      "label": "TestSanitizeBankName",
+      "parent": "file:tests/test_hermes_memory_provider.py",
+      "lineStart": 563,
+      "methods": ["test_normal_name_passes_through", "test_lowercases", "test_replaces_special_chars", "test_path_traversal_chars_are_sanitized"]
+    },
+    {
+      "id": "cls:test_hermes_memory_provider.TestResolveProfileBank",
+      "type": "class",
+      "label": "TestResolveProfileBank",
+      "parent": "file:tests/test_hermes_memory_provider.py",
+      "lineStart": 610,
+      "methods": ["test_uses_agent_identity_first", "test_skips_generic_identities", "test_falls_back_to_hermes_home_basename"]
+    },
+    {
+      "id": "cls:test_hermes_memory_provider.TestInitializeProfileIsolation",
+      "type": "class",
+      "label": "TestInitializeProfileIsolation",
+      "parent": "file:tests/test_hermes_memory_provider.py",
+      "lineStart": 652,
+      "methods": ["test_uses_mnemosyne_when_isolation_enabled", "test_uses_beam_memory_when_isolation_disabled"]
+    },
+    {
+      "id": "cls:test_llm_backends.TestLLMBackendDiscovery",
+      "type": "class",
+      "label": "TestLLMBackendDiscovery",
+      "parent": "file:tests/test_llm_backends.py",
+      "lineStart": 20
+    },
+    {
+      "id": "cls:test_local_llm.TestLocalLLMEngine",
+      "type": "class",
+      "label": "TestLocalLLMEngine",
+      "parent": "file:tests/test_local_llm.py",
+      "lineStart": 15
+    },
+    {
+      "id": "cls:test_degrade_vector.TestDegradeEpisodicVectorRefresh",
+      "type": "class",
+      "label": "TestDegradeEpisodicVectorRefresh",
+      "parent": "file:tests/test_degrade_vector.py",
+      "lineStart": 21
+    },
+    {
+      "id": "cls:test_multilingual_local_recall.TestMultilingualLocalRecall",
+      "type": "class",
+      "label": "TestMultilingualLocalRecall",
+      "parent": "file:tests/test_multilingual_local_recall.py",
+      "lineStart": 10
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/extraction.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/llm_backends.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/local_llm.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/patterns.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "file:mnemosyne/core/__init__.py",
+      "target": "file:mnemosyne/core/shmr.py",
+      "type": "imports",
+      "label": "re-exports"
+    },
+    {
+      "source": "func:shmr._call_llm",
+      "target": "cls:extraction.ExtractionConfig",
+      "type": "calls",
+      "label": "instantiates"
+    },
+    {
+      "source": "func:shmr._call_llm",
+      "target": "cls:extraction.ExtractionClient",
+      "type": "calls",
+      "label": "instantiates"
+    },
+    {
+      "source": "func:shmr._embed",
+      "target": "func:embeddings.embed",
+      "type": "calls",
+      "label": "delegates_embedding"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._init_schema",
+      "type": "calls",
+      "label": "init_db"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._cluster_by_similarity",
+      "type": "calls",
+      "label": "clusters"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._format_cluster_for_llm",
+      "type": "calls",
+      "label": "formats"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._call_llm",
+      "type": "calls",
+      "label": "invokes_llm"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._compute_harmony_score",
+      "type": "calls",
+      "label": "scores"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._apply_beliefs",
+      "type": "calls",
+      "label": "persists"
+    },
+    {
+      "source": "func:shmr.harmonize",
+      "target": "func:shmr._embed",
+      "type": "calls",
+      "label": "embeds"
+    },
+    {
+      "source": "func:shmr.recall_beliefs",
+      "target": "func:shmr._init_schema",
+      "type": "calls",
+      "label": "init_db"
+    },
+    {
+      "source": "func:shmr.recall_beliefs",
+      "target": "func:shmr._embed",
+      "type": "calls",
+      "label": "embeds"
+    },
+    {
+      "source": "func:shmr.recall_beliefs",
+      "target": "func:shmr._cosine_similarity",
+      "type": "calls",
+      "label": "ranks"
+    },
+    {
+      "source": "func:shmr.reflect",
+      "target": "func:shmr._call_llm",
+      "type": "calls",
+      "label": "invokes_llm"
+    },
+    {
+      "source": "func:plugins.get_manager",
+      "target": "cls:plugins.PluginManager",
+      "type": "instantiates",
+      "label": "singleton"
+    },
+    {
+      "source": "cls:plugins.CompressionPlugin",
+      "target": "cls:plugins.MnemosynePlugin",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:plugins.FilterPlugin",
+      "target": "cls:plugins.MnemosynePlugin",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:plugins.MetricsPlugin",
+      "target": "cls:plugins.MnemosynePlugin",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:plugins.LoggingPlugin",
+      "target": "cls:plugins.MnemosynePlugin",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:llm_backends.OpenAIBackend",
+      "target": "cls:llm_backends.LLMBackend",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:llm_backends.AnthropicBackend",
+      "target": "cls:llm_backends.LLMBackend",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:llm_backends.OllamaBackend",
+      "target": "cls:llm_backends.LLMBackend",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:llm_backends.OpenRouterBackend",
+      "target": "cls:llm_backends.LLMBackend",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:llm_backends.LocalBackend",
+      "target": "cls:llm_backends.LLMBackend",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:local_llm.LocalLLMEngine",
+      "target": "cls:local_llm.CachedEmbeddingStore",
+      "type": "uses",
+      "label": "embeddings_cache"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_beam.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_degrade_vector.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_embeddings_multilingual.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_extraction.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_hermes_llm_adapter.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_hermes_memory_provider.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_llm_backends.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_local_llm.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_multilingual_local_recall.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_patterns.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/benchmark_beam_sota.py",
+      "target": "file:tests/test_plugins.py",
+      "type": "co_tested",
+      "label": "same_batch"
+    },
+    {
+      "source": "file:tests/test_embeddings_multilingual.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "tests",
+      "label": "tests_embeddings_module"
+    },
+    {
+      "source": "file:tests/test_extraction.py",
+      "target": "file:mnemosyne/core/extraction.py",
+      "type": "tests",
+      "label": "tests_extraction_module"
+    },
+    {
+      "source": "file:tests/test_llm_backends.py",
+      "target": "file:mnemosyne/core/llm_backends.py",
+      "type": "tests",
+      "label": "tests_llm_backends_module"
+    },
+    {
+      "source": "file:tests/test_local_llm.py",
+      "target": "file:mnemosyne/core/local_llm.py",
+      "type": "tests",
+      "label": "tests_local_llm_module"
+    },
+    {
+      "source": "file:tests/test_patterns.py",
+      "target": "file:mnemosyne/core/patterns.py",
+      "type": "tests",
+      "label": "tests_patterns_module"
+    },
+    {
+      "source": "file:tests/test_plugins.py",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "tests",
+      "label": "tests_plugins_module"
+    },
+    {
+      "source": "file:tests/test_hermes_llm_adapter.py",
+      "target": "file:mnemosyne/core/llm_backends.py",
+      "type": "tests",
+      "label": "tests_llm_adapter"
+    },
+    {
+      "source": "file:tests/test_hermes_llm_adapter.py",
+      "target": "file:mnemosyne/core/local_llm.py",
+      "type": "tests",
+      "label": "tests_local_llm_integration"
+    },
+    {
+      "source": "file:tests/test_multilingual_local_recall.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "tests",
+      "label": "tests_multilingual_embeddings"
+    },
+    {
+      "source": "file:tests/test_multilingual_local_recall.py",
+      "target": "file:mnemosyne/core/local_llm.py",
+      "type": "tests",
+      "label": "tests_local_recall"
+    },
+    {
+      "source": "file:tests/test_beam.py",
+      "target": "file:mnemosyne/core/shmr.py",
+      "type": "imports",
+      "label": "imports_shmr"
+    },
+    {
+      "source": "file:tests/test_beam.py",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "imports",
+      "label": "imports_plugins"
+    },
+    {
+      "source": "file:tests/test_beam.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "imports",
+      "label": "imports_embeddings"
+    },
+    {
+      "source": "file:tests/test_plugins.py",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "imports",
+      "label": "imports_plugins"
+    },
+    {
+      "source": "file:tests/test_degrade_vector.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "imports",
+      "label": "imports_embeddings"
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider.py",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "imports",
+      "label": "imports_plugins"
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "imports",
+      "label": "imports_embeddings"
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider.py",
+      "target": "file:mnemosyne/core/extraction.py",
+      "type": "imports",
+      "label": "imports_extraction"
+    },
+    {
+      "source": "file:mnemosyne/core/shmr.py",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "uses",
+      "label": "embeddings"
+    },
+    {
+      "source": "file:mnemosyne/core/shmr.py",
+      "target": "file:mnemosyne/core/extraction.py",
+      "type": "uses",
+      "label": "extraction_llm"
+    },
+    {
+      "source": "file:mnemosyne/core/shmr.py",
+      "target": "file:mnemosyne/core/local_llm.py",
+      "type": "uses",
+      "label": "local_llm"
+    },
+    {
+      "source": "func:benchmark_beam_sota.main",
+      "target": "func:benchmark_beam_sota.load_beam_dataset",
+      "type": "calls",
+      "label": "loads_data"
+    },
+    {
+      "source": "func:benchmark_beam_sota.main",
+      "target": "func:benchmark_beam_sota.run_benchmark_scale",
+      "type": "calls",
+      "label": "runs_benchmark"
+    },
+    {
+      "source": "func:benchmark_beam_sota.main",
+      "target": "func:benchmark_beam_sota.print_results",
+      "type": "calls",
+      "label": "prints"
+    },
+    {
+      "source": "cls:benchmark_beam_sota.FTS5OnlyRetriever",
+      "target": "cls:benchmark_beam_sota.BaselineRetriever",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:benchmark_beam_sota.VecOnlyRetriever",
+      "target": "cls:benchmark_beam_sota.BaselineRetriever",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:benchmark_beam_sota.KeywordRetriever",
+      "target": "cls:benchmark_beam_sota.BaselineRetriever",
+      "type": "extends",
+      "label": "inherits"
+    },
+    {
+      "source": "cls:patterns.MemoryCompressor",
+      "target": "cls:patterns.CompressionStats",
+      "type": "uses",
+      "label": "creates_stats"
+    },
+    {
+      "source": "cls:patterns.PatternDetector",
+      "target": "cls:patterns.DetectedPattern",
+      "type": "creates",
+      "label": "produces_patterns"
+    },
+    {
+      "source": "cls:extraction.LLMExtractor",
+      "target": "cls:extraction.ExtractionConfig",
+      "type": "uses",
+      "label": "configures"
+    },
+    {
+      "source": "cls:extraction.LLMExtractor",
+      "target": "cls:extraction.ExtractionClient",
+      "type": "uses",
+      "label": "uses_client"
+    },
+    {
+      "source": "cls:extraction.LLMExtractor",
+      "target": "cls:extraction.Fact",
+      "type": "produces",
+      "label": "extracts_facts"
+    },
+    {
+      "source": "cls:extraction.LLMExtractor",
+      "target": "cls:extraction.Entity",
+      "type": "produces",
+      "label": "extracts_entities"
+    },
+    {
+      "source": "cls:extraction.TripleStore",
+      "target": "cls:extraction.Fact",
+      "type": "stores",
+      "label": "stores_facts"
+    },
+    {
+      "source": "func:test_embeddings_multilingual.test_is_api_model_openai_patterns",
+      "target": "func:embeddings.is_api_model",
+      "type": "calls",
+      "label": "tests"
+    },
+    {
+      "source": "func:test_embeddings_multilingual.test_get_embedding_dim_english_models",
+      "target": "func:embeddings.get_embedding_dim",
+      "type": "calls",
+      "label": "tests"
+    },
+    {
+      "source": "cls:test_beam.TestVeracity",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "tests",
+      "label": "tests_veracity_schema"
+    },
+    {
+      "source": "cls:test_beam.TestTieredDegradation",
+      "target": "file:mnemosyne/core/embeddings.py",
+      "type": "tests",
+      "label": "tests_degradation"
+    },
+    {
+      "source": "cls:test_beam.TestSleepCycle",
+      "target": "file:mnemosyne/core/plugins.py",
+      "type": "tests",
+      "label": "tests_compression_plugin"
+    }
+  ],
+  "neighborFiles": [
+    {
+      "path": "mnemosyne/core/beam.py",
+      "batchIndex": 1,
+      "symbols": []
+    },
+    {
+      "path": "mnemosyne/core/memory.py",
+      "batchIndex": 3,
+      "symbols": ["_default_data_dir", "_default_db_path", "_get_connection", "init_db", "generate_id", "Mnemosyne", "remember", "recall", "get_context", "get_stats", "forget", "get", "update", "sleep", "sleep_all_sessions", "scratchpad_write", "scratchpad_read", "scratchpad_clear"]
+    },
+    {
+      "path": "tests/benchmark_beam_comprehensive.py",
+      "batchIndex": 3,
+      "symbols": ["benchmark_writes", "benchmark_episodic_insert", "benchmark_recall_scaling", "benchmark_sleep", "benchmark_legacy_vs_beam", "benchmark_scratchpad", "main"]
+    },
+    {
+      "path": "tests/test_configurable_scoring.py",
+      "batchIndex": 3,
+      "symbols": ["TestNormalizeWeights", "temp_db", "TestRecallConfigurableWeights", "TestPublicRecallConfigurableWeights", "TestEdgeCases"]
+    },
+    {
+      "path": "tests/test_beam_e4_remember_batch_veracity.py",
+      "batchIndex": 4,
+      "symbols": ["temp_db", "_veracity_for", "TestClampVeracity", "TestRememberBatchVeracity"]
+    },
+    {
+      "path": "tests/test_beam_e6_auto_migrate.py",
+      "batchIndex": 5,
+      "symbols": ["_seed_legacy_triples", "TestBeamE6AutoMigrate"]
+    },
+    {
+      "path": "tests/test_e5a_vector_voice_dense_rewire.py",
+      "batchIndex": 4,
+      "symbols": ["temp_db", "_seed_embedding", "_unit_vec", "test_vector_voice_returns_candidates", "TestReviewHardening"]
+    },
+    {
+      "path": "tests/test_e6a_followup_gaps.py",
+      "batchIndex": 5,
+      "symbols": ["TestForgetCascadeToAnnotations", "TestForgetCrossSessionDoesNotLeakAnnotations", "TestForgetCascadeIsAtomic"]
+    },
+    {
+      "path": "tests/test_extraction_integration.py",
+      "batchIndex": 5,
+      "symbols": ["MockLLMExtractor", "test_end_to_end_extract_recall", "test_fact_recall_keyword_matching"]
+    },
+    {
+      "path": "tests/test_graph_tools.py",
+      "batchIndex": 4,
+      "symbols": ["_make_beam", "_build_provider", "_provider"]
+    },
+    {
+      "path": "tests/test_polyphonic.py",
+      "batchIndex": 5,
+      "symbols": ["test_polyphonic_recall_returns_results", "test_polyphonic_recall_empty_result_on_no_data"]
+    },
+    {
+      "path": "tools/evaluate_beam_end_to_end.py",
+      "batchIndex": 6,
+      "symbols": []
+    }
+  ],
+  "modules": {
+    "core": {
+      "files": [
+        "mnemosyne/core/__init__.py",
+        "mnemosyne/core/embeddings.py",
+        "mnemosyne/core/extraction.py",
+        "mnemosyne/core/llm_backends.py",
+        "mnemosyne/core/local_llm.py",
+        "mnemosyne/core/patterns.py",
+        "mnemosyne/core/plugins.py",
+        "mnemosyne/core/shmr.py"
+      ],
+      "totalClasses": 30,
+      "totalFunctions": 57,
+      "totalExports": 70,
+      "totalLines": 3544
+    },
+    "tests": {
+      "files": [
+        "tests/benchmark_beam_sota.py",
+        "tests/test_beam.py",
+        "tests/test_degrade_vector.py",
+        "tests/test_embeddings_multilingual.py",
+        "tests/test_extraction.py",
+        "tests/test_hermes_llm_adapter.py",
+        "tests/test_hermes_memory_provider.py",
+        "tests/test_llm_backends.py",
+        "tests/test_local_llm.py",
+        "tests/test_multilingual_local_recall.py",
+        "tests/test_patterns.py",
+        "tests/test_plugins.py"
+      ],
+      "totalClasses": 50,
+      "totalFunctions": 108,
+      "totalExports": 166,
+      "totalLines": 6346
+    }
+  }
+}

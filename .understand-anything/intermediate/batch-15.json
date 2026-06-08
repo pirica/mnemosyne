@@ -1,0 +1,290 @@
+{
+  "batchIndex": 15,
+  "schemaVersion": 1,
+  "description": "Documentation files for Mnemosyne project (docs batch)",
+  "nodes": [
+    {
+      "id": "file:docs/contributing-guide.md",
+      "type": "file",
+      "name": "contributing-guide.md",
+      "filePath": "docs/contributing-guide.md",
+      "status": "missing",
+      "summary": "PLANNED — Contributing guide for Mnemosyne contributors. Does not yet exist at this path. Equivalent content exists in /root/.hermes/projects/mnemosyne/CONTRIBUTING.md at the project root, covering setup, versioning (MAJOR.MINOR simple versioning), release process via GitHub Actions, contribution principles (local-first, minimal deps, zero-config, fast), code review guidelines, and community links.",
+      "tags": ["documentation", "contributing", "planned", "missing"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation — would cover setup instructions, PR guidelines, coding standards, and release process."
+    },
+    {
+      "id": "file:docs/data-privacy.md",
+      "type": "file",
+      "name": "data-privacy.md",
+      "filePath": "docs/data-privacy.md",
+      "status": "missing",
+      "summary": "PLANNED — Data privacy policy and practices document. Does not yet exist. Related content exists in /root/.hermes/projects/mnemosyne/SECURITY.md which covers security vulnerability reporting, supported versions (latest only), disclosure policy (30-day embargo), and scope of security issues. A dedicated data privacy doc would expand on data storage, retention, encryption, and user control over memories.",
+      "tags": ["documentation", "privacy", "security", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would detail privacy practices, data handling, GDPR/compliance considerations."
+    },
+    {
+      "id": "file:docs/deployment.md",
+      "type": "file",
+      "name": "deployment.md",
+      "filePath": "docs/deployment.md",
+      "status": "missing",
+      "summary": "PLANNED — Deployment guide for Mnemosyne. Does not yet exist. Related content exists in /root/.hermes/projects/mnemosyne/DEVOPS.md covering development operations, Docker setup (Dockerfile with python:3.11, docker-compose.yml for Neo4j+Ollama), Railway deployment configuration, and operational notes. A dedicated deployment guide would consolidate production deployment instructions.",
+      "tags": ["documentation", "deployment", "devops", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover production deployment options, Docker, Railway, and self-hosted setups."
+    },
+    {
+      "id": "file:docs/diagram-flow.mermaid",
+      "type": "file",
+      "name": "diagram-flow.mermaid",
+      "filePath": "docs/diagram-flow.mermaid",
+      "status": "missing",
+      "summary": "PLANNED — Architecture flow diagram in Mermaid format. Does not yet exist. Would visually represent the BEAM (Bilevel Episodic-Associative Memory) architecture showing working memory, episodic memory, scratchpad, vector search via sqlite-vec, FTS5 full-text retrieval, and hybrid ranking flow. Architecture details are documented in docs/architecture.md.",
+      "tags": ["diagram", "mermaid", "architecture", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Mermaid diagram — would use flowchart or sequence diagram syntax to illustrate data flow through Mnemosyne's memory tiers."
+    },
+    {
+      "id": "file:docs/faq.md",
+      "type": "file",
+      "name": "faq.md",
+      "filePath": "docs/faq.md",
+      "status": "missing",
+      "summary": "PLANNED — Frequently asked questions document. Does not yet exist. FAQ-style content is partially covered in the project README.md which covers installation, usage, architecture, and integration questions. A dedicated FAQ doc would gather common troubleshooting questions, configuration gotchas, and usage patterns.",
+      "tags": ["documentation", "faq", "planned", "missing"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation with Q&A format."
+    },
+    {
+      "id": "file:docs/getting-started.md",
+      "type": "file",
+      "name": "getting-started.md",
+      "filePath": "docs/getting-started.md",
+      "status": "existing",
+      "summary": "Getting started guide for Mnemosyne. Covers requirements (Python 3.9+), installation via PyPI (pip install mnemosyne-memory) and from source, Hermes provider setup, first memory usage examples (remember/recall API), installation verification via get_stats(), and next steps linking to architecture, API reference, configuration, and Hermes integration docs. 81 lines, well-structured with code examples.",
+      "tags": ["documentation", "getting-started", "installation", "tutorial", "onboarding"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation with code blocks in bash, python, and json. Includes cross-references to other doc files."
+    },
+    {
+      "id": "file:docs/glossary.md",
+      "type": "file",
+      "name": "glossary.md",
+      "filePath": "docs/glossary.md",
+      "status": "missing",
+      "summary": "PLANNED — Glossary of Mnemosyne terms. Does not yet exist. Would define key concepts: BEAM (Bilevel Episodic-Associative Memory), working memory, episodic memory, scratchpad, vector search, FTS5, polyphonic recall, fact extraction, entity linking, temporal boosting, sleep consolidation, memory banks, and trust tiers. These terms are used throughout the codebase and other docs but not centrally defined.",
+      "tags": ["documentation", "glossary", "reference", "planned", "missing"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation with definition-list or table format for term definitions."
+    },
+    {
+      "id": "file:docs/integration-with-honcho-and-other-memory-layers.md",
+      "type": "file",
+      "name": "integration-with-honcho-and-other-memory-layers.md",
+      "filePath": "docs/integration-with-honcho-and-other-memory-layers.md",
+      "status": "missing",
+      "summary": "PLANNED — Integration guide for Honcho and other memory layers. Does not yet exist. Honcho integration exists in code at mnemosyne/core/importers/honcho.py (HonchoImporter class) and other memory layer importers exist for mem0 (mem0.py), supermemory (supermemory.py), letta (letta.py), cognee (cognee.py), and zep (zep.py). A dedicated guide would document migrating from or integrating with these external memory systems.",
+      "tags": ["documentation", "integration", "honcho", "memory-layers", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover migration paths, data import, and interoperability with external memory providers."
+    },
+    {
+      "id": "file:docs/integrations/README.md",
+      "type": "file",
+      "name": "README.md",
+      "filePath": "docs/integrations/README.md",
+      "status": "existing",
+      "summary": "Integrations overview page for Mnemosyne. Provides a platform compatibility table covering Cursor, Claude Code, OpenAI Codex CLI, Windsurf, OpenWebUI, and Hermes Agent with their integration methods (MCP stdio, native @tool, MCP+Plugin) and config file locations. Includes a universal MCP quick-start JSON snippet and Python API fallback usage. 45 lines, concise and navigational.",
+      "tags": ["documentation", "integrations", "mcp", "overview", "cross-platform"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with a markdown table summarizing platform compatibility. Includes JSON and Python code blocks."
+    },
+    {
+      "id": "file:docs/integrations/claude-code-mcp.md",
+      "type": "file",
+      "name": "claude-code-mcp.md",
+      "filePath": "docs/integrations/claude-code-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Claude Code as an MCP tool. Covers 3-step setup (pip install, add to claude.json, restart), natural language usage examples, CLI slash commands (mnemosyne_remember/recall/forget), and per-project memory bank isolation via --bank flag. 65 lines, practical and example-driven.",
+      "tags": ["documentation", "integration", "claude-code", "mcp", "memory"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples, bash install commands, and natural language usage prompts."
+    },
+    {
+      "id": "file:docs/integrations/codex-mcp.md",
+      "type": "file",
+      "name": "codex-mcp.md",
+      "filePath": "docs/integrations/codex-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting OpenAI Codex CLI to Mnemosyne via MCP. Covers setup (pip install mcp extra, configure .codex/mcp.json, restart Codex), natural language usage examples, and per-project memory bank isolation with {{project-name}} templating. 51 lines, concise and example-focused.",
+      "tags": ["documentation", "integration", "codex-cli", "openai", "mcp", "memory"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts."
+    },
+    {
+      "id": "file:docs/integrations/cursor-mcp.md",
+      "type": "file",
+      "name": "cursor-mcp.md",
+      "filePath": "docs/integrations/cursor-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Cursor as an MCP tool. Covers 3-step setup (pip install mcp extra, .cursor/mcp.json config, restart Cursor), natural language usage examples for remembering preferences and recalling context, per-project bank isolation with --bank flag, and tip for checking memory stats. 52 lines, well-structured with tips section.",
+      "tags": ["documentation", "integration", "cursor", "mcp", "memory", "ide"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts. Includes tips subsection for power users."
+    },
+    {
+      "id": "file:docs/integrations/custom-mcp-server.md",
+      "type": "file",
+      "name": "custom-mcp-server.md",
+      "filePath": "docs/integrations/custom-mcp-server.md",
+      "status": "missing",
+      "summary": "PLANNED — Guide for creating custom MCP server integrations with Mnemosyne. Does not yet exist. Related reference exists in docs/integrations/integration-template.md which provides a template for creating new integration docs. Would cover MCP protocol details, tool registration, custom banking, and advanced configuration.",
+      "tags": ["documentation", "integration", "mcp", "custom-server", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover MCP server development, custom tool registration, and integration patterns."
+    },
+    {
+      "id": "file:docs/integrations/openwebui-bridge.md",
+      "type": "file",
+      "name": "openwebui-bridge.md",
+      "filePath": "docs/integrations/openwebui-bridge.md",
+      "status": "missing",
+      "summary": "PLANNED — Integration setup for OpenWebUI bridge. Does not yet exist under this filename. Related content exists at docs/integrations/openwebui-deep.md (deep integration guide) and docs/integrations/openwebui-tool.md (tool-based integration). OpenWebUI supports Mnemosyne via native @tool decorator as noted in the integrations README table.",
+      "tags": ["documentation", "integration", "openwebui", "planned", "missing"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation — would cover OpenWebUI tool configuration and bridge setup."
+    },
+    {
+      "id": "file:docs/integrations/vscode.md",
+      "type": "file",
+      "name": "vscode.md",
+      "filePath": "docs/integrations/vscode.md",
+      "status": "missing",
+      "summary": "PLANNED — Integration setup for VS Code extension. Does not yet exist. A VS Code extension exists at integrations/vscode-mnemosyne/ (TypeScript source with extension.ts, provider.ts, client.ts, webview.ts) but no documentation file covers its setup and usage. Would document installing the VS Code extension, configuring MCP, and using the Mnemosyne sidebar webview.",
+      "tags": ["documentation", "integration", "vscode", "extension", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover VS Code extension installation, MCP configuration, and UI usage."
+    },
+    {
+      "id": "file:docs/integrations/windsurf-mcp.md",
+      "type": "file",
+      "name": "windsurf-mcp.md",
+      "filePath": "docs/integrations/windsurf-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Windsurf via MCP. Covers 3-step setup (pip install mcp extra, .windsurf/mcp_config.json config, restart Windsurf) and natural language usage examples. 35 lines, concise and minimal — the shortest integration doc in the set.",
+      "tags": ["documentation", "integration", "windsurf", "mcp", "memory"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts."
+    },
+    {
+      "id": "file:docs/known-limitations.md",
+      "type": "file",
+      "name": "known-limitations.md",
+      "filePath": "docs/known-limitations.md",
+      "status": "missing",
+      "summary": "PLANNED — Known limitations and caveats document. Does not yet exist. Some limitations are implicitly documented in the README (zero-dependency claim vs optional dependencies, local-first design constraints, single SQLite backend limitations) and SECURITY.md (unsafe deserialization in import paths, no cloud sync). Would benefit from a consolidated limitations reference.",
+      "tags": ["documentation", "limitations", "caveats", "reference", "planned", "missing"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation — would document known bugs, design trade-offs, and unsupported scenarios."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/claude-code-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/codex-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/cursor-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/windsurf-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/openwebui-bridge.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:docs/getting-started.md",
+      "target": "file:docs/contributing-guide.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:docs/getting-started.md",
+      "target": "file:docs/deployment.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:docs/getting-started.md",
+      "target": "file:docs/faq.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:docs/claude-code-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/codex-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/cursor-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/windsurf-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ],
+  "metadata": {
+    "generatedAt": "2026-06-03T00:05:00.000Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 17,
+    "categories": ["docs"],
+    "types": ["document"],
+    "existingFiles": 6,
+    "missingFiles": 11,
+    "fileStatusSummary": "6 of 17 documented files exist on disk (getting-started.md, integrations/README.md, integrations/claude-code-mcp.md, integrations/codex-mcp.md, integrations/cursor-mcp.md, integrations/windsurf-mcp.md). 11 files are planned/missing and should be created to complete the documentation suite."
+  }
+}

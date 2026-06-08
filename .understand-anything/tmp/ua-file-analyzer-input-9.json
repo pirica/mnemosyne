@@ -1,0 +1,41 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {
+      "path": "integrations/vscode-mnemosyne/src/client.ts",
+      "language": "typescript",
+      "sizeLines": 190,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/extension.ts",
+      "language": "typescript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/provider.ts",
+      "language": "typescript",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/webview.ts",
+      "language": "typescript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "integrations/vscode-mnemosyne/src/client.ts": [],
+    "integrations/vscode-mnemosyne/src/extension.ts": [
+      "integrations/vscode-mnemosyne/src/client.ts",
+      "integrations/vscode-mnemosyne/src/provider.ts",
+      "integrations/vscode-mnemosyne/src/webview.ts"
+    ],
+    "integrations/vscode-mnemosyne/src/provider.ts": [
+      "integrations/vscode-mnemosyne/src/client.ts"
+    ],
+    "integrations/vscode-mnemosyne/src/webview.ts": []
+  }
+}

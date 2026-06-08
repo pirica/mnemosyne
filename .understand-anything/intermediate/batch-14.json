@@ -1,0 +1,489 @@
+{
+  "batchIndex": 14,
+  "schemaVersion": 1,
+  "description": "Root docs and config files for Mnemosyne project (14 files)",
+  "nodes": [
+    {
+      "id": "file:CHANGELOG.md",
+      "type": "file",
+      "name": "CHANGELOG.md",
+      "filePath": "CHANGELOG.md",
+      "summary": "Project changelog documenting all notable changes from v1.0 (Apr 2026) through v3.3.0 (Jun 2026). Includes added features, fixed bugs, changed behavior, documentation updates, and test additions for each release.",
+      "tags": ["changelog", "version-history", "release-notes", "documentation"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown following Keep a Changelog format with SemVer versioning starting from v3.1.2. Covers 20+ releases chronologically."
+    },
+    {
+      "id": "document:CHANGELOG.md:v3.3.0",
+      "type": "document",
+      "name": "v3.3.0 Release (Jun 2026)",
+      "filePath": "CHANGELOG.md",
+      "lineRange": [8, 141],
+      "summary": "Latest release adds sync_roles config for role-based autosave filtering, env vars for sync_turn content limits, fact recall merged into standard beam.recall() path, auto-default scope=global when extract=true, MNEMOSYNE_EMBEDDING_API_URL independence from OPENROUTER_BASE_URL. Fixes remember() silently not storing embeddings, hardcoded embedding dimension in binary_vectors.py/shmr.py/polyphonic_recall.py, plugin directory shadowing pip package, cross-session deletion of scope=global memories. Modular Hermes provider refactored from 2007-line monolith into 5 clean modules. Drop Python 3.9 CI support. LongMemEval 98.9% recall benchmark restored to README.",
+      "tags": ["release", "features", "bug-fixes", "refactoring", "embeddings", "hermes-integration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:CHANGELOG.md:v3.1.2",
+      "type": "document",
+      "name": "v3.1.2 Release (May 2026) — Strict Fact Matching",
+      "filePath": "CHANGELOG.md",
+      "lineRange": [143, 163],
+      "summary": "Bug fix release addressing irrelevant context injection in recall (issue #198). Strict fact matching is now default, entity prefix similarity requires 30% min length ratio, single-token strict fact queries (5+ chars) now work. MNEMOSYNE_STRICT_FACT_MATCH env var removed in favor of MNEMOSYNE_LENIENT_FACT_MATCH=1 opt-out.",
+      "tags": ["release", "bug-fix", "fact-matching", "recall-quality"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:CHANGELOG.md:history",
+      "type": "document",
+      "name": "Historical Releases (v1.0–v3.1.1)",
+      "filePath": "CHANGELOG.md",
+      "lineRange": [164, 768],
+      "summary": "Covers the project evolution from initial v1.0 (Apr 5 2026) with core remember/recall/sleep cycle through v3.1.1. Key milestones: v1.1 BEAM architecture with sqlite-vec + FTS5, v1.4 temporal validity and global scope, v1.5 export/import and one-command installer, v1.9 PyPI release and CI/CD pipeline, v2.0+ BEAM maturity with MemoryStream/DeltaSync/PluginManager, v3.0 MEMORIA architecture with structured fact extraction, v3.1.0 shared surface memory and multilingual MEMORIA (German/Russian/Chinese).",
+      "tags": ["history", "evolution", "milestones", "architecture"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:CODE_OF_CONDUCT.md",
+      "type": "file",
+      "name": "CODE_OF_CONDUCT.md",
+      "filePath": "CODE_OF_CONDUCT.md",
+      "summary": "Contributor Covenant Code of Conduct v2.1 for the Mnemosyne community. Establishes standards for respectful participation, enforcement responsibilities, and a 4-level enforcement guideline (correction, warning, temporary ban, permanent ban). Community leaders contactable via GitHub Issues or @AxDSan.",
+      "tags": ["community", "code-of-conduct", "governance", "contributor-covenant"],
+      "complexity": "simple",
+      "languageNotes": "Standard Contributor Covenant 2.1 template adapted with project-specific contact information."
+    },
+    {
+      "id": "document:CODE_OF_CONDUCT.md:standards",
+      "type": "document",
+      "name": "Community Standards and Enforcement",
+      "filePath": "CODE_OF_CONDUCT.md",
+      "lineRange": [15, 113],
+      "summary": "Defines expected behaviors (empathy, respect, constructive feedback, responsibility, community focus) and unacceptable behaviors (sexualized language, trolling, harassment, publishing private info). Outlines 4-tier enforcement from correction through permanent ban based on severity.",
+      "tags": ["community-standards", "enforcement", "conduct"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:CONTRIBUTING.md",
+      "type": "file",
+      "name": "CONTRIBUTING.md",
+      "filePath": "CONTRIBUTING.md",
+      "summary": "Contribution guide for Mnemosyne welcoming all forms of contribution from bug reports to code. Provides setup instructions (git clone, pip install -e .[all,dev]), contribution areas (bug reports, docs, use cases, code), versioning policy (Simple Versioning MAJOR.MINOR), automated release process via GitHub Actions, design principles (local-first, minimal deps, zero-config, fast), and code review process.",
+      "tags": ["contributing", "development", "versioning", "community", "guidelines"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown with inline code blocks and bash commands for setup instructions."
+    },
+    {
+      "id": "document:CONTRIBUTING.md:principles",
+      "type": "document",
+      "name": "Design Principles and Contribution Guidelines",
+      "filePath": "CONTRIBUTING.md",
+      "lineRange": [54, 76],
+      "summary": "Mnemosyne's core design principles: local-first (no cloud deps, no required API keys), minimal dependencies (prefer Python stdlib, SQLite only), zero-config (no config file edits needed for basic functionality), fast (sub-millisecond reads/writes). Contribution process requires opening an issue first, focused changes, adding tests, README updates, and version bumps.",
+      "tags": ["design-principles", "local-first", "minimal-dependencies", "contribution-process"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:CONTRIBUTING_LANGUAGES.md",
+      "type": "file",
+      "name": "CONTRIBUTING_LANGUAGES.md",
+      "filePath": "CONTRIBUTING_LANGUAGES.md",
+      "summary": "Comprehensive guide for adding new spoken language support to Mnemosyne's MEMORIA extraction engine. Details the 10 required pattern categories (negation, decision, entity, sequence, instruction_false_positives, instruction_imperative, instruction, preference, event_keywords, named_months), language detection implementation, testing requirements, and PR checklist.",
+      "tags": ["multilingual", "memoria", "nlp", "i18n", "extraction", "contribution-guide"],
+      "complexity": "complex",
+      "languageNotes": "Technical markdown guide with regex pattern examples in English and German, Python code snippets for testing."
+    },
+    {
+      "id": "document:CONTRIBUTING_LANGUAGES.md:patterns",
+      "type": "document",
+      "name": "MEMORIA Pattern Categories for Language Support",
+      "filePath": "CONTRIBUTING_LANGUAGES.md",
+      "lineRange": [39, 133],
+      "summary": "Detailed specification of 10 required extraction pattern categories: negation (regex for 'never/not' statements), decision (decision trigger phrases like 'decided to'), entity (possessive pronouns + 20+ technical nouns + 15+ action verbs), sequence (6+ sequence markers), instruction_false_positives (3+ known non-instruction phrases), instruction_imperative (20+ imperative verbs), instruction (combined regex), preference (15+ opinion verb phrases), event_keywords (15+ event-related words), named_months (regex for month+day in target language).",
+      "tags": ["regex-patterns", "nlp", "extraction", "language-detection", "memoria"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:README.md",
+      "type": "file",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Primary project README for Mnemosyne — a zero-dependency AI memory layer that works with any agent framework. Covers quick start (pip install), platform integrations (Cursor, Claude Code, Codex, Windsurf, OpenWebUI, OpenClaw, Hermes), Python SDK examples, CLI usage, BEAM benchmarks (65.2% BEAM / 98.9% LongMemEval), architecture diagram, feature comparison with 7 alternatives (mem0, Letta, Honcho, SuperMemory, Hindsight, ChromaDB), environment variable configuration, multilingual embedding setup, and 23 Hermes plugin tools across 5 categories.",
+      "tags": ["readme", "documentation", "getting-started", "benchmarks", "configuration", "hermes"],
+      "complexity": "complex",
+      "languageNotes": "Rich markdown with centered images, badges, code blocks, comparison tables, and ASCII architecture diagram."
+    },
+    {
+      "id": "document:README.md:benchmarks",
+      "type": "document",
+      "name": "Benchmark Results (BEAM + LongMemEval)",
+      "filePath": "README.md",
+      "lineRange": [101, 134],
+      "summary": "Mnemosyne holds top-tier scores: 98.9% Recall@All@5 on LongMemEval (ICLR 2025), and 65.2% on BEAM (ICLR 2026) at 100K scale. BEAM retrieval shows flat 20% Recall@10 across all scales (100K to 10M) with 35ms latency at 10M scale. 100% abstention accuracy on unknowns. Episodic compression delivers 9.4x storage savings. Full per-ability breakdown provided.",
+      "tags": ["benchmarks", "recall", "longmemeval", "beam", "performance"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md:architecture",
+      "type": "document",
+      "name": "BEAM Architecture Description",
+      "filePath": "README.md",
+      "lineRange": [219, 252],
+      "summary": "Documents the Bilevel Episodic-Associative Memory (BEAM) three-tier architecture: Working Memory (hot context, TTL-based eviction), Episodic Memory (long-term storage with sqlite-vec + FTS5 hybrid search), and TripleStore (temporal knowledge graph with version chains). Hybrid scoring uses 50% vector similarity + 30% FTS5 rank + 20% importance. Binary vectors use MIB compression from 384-dim float32 to 48 bytes (32x reduction).",
+      "tags": ["architecture", "beam", "memory-system", "hybrid-search", "binary-vectors"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md:hermes-plugin",
+      "type": "document",
+      "name": "Hermes Plugin (23 Tools)",
+      "filePath": "README.md",
+      "lineRange": [309, 340],
+      "summary": "Mnemosyne exposes 23 Hermes tools across 5 categories: Core memory (9 tools: remember, recall, sleep, stats, get, update, forget, invalidate, validate), Knowledge graph (4: triple_add, triple_query, graph_query, graph_link), Multi-agent surface (4: shared_remember, shared_recall, shared_forget, shared_stats), Working notes (3: scratchpad_write, scratchpad_read, scratchpad_clear), Ops (3: export, import, diagnose). Ships via mnemosyne-hermes package.",
+      "tags": ["hermes", "plugin", "tools", "integration", "memory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:RELEASING.md",
+      "type": "file",
+      "name": "RELEASING.md",
+      "filePath": "RELEASING.md",
+      "summary": "Release policy and process document for Mnemosyne maintainers. Defines strict SemVer (MAJOR.MINOR.PATCH) with clear criteria for each bump type, automated release process (bump version → tag → push → CI handles rest), release notes guidelines, git hook validation (tag format/version matching/sequence), and changelog format.",
+      "tags": ["release", "semver", "maintenance", "ci-cd", "publishing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown with command examples, versioning table, and git hook details."
+    },
+    {
+      "id": "file:SECURITY.md",
+      "type": "file",
+      "name": "SECURITY.md",
+      "filePath": "SECURITY.md",
+      "summary": "Security policy for Mnemosyne. Only latest release receives updates. Reporting via GitHub Issues (marked sensitive) or DM @AxDSan. 48-hour acknowledgment, 7-day fix target. Covers RCE, data leakage, injection attacks, credential exposure, unsafe deserialization. Excludes missing features, known limitations, third-party vulnerabilities. 30-day embargo after fix release.",
+      "tags": ["security", "policy", "vulnerability-reporting", "disclosure"],
+      "complexity": "simple",
+      "languageNotes": "Standard security policy markdown adapted for an agent memory project."
+    },
+    {
+      "id": "file:UPDATING.md",
+      "type": "file",
+      "name": "UPDATING.md",
+      "filePath": "UPDATING.md",
+      "summary": "Comprehensive upgrade guide covering all migration paths from v2.7 to latest (v3.3.0). Includes PEP 668 (externally-managed-environment) solutions, version-by-version upgrade details (v2.7→v2.8 E6 TripleStore split, v2.8→v2.9 MCP SDK, v2.9→v3.0 MEMORIA, v3.0→v3.1 shared surface/multilingual, v3.1→v3.1.2 strict fact matching), schema verification procedures, database migration scripts, rollback procedures, troubleshooting guide, and verification steps.",
+      "tags": ["upgrade", "migration", "schema", "troubleshooting", "pep-668"],
+      "complexity": "complex",
+      "languageNotes": "Markdown with code blocks for verification commands, comparison tables for env vars, and version-specific upgrade sections."
+    },
+    {
+      "id": "document:UPDATING.md:upgrade-v3.1.2",
+      "type": "document",
+      "name": "Upgrading to v3.1.2 — Strict Fact Matching",
+      "filePath": "UPDATING.md",
+      "lineRange": [79, 107],
+      "summary": "Pure bug fix release with three fixes for issue #198: strict fact matching now default, entity prefix guard with 30% length ratio, single-token strict matching fixed. Zero manual migration needed. Opt-out via MNEMOSYNE_LENIENT_FACT_MATCH=1. Known issue: non-strict recall still default for entity/fact paths.",
+      "tags": ["upgrade", "bug-fix", "fact-matching", "migration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:UPDATING.md:upgrade-v3.1.0",
+      "type": "document",
+      "name": "Upgrading to v3.1.0 — Shared Surface & Multilingual",
+      "filePath": "UPDATING.md",
+      "lineRange": [217, 265],
+      "summary": "Adds shared surface memory for cross-agent persistence, multilingual MEMORIA (German/Russian/Chinese auto-detection), custom embedding endpoints via OPENROUTER_BASE_URL, deterministic get(id) for direct memory retrieval, and multiple bug fixes for sqlite-vec int8 search, Hermes plugin bank parameter, timezone normalization, and working memory vectors.",
+      "tags": ["upgrade", "multilingual", "shared-memory", "embeddings", "bug-fix"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:UPDATING.md:upgrade-v3.0.0",
+      "type": "document",
+      "name": "Upgrading to v3.0.0 — MEMORIA Architecture",
+      "filePath": "UPDATING.md",
+      "lineRange": [167, 214],
+      "summary": "MEMORIA release introduces structured fact extraction with 5 new tables (memoria_facts, memoria_timelines, memoria_instructions, memoria_preferences, memoria_kg) auto-created via IF NOT EXISTS. New env vars: MNEMOSYNE_STRICT_FACT_MATCH, MNEMOSYNE_PROACTIVE_LINKING, MNEMOSYNE_MEMORIA_MODEL (default gemini-2.0-flash-lite).",
+      "tags": ["upgrade", "memoria", "fact-extraction", "schema", "tables"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:UPDATING.md:upgrade-v2.8.0",
+      "type": "document",
+      "name": "Upgrading to v2.8.0 — E6 TripleStore Split",
+      "filePath": "UPDATING.md",
+      "lineRange": [281, 351],
+      "summary": "Critical schema change splitting triples table into two: triples (current-truth facts, superseding) and annotations (append-only, multi-valued). Auto-migration on first BeamMemory init with backup at {db}.pre_e6_backup. Optional CompressionPlugin via MNEMOSYNE_USE_CAVEMAN=1.",
+      "tags": ["upgrade", "schema-migration", "triples", "annotations"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:UPDATING.md:pep668",
+      "type": "document",
+      "name": "PEP 668 Externally-Managed-Environment Solutions",
+      "filePath": "UPDATING.md",
+      "lineRange": [28, 75],
+      "summary": "Four solutions for Debian 13+/Ubuntu 24.04+ systems with PEP 668 protection: virtualenv (recommended), pipx (CLI tools), pip --break-system-packages (quick fix), source install with editable mode. Ensures users can upgrade despite system Python restrictions.",
+      "tags": ["pep-668", "installation", "debian", "ubuntu", "python"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "summary": "Python project configuration for mnemosyne-memory package. Uses setuptools build system with dynamic version from mnemosyne.__version__. Declares MIT license, Python >=3.10 requirement, 19 keywords, comprehensive classifier list. Optional dependency groups: llm (ctransformers, llama-cpp-python), embeddings (fastembed, sqlite-vec), mcp (mcp, anyio), openclaw, all, dev. Three console scripts: mnemosyne-install, mnemosyne-uninstall, mnemosyne. Excludes tests, benchmark, scripts, docs, assets from package.",
+      "tags": ["python", "packaging", "setuptools", "pyproject", "dependencies", "console-scripts"],
+      "complexity": "moderate",
+      "languageNotes": "TOML format with setuptools build backend, dynamic version resolution, and conditional dependency markers for Python version gates."
+    },
+    {
+      "id": "config:pyproject.toml:build-system",
+      "type": "config",
+      "name": "Build System Configuration",
+      "filePath": "pyproject.toml",
+      "lineRange": [1, 3],
+      "summary": "Build system requires setuptools >=61.0 and wheel, using setuptools.build_meta as build backend.",
+      "tags": ["build-system", "setuptools"],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:pyproject.toml:dependencies",
+      "type": "config",
+      "name": "Optional Dependency Extras",
+      "filePath": "pyproject.toml",
+      "lineRange": [49, 55],
+      "summary": "Five optional dependency groups: llm (local LLM inference: ctransformers, llama-cpp-python), embeddings (vector search: fastembed, sqlite-vec), mcp (MCP server: mcp, anyio), openclaw (OpenClaw integration), all (everything bundled), dev (testing: pytest, build, twine). Python version gates for mcp and openclaw (>=3.10).",
+      "tags": ["dependencies", "extras", "optional"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:pyproject.toml:scripts",
+      "type": "config",
+      "name": "Console Script Entry Points",
+      "filePath": "pyproject.toml",
+      "lineRange": [63, 66],
+      "summary": "Three CLI entry points: mnemosyne-install (mnemosyne.install:install), mnemosyne-uninstall (mnemosyne.install:uninstall), mnemosyne (mnemosyne.cli:run_cli).",
+      "tags": ["cli", "entry-points", "console-scripts"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:requirements-benchmark.txt",
+      "type": "file",
+      "name": "requirements-benchmark.txt",
+      "filePath": "requirements-benchmark.txt",
+      "summary": "Benchmark-only dependency file for BEAM evaluation. Declares datasets>=2.0 (HuggingFace BEAM dataset loader), numpy>=1.20, sqlite-vec>=0.1. Not required for normal use. References docs/benchmarking.md for setup guide.",
+      "tags": ["benchmark", "dependencies", "beam", "requirements"],
+      "complexity": "simple",
+      "languageNotes": "pip requirements format with comment annotations explaining purpose."
+    },
+    {
+      "id": "file:run_beam_all_scales.sh",
+      "type": "script",
+      "name": "run_beam_all_scales.sh",
+      "filePath": "run_beam_all_scales.sh",
+      "summary": "Multi-scale BEAM benchmark runner that iterates over 100K, 500K, 1M, and 10M scales. Uses openai/gpt-4o as model and judge by default, with configurable sample size. Sources OpenRouter key from /tmp/openrouter_key.txt. Uses openai/text-embedding-3-large for embeddings. Outputs results to results/beam_e2e_results.json.",
+      "tags": ["benchmark", "beam", "shell-script", "multi-scale", "evaluation"],
+      "complexity": "simple",
+      "languageNotes": "Bash script with loop over scale values, environment variable passing, and Python invocation."
+    },
+    {
+      "id": "file:run_beam_bench.sh",
+      "type": "script",
+      "name": "run_beam_bench.sh",
+      "filePath": "run_beam_bench.sh",
+      "summary": "BEAM benchmark runner for targeted scale testing. Sources API keys from ~/.hermes/.env, sets MNEMOSYNE_BENCHMARK_PURE_RECALL=1 for clean numbers, uses deepseek-v4-pro as model. Configurable scales and sample size via positional arguments. Runs end-to-end mode with top-k 10 and max-context 8000.",
+      "tags": ["benchmark", "beam", "shell-script", "hermes", "evaluation"],
+      "complexity": "simple",
+      "languageNotes": "Bash script with set -e strict mode, env sourcing from Hermes configuration."
+    },
+    {
+      "id": "file:run_beam_clean.sh",
+      "type": "script",
+      "name": "run_beam_clean.sh",
+      "filePath": "run_beam_clean.sh",
+      "summary": "BEAM benchmark runner with clean environment isolation. Extracts OpenRouter key from ~/.hermes/.env, then runs the benchmark with exec env -i to prevent gateway snap interference. Explicitly sets only needed env vars: OPENROUTER_API_KEY, MNEMOSYNE_BENCHMARK_PURE_RECALL, MNEMOSYNE_LLM_ENABLED, MNEMOSYNE_LLM_BASE_URL, MNEMOSYNE_LLM_API_KEY, MNEMOSYNE_LLM_MODEL (deepseek/deepseek-v4-flash), MNEMOSYNE_LLM_MAX_TOKENS. Runs 100K scale with sample 3.",
+      "tags": ["benchmark", "beam", "shell-script", "clean-env", "deepseek"],
+      "complexity": "moderate",
+      "languageNotes": "Bash script using exec env -i for environment sanitization, preventing interference from gateway environment variables."
+    },
+    {
+      "id": "file:run_hybrid_all_scales.sh",
+      "type": "script",
+      "name": "run_hybrid_all_scales.sh",
+      "filePath": "run_hybrid_all_scales.sh",
+      "summary": "Multi-scale BEAM hybrid mode benchmark runner. Uses FULL_CONTEXT_MODE=1 with MNEMOSYNE_BEAM_OPTIMIZATIONS=1. Default model is openai/gpt-4.1 with openai/gpt-4o as judge. Uses openai/text-embedding-3-large for embeddings. Iterates over 100K, 500K, 1M, and 10M scales. Configurable sample size via first argument.",
+      "tags": ["benchmark", "beam", "shell-script", "hybrid", "multi-scale", "evaluation"],
+      "complexity": "simple",
+      "languageNotes": "Bash script similar to run_beam_all_scales.sh but with FULL_CONTEXT_MODE and BEAM_OPTIMIZATIONS flags enabled."
+    }
+  ],
+  "batchImportData": {
+    "CHANGELOG.md": [],
+    "CODE_OF_CONDUCT.md": [],
+    "CONTRIBUTING.md": [],
+    "CONTRIBUTING_LANGUAGES.md": [],
+    "README.md": [],
+    "RELEASING.md": [],
+    "SECURITY.md": [],
+    "UPDATING.md": [],
+    "pyproject.toml": [],
+    "requirements-benchmark.txt": [],
+    "run_beam_all_scales.sh": [],
+    "run_beam_bench.sh": [],
+    "run_beam_clean.sh": [],
+    "run_hybrid_all_scales.sh": []
+  },
+  "neighborMap": {},
+  "semanticAnalysis": {
+    "files": [
+      {
+        "path": "CHANGELOG.md",
+        "category": "docs",
+        "type": "changelog",
+        "lineCount": 768,
+        "sections": 20,
+        "latestVersion": "3.3.0",
+        "earliestVersion": "1.0",
+        "purpose": "Document all notable changes to Mnemosyne across releases, following Keep a Changelog format"
+      },
+      {
+        "path": "CODE_OF_CONDUCT.md",
+        "category": "docs",
+        "type": "community-standard",
+        "lineCount": 132,
+        "purpose": "Establish community behavior standards and enforcement procedures for contributors"
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "category": "docs",
+        "type": "contribution-guide",
+        "lineCount": 93,
+        "purpose": "Guide potential contributors through setup, contribution types, versioning policy, and review process"
+      },
+      {
+        "path": "CONTRIBUTING_LANGUAGES.md",
+        "category": "docs",
+        "type": "technical-guide",
+        "lineCount": 179,
+        "purpose": "Specify requirements and template for adding new language support to MEMORIA extraction engine"
+      },
+      {
+        "path": "README.md",
+        "category": "docs",
+        "type": "project-readme",
+        "lineCount": 376,
+        "purpose": "Primary project documentation covering installation, usage, benchmarks, architecture, configuration, and integrations"
+      },
+      {
+        "path": "RELEASING.md",
+        "category": "docs",
+        "type": "process-document",
+        "lineCount": 111,
+        "purpose": "Define release policy, versioning rules, automated release process, and git hook validation"
+      },
+      {
+        "path": "SECURITY.md",
+        "category": "docs",
+        "type": "security-policy",
+        "lineCount": 47,
+        "purpose": "Provide vulnerability reporting process, scope definitions, and disclosure timeline"
+      },
+      {
+        "path": "UPDATING.md",
+        "category": "docs",
+        "type": "migration-guide",
+        "lineCount": 665,
+        "purpose": "Guide users through all upgrade paths with version-specific instructions, schema changes, and troubleshooting"
+      },
+      {
+        "path": "pyproject.toml",
+        "category": "config",
+        "type": "python-packaging",
+        "lineCount": 72,
+        "purpose": "Configure Python package build, metadata, optional dependencies, and CLI entry points"
+      },
+      {
+        "path": "requirements-benchmark.txt",
+        "category": "docs",
+        "type": "dependency-list",
+        "lineCount": 18,
+        "purpose": "Declare extra Python dependencies needed only for running BEAM benchmarks"
+      },
+      {
+        "path": "run_beam_all_scales.sh",
+        "category": "script",
+        "type": "benchmark-runner",
+        "lineCount": 29,
+        "purpose": "Automate running BEAM benchmark across all scales (100K-10M) with configurable model/judge"
+      },
+      {
+        "path": "run_beam_bench.sh",
+        "category": "script",
+        "type": "benchmark-runner",
+        "lineCount": 32,
+        "purpose": "Run targeted BEAM benchmark with Hermes environment sourcing and pure recall mode"
+      },
+      {
+        "path": "run_beam_clean.sh",
+        "category": "script",
+        "type": "benchmark-runner",
+        "lineCount": 28,
+        "purpose": "Run BEAM benchmark in isolated clean environment to prevent gateway snap interference"
+      },
+      {
+        "path": "run_hybrid_all_scales.sh",
+        "category": "script",
+        "type": "benchmark-runner",
+        "lineCount": 28,
+        "purpose": "Run BEAM benchmark in hybrid mode (FULL_CONTEXT + context→value) across all scales"
+      }
+    ],
+    "dependencies": {
+      "envVarsReferenced": [
+        "OPENROUTER_API_KEY",
+        "OPENROUTER_BASE_URL",
+        "NVIDIA_API_KEY",
+        "MNEMOSYNE_BENCHMARK_PURE_RECALL",
+        "MNEMOSYNE_LLM_ENABLED",
+        "MNEMOSYNE_LLM_BASE_URL",
+        "MNEMOSYNE_LLM_API_KEY",
+        "MNEMOSYNE_LLM_MODEL",
+        "MNEMOSYNE_LLM_MAX_TOKENS",
+        "MNEMOSYNE_EMBEDDING_MODEL",
+        "MNEMOSYNE_BEAM_OPTIMIZATIONS",
+        "MNEMOSYNE_DATA_DIR",
+        "MNEMOSYNE_VEC_TYPE",
+        "MNEMOSYNE_FACT_RECALL_ENABLED",
+        "MNEMOSYNE_SYNC_TURN_USER_LIMIT",
+        "MNEMOSYNE_SYNC_TURN_ASSISTANT_LIMIT",
+        "MNEMOSYNE_LENIENT_FACT_MATCH",
+        "MNEMOSYNE_STRICT_FACT_MATCH",
+        "MNEMOSYNE_TEMPORAL_HALFLIFE_HOURS"
+      ],
+      "externalResources": [
+        "https://github.com/AxDSan/mnemosyne",
+        "https://pypi.org/project/mnemosyne-memory/",
+        "https://discord.gg/Cgzpw9x3R",
+        "https://openrouter.ai",
+        "https://keepachangelog.com",
+        "https://semver.org"
+      ]
+    },
+    "keyFindings": [
+      "The 14 files form a complete documentation and configuration layer for the Mnemosyne project",
+      "8 markdown docs (CHANGELOG, CODE_OF_CONDUCT, CONTRIBUTING, CONTRIBUTING_LANGUAGES, README, RELEASING, SECURITY, UPDATING) cover the full project lifecycle from community standards to technical contribution and release management",
+      "UPDATING.md is the most comprehensive doc at 665 lines, covering all upgrade paths from v2.7 through v3.3.0",
+      "README.md at 376 lines serves as the primary entry point with benchmarks, architecture, and integration guides",
+      "4 shell scripts are all BEAM benchmark runners with different configurations (multi-scale, targeted, clean-env, hybrid)",
+      "pyproject.toml defines the Python package with 5 optional dependency groups and 3 CLI entry points",
+      "The benchmark scripts reference OpenRouter API keys and DeepSeek/GPT-4 models for LLM-based evaluation",
+      "All batchImportData entries are empty arrays and neighborMap is empty, indicating no pre-existing import analysis was done",
+      "The batch contains no code files — all are documentation, configuration, or benchmark scripts"
+    ]
+  },
+  "metadata": {
+    "generatedAt": "2026-06-03T00:00:00.000Z",
+    "toolVersion": "batch-analysis-1.0",
+    "fileCount": 14,
+    "categories": ["docs", "config", "script"],
+    "totalDocNodes": 32,
+    "totalLines": 2548
+  }
+}

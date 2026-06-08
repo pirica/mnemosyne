@@ -1,0 +1,57 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {"path": "mnemosyne/core/importers/__init__.py", "language": "python", "sizeLines": 163, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/agentic.py", "language": "python", "sizeLines": 391, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/base.py", "language": "python", "sizeLines": 245, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/cognee.py", "language": "python", "sizeLines": 298, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/hindsight.py", "language": "python", "sizeLines": 448, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/honcho.py", "language": "python", "sizeLines": 283, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/letta.py", "language": "python", "sizeLines": 313, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/mem0.py", "language": "python", "sizeLines": 378, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/supermemory.py", "language": "python", "sizeLines": 260, "fileCategory": "code"},
+    {"path": "mnemosyne/core/importers/zep.py", "language": "python", "sizeLines": 322, "fileCategory": "code"},
+    {"path": "tests/test_importers/test_base.py", "language": "python", "sizeLines": 168, "fileCategory": "code"},
+    {"path": "tests/test_importers/test_cognee.py", "language": "python", "sizeLines": 126, "fileCategory": "code"},
+    {"path": "tests/test_importers/test_hindsight.py", "language": "python", "sizeLines": 164, "fileCategory": "code"},
+    {"path": "tests/test_importers/test_mem0.py", "language": "python", "sizeLines": 264, "fileCategory": "code"},
+    {"path": "tests/test_recall_precision_regressions.py", "language": "python", "sizeLines": 260, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "mnemosyne/core/importers/__init__.py": [
+      "mnemosyne/core/importers/agentic.py",
+      "mnemosyne/core/importers/base.py",
+      "mnemosyne/core/importers/cognee.py",
+      "mnemosyne/core/importers/hindsight.py",
+      "mnemosyne/core/importers/honcho.py",
+      "mnemosyne/core/importers/letta.py",
+      "mnemosyne/core/importers/mem0.py",
+      "mnemosyne/core/importers/supermemory.py",
+      "mnemosyne/core/importers/zep.py"
+    ],
+    "mnemosyne/core/importers/agentic.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/base.py": [],
+    "mnemosyne/core/importers/cognee.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/hindsight.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/honcho.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/letta.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/mem0.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/supermemory.py": ["mnemosyne/core/importers/base.py"],
+    "mnemosyne/core/importers/zep.py": ["mnemosyne/core/importers/base.py"],
+    "tests/test_importers/test_base.py": ["mnemosyne/core/importers/base.py"],
+    "tests/test_importers/test_cognee.py": ["mnemosyne/core/importers/cognee.py"],
+    "tests/test_importers/test_hindsight.py": [
+      "mnemosyne/core/importers/__init__.py",
+      "mnemosyne/core/importers/hindsight.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_importers/test_mem0.py": [
+      "mnemosyne/core/importers/base.py",
+      "mnemosyne/core/importers/mem0.py"
+    ],
+    "tests/test_recall_precision_regressions.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/importers/__init__.py"
+    ]
+  }
+}

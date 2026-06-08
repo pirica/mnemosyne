@@ -1,0 +1,253 @@
+{
+  "batchIndex": 17,
+  "description": "Hermes Agent integration package for Mnemosyne (config + docs)",
+  "files": [
+    "integrations/hermes/README.md",
+    "integrations/hermes/plugin.yaml",
+    "integrations/hermes/pyproject.toml"
+  ],
+  "extractStructure": {
+    "scriptCompleted": true,
+    "filesAnalyzed": 3,
+    "filesSkipped": [],
+    "results": [
+      {
+        "path": "integrations/hermes/README.md",
+        "language": "markdown",
+        "fileCategory": "docs",
+        "fileType": "document",
+        "totalLines": 185,
+        "nonEmptyLines": 152,
+        "structure": {
+          "fileType": "unknown",
+          "rawLines": 186,
+          "sections": [
+            "Header/Badges",
+            "The Problem",
+            "What Mnemosyne Changes",
+            "How It Works (Capture, Recall, Consolidate)",
+            "Quickstart",
+            "Configuration (env vars table)",
+            "Tools (23 tools listed by category)",
+            "Test the Memory Loop",
+            "Fail-Soft By Design",
+            "Contributing",
+            "Support",
+            "License"
+          ],
+          "badges": ["PyPI", "Python 3.10+", "MIT License", "GitHub Stars"],
+          "external_refs": ["mnemosyne-hermes (PyPI)", "hermes-agent", "SQLite", "AxDSan/mnemosyne (GitHub)", "Discord"],
+          "env_vars_documented": [
+            "MNEMOSYNE_HOME", "MNEMOSYNE_VEC_WEIGHT", "MNEMOSYNE_FTS_WEIGHT", "MNEMOSYNE_IMPORTANCE_WEIGHT",
+            "MNEMOSYNE_AUTO_SLEEP_ENABLED", "MNEMOSYNE_AUTO_SLEEP_THRESHOLD", "MNEMOSYNE_PROFILE_ISOLATION",
+            "MNEMOSYNE_SYNC_TURN_USER_LIMIT", "MNEMOSYNE_SYNC_TURN_ASSISTANT_LIMIT",
+            "MNEMOSYNE_FACT_RECALL_ENABLED", "MNEMOSYNE_PREFETCH_CONTENT_CHARS"
+          ],
+          "tool_categories": {
+            "core_memory": ["remember", "recall", "sleep", "stats", "get", "update", "forget", "invalidate", "validate"],
+            "knowledge_graph": ["triple_add", "triple_query", "graph_query", "graph_link"],
+            "multi_agent": ["shared_remember", "shared_recall", "shared_forget", "shared_stats"],
+            "working_notes": ["scratchpad_write", "scratchpad_read", "scratchpad_clear"],
+            "ops": ["export", "import", "diagnose"]
+          }
+        }
+      },
+      {
+        "path": "integrations/hermes/plugin.yaml",
+        "language": "yaml",
+        "fileCategory": "config",
+        "fileType": "yaml",
+        "totalLines": 6,
+        "nonEmptyLines": 6,
+        "structure": {
+          "fileType": "unknown",
+          "rawLines": 7,
+          "keys": ["name", "version", "description", "author", "pip_dependencies"],
+          "name": "hermes-mnemosyne",
+          "version": "0.1.1",
+          "author": "Abdias J",
+          "pip_dependencies": ["mnemosyne-memory>=3.1"]
+        }
+      },
+      {
+        "path": "integrations/hermes/pyproject.toml",
+        "language": "toml",
+        "fileCategory": "config",
+        "fileType": "toml",
+        "totalLines": 54,
+        "nonEmptyLines": 49,
+        "structure": {
+          "fileType": "unknown",
+          "rawLines": 55,
+          "sections": ["build-system", "project", "project.entry-points.hermes_agent.plugins", "project.scripts", "project.urls", "tool.setuptools.packages.find", "tool.setuptools.package-data", "tool.ruff", "tool.ruff.lint", "tool.ruff.format"],
+          "package_name": "mnemosyne-hermes",
+          "version": "0.1.1",
+          "python_requires": ">=3.10",
+          "dependencies": ["mnemosyne-memory>=3.1"],
+          "entry_point": "mnemosyne_hermes:register",
+          "cli_script": "mnemosyne-hermes = mnemosyne_hermes.install:main",
+          "package_data_includes": ["plugin.yaml"],
+          "ruff_config": {
+            "line_length": 100,
+            "target_version": "py310",
+            "lint_rules": ["E", "W", "F", "I", "B", "C4", "UP"],
+            "ignored_rules": ["E501"],
+            "quote_style": "double",
+            "indent_style": "space"
+          }
+        }
+      }
+    ]
+  },
+  "batchImportData": {
+    "README.md": {
+      "type": "documentation",
+      "sections": ["Introduction", "Problem Statement", "What Mnemosyne Changes", "How It Works", "Quickstart", "Configuration", "Tools", "Contributing", "License"],
+      "key_topics": ["local-first memory", "hybrid search", "episodic consolidation", "knowledge graph", "multi-agent validation", "fail-soft design"],
+      "external_refs": ["mnemosyne-memory>=3.1", "hermes-agent", "SQLite", "PyPI"],
+      "env_vars": 11,
+      "tools_count": 23
+    },
+    "plugin.yaml": {
+      "plugin_name": "hermes-mnemosyne",
+      "version": "0.1.1",
+      "type": "hermes-plugin-manifest",
+      "pip_dependencies": ["mnemosyne-memory>=3.1"],
+      "description": "Native local memory for Hermes with SQLite vector search, FTS5 hybrid ranking, episodic consolidation, temporal triples"
+    },
+    "pyproject.toml": {
+      "package_name": "mnemosyne-hermes",
+      "version": "0.1.1",
+      "python_requires": ">=3.10",
+      "dependencies": ["mnemosyne-memory>=3.1"],
+      "entry_point": "mnemosyne_hermes:register",
+      "build_system": "setuptools",
+      "classifiers": ["Development Status :: 4 - Beta", "Python 3.10-3.13", "AI/Memory"]
+    }
+  },
+  "neighborMap": {
+    "README.md": {
+      "neighbors": ["plugin.yaml", "pyproject.toml"],
+      "relationship": "README documents the integration package defined by plugin.yaml (plugin manifest) and pyproject.toml (build/packaging config)",
+      "shared_context": "mnemosyne-hermes integration package - documentation covers all aspects of the integration"
+    },
+    "plugin.yaml": {
+      "neighbors": ["README.md", "pyproject.toml"],
+      "relationship": "plugin.yaml declares the Hermes plugin manifest; pyproject.toml defines the Python package metadata and entry point; README documents usage",
+      "shared_context": "Hermes plugin packaging: plugin.yaml is the discovery manifest, pyproject.toml is the Python distribution config"
+    },
+    "pyproject.toml": {
+      "neighbors": ["README.md", "plugin.yaml"],
+      "relationship": "pyproject.toml defines the Python package (mnemosyne-hermes) with entry point registration referenced by plugin.yaml discovery; README documents installation and usage",
+      "shared_context": "Python package build config for the Hermes-Mnemosyne memory provider plugin"
+    }
+  },
+  "semanticAnalysis": {
+    "modulePurpose": {
+      "README.md": "Comprehensive documentation and user-facing README for the mnemosyne-hermes integration package. Explains the problem (agent context loss), solution architecture (capture → recall → consolidate), quickstart instructions, all 23 available tools across 5 categories, env var configuration table, and fail-soft design philosophy.",
+      "plugin.yaml": "Hermes Agent plugin manifest that declares the mnemosyne-hermes plugin for automatic discovery by Hermes Agent's plugin system. Specifies name, version, description, author, and pip dependency on the core mnemosyne-memory library.",
+      "pyproject.toml": "Python build system configuration (setuptools) for the mnemosyne-hermes package. Defines package metadata, dependency on mnemosyne-memory>=3.1, the Hermes plugin entry point (mnemosyne_hermes:register), CLI script for installation, tooling config (Ruff linter/formatter), and package-data inclusion of plugin.yaml for distribution."
+    },
+    "dependencyGraph": "plugin.yaml (declares dependency on mnemosyne-memory>=3.1) <- pyproject.toml (same dependency, builds the package) <- README.md (documents both, references the package on PyPI)",
+    "crossBatchDependencies": {},
+    "keyPatterns": [
+      "Three-file integration package: documentation (README.md), plugin manifest (plugin.yaml), and Python build config (pyproject.toml)",
+      "Tight version alignment: plugin.yaml v0.1.1 matches pyproject.toml v0.1.1 exactly; both depend on mnemosyne-memory>=3.1",
+      "Hermes plugin discovery chain: pyproject.toml registers entry point (mnemosyne_hermes:register) via hermes_agent.plugins namespace, plugin.yaml is the static manifest discovered at plugin load time, plugin.yaml is bundled as package_data in the wheel distribution",
+      "23 tools across 5 categories: core memory (9), knowledge graph (4), multi-agent (4), working notes (3), ops (3)",
+      "11 configurable environment variables with sensible defaults, all documented in README",
+      "Fail-soft design: Mnemosyne provider never blocks the user on DB failures or disk-full conditions",
+      "Profile isolation support via MNEMOSYNE_PROFILE_ISOLATION env var for multi-profile Hermes setups",
+      "Ruff linter configured with py310 target, 100-char line length, double quotes, space indentation"
+    ],
+    "architecturalRole": "These three files constitute the complete packaging and documentation layer for the mnemosyne-hermes integration — the bridge between the core mnemosyne-memory library and Hermes Agent. README.md serves as the external user-facing entry point (install docs, config reference, tool catalog, usage examples). plugin.yaml is the static manifest Hermes discovers at startup to register the memory provider. pyproject.toml is the Python distribution config that builds, publishes, and registers the plugin's entry point in Hermes' plugin system. Together they form a self-contained, pip-installable integration package.",
+    "codeQuality": {
+      "strengths": [
+        "README is comprehensive: covers problem, architecture, quickstart, full tool listing, config table, and contribution guide",
+        "Version consistency maintained across all three files (all v0.1.1)",
+        "plugin.yaml is minimal and focused — only essential metadata, no duplication of packaging info",
+        "pyproject.toml correctly registers plugin entry point under hermes_agent.plugins namespace",
+        "Package data includes plugin.yaml so the manifest is distributed with the wheel",
+        "Ruff linter configuration enforces consistent code style for the plugin source code",
+        "CLI script registered for easy post-install setup"
+      ],
+      "observations": [
+        "README is large (185 lines) — some sections like the full configuration table and tool list could be maintained separately and referenced",
+        "plugin.yaml has no explicit schema validation — it's a flat structure that Hermes parses at load time",
+        "No tests/ or CI config in this package (testing lives at the top-level mnemosyne project)",
+        "No version pinning in pyproject.toml for setuptools/wheel build dependencies (>=60 is broad)",
+        "README recommends disabling Hermes' built-in file-based memory, but doesn't provide a re-enable path if needed"
+      ]
+    },
+    "coverageAnalysis": {
+      "testCount": 0,
+      "testFunctions": [],
+      "testedFunctions": [],
+      "untestedFunctions": [],
+      "note": "This batch contains documentation and config files only — no testable code. The plugin source code (Python modules in src/mnemosyne_hermes/) is in separate batches."
+    },
+    "enrichedAnalysis": {
+      "README.md": {
+        "purpose": "Complete user-facing documentation for the mnemosyne-hermes Hermes Agent integration package",
+        "keyFindings": [
+          "Documents 23 tools across 5 categories: core memory, knowledge graph, multi-agent, working notes, ops",
+          "Describes three-stage architecture: Capture (automatic post-turn storage with embeddings), Recall (hybrid vector+FTS5+importance scoring), Consolidate (episodic compression via mnemosyne_sleep)",
+          "11 environment variables documented with defaults, types, and descriptions",
+          "Quickstart: pip install + hermes memory setup (or manual config set)",
+          "Fail-soft design: DB failures logged but never surface as user errors",
+          "Recommends disabling Hermes built-in file-based memory to avoid duplication",
+          "Multi-agent validation with provenance tracking and shared surface for cross-agent workflows",
+          "Knowledge graph: subject-predicate-object triples with BFS graph traversal"
+        ],
+        "dependencies": ["hermes-agent", "mnemosyne-memory>=3.1 (transitive)", "SQLite"],
+        "securityConcerns": [
+          "No authentication or access control on the local SQLite database",
+          "Multi-agent shared surface could leak memory across agents if not carefully scoped",
+          "Profile isolation is opt-in (disabled by default)"
+        ],
+        "recommendations": [
+          "Consider a CHANGELOG or version migration guide alongside the README",
+          "The 23 tools list could benefit from a quick-reference table with argument summaries",
+          "Documentation for the knowledge graph triple schema and query language would help adoption"
+        ]
+      },
+      "plugin.yaml": {
+        "purpose": "Hermes Agent plugin manifest for automatic discovery and registration of the mnemosyne memory provider",
+        "keyFindings": [
+          "Plugin name: hermes-mnemosyne (follows hermes-{provider} naming convention)",
+          "Single pip dependency: mnemosyne-memory>=3.1 (core library with vector search, FTS5, triples)",
+          "Version 0.1.1 aligned with pyproject.toml",
+          "Author: Abdias J (abdi.moya@gmail.com)",
+          "Description emphasizes zero-cloud, zero-latency design with SQLite backend"
+        ],
+        "dependencies": ["mnemosyne-memory>=3.1"],
+        "securityConcerns": [],
+        "recommendations": [
+          "Consider adding a schema field to specify the expected entry point format for better discovery validation",
+          "A minimum hermes-agent version requirement could prevent compatibility issues"
+        ]
+      },
+      "pyproject.toml": {
+        "purpose": "Python package build configuration for the mnemosyne-hermes Hermes Agent integration",
+        "keyFindings": [
+          "Package name: mnemosyne-hermes (published to PyPI)",
+          "Entry point: mnemosyne_hermes:register under hermes_agent.plugins namespace",
+          "CLI script: mnemosyne-hermes → mnemosyne_hermes.install:main for post-install setup",
+          "Package data includes plugin.yaml so the manifest is bundled in the wheel",
+          "Source code located under src/ (setuptools.packages.find where = [\"src\"])",
+          "Ruff linter configured with py310 target, 100-char lines, double quotes",
+          "Dependency: mnemosyne-memory>=3.1",
+          "Python 3.10+ required with classifiers for 3.10 through 3.13",
+          "Development Status: 4 - Beta"
+        ],
+        "dependencies": ["mnemosyne-memory>=3.1", "setuptools>=60", "wheel"],
+        "securityConcerns": [],
+        "recommendations": [
+          "Pin build dependencies (setuptools, wheel) for reproducible builds",
+          "Consider adding optional dependency groups for development/testing",
+          "Add a minimum hermes-agent version in extras_require or as a dependency marker"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,2181 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_content_sanitizer.py",
+      "type": "file",
+      "name": "test_content_sanitizer.py",
+      "filePath": "tests/test_content_sanitizer.py",
+      "summary": "Tests for content sanitizer functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "content-sanitizer",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_data_dir_scripts.py",
+      "type": "file",
+      "name": "test_data_dir_scripts.py",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "summary": "Tests for data dir scripts functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "data-dir-scripts",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_fact_recall_integration.py",
+      "type": "file",
+      "name": "test_fact_recall_integration.py",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "summary": "Tests for fact recall integration functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "fact-recall-integration",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_identity_memory.py",
+      "type": "file",
+      "name": "test_identity_memory.py",
+      "filePath": "tests/test_identity_memory.py",
+      "summary": "Tests for identity memory functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "identity-memory",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:tests/test_importers/fixtures/mem0_export.json",
+      "type": "config",
+      "name": "mem0_export.json",
+      "filePath": "tests/test_importers/fixtures/mem0_export.json",
+      "summary": "Test fixture containing mem0_export data for importer testing.",
+      "tags": [
+        "configuration",
+        "test-fixture",
+        "json",
+        "json"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:tests/test_importers/fixtures/mem0_paginated_response.json",
+      "type": "config",
+      "name": "mem0_paginated_response.json",
+      "filePath": "tests/test_importers/fixtures/mem0_paginated_response.json",
+      "summary": "Test fixture containing mem0_paginated_response data for importer testing.",
+      "tags": [
+        "configuration",
+        "test-fixture",
+        "json",
+        "json"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_mnemosyne_stats.py",
+      "type": "file",
+      "name": "test_mnemosyne_stats.py",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "summary": "Tests for mnemosyne stats functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "mnemosyne-stats",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_optional_embeddings.py",
+      "type": "file",
+      "name": "test_optional_embeddings.py",
+      "filePath": "tests/test_optional_embeddings.py",
+      "summary": "Tests for optional embeddings functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "optional-embeddings",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_outer_package_version.py",
+      "type": "file",
+      "name": "test_outer_package_version.py",
+      "filePath": "tests/test_outer_package_version.py",
+      "summary": "Tests for outer package version functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "outer-package-version",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_prefetch_content_truncation.py",
+      "type": "file",
+      "name": "test_prefetch_content_truncation.py",
+      "filePath": "tests/test_prefetch_content_truncation.py",
+      "summary": "Tests for prefetch content truncation functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "prefetch-content-truncation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_query_cache_synonyms.py",
+      "type": "file",
+      "name": "test_query_cache_synonyms.py",
+      "filePath": "tests/test_query_cache_synonyms.py",
+      "summary": "Tests for query cache synonyms functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "query-cache-synonyms",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_s1_mcp_sse_auth.py",
+      "type": "file",
+      "name": "test_s1_mcp_sse_auth.py",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "summary": "Tests for s1 mcp sse auth functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "s1-mcp-sse-auth",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_content_sanitizer.py:TestDataUriDetection",
+      "type": "class",
+      "name": "TestDataUriDetection",
+      "filePath": "tests/test_content_sanitizer.py",
+      "lineRange": [
+        19,
+        52
+      ],
+      "summary": "Test class TestDataUriDetection with 7 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_content_sanitizer.py:TestShannonEntropy",
+      "type": "class",
+      "name": "TestShannonEntropy",
+      "filePath": "tests/test_content_sanitizer.py",
+      "lineRange": [
+        55,
+        73
+      ],
+      "summary": "Test class TestShannonEntropy with 4 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_content_sanitizer.py:TestLooksLikeBase64Blob",
+      "type": "class",
+      "name": "TestLooksLikeBase64Blob",
+      "filePath": "tests/test_content_sanitizer.py",
+      "lineRange": [
+        76,
+        91
+      ],
+      "summary": "Test class TestLooksLikeBase64Blob with 3 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_content_sanitizer.py:TestBlobStorage",
+      "type": "class",
+      "name": "TestBlobStorage",
+      "filePath": "tests/test_content_sanitizer.py",
+      "lineRange": [
+        94,
+        112
+      ],
+      "summary": "Test class TestBlobStorage with 2 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_content_sanitizer.py:TestSanitizeContent",
+      "type": "class",
+      "name": "TestSanitizeContent",
+      "filePath": "tests/test_content_sanitizer.py",
+      "lineRange": [
+        115,
+        164
+      ],
+      "summary": "Test class TestSanitizeContent with 6 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_data_dir_scripts.py:_isolated_env",
+      "type": "function",
+      "name": "_isolated_env",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function _isolated_env.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_data_dir_scripts.py:_store_memory",
+      "type": "function",
+      "name": "_store_memory",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "params": [
+        "env"
+      ],
+      "summary": "Function _store_memory.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_data_dir_scripts.py:test_backfill_temporal_triples_uses_mnemosyne_data_dir",
+      "type": "function",
+      "name": "test_backfill_temporal_triples_uses_mnemosyne_data_dir",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_backfill_temporal_triples_uses_mnemosyne_data_dir.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_data_dir_scripts.py:test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical",
+      "type": "function",
+      "name": "test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_data_dir_scripts.py:test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts",
+      "type": "function",
+      "name": "test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts",
+      "filePath": "tests/test_data_dir_scripts.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_fact_recall_integration.py:FakeFactBeam",
+      "type": "class",
+      "name": "FakeFactBeam",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "lineRange": [
+        12,
+        42
+      ],
+      "summary": "Test class FakeFactBeam with 3 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_enabled",
+      "type": "function",
+      "name": "test_fact_recall_integration_enabled",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_fact_recall_integration_enabled.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_disabled",
+      "type": "function",
+      "name": "test_fact_recall_integration_disabled",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_fact_recall_integration_disabled.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_dedup",
+      "type": "function",
+      "name": "test_fact_recall_integration_dedup",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_fact_recall_integration_dedup.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_fact_recall_integration.py:test_fact_recall_graceful_fallback",
+      "type": "function",
+      "name": "test_fact_recall_graceful_fallback",
+      "filePath": "tests/test_fact_recall_integration.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_fact_recall_graceful_fallback.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_identity_memory.py:TestIdentitySignals",
+      "type": "class",
+      "name": "TestIdentitySignals",
+      "filePath": "tests/test_identity_memory.py",
+      "lineRange": [
+        10,
+        118
+      ],
+      "summary": "Test class TestIdentitySignals with 6 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:_safe_count",
+      "type": "function",
+      "name": "_safe_count",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [
+        "db",
+        "table"
+      ],
+      "summary": "Function _safe_count.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [
+        "args",
+        "check"
+      ],
+      "summary": "Function run.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:_test",
+      "type": "function",
+      "name": "_test",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [
+        "name",
+        "fn"
+      ],
+      "summary": "Function _test.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_full_dashboard",
+      "type": "function",
+      "name": "test_full_dashboard",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_full_dashboard.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_compact_mode",
+      "type": "function",
+      "name": "test_compact_mode",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_compact_mode.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_json_mode",
+      "type": "function",
+      "name": "test_json_mode",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_json_mode.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_json_mode_uses_mnemosyne_data_dir",
+      "type": "function",
+      "name": "test_json_mode_uses_mnemosyne_data_dir",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_json_mode_uses_mnemosyne_data_dir.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default",
+      "type": "function",
+      "name": "test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_save_snapshot",
+      "type": "function",
+      "name": "test_save_snapshot",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_save_snapshot.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_trends",
+      "type": "function",
+      "name": "test_trends",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_trends.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_auto_snapshot",
+      "type": "function",
+      "name": "test_auto_snapshot",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_auto_snapshot.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_health_score_in_output",
+      "type": "function",
+      "name": "test_health_score_in_output",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_health_score_in_output.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_db_size_in_output",
+      "type": "function",
+      "name": "test_db_size_in_output",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_db_size_in_output.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_quality_indicators_section",
+      "type": "function",
+      "name": "test_quality_indicators_section",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_quality_indicators_section.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_recommendations_section",
+      "type": "function",
+      "name": "test_recommendations_section",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_recommendations_section.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_invalid_flag",
+      "type": "function",
+      "name": "test_invalid_flag",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_invalid_flag.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_multiple_flags",
+      "type": "function",
+      "name": "test_multiple_flags",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_multiple_flags.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_empty_db_path",
+      "type": "function",
+      "name": "test_empty_db_path",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_empty_db_path.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_corrupted_json_snapshot",
+      "type": "function",
+      "name": "test_corrupted_json_snapshot",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_corrupted_json_snapshot.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_empty_snapshot_dir",
+      "type": "function",
+      "name": "test_empty_snapshot_dir",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_empty_snapshot_dir.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_special_characters_in_memory",
+      "type": "function",
+      "name": "test_special_characters_in_memory",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_special_characters_in_memory.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_large_output",
+      "type": "function",
+      "name": "test_large_output",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_large_output.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_json_valid_structure",
+      "type": "function",
+      "name": "test_json_valid_structure",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_json_valid_structure.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_snapshot_json_valid",
+      "type": "function",
+      "name": "test_snapshot_json_valid",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_snapshot_json_valid.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_concurrent_access",
+      "type": "function",
+      "name": "test_concurrent_access",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_concurrent_access.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_wiki_count_matches",
+      "type": "function",
+      "name": "test_wiki_count_matches",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_wiki_count_matches.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_db_count_matches",
+      "type": "function",
+      "name": "test_db_count_matches",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_db_count_matches.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_episodic_count_matches",
+      "type": "function",
+      "name": "test_episodic_count_matches",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_episodic_count_matches.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_triples_count_matches",
+      "type": "function",
+      "name": "test_triples_count_matches",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_triples_count_matches.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_consolidation_count_matches",
+      "type": "function",
+      "name": "test_consolidation_count_matches",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_consolidation_count_matches.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_rapid_fire",
+      "type": "function",
+      "name": "test_rapid_fire",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_rapid_fire.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_json_pipe_to_python",
+      "type": "function",
+      "name": "test_json_pipe_to_python",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_json_pipe_to_python.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_output_encoding",
+      "type": "function",
+      "name": "test_output_encoding",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_output_encoding.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_performance",
+      "type": "function",
+      "name": "test_performance",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_performance.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_snapshot_growth",
+      "type": "function",
+      "name": "test_snapshot_growth",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_snapshot_growth.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_importance_distribution_sums",
+      "type": "function",
+      "name": "test_importance_distribution_sums",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_importance_distribution_sums.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_recall_distribution_sums",
+      "type": "function",
+      "name": "test_recall_distribution_sums",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_recall_distribution_sums.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_noise_pct_calculation",
+      "type": "function",
+      "name": "test_noise_pct_calculation",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_noise_pct_calculation.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_global_count_accuracy",
+      "type": "function",
+      "name": "test_global_count_accuracy",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_global_count_accuracy.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_mnemosyne_stats.py:test_quality_score_bounds",
+      "type": "function",
+      "name": "test_quality_score_bounds",
+      "filePath": "tests/test_mnemosyne_stats.py",
+      "params": [],
+      "summary": "Function test_quality_score_bounds.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_optional_embeddings.py:_run_with_optional_embedding_deps_blocked",
+      "type": "function",
+      "name": "_run_with_optional_embedding_deps_blocked",
+      "filePath": "tests/test_optional_embeddings.py",
+      "params": [
+        "code",
+        "tmp_path"
+      ],
+      "summary": "Function _run_with_optional_embedding_deps_blocked.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_optional_embeddings.py:test_embeddings_module_imports_without_numpy_or_fastembed",
+      "type": "function",
+      "name": "test_embeddings_module_imports_without_numpy_or_fastembed",
+      "filePath": "tests/test_optional_embeddings.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_embeddings_module_imports_without_numpy_or_fastembed.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_optional_embeddings.py:test_cli_stats_works_without_optional_embedding_dependencies",
+      "type": "function",
+      "name": "test_cli_stats_works_without_optional_embedding_dependencies",
+      "filePath": "tests/test_optional_embeddings.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_cli_stats_works_without_optional_embedding_dependencies.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_outer_package_version.py:test_outer_package_reexports_version_and_author",
+      "type": "function",
+      "name": "test_outer_package_reexports_version_and_author",
+      "filePath": "tests/test_outer_package_version.py",
+      "params": [],
+      "summary": "Function test_outer_package_reexports_version_and_author.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_prefetch_content_truncation.py:FakeBeam",
+      "type": "class",
+      "name": "FakeBeam",
+      "filePath": "tests/test_prefetch_content_truncation.py",
+      "lineRange": [
+        11,
+        26
+      ],
+      "summary": "Test class FakeBeam with 2 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_prefetch_content_truncation.py:test_prefetch_preserves_full_memory_content_by_default",
+      "type": "function",
+      "name": "test_prefetch_preserves_full_memory_content_by_default",
+      "filePath": "tests/test_prefetch_content_truncation.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_prefetch_preserves_full_memory_content_by_default.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_is_opt_in_and_word_boundary",
+      "type": "function",
+      "name": "test_prefetch_content_limit_is_opt_in_and_word_boundary",
+      "filePath": "tests/test_prefetch_content_truncation.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_prefetch_content_limit_is_opt_in_and_word_boundary.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_zero_means_no_truncation",
+      "type": "function",
+      "name": "test_prefetch_content_limit_zero_means_no_truncation",
+      "filePath": "tests/test_prefetch_content_truncation.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_prefetch_content_limit_zero_means_no_truncation.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_query_cache_synonyms.py:TestSynonyms",
+      "type": "class",
+      "name": "TestSynonyms",
+      "filePath": "tests/test_query_cache_synonyms.py",
+      "lineRange": [
+        13,
+        44
+      ],
+      "summary": "Test class TestSynonyms with 5 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_query_cache_synonyms.py:TestQueryCache",
+      "type": "class",
+      "name": "TestQueryCache",
+      "filePath": "tests/test_query_cache_synonyms.py",
+      "lineRange": [
+        47,
+        87
+      ],
+      "summary": "Test class TestQueryCache with 7 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestIsLoopback",
+      "type": "class",
+      "name": "TestIsLoopback",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [
+        32,
+        51
+      ],
+      "summary": "Test class TestIsLoopback with 2 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestResolveSseAuth",
+      "type": "class",
+      "name": "TestResolveSseAuth",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [
+        54,
+        101
+      ],
+      "summary": "Test class TestResolveSseAuth with 6 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestMainHostArg",
+      "type": "class",
+      "name": "TestMainHostArg",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [
+        109,
+        142
+      ],
+      "summary": "Test class TestMainHostArg with 4 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestBuildSseApp",
+      "type": "class",
+      "name": "TestBuildSseApp",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [
+        163,
+        255
+      ],
+      "summary": "Test class TestBuildSseApp with 7 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_s1_mcp_sse_auth.py:_starlette_available",
+      "type": "function",
+      "name": "_starlette_available",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "params": [],
+      "summary": "Function _starlette_available.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestDataUriDetection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestDataUriDetection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestShannonEntropy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestShannonEntropy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestLooksLikeBase64Blob",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestLooksLikeBase64Blob",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestBlobStorage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestBlobStorage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestSanitizeContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "class:tests/test_content_sanitizer.py:TestSanitizeContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:_isolated_env",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:_isolated_env",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:_store_memory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:_store_memory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_backfill_temporal_triples_uses_mnemosyne_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_backfill_temporal_triples_uses_mnemosyne_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_data_dir_scripts.py",
+      "target": "function:tests/test_data_dir_scripts.py:test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "class:tests/test_fact_recall_integration.py:FakeFactBeam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "class:tests/test_fact_recall_integration.py:FakeFactBeam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_enabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_enabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_disabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_disabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_dedup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_integration_dedup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_graceful_fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_fact_recall_integration.py",
+      "target": "function:tests/test_fact_recall_integration.py:test_fact_recall_graceful_fallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_identity_memory.py",
+      "target": "class:tests/test_identity_memory.py:TestIdentitySignals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_identity_memory.py",
+      "target": "class:tests/test_identity_memory.py:TestIdentitySignals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:_safe_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:_safe_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:_test",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:_test",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_full_dashboard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_full_dashboard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_compact_mode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_compact_mode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode_uses_mnemosyne_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode_uses_mnemosyne_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_save_snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_save_snapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_trends",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_trends",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_auto_snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_auto_snapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_health_score_in_output",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_health_score_in_output",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_db_size_in_output",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_db_size_in_output",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_quality_indicators_section",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_quality_indicators_section",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_recommendations_section",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_recommendations_section",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_invalid_flag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_invalid_flag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_multiple_flags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_multiple_flags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_empty_db_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_empty_db_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_corrupted_json_snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_corrupted_json_snapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_empty_snapshot_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_empty_snapshot_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_special_characters_in_memory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_special_characters_in_memory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_large_output",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_large_output",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_valid_structure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_valid_structure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_snapshot_json_valid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_snapshot_json_valid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_concurrent_access",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_concurrent_access",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_wiki_count_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_wiki_count_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_db_count_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_db_count_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_episodic_count_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_episodic_count_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_triples_count_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_triples_count_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_consolidation_count_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_consolidation_count_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_rapid_fire",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_rapid_fire",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_pipe_to_python",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_json_pipe_to_python",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_output_encoding",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_output_encoding",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_performance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_performance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_snapshot_growth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_snapshot_growth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_importance_distribution_sums",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_importance_distribution_sums",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_recall_distribution_sums",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_recall_distribution_sums",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_noise_pct_calculation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_noise_pct_calculation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_global_count_accuracy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_global_count_accuracy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_quality_score_bounds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_mnemosyne_stats.py",
+      "target": "function:tests/test_mnemosyne_stats.py:test_quality_score_bounds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:_run_with_optional_embedding_deps_blocked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:_run_with_optional_embedding_deps_blocked",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:test_embeddings_module_imports_without_numpy_or_fastembed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:test_embeddings_module_imports_without_numpy_or_fastembed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:test_cli_stats_works_without_optional_embedding_dependencies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_optional_embeddings.py",
+      "target": "function:tests/test_optional_embeddings.py:test_cli_stats_works_without_optional_embedding_dependencies",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_outer_package_version.py",
+      "target": "function:tests/test_outer_package_version.py:test_outer_package_reexports_version_and_author",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_outer_package_version.py",
+      "target": "function:tests/test_outer_package_version.py:test_outer_package_reexports_version_and_author",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "class:tests/test_prefetch_content_truncation.py:FakeBeam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "class:tests/test_prefetch_content_truncation.py:FakeBeam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_preserves_full_memory_content_by_default",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_preserves_full_memory_content_by_default",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_is_opt_in_and_word_boundary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_is_opt_in_and_word_boundary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_zero_means_no_truncation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_prefetch_content_truncation.py",
+      "target": "function:tests/test_prefetch_content_truncation.py:test_prefetch_content_limit_zero_means_no_truncation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_query_cache_synonyms.py",
+      "target": "class:tests/test_query_cache_synonyms.py:TestSynonyms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_query_cache_synonyms.py",
+      "target": "class:tests/test_query_cache_synonyms.py:TestSynonyms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_query_cache_synonyms.py",
+      "target": "class:tests/test_query_cache_synonyms.py:TestQueryCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_query_cache_synonyms.py",
+      "target": "class:tests/test_query_cache_synonyms.py:TestQueryCache",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestIsLoopback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestIsLoopback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestResolveSseAuth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestResolveSseAuth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestMainHostArg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestMainHostArg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestBuildSseApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestBuildSseApp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "function:tests/test_s1_mcp_sse_auth.py:_starlette_available",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "function:tests/test_s1_mcp_sse_auth.py:_starlette_available",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_content_sanitizer.py",
+      "target": "file:mnemosyne/core/content_sanitizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/content_sanitizer.py",
+      "target": "file:tests/test_content_sanitizer.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

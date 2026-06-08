@@ -1,0 +1,1002 @@
+{
+  "nodes": [
+    {
+      "id": "file:mnemosyne/core/annotations.py",
+      "type": "file",
+      "name": "annotations.py",
+      "filePath": "mnemosyne/core/annotations.py",
+      "summary": "Provides the AnnotationStore class and helper functions for managing annotations (mentions, facts, sources) in a SQLite-backed triple store split. Supports add, query, export, and import operations with silent invalidation for triples.",
+      "tags": ["data-model", "storage", "sqlite", "annotation"],
+      "complexity": "complex",
+      "languageNotes": "Uses raw sqlite3 cursor operations with explicit commit/rollback for transaction control."
+    },
+    {
+      "id": "file:mnemosyne/core/entities.py",
+      "type": "file",
+      "name": "entities.py",
+      "filePath": "mnemosyne/core/entities.py",
+      "summary": "Provides entity extraction utilities including Levenshtein distance, string similarity scoring, regex-based entity extraction, fuzzy matching with stop word filtering, and entity extraction performance measurement.",
+      "tags": ["utility", "entity-extraction", "nlp", "string-matching"],
+      "complexity": "moderate",
+      "languageNotes": "Pure Python implementation of Levenshtein distance with no external dependencies."
+    },
+    {
+      "id": "file:mnemosyne/core/triples.py",
+      "type": "file",
+      "name": "triples.py",
+      "filePath": "mnemosyne/core/triples.py",
+      "summary": "Provides the TripleStore class and initialization helpers for managing RDF-style subject-predicate-object triples in a SQLite database. Handles schema creation, triple CRUD operations, export, import, and legacy database migration.",
+      "tags": ["data-model", "storage", "sqlite", "triple-store"],
+      "complexity": "complex",
+      "languageNotes": "Uses raw sqlite3 for maximum control over transactional semantics and schema migration."
+    },
+    {
+      "id": "file:mnemosyne/integrations/openclaw.py",
+      "type": "file",
+      "name": "openclaw.py",
+      "filePath": "mnemosyne/integrations/openclaw.py",
+      "summary": "Provides the MnemosyneProvider class implementing the OpenClaw provider interface to expose Mnemosyne memory operations (remember, recall, forget, context) as a service integration.",
+      "tags": ["integration", "provider", "service", "api-handler"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/migrations/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "mnemosyne/migrations/__init__.py",
+      "summary": "Package init for the migrations module, declaring migrate as the public API for the e6 triplestore split migration.",
+      "tags": ["entry-point", "barrel", "migration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "type": "file",
+      "name": "e6_triplestore_split.py",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "summary": "Provides the e6 database migration that splits legacy triple annotation rows into a separate annotations table. Includes detection of pending migrations, row classification, migration execution with backup, and dry-run support.",
+      "tags": ["migration", "database", "sqlite", "e6"],
+      "complexity": "complex",
+      "languageNotes": "Uses raw sqlite3 for schema introspection and batch row migration with transaction rollback on failure."
+    },
+    {
+      "id": "file:scripts/migrate_triplestore_split.py",
+      "type": "file",
+      "name": "migrate_triplestore_split.py",
+      "filePath": "scripts/migrate_triplestore_split.py",
+      "summary": "CLI entry point for the e6 triplestore split migration script. Uses argparse to accept database path, dry-run and no-backup options, then invokes the migration module.",
+      "tags": ["script", "cli", "migration", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_annotations.py",
+      "type": "file",
+      "name": "test_annotations.py",
+      "filePath": "tests/test_annotations.py",
+      "summary": "Integration tests for the AnnotationStore and TripleStore classes covering multi-value preservation, query operations, export/import round-tripping, e6 end-to-end production paths, add_facts deprecation warning, and silent invalidation behavior.",
+      "tags": ["test", "annotation", "triple-store", "regression"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:_is_noisy_mention",
+      "type": "function",
+      "name": "_is_noisy_mention",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [55, 60],
+      "summary": "Filters out mentions containing only stop-word-like patterns to reduce noise in extracted entities.",
+      "tags": ["utility", "filter", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:filter_clean_mentions",
+      "type": "function",
+      "name": "filter_clean_mentions",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [63, 68],
+      "summary": "Cleans a list of mention strings by stripping whitespace and removing noisy mentions.",
+      "tags": ["utility", "filter", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:filter_facts",
+      "type": "function",
+      "name": "filter_facts",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [92, 97],
+      "summary": "Filters out fact entries that contain empty, stop-word-only, or noisy values.",
+      "tags": ["utility", "filter", "fact"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:_get_conn",
+      "type": "function",
+      "name": "_get_conn",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [100, 105],
+      "summary": "Opens a new sqlite3 connection to the given database path, enabling WAL mode for concurrent access.",
+      "tags": ["utility", "database", "sqlite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:init_annotations",
+      "type": "function",
+      "name": "init_annotations",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [108, 121],
+      "summary": "Initializes the annotations schema in a database by creating the annotations table if it does not exist.",
+      "tags": ["database", "schema", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:_init_annotations_with_conn",
+      "type": "function",
+      "name": "_init_annotations_with_conn",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [124, 163],
+      "summary": "Creates the annotations table with columns for memory_id, kind, value, source, confidence, and metadata, with proper indexes on memory_id and kind.",
+      "tags": ["database", "schema", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:add_annotation",
+      "type": "function",
+      "name": "add_annotation",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [521, 531],
+      "summary": "Inserts a new annotation row into the annotations table and returns the row ID.",
+      "tags": ["database", "write", "annotation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/annotations.py:query_annotations",
+      "type": "function",
+      "name": "query_annotations",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [534, 552],
+      "summary": "Queries annotations by memory_id and optionally by kind, returning matching rows as dictionaries.",
+      "tags": ["database", "query", "annotation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/annotations.py:AnnotationStore",
+      "type": "class",
+      "name": "AnnotationStore",
+      "filePath": "mnemosyne/core/annotations.py",
+      "lineRange": [166, 514],
+      "summary": "SQLite-backed store for managing annotations (mentions, facts, sources). Provides add, query_by_memory, query_by_kind, get_distinct_values, export_all, import_all, and add_many operations with session tracking and silent invalidation support.",
+      "tags": ["data-model", "storage", "annotation", "sqlite"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/core/entities.py:levenshtein_distance",
+      "type": "function",
+      "name": "levenshtein_distance",
+      "filePath": "mnemosyne/core/entities.py",
+      "lineRange": [69, 97],
+      "summary": "Computes the Levenshtein distance between two strings using a DP-based O(n*m) algorithm with Unicode support.",
+      "tags": ["utility", "string-matching", "algorithm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/entities.py:similarity",
+      "type": "function",
+      "name": "similarity",
+      "filePath": "mnemosyne/core/entities.py",
+      "lineRange": [100, 134],
+      "summary": "Computes a normalized similarity score (0.0-1.0) between two strings using Levenshtein distance with case-insensitive comparison.",
+      "tags": ["utility", "string-matching", "fuzzy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/entities.py:extract_entities_regex",
+      "type": "function",
+      "name": "extract_entities_regex",
+      "filePath": "mnemosyne/core/entities.py",
+      "lineRange": [137, 205],
+      "summary": "Extracts named entities from text using regex patterns for capitalized names, quoted phrases, @mentions, and hashtags, filtering out stop words.",
+      "tags": ["utility", "entity-extraction", "regex", "nlp"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/entities.py:find_similar_entities",
+      "type": "function",
+      "name": "find_similar_entities",
+      "filePath": "mnemosyne/core/entities.py",
+      "lineRange": [208, 224],
+      "summary": "Finds entities in a list that are similar to a query entity using the similarity function with a configurable threshold.",
+      "tags": ["utility", "fuzzy-matching", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/entities.py:entity_extraction_performance",
+      "type": "function",
+      "name": "entity_extraction_performance",
+      "filePath": "mnemosyne/core/entities.py",
+      "lineRange": [227, 237],
+      "summary": "Benchmarks entity extraction by repeatedly calling extract_entities_regex and measuring execution time.",
+      "tags": ["utility", "performance", "benchmark"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:_copy_legacy_db",
+      "type": "function",
+      "name": "_copy_legacy_db",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [41, 69],
+      "summary": "Copies the database file at startup from a legacy location if the new location does not exist.",
+      "tags": ["utility", "migration", "database"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:_resolve_default_db",
+      "type": "function",
+      "name": "_resolve_default_db",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [72, 76],
+      "summary": "Resolves the default database path from the MNEMOSYNE_DB_PATH environment variable or a default subdirectory.",
+      "tags": ["utility", "configuration", "database"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:_get_conn",
+      "type": "function",
+      "name": "_get_conn",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [79, 84],
+      "summary": "Opens a sqlite3 connection to the given database path with WAL mode enabled.",
+      "tags": ["utility", "database", "sqlite"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:init_triples",
+      "type": "function",
+      "name": "init_triples",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [87, 110],
+      "summary": "Initializes the triples database schema, migrating legacy data and creating the triples table if needed.",
+      "tags": ["database", "schema", "initialization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:add_triple",
+      "type": "function",
+      "name": "add_triple",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [476, 485],
+      "summary": "Inserts a new triple (subject, predicate, object) with optional source and confidence into the triples table.",
+      "tags": ["database", "write", "triple"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/triples.py:query_triples",
+      "type": "function",
+      "name": "query_triples",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [488, 497],
+      "summary": "Queries triples by subject and optionally predicate, with support for as-of timestamp filtering.",
+      "tags": ["database", "query", "triple"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/triples.py:TripleStore",
+      "type": "class",
+      "name": "TripleStore",
+      "filePath": "mnemosyne/core/triples.py",
+      "lineRange": [113, 469],
+      "summary": "SQLite-backed store for RDF-style triples with subject-predicate-object structure. Supports add, query, get, delete, export_all, import_all, and query_by_predicate/query_by_object with session tracking and as-of timestamp queries.",
+      "tags": ["data-model", "storage", "triple-store", "sqlite"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/integrations/openclaw.py:create_provider",
+      "type": "function",
+      "name": "create_provider",
+      "filePath": "mnemosyne/integrations/openclaw.py",
+      "lineRange": [344, 356],
+      "summary": "Factory function that creates and returns a MnemosyneProvider instance given a data directory path.",
+      "tags": ["factory", "integration", "provider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/integrations/openclaw.py:MnemosyneProvider",
+      "type": "class",
+      "name": "MnemosyneProvider",
+      "filePath": "mnemosyne/integrations/openclaw.py",
+      "lineRange": [49, 339],
+      "summary": "Implements the OpenClaw Provider interface to expose Mnemosyne memory operations (remember, recall, get_context, get_stats, forget, get, update, scratchpad) as a pluggable service integration.",
+      "tags": ["integration", "provider", "service", "api-handler"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:_has_table",
+      "type": "function",
+      "name": "_has_table",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [38, 42],
+      "summary": "Checks if a table exists in the SQLite database by querying sqlite_master.",
+      "tags": ["utility", "database", "introspection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:has_pending_migration",
+      "type": "function",
+      "name": "has_pending_migration",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [45, 84],
+      "summary": "Detects whether a legacy database has annotation rows (kind='mention' or 'fact') in the triples table that need migration to the new annotations table.",
+      "tags": ["migration", "detection", "database"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:_classify_rows",
+      "type": "function",
+      "name": "_classify_rows",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [87, 133],
+      "summary": "Classifies legacy triple rows into annotations (mentions/facts) vs non-annotations based on kind or predicate values.",
+      "tags": ["migration", "classification", "database"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:_migrate_rows",
+      "type": "function",
+      "name": "_migrate_rows",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [136, 169],
+      "summary": "Inserts classified annotation rows into the new annotations table, silently skipping conflicts and returning counts per kind.",
+      "tags": ["migration", "database", "insert"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:_kind_counts",
+      "type": "function",
+      "name": "_kind_counts",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [172, 177],
+      "summary": "Counts the number of rows per kind in a list of row dictionaries.",
+      "tags": ["utility", "counter", "database"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/migrations/e6_triplestore_split.py:migrate",
+      "type": "function",
+      "name": "migrate",
+      "filePath": "mnemosyne/migrations/e6_triplestore_split.py",
+      "lineRange": [180, 250],
+      "summary": "Main migration function that splits annotation triples from the legacy triples table into a new annotations table. Supports dry-run, backup creation, and backup skip options.",
+      "tags": ["migration", "database", "e6", "split"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/migrate_triplestore_split.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/migrate_triplestore_split.py",
+      "lineRange": [62, 100],
+      "summary": "CLI entry point that parses arguments (db, dry-run, no-backup), validates the database path, invokes the migration, and reports results.",
+      "tags": ["cli", "entry-point", "migration"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestAnnotationStoreMultiValuePreservation",
+      "type": "class",
+      "name": "TestAnnotationStoreMultiValuePreservation",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [34, 94],
+      "summary": "Tests that multiple mention and fact values for the same memory ID are preserved correctly, and that add_annotation returns row IDs.",
+      "tags": ["test", "annotation", "multi-value"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestAnnotationStoreQueries",
+      "type": "class",
+      "name": "TestAnnotationStoreQueries",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [97, 158],
+      "summary": "Tests AnnotationStore query operations: filtering by memory_id, kind filtering, and get_distinct_values_for_kind.",
+      "tags": ["test", "annotation", "query"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestAnnotationStoreExportImport",
+      "type": "class",
+      "name": "TestAnnotationStoreExportImport",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [161, 206],
+      "summary": "Tests export/import round-trip and idempotent re-import for the AnnotationStore.",
+      "tags": ["test", "annotation", "export", "import"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestE6EndToEndProductionPath",
+      "type": "class",
+      "name": "TestE6EndToEndProductionPath",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [209, 285],
+      "summary": "End-to-end tests verifying that multiple entities per memory survive Beam remember calls and that both occurred_on and has_source annotations are present after migration.",
+      "tags": ["test", "e2e", "e6", "annotation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestTripleStoreAddFactsDeprecation",
+      "type": "class",
+      "name": "TestTripleStoreAddFactsDeprecation",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [288, 350],
+      "summary": "Tests that TripleStore.add_facts emits a DeprecationWarning and preserves legacy write count behavior.",
+      "tags": ["test", "deprecation", "triple-store"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_annotations.py:TestTripleStoreSilentInvalidationBehavior",
+      "type": "class",
+      "name": "TestTripleStoreSilentInvalidationBehavior",
+      "filePath": "tests/test_annotations.py",
+      "lineRange": [353, 417],
+      "summary": "Tests the silent invalidation mechanism where sibling annotations are invalidated when a new triple is added, and as-of queries properly exclude invalidated entries.",
+      "tags": ["test", "invalidation", "triple-store"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:scripts/migrate_triplestore_split.py",
+      "target": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_is_noisy_mention",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:filter_clean_mentions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:filter_facts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_get_conn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:init_annotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_init_annotations_with_conn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:add_annotation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:query_annotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "class:mnemosyne/core/annotations.py:AnnotationStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:levenshtein_distance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:similarity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:extract_entities_regex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:find_similar_entities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:entity_extraction_performance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_copy_legacy_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_resolve_default_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_get_conn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:init_triples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:add_triple",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:query_triples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "class:mnemosyne/core/triples.py:TripleStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "function:mnemosyne/integrations/openclaw.py:create_provider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "class:mnemosyne/integrations/openclaw.py:MnemosyneProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_has_table",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:has_pending_migration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_classify_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_migrate_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_kind_counts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:migrate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/migrate_triplestore_split.py",
+      "target": "function:scripts/migrate_triplestore_split.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreMultiValuePreservation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreQueries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreExportImport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestE6EndToEndProductionPath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestTripleStoreAddFactsDeprecation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestTripleStoreSilentInvalidationBehavior",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_is_noisy_mention",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:filter_clean_mentions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:filter_facts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_get_conn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:init_annotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:_init_annotations_with_conn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:add_annotation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "function:mnemosyne/core/annotations.py:query_annotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "class:mnemosyne/core/annotations.py:AnnotationStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:levenshtein_distance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:similarity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:extract_entities_regex",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:find_similar_entities",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "function:mnemosyne/core/entities.py:entity_extraction_performance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_copy_legacy_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_resolve_default_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:_get_conn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:init_triples",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:add_triple",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "function:mnemosyne/core/triples.py:query_triples",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "class:mnemosyne/core/triples.py:TripleStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "function:mnemosyne/integrations/openclaw.py:create_provider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/openclaw.py",
+      "target": "class:mnemosyne/integrations/openclaw.py:MnemosyneProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_has_table",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:has_pending_migration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_classify_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_migrate_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:_kind_counts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "function:mnemosyne/migrations/e6_triplestore_split.py:migrate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/migrate_triplestore_split.py",
+      "target": "function:scripts/migrate_triplestore_split.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreMultiValuePreservation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreQueries",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestAnnotationStoreExportImport",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestE6EndToEndProductionPath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestTripleStoreAddFactsDeprecation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_annotations.py",
+      "target": "class:tests/test_annotations.py:TestTripleStoreSilentInvalidationBehavior",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "file:tests/test_annotations.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_annotations.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

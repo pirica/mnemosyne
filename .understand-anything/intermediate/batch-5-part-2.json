@@ -1,0 +1,1205 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_beam_e6_auto_migrate.py",
+      "type": "file",
+      "name": "test_beam_e6_auto_migrate.py",
+      "filePath": "tests/test_beam_e6_auto_migrate.py",
+      "summary": "Integration tests for the automatic e6 migration in BeamMemory, verifying fresh install schema creation, pre-e6 auto-migration, reinit no-op, opt-out migration with warning, and backup creation.",
+      "tags": ["test", "migration", "e6", "beam"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_c28_import_all_content_aware.py",
+      "type": "file",
+      "name": "test_c28_import_all_content_aware.py",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "summary": "Comprehensive tests for content-aware import_all operations on TripleStore and AnnotationStore covering round-trip export/import, idempotency, force overwrite, ID collision handling, renumbering, rollback, and duplicate detection.",
+      "tags": ["test", "import", "export", "content-aware"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_e6a_followup_gaps.py",
+      "type": "file",
+      "name": "test_e6a_followup_gaps.py",
+      "filePath": "tests/test_e6a_followup_gaps.py",
+      "summary": "Tests for e6a follow-up gaps covering forget cascade to annotations (memory deletion cascades to annotation rows), cross-session forget isolation, and atomic rollback on failed cascade.",
+      "tags": ["test", "e6", "forget", "cascade", "annotations"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_entities.py",
+      "type": "file",
+      "name": "test_entities.py",
+      "filePath": "tests/test_entities.py",
+      "summary": "Unit tests for the entities module covering Levenshtein distance, similarity scoring, regex entity extraction, fuzzy entity matching, stop words, and edge cases.",
+      "tags": ["test", "entity", "levenshtein", "regex", "similarity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_entity_integration.py",
+      "type": "file",
+      "name": "test_entity_integration.py",
+      "filePath": "tests/test_entity_integration.py",
+      "summary": "Integration tests combining entity extraction with triple storage, verifying entity triples storage, predicate queries, uniqueness per memory, entity-based memory lookup, remember with entities, deduplication, and fuzzy matching.",
+      "tags": ["test", "entity", "integration", "triple-store"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_extraction_integration.py",
+      "type": "file",
+      "name": "test_extraction_integration.py",
+      "filePath": "tests/test_extraction_integration.py",
+      "summary": "Integration tests for the extraction pipeline covering end-to-end extract and recall, fact keyword matching, combined fact and entity extraction, backward compatibility, graceful LLM fallback, and fact-aware recall score boosting.",
+      "tags": ["test", "extraction", "fact", "entity", "integration"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_migrate_triplestore_split.py",
+      "type": "file",
+      "name": "test_migrate_triplestore_split.py",
+      "filePath": "tests/test_migrate_triplestore_split.py",
+      "summary": "Tests for the e6 triplestore split migration covering mention/fact migration, non-annotation preservation, source and confidence preservation, re-run idempotency, empty DB handling, dry-run, backup creation, and CLI integration.",
+      "tags": ["test", "migration", "e6", "triple-store"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_beam_e6_auto_migrate.py:_seed_legacy_triples",
+      "type": "function",
+      "name": "_seed_legacy_triples",
+      "filePath": "tests/test_beam_e6_auto_migrate.py",
+      "lineRange": [28, 56],
+      "summary": "Populates a legacy triples database with test annotation rows (mentions and facts) for migration testing, using raw SQL to simulate a pre-e6 state.",
+      "tags": ["helper", "test", "migration", "seed"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_beam_e6_auto_migrate.py:TestBeamE6AutoMigrate",
+      "type": "class",
+      "name": "TestBeamE6AutoMigrate",
+      "filePath": "tests/test_beam_e6_auto_migrate.py",
+      "lineRange": [59, 258],
+      "summary": "Tests BeamMemory's automatic e6 migration: fresh install creates annotations schema, pre-e6 DB auto-migrates on init, reinit is noop, opt-out skips with warning, fresh install opt-out is silent, and backup file is created.",
+      "tags": ["test", "migration", "e6", "beam", "auto-migrate"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:_TwoStoreFixture",
+      "type": "class",
+      "name": "_TwoStoreFixture",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [43, 66],
+      "summary": "Test fixture base class providing setUp/tearDown with two temporary store instances (source and destination) for import/export tests.",
+      "tags": ["test", "fixture", "setup", "teardown"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestTripleStoreImportAll",
+      "type": "class",
+      "name": "TestTripleStoreImportAll",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [74, 229],
+      "summary": "Tests TripleStore.import_all content-aware operations: round-trip, idempotency, force overwrite, ID collision renumbering, no-ID insertion, stats validation, and content-diff renumbering triggers.",
+      "tags": ["test", "import", "triple-store", "content-aware"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestAnnotationStoreImportAll",
+      "type": "class",
+      "name": "TestAnnotationStoreImportAll",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [237, 332],
+      "summary": "Tests AnnotationStore.import_all content-aware operations: round-trip, idempotency, ID collision renumbering, force overwrite, no-ID insertion, and stats validation.",
+      "tags": ["test", "import", "annotation", "content-aware"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestBackupRestoreNoSilentLoss",
+      "type": "class",
+      "name": "TestBackupRestoreNoSilentLoss",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [340, 405],
+      "summary": "Tests that backup/restore of triple store data via import_all does not silently lose data when the backup has overlapping rows.",
+      "tags": ["test", "backup", "restore", "data-integrity"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitId",
+      "type": "class",
+      "name": "TestCodexReviewFinding1NoIdBeforeExplicitId",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [413, 435],
+      "summary": "Regression test ensuring that a row without an explicit ID does not steal a later explicit ID within the same import batch.",
+      "tags": ["test", "regression", "id", "import"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitIdAnnotations",
+      "type": "class",
+      "name": "TestCodexReviewFinding1NoIdBeforeExplicitIdAnnotations",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [438, 452],
+      "summary": "Annotations variant of the no-ID-before-explicit-ID regression test.",
+      "tags": ["test", "regression", "id", "annotation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding2DefaultNormalization",
+      "type": "class",
+      "name": "TestCodexReviewFinding2DefaultNormalization",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [455, 476],
+      "summary": "Regression test verifying that partial dicts with default values round-trip idempotently through import_all.",
+      "tags": ["test", "regression", "normalization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding3AnnotationsUniqueIndex",
+      "type": "class",
+      "name": "TestCodexReviewFinding3AnnotationsUniqueIndex",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [479, 507],
+      "summary": "Regression test ensuring that a metadata-only content difference does not crash the annotations unique index constraint.",
+      "tags": ["test", "regression", "unique-index", "annotation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding4TransactionRollback",
+      "type": "class",
+      "name": "TestCodexReviewFinding4TransactionRollback",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [510, 541],
+      "summary": "Regression test verifying that a mid-batch failure during import_all rolls back the entire transaction.",
+      "tags": ["test", "regression", "rollback", "transaction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatch",
+      "type": "class",
+      "name": "TestCodexReviewFinding5DuplicateIdInBatch",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [544, 563],
+      "summary": "Regression test ensuring duplicate IDs within a single import batch raise a clear error.",
+      "tags": ["test", "regression", "duplicate", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatchAnnotations",
+      "type": "class",
+      "name": "TestCodexReviewFinding5DuplicateIdInBatchAnnotations",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [566, 578],
+      "summary": "Annotations variant of the duplicate ID in batch regression test.",
+      "tags": ["test", "regression", "duplicate", "annotation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding7CLIShowsRenumbered",
+      "type": "class",
+      "name": "TestCodexReviewFinding7CLIShowsRenumbered",
+      "filePath": "tests/test_c28_import_all_content_aware.py",
+      "lineRange": [581, 600],
+      "summary": "Regression test verifying that the CLI output formatting includes renumbered ID information.",
+      "tags": ["test", "regression", "cli", "renumber"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeToAnnotations",
+      "type": "class",
+      "name": "TestForgetCascadeToAnnotations",
+      "filePath": "tests/test_e6a_followup_gaps.py",
+      "lineRange": [31, 112],
+      "summary": "Tests that forgetting a memory cascades to delete associated annotations, without affecting other memories' annotations and without leaking annotation data.",
+      "tags": ["test", "forget", "cascade", "annotation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e6a_followup_gaps.py:TestForgetCrossSessionDoesNotLeakAnnotations",
+      "type": "class",
+      "name": "TestForgetCrossSessionDoesNotLeakAnnotations",
+      "filePath": "tests/test_e6a_followup_gaps.py",
+      "lineRange": [115, 159],
+      "summary": "Tests that a forget from a wrong session does not touch annotations, while the correct session forget still works properly.",
+      "tags": ["test", "forget", "session", "annotation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeIsAtomic",
+      "type": "class",
+      "name": "TestForgetCascadeIsAtomic",
+      "filePath": "tests/test_e6a_followup_gaps.py",
+      "lineRange": [162, 201],
+      "summary": "Tests that a failed forget cascade rolls back the working memory delete, maintaining atomic consistency.",
+      "tags": ["test", "forget", "atomicity", "rollback"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestLevenshtein",
+      "type": "class",
+      "name": "TestLevenshtein",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [27, 49],
+      "summary": "Unit tests for levenshtein_distance covering exact match, single insertion/deletion/substitution, empty strings, and Unicode support.",
+      "tags": ["test", "levenshtein", "string-matching"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestSimilarity",
+      "type": "class",
+      "name": "TestSimilarity",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [52, 81],
+      "summary": "Unit tests for the similarity function covering exact match, similar names, different names, completely different strings, case insensitivity, short strings, and partial prefix match.",
+      "tags": ["test", "similarity", "string-matching", "fuzzy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestRegexEntityExtraction",
+      "type": "class",
+      "name": "TestRegexEntityExtraction",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [84, 150],
+      "summary": "Unit tests for extract_entities_regex covering simple names, multiple names, quoted phrases, @mentions, hashtags, stop words filtering, no-entity input, and mixed content.",
+      "tags": ["test", "entity", "regex", "extraction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestFindSimilarEntities",
+      "type": "class",
+      "name": "TestFindSimilarEntities",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [153, 180],
+      "summary": "Unit tests for find_similar_entities covering exact match, fuzzy match, below-threshold filtering, multiple matches, and case-insensitive matching.",
+      "tags": ["test", "fuzzy", "entity", "matching"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestStopWords",
+      "type": "class",
+      "name": "TestStopWords",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [183, 193],
+      "summary": "Unit tests verifying that common stop words are present in the stop word list and that the lookup is case-insensitive.",
+      "tags": ["test", "stop-words", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entities.py:TestEdgeCases",
+      "type": "class",
+      "name": "TestEdgeCases",
+      "filePath": "tests/test_entities.py",
+      "lineRange": [196, 217],
+      "summary": "Unit tests for edge cases in entity extraction: empty string, whitespace-only, similarity with empty, and levenshtein with None input.",
+      "tags": ["test", "edge-case", "entity", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_entity_integration.py:_reset_caches",
+      "type": "function",
+      "name": "_reset_caches",
+      "filePath": "tests/test_entity_integration.py",
+      "lineRange": [24, 38],
+      "summary": "Resets module-level caches by closing connections and re-initializing to ensure clean test state.",
+      "tags": ["helper", "test", "cache", "reset"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entity_integration.py:TestEntityStorageIntegration",
+      "type": "class",
+      "name": "TestEntityStorageIntegration",
+      "filePath": "tests/test_entity_integration.py",
+      "lineRange": [41, 136],
+      "summary": "Tests storing entities as triples in TripleStore, entity predicate queries, entity uniqueness per memory, and finding memories by entity.",
+      "tags": ["test", "entity", "storage", "triple-store"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_entity_integration.py:TestRememberEntityIntegration",
+      "type": "class",
+      "name": "TestRememberEntityIntegration",
+      "filePath": "tests/test_entity_integration.py",
+      "lineRange": [139, 167],
+      "summary": "Tests that remembering without entities still works correctly in the integrated pipeline.",
+      "tags": ["test", "remember", "entity", "integration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_entity_integration.py:TestEndToEndEntityWorkflow",
+      "type": "class",
+      "name": "TestEndToEndEntityWorkflow",
+      "filePath": "tests/test_entity_integration.py",
+      "lineRange": [170, 256],
+      "summary": "End-to-end tests for the entity workflow: extract and store entities, entity deduplication across memories, and fuzzy entity matching.",
+      "tags": ["test", "e2e", "entity", "deduplication", "fuzzy"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_extraction_integration.py:MockLLMExtractor",
+      "type": "class",
+      "name": "MockLLMExtractor",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [20, 30],
+      "summary": "Mock LLM extractor that concatenates input prompts and returns them as extracted text for testing.",
+      "tags": ["test", "mock", "llm", "extractor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_end_to_end_extract_recall",
+      "type": "function",
+      "name": "test_end_to_end_extract_recall",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [33, 86],
+      "summary": "End-to-end test that remembers a memory with entity extraction, adds annotations, and verifies recall returns the facts and entities.",
+      "tags": ["test", "e2e", "extraction", "recall"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_fact_recall_keyword_matching",
+      "type": "function",
+      "name": "test_fact_recall_keyword_matching",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [89, 119],
+      "summary": "Tests that remembering memories with facts and then recalling with keywords correctly ranks the relevant memory highest.",
+      "tags": ["test", "fact", "recall", "keyword"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_fact_and_entity_extraction_together",
+      "type": "function",
+      "name": "test_fact_and_entity_extraction_together",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [122, 152],
+      "summary": "Tests that both fact and entity extraction work together: entities are stored as triples and facts are stored as annotations.",
+      "tags": ["test", "fact", "entity", "extraction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_backward_compatibility",
+      "type": "function",
+      "name": "test_backward_compatibility",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [155, 178],
+      "summary": "Tests backward compatibility by verifying that the old triple-based annotation format still works with the recall pipeline.",
+      "tags": ["test", "backward", "compatibility", "legacy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_graceful_fallback_no_llm",
+      "type": "function",
+      "name": "test_graceful_fallback_no_llm",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [181, 211],
+      "summary": "Tests that the system gracefully falls back when no LLM is available, still storing entities as triples.",
+      "tags": ["test", "fallback", "llm", "error-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:test_fact_aware_recall_boosts_scores",
+      "type": "function",
+      "name": "test_fact_aware_recall_boosts_scores",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [214, 247],
+      "summary": "Tests that fact-aware recall boosts relevance scores for memories that have matching annotations.",
+      "tags": ["test", "fact", "recall", "scoring"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_extraction_integration.py:run_all_tests",
+      "type": "function",
+      "name": "run_all_tests",
+      "filePath": "tests/test_extraction_integration.py",
+      "lineRange": [250, 282],
+      "summary": "Orchestrator that runs all extraction integration tests sequentially with error reporting and pass/fail counting.",
+      "tags": ["utility", "test", "runner"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_migrate_triplestore_split.py:TestMigrateTripleStoreSplit",
+      "type": "class",
+      "name": "TestMigrateTripleStoreSplit",
+      "filePath": "tests/test_migrate_triplestore_split.py",
+      "lineRange": [41, 343],
+      "summary": "Comprehensive tests for the e6 triplestore split migration covering mention/fact migration, non-annotation preservation, confidence/source preservation, re-run idempotency, empty DB, dry-run, backup creation and skip.",
+      "tags": ["test", "migration", "e6", "triple-store", "split"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_migrate_triplestore_split.py:TestHasPendingMigration",
+      "type": "class",
+      "name": "TestHasPendingMigration",
+      "filePath": "tests/test_migrate_triplestore_split.py",
+      "lineRange": [346, 419],
+      "summary": "Tests has_pending_migration detection: empty DB has no pending, triples without annotations kinds have no pending, unmigrated annotation rows have pending, and post-migration has no pending.",
+      "tags": ["test", "migration", "detection", "pending"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_migrate_triplestore_split.py:TestMigrationViaCLI",
+      "type": "class",
+      "name": "TestMigrationViaCLI",
+      "filePath": "tests/test_migrate_triplestore_split.py",
+      "lineRange": [422, 463],
+      "summary": "Tests the CLI migration entry point: success return code, dry-run with pending work return code, and missing DB error return code.",
+      "tags": ["test", "cli", "migration", "entry-point"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "file:mnemosyne/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "file:mnemosyne/core/entities.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "file:mnemosyne/core/entities.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "file:mnemosyne/core/annotations.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "file:mnemosyne/core/triples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "file:mnemosyne/migrations/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "function:tests/test_beam_e6_auto_migrate.py:_seed_legacy_triples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "class:tests/test_beam_e6_auto_migrate.py:TestBeamE6AutoMigrate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:_TwoStoreFixture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestTripleStoreImportAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestAnnotationStoreImportAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestBackupRestoreNoSilentLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitIdAnnotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding2DefaultNormalization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding3AnnotationsUniqueIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding4TransactionRollback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatchAnnotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding7CLIShowsRenumbered",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeToAnnotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCrossSessionDoesNotLeakAnnotations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeIsAtomic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestLevenshtein",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestSimilarity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestRegexEntityExtraction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestFindSimilarEntities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestStopWords",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestEdgeCases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "function:tests/test_entity_integration.py:_reset_caches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestEntityStorageIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestRememberEntityIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestEndToEndEntityWorkflow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "class:tests/test_extraction_integration.py:MockLLMExtractor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_end_to_end_extract_recall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_recall_keyword_matching",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_and_entity_extraction_together",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_backward_compatibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_graceful_fallback_no_llm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_aware_recall_boosts_scores",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:run_all_tests",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestMigrateTripleStoreSplit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestHasPendingMigration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestMigrationViaCLI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "function:tests/test_beam_e6_auto_migrate.py:_seed_legacy_triples",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_beam_e6_auto_migrate.py",
+      "target": "class:tests/test_beam_e6_auto_migrate.py:TestBeamE6AutoMigrate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:_TwoStoreFixture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestTripleStoreImportAll",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestAnnotationStoreImportAll",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestBackupRestoreNoSilentLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding1NoIdBeforeExplicitIdAnnotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding2DefaultNormalization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding3AnnotationsUniqueIndex",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding4TransactionRollback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding5DuplicateIdInBatchAnnotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c28_import_all_content_aware.py",
+      "target": "class:tests/test_c28_import_all_content_aware.py:TestCodexReviewFinding7CLIShowsRenumbered",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeToAnnotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCrossSessionDoesNotLeakAnnotations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_e6a_followup_gaps.py",
+      "target": "class:tests/test_e6a_followup_gaps.py:TestForgetCascadeIsAtomic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestLevenshtein",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestSimilarity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestRegexEntityExtraction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestFindSimilarEntities",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestStopWords",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entities.py",
+      "target": "class:tests/test_entities.py:TestEdgeCases",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "function:tests/test_entity_integration.py:_reset_caches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestEntityStorageIntegration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestRememberEntityIntegration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_entity_integration.py",
+      "target": "class:tests/test_entity_integration.py:TestEndToEndEntityWorkflow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "class:tests/test_extraction_integration.py:MockLLMExtractor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_end_to_end_extract_recall",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_recall_keyword_matching",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_and_entity_extraction_together",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_backward_compatibility",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_graceful_fallback_no_llm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:test_fact_aware_recall_boosts_scores",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_extraction_integration.py",
+      "target": "function:tests/test_extraction_integration.py:run_all_tests",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestMigrateTripleStoreSplit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestHasPendingMigration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_migrate_triplestore_split.py",
+      "target": "class:tests/test_migrate_triplestore_split.py:TestMigrationViaCLI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "file:tests/test_beam_e6_auto_migrate.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "file:tests/test_c28_import_all_content_aware.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "file:tests/test_e6a_followup_gaps.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/annotations.py",
+      "target": "file:tests/test_migrate_triplestore_split.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_c28_import_all_content_aware.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_e6a_followup_gaps.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_entity_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_extraction_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/triples.py",
+      "target": "file:tests/test_migrate_triplestore_split.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "file:tests/test_entities.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/entities.py",
+      "target": "file:tests/test_entity_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "file:tests/test_migrate_triplestore_split.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/migrations/e6_triplestore_split.py",
+      "target": "file:tests/test_beam_e6_auto_migrate.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

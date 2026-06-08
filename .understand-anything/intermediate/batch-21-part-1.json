@@ -1,0 +1,699 @@
+{
+  "batchIndex": 21,
+  "part": 1,
+  "totalParts": 2,
+  "description": "Core modules + DR + install + integrations (files 1-12)",
+  "fileRange": "files 1-12 (query_cache.py through memory_browser.py)",
+  "metadata": {
+    "generatedAt": "2026-06-03T00:00:00Z",
+    "toolVersion": "2.0.0",
+    "fileCount": 12,
+    "categories": ["code"],
+    "types": ["python"],
+    "nodeCount": 48
+  },
+  "nodes": [
+    {
+      "id": "file:mnemosyne/core/query_cache.py",
+      "type": "file",
+      "category": "code",
+      "label": "query_cache.py",
+      "path": "/root/mnemosyne/mnemosyne/core/query_cache.py",
+      "description": "5-tier semantic query cache for recall results",
+      "sizeLines": 343,
+      "summary": "Implements a 5-tier semantic cache (exact match, high-cosine embedding, composite, expanded, full search) backed by SQLite with TTL-based eviction and LRU eviction.",
+      "classes": ["QueryCache"],
+      "functions": [],
+      "imports": ["hashlib", "json", "math", "time", "threading", "datetime", "typing", "pathlib", "sqlite3"],
+      "exports": ["QueryCache"],
+      "secrets": []
+    },
+    {
+      "id": "class:QueryCache",
+      "type": "class",
+      "label": "QueryCache",
+      "file": "mnemosyne/core/query_cache.py",
+      "description": "5-tier semantic query cache for recall results. Backed by SQLite for persistence.",
+      "methods": ["__init__", "_init_db", "invalidate", "_normalize", "_cosine_similarity", "_jaccard_words", "get", "put", "_evict_if_needed", "close", "stats", "hit_rate"],
+      "fields": ["max_size", "ttl_seconds", "_cache_version", "_tier1", "_tier2_3", "_tier4", "_lock", "_insert_times", "hits", "misses", "tier1_hits", "tier2_hits", "tier3_hits", "tier4_hits", "_db_path", "_conn"]
+    },
+    {
+      "id": "concept:5-tier query cache",
+      "type": "concept",
+      "label": "5-Tier Query Cache Architecture",
+      "domain": "caching",
+      "description": "Tier 1: exact normalized match (O(1) hash map). Tier 2: cosine >= 0.88 embedding match. Tier 3: cosine >= 0.78 + Jaccard >= 0.15 composite. Tier 4: synonym-expanded match. Tier 5: full search compute-and-cache."
+    },
+    {
+      "id": "concept:query_cache_invalidation",
+      "type": "concept",
+      "label": "Cache Invalidation on remember()",
+      "domain": "caching",
+      "description": "Cache version counter incremented on every remember() call. All tiers cleared. SQLite entries deleted."
+    },
+
+    {
+      "id": "file:mnemosyne/core/query_intent.py",
+      "type": "file",
+      "category": "code",
+      "label": "query_intent.py",
+      "path": "/root/mnemosyne/mnemosyne/core/query_intent.py",
+      "description": "Regex-based query intent classification for hybrid scoring optimization",
+      "sizeLines": 167,
+      "summary": "Classifies user queries into temporal, factual, entity, preference, procedural, or general intents. Adjusts vector/FTS/importance weights per intent.",
+      "classes": ["QueryIntent"],
+      "functions": ["classify_intent", "adjust_weights"],
+      "imports": ["dataclasses", "typing", "re"],
+      "exports": ["classify_intent", "adjust_weights", "QueryIntent"],
+      "secrets": []
+    },
+    {
+      "id": "class:QueryIntent",
+      "type": "class",
+      "label": "QueryIntent",
+      "file": "mnemosyne/core/query_intent.py",
+      "description": "Classification result for a query with category, confidence, signals, and weight biases.",
+      "methods": [],
+      "fields": ["category", "confidence", "signals", "vec_bias", "fts_bias", "importance_bias"]
+    },
+    {
+      "id": "data:INTENT_PATTERNS",
+      "type": "data",
+      "label": "INTENT_PATTERNS",
+      "file": "mnemosyne/core/query_intent.py",
+      "description": "Regex patterns per intent category: temporal (11 patterns), factual (5), entity (3), preference (5), procedural (5).",
+      "size": 6
+    },
+    {
+      "id": "data:INTENT_WEIGHTS",
+      "type": "data",
+      "label": "INTENT_WEIGHTS",
+      "file": "mnemosyne/core/query_intent.py",
+      "description": "Weight multipliers (vec_bias, fts_bias, importance_bias) for each of 5 intent categories plus general default.",
+      "size": 6
+    },
+
+    {
+      "id": "file:mnemosyne/core/synonyms.py",
+      "type": "file",
+      "category": "code",
+      "label": "synonyms.py",
+      "path": "/root/mnemosyne/mnemosyne/core/synonyms.py",
+      "description": "Concept-group synonym expansion for improved recall quality",
+      "sizeLines": 152,
+      "summary": "40 concept groups mapping synonyms to canonical forms. Used for Tier 1 exact match normalization and FTS5 query expansion.",
+      "classes": [],
+      "functions": ["normalize_query", "expand_query", "get_synonyms"],
+      "imports": [],
+      "exports": ["expand_query", "normalize_query", "get_synonyms", "SYNONYM_GROUPS"],
+      "secrets": []
+    },
+    {
+      "id": "data:SYNONYM_GROUPS",
+      "type": "data",
+      "label": "SYNONYM_GROUPS",
+      "file": "mnemosyne/core/synonyms.py",
+      "description": "~40 concept groups mapping canonical forms to synonyms. Covers database, password, config, error, fix, deploy, server, api, key, user, model, memory, search, code, test, git, network, email, browser, monitor and more.",
+      "size": 40
+    },
+    {
+      "id": "data:STOP_WORDS",
+      "type": "data",
+      "label": "STOP_WORDS",
+      "file": "mnemosyne/core/synonyms.py",
+      "description": "~90 English stop words filtered during query normalization.",
+      "size": 90
+    },
+    {
+      "id": "concept:synonym_expansion",
+      "type": "concept",
+      "label": "Synonym Expansion Pipeline",
+      "domain": "nlp",
+      "description": "Words mapped to canonical form via reverse lookup. expand_query() produces OR-groups for FTS5. normalize_query() reduces to canonical sorted set for cache key."
+    },
+
+    {
+      "id": "file:mnemosyne/core/temporal_parser.py",
+      "type": "file",
+      "category": "code",
+      "label": "temporal_parser.py",
+      "path": "/root/mnemosyne/mnemosyne/core/temporal_parser.py",
+      "description": "Natural language temporal parser for date extraction",
+      "sizeLines": 404,
+      "summary": "Python port of JS temporal-extraction.mjs. Parses absolute dates (ISO, US/EU, named month), relative (today, yesterday, tomorrow), day references (last Monday), week/month/year, intervals (2 days ago), named times, and vague refs.",
+      "classes": [],
+      "functions": ["_resolve_relative_day", "parse_nl_date", "extract_temporal", "extract_date_from_text"],
+      "imports": ["re", "datetime", "typing"],
+      "exports": ["extract_temporal", "parse_nl_date", "extract_date_from_text"],
+      "secrets": []
+    },
+    {
+      "id": "data:DAY_MAP",
+      "type": "data",
+      "label": "DAY_MAP",
+      "file": "mnemosyne/core/temporal_parser.py",
+      "description": "Day name to weekday number mapping (Monday=0, Sunday=6). Includes abbreviated forms.",
+      "size": 14
+    },
+    {
+      "id": "data:MONTH_MAP",
+      "type": "data",
+      "label": "MONTH_MAP",
+      "file": "mnemosyne/core/temporal_parser.py",
+      "description": "Month name to number mapping. Includes abbreviated forms.",
+      "size": 24
+    },
+    {
+      "id": "data:NAMED_TIMES",
+      "type": "data",
+      "label": "NAMED_TIMES",
+      "file": "mnemosyne/core/temporal_parser.py",
+      "description": "Named time-of-day ranges: morning(6-12), afternoon(12-17), evening(17-21), night(21-6), midnight, noon, dawn, dusk.",
+      "size": 8
+    },
+
+    {
+      "id": "file:mnemosyne/core/token_counter.py",
+      "type": "file",
+      "category": "code",
+      "label": "token_counter.py",
+      "path": "/root/mnemosyne/mnemosyne/core/token_counter.py",
+      "description": "Lightweight token estimation for memory context benchmarking",
+      "sizeLines": 72,
+      "summary": "Uses tiktoken if available, falls back to chars/4 heuristic. Also estimates API cost for injected prompt tokens across Claude/GPT models.",
+      "classes": [],
+      "functions": ["estimate_tokens", "estimate_cost"],
+      "imports": ["os", "typing"],
+      "exports": ["estimate_tokens", "estimate_cost"],
+      "secrets": []
+    },
+    {
+      "id": "data:PRICING",
+      "type": "data",
+      "label": "PRICING",
+      "file": "mnemosyne/core/token_counter.py",
+      "description": "API pricing per 1M input tokens: claude-sonnet-4=$3.00, claude-haiku=$0.80, gpt-4o=$2.50, gpt-4o-mini=$0.15.",
+      "size": 5
+    },
+
+    {
+      "id": "file:mnemosyne/core/weibull.py",
+      "type": "file",
+      "category": "code",
+      "label": "weibull.py",
+      "path": "/root/mnemosyne/mnemosyne/core/weibull.py",
+      "description": "Weibull distribution temporal decay scoring per memory type",
+      "sizeLines": 183,
+      "summary": "Replaces uniform exponential decay with memory-type-specific Weibull parameters. 20+ memory types with custom shape (k) and scale (eta) parameters. Survival function: exp(-(t/eta)^k).",
+      "classes": [],
+      "functions": ["weibull_boost", "weibull_decay_factor"],
+      "imports": ["math", "datetime", "typing"],
+      "exports": ["weibull_boost", "weibull_decay_factor", "WEIBULL_PARAMS"],
+      "secrets": []
+    },
+    {
+      "id": "data:WEIBULL_PARAMS",
+      "type": "data",
+      "label": "WEIBULL_PARAMS",
+      "file": "mnemosyne/core/weibull.py",
+      "description": "Per-memory-type Weibull params (k=shape, eta=scale hours). Long-term: profile(k=0.3,eta=8760), preference(k=0.4,eta=4380), relationship(k=0.35,eta=8760). Medium: fact(k=0.8,eta=720), entity(k=0.5,eta=4380), context(k=0.85,eta=360). Fast-decaying: event(k=1.2,eta=168), request(k=1.5,eta=72).",
+      "size": 20
+    },
+    {
+      "id": "concept:weibull_decay",
+      "type": "concept",
+      "label": "Weibull Decay Memory Scoring",
+      "domain": "temporal_scoring",
+      "description": "Memory-type-specific temporal decay using Weibull survival function. k<1 = slower decay over time (profiles/preferences). k=1 = exponential (general). k>1 = faster decay (events/requests)."
+    },
+
+    {
+      "id": "file:mnemosyne/diagnose.py",
+      "type": "file",
+      "category": "code",
+      "label": "diagnose.py",
+      "path": "/root/mnemosyne/mnemosyne/diagnose.py",
+      "description": "PII-safe diagnostic logging and auto-fix for installation issues",
+      "sizeLines": 254,
+      "summary": "Runs comprehensive diagnostic scan: Python env, package version, core deps (fastembed, sqlite_vec, numpy, ctransformers, huggingface_hub), core components, DB state, env vars. Supports --fix mode to auto-install missing deps. Never logs memory content or secrets.",
+      "classes": [],
+      "functions": ["run_diagnostics", "auto_fix"],
+      "imports": ["json", "os", "subprocess", "sys", "platform", "datetime", "pathlib", "typing"],
+      "exports": ["run_diagnostics", "auto_fix"],
+      "secrets": []
+    },
+    {
+      "id": "data:FIX_MAP",
+      "type": "data",
+      "label": "FIX_MAP",
+      "file": "mnemosyne/diagnose.py",
+      "description": "Auto-fix dependency map: fastembed -> mnemosyne-memory[embeddings], sqlite_vec -> sqlite-vec, numpy -> numpy, huggingface_hub -> huggingface_hub.",
+      "size": 4
+    },
+    {
+      "id": "concept:pii_safe_logging",
+      "type": "concept",
+      "label": "PII-Safe Diagnostics",
+      "domain": "security",
+      "description": "Diagnostic logs never include memory content, user queries, or API keys. Env vars logged as 'set'/'unset' only."
+    },
+
+    {
+      "id": "file:mnemosyne/dr/__init__.py",
+      "type": "file",
+      "category": "code",
+      "label": "dr/__init__.py",
+      "path": "/root/mnemosyne/mnemosyne/dr/__init__.py",
+      "description": "Disaster Recovery module namespace",
+      "sizeLines": 1,
+      "summary": "Namespace init for mnemosyne.dr package. Exposes recovery module.",
+      "classes": [],
+      "functions": [],
+      "imports": [],
+      "exports": [],
+      "secrets": []
+    },
+
+    {
+      "id": "file:mnemosyne/dr/recovery.py",
+      "type": "file",
+      "category": "code",
+      "label": "dr/recovery.py",
+      "path": "/root/mnemosyne/mnemosyne/dr/recovery.py",
+      "description": "Backup, restore, integrity verification for Mnemosyne DB",
+      "sizeLines": 338,
+      "summary": "Comprehensive DR system: create compressed .gz backups using SQLite online backup API, restore from backup with integrity verification, emergency auto-restore from newest valid backup, backup rotation (keep N), health check. CLI interface for all operations.",
+      "classes": [],
+      "functions": ["get_default_paths", "create_backup", "restore_backup", "emergency_restore", "verify_integrity", "list_backups", "rotate_backups", "health_check"],
+      "imports": ["gzip", "io", "json", "hashlib", "shutil", "sqlite3", "datetime", "pathlib", "typing"],
+      "exports": ["create_backup", "restore_backup", "emergency_restore", "verify_integrity", "list_backups", "rotate_backups", "health_check"],
+      "secrets": []
+    },
+    {
+      "id": "concept:sqlite_online_backup",
+      "type": "concept",
+      "label": "SQLite Online Backup API",
+      "domain": "database",
+      "description": "Uses sqlite3.backup() for lock-aware, atomic backup that includes uncommitted WAL frames. Avoids torn files from concurrent writes."
+    },
+    {
+      "id": "concept:backup_rotation",
+      "type": "concept",
+      "label": "Backup Rotation (keep N)",
+      "domain": "operations",
+      "description": "Rotate backups keeping only the most recent N (default 10). Deletes both .gz and .gz.json metadata."
+    },
+
+    {
+      "id": "file:mnemosyne/install.py",
+      "type": "file",
+      "category": "code",
+      "label": "install.py",
+      "path": "/root/mnemosyne/mnemosyne/install.py",
+      "description": "One-command Hermes Mnemosyne MemoryProvider installer",
+      "sizeLines": 264,
+      "summary": "Installs Mnemosyne as Hermes memory provider: creates plugin symlink (POSIX) or junction (Windows), configures ~/.hermes/config.yaml with memory.provider=mnemosyne, verifies provider loads. Supports --uninstall.",
+      "classes": [],
+      "functions": ["_get_mnemosyne_root", "_get_hermes_home", "_get_hermes_agent_path", "_is_windows", "_remove_link", "_ensure_link", "_configure_hermes", "_verify", "install", "uninstall"],
+      "imports": ["__future__", "os", "sys", "pathlib"],
+      "exports": ["install", "uninstall"],
+      "secrets": []
+    },
+    {
+      "id": "concept:cross_platform_plugin_link",
+      "type": "concept",
+      "label": "Cross-Platform Plugin Link",
+      "domain": "deployment",
+      "description": "POSIX: symlink ~/.hermes/plugins/hermes-mnemosyne -> hermes_memory_provider/. Windows: directory junction via mklink /J (no admin required)."
+    },
+
+    {
+      "id": "file:mnemosyne/integrations/__init__.py",
+      "type": "file",
+      "category": "code",
+      "label": "integrations/__init__.py",
+      "path": "/root/mnemosyne/mnemosyne/integrations/__init__.py",
+      "description": "Platform integrations namespace",
+      "sizeLines": 1,
+      "summary": "Namespace init for mnemosyne.integrations package.",
+      "classes": [],
+      "functions": [],
+      "imports": [],
+      "exports": [],
+      "secrets": []
+    },
+
+    {
+      "id": "file:mnemosyne/integrations/memory_browser.py",
+      "type": "file",
+      "category": "code",
+      "label": "memory_browser.py",
+      "path": "/root/mnemosyne/mnemosyne/integrations/memory_browser.py",
+      "description": "Web dashboard for browsing and searching Mnemosyne memories",
+      "sizeLines": 452,
+      "summary": "FastAPI/Starlette web app providing a memory browser dashboard. Features: stats overview, full-text search, tier/bank/source filtering, memory detail view, REST API (/api/stats, /api/search). Inline HTML/CSS/JS with dark-toned design.",
+      "classes": [],
+      "functions": ["_resolve_db_path", "_get_connection", "get_memory_stats", "search_memories", "get_memory_detail", "_build_html", "create_app", "main"],
+      "imports": ["argparse", "json", "logging", "os", "sqlite3", "time", "contextlib", "datetime", "pathlib", "typing"],
+      "exports": ["create_app", "main"],
+      "secrets": []
+    },
+    {
+      "id": "concept:memory_browser_dashboard",
+      "type": "concept",
+      "label": "Memory Browser Dashboard",
+      "domain": "ui",
+      "description": "Web UI at localhost:8081 with memory cards, search bar, source/tier/sort filters, pagination, and memory detail view. Responsive design with CSS custom properties."
+    },
+    {
+      "id": "endpoint:api_stats",
+      "type": "endpoint",
+      "label": "GET /api/stats",
+      "file": "mnemosyne/integrations/memory_browser.py",
+      "description": "Returns memory statistics across all tiers: working_memory, episodic_memory, triples, FTS tables."
+    },
+    {
+      "id": "endpoint:api_search",
+      "type": "endpoint",
+      "label": "GET /api/search",
+      "file": "mnemosyne/integrations/memory_browser.py",
+      "description": "Search memories with query, source, tier, sort, limit, offset params. Returns JSON results array."
+    }
+  ],
+  "edges": [
+    {"source": "file:mnemosyne/core/query_cache.py", "target": "file:mnemosyne/core/synonyms.py", "type": "uses", "label": "QueryCache Tier 4 uses synonym expansion for expanded query matching"},
+    {"source": "file:mnemosyne/core/query_intent.py", "target": "file:mnemosyne/core/temporal_parser.py", "type": "related", "label": "Both contribute to query understanding and scoring optimization"},
+    {"source": "file:mnemosyne/core/weibull.py", "target": "file:mnemosyne/core/temporal_parser.py", "type": "related", "label": "Both handle temporal aspects of memory: parsing dates and decay scoring"},
+    {"source": "class:QueryCache", "target": "concept:5-tier query cache", "type": "implements", "label": "QueryCache realizes the 5-tier caching architecture"},
+    {"source": "concept:query_cache_invalidation", "target": "class:QueryCache", "type": "feature_of", "label": "Invalidation via version counter on remember()"},
+    {"source": "file:mnemosyne/core/query_intent.py", "target": "file:mnemosyne/core/synonyms.py", "type": "uses", "label": "Intent classification may leverage synonym normalization for pattern matching"},
+    {"source": "file:mnemosyne/dr/recovery.py", "target": "file:mnemosyne/dr/__init__.py", "type": "contained_in", "label": "recovery.py is the module for the dr package"},
+    {"source": "file:mnemosyne/install.py", "target": "file:mnemosyne/diagnose.py", "type": "related", "label": "Both part of installation/operations tooling"},
+    {"source": "file:mnemosyne/integrations/memory_browser.py", "target": "file:mnemosyne/core/query_cache.py", "type": "uses", "label": "Memory browser queries the same SQLite DB that the cache optimizes"},
+    {"source": "file:mnemosyne/integrations/memory_browser.py", "target": "concept:memory_browser_dashboard", "type": "implements", "label": "memory_browser.py provides the FastAPI backend for the dashboard"},
+    {"source": "endpoint:api_stats", "target": "file:mnemosyne/integrations/memory_browser.py", "type": "endpoint_of", "label": "API endpoint hosted by memory_browser"},
+    {"source": "endpoint:api_search", "target": "file:mnemosyne/integrations/memory_browser.py", "type": "endpoint_of", "label": "API endpoint hosted by memory_browser"},
+    {"source": "data:WEIBULL_PARAMS", "target": "concept:weibull_decay", "type": "defines", "label": "WEIBULL_PARAMS contains the per-type parameters for Weibull decay"},
+    {"source": "data:SYNONYM_GROUPS", "target": "concept:synonym_expansion", "type": "defines", "label": "SYNONYM_GROUPS is the data backing synonym expansion"},
+    {"source": "concept:pii_safe_logging", "target": "file:mnemosyne/diagnose.py", "type": "implemented_in", "label": "PII-safe logging principle implemented in diagnose.py"},
+    {"source": "concept:cross_platform_plugin_link", "target": "file:mnemosyne/install.py", "type": "implemented_in", "label": "Cross-platform symlink/junction logic in install.py"},
+    {"source": "file:mnemosyne/core/temporal_parser.py", "target": "concept:synonym_expansion", "type": "uses", "label": "Temporal parser day/month names related to synonym concepts"}
+  ],
+  "batchImportData": {
+    "query_cache.py": {
+      "dependencies": ["hashlib", "json", "math", "time", "threading", "sqlite3"],
+      "sqlite_tables": ["query_cache"],
+      "indexes": ["idx_cache_hits"],
+      "thresholds": {"tier2_cosine": 0.88, "tier3_cosine": 0.78, "jaccard": 0.15, "tier4_word_overlap": 0.7},
+      "defaults": {"max_size": 1000, "ttl_seconds": 3600}
+    },
+    "query_intent.py": {
+      "intent_categories": ["temporal", "factual", "entity", "preference", "procedural", "general"],
+      "default_weights": {"vec": 0.5, "fts": 0.3, "importance": 0.2}
+    },
+    "synonyms.py": {
+      "concept_groups": 40,
+      "stop_words_count": 90,
+      "notable_groups": ["database", "password", "config", "error", "fix", "deploy", "model", "memory", "search", "code", "git", "network", "ssh", "cron", "email", "browser", "migrate"]
+    },
+    "temporal_parser.py": {
+      "port_of": "temporal-extraction.mjs",
+      "formats_supported": ["ISO 8601", "US date (MM/DD/YYYY)", "EU date (DD/MM/YYYY)", "named month", "relative day", "day with qualifier", "week/month/year", "intervals (ago/in)", "named times", "vague refs"],
+      "precision_levels": ["day", "week", "month", "year", "relative"]
+    },
+    "token_counter.py": {
+      "primary_tokenizer": "tiktoken cl100k_base",
+      "fallback": "chars/4 heuristic",
+      "pricing_models": 5
+    },
+    "weibull.py": {
+      "memory_types": 20,
+      "default_halflife_hours": 168,
+      "decay_formula": "exp(-(t/eta)^k)"
+    },
+    "diagnose.py": {
+      "log_location": "~/.hermes/mnemosyne/logs/diagnose_*.jsonl",
+      "checks_performed": ["python_version", "platform", "package_version", "core_deps", "core_components", "env_vars", "db_stats"],
+      "fixable_deps": ["fastembed", "sqlite_vec", "numpy", "huggingface_hub"]
+    },
+    "recovery.py": {
+      "backup_location": "~/.mnemosyne/backups/mnemosyne_backup_*.db.gz",
+      "default_db": "~/.mnemosyne/data/mnemosyne.db",
+      "backup_method": "sqlite3.backup() + gzip + SHA256 checksum",
+      "restore_method": "gzip decompress + sqlite3.executescript + verify_integrity",
+      "default_keep": 10
+    },
+    "install.py": {
+      "plugin_target": "~/.hermes/plugins/hermes-mnemosyne",
+      "install_method": "symlink (POSIX) / junction (Windows)",
+      "config_file": "~/.hermes/config.yaml",
+      "config_change": "memory.provider = mnemosyne",
+      "supports": ["install", "uninstall", "verify"]
+    },
+    "memory_browser.py": {
+      "requires": ["fastapi", "uvicorn"],
+      "default_port": 8081,
+      "default_bank": "default",
+      "api_endpoints": ["GET /", "GET /api/stats", "GET /api/search", "GET /detail/{memory_id}"],
+      "supported_filters": ["query", "source", "tier", "sort", "bank"]
+    }
+  },
+  "neighborMap": {
+    "query_cache.py": {
+      "neighbors": ["synonyms.py", "query_intent.py", "token_counter.py"],
+      "relationship": "query_cache.py provides caching layer that synonyms.py enhances (Tier 4) and query_intent.py optimizes weight decisions for; token_counter.py measures the context budget this cache belongs to",
+      "shared_context": "Core query optimization pipeline: caching + intent + synonym expansion + token counting"
+    },
+    "query_intent.py": {
+      "neighbors": ["query_cache.py", "temporal_parser.py", "synonyms.py"],
+      "relationship": "query_intent.py classifies queries and adjusts weights for hybrid scoring; temporal_parser.py provides temporal context used by temporal intent; synonyms.py provides normalization used for intent pattern matching",
+      "shared_context": "Query understanding subsystem: intent classification + temporal extraction + synonym normalization"
+    },
+    "temporal_parser.py": {
+      "neighbors": ["query_intent.py", "weibull.py"],
+      "relationship": "temporal_parser.py extracts dates from queries for intent classification; weibull.py applies temporal decay scoring that uses parsed dates",
+      "shared_context": "Temporal processing: date extraction + decay-based memory scoring"
+    },
+    "weibull.py": {
+      "neighbors": ["temporal_parser.py"],
+      "relationship": "weibull.py consumes timestamp data that temporal_parser.py can extract from text queries",
+      "shared_context": "Temporal memory decay: both files process dates and time-based relevance"
+    },
+    "recovery.py": {
+      "neighbors": ["diagnose.py"],
+      "relationship": "recovery.py provides backup/restore for the DB; diagnose.py provides health checks that can trigger recovery decisions",
+      "shared_context": "Operations and resilience: diagnostics + disaster recovery"
+    },
+    "install.py": {
+      "neighbors": ["diagnose.py"],
+      "relationship": "install.py sets up Mnemosyne as Hermes provider; diagnose.py can verify the installation",
+      "shared_context": "Installation and verification tooling"
+    },
+    "memory_browser.py": {
+      "neighbors": ["query_cache.py"],
+      "relationship": "memory_browser.py provides a web UI that reads the same SQLite database the query cache optimizes access to",
+      "shared_context": "Memory data access: web browsing and cached querying"
+    }
+  },
+  "semanticAnalysis": {
+    "query_cache.py": {
+      "fileName": "query_cache.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/query_cache.py",
+      "category": "code",
+      "type": "python",
+      "description": "5-tier semantic query cache for recall results",
+      "purpose": "Avoid recomputing embeddings + FTS5 + scoring for repeated or similar queries by caching results across 5 tiers of increasing generality",
+      "keyFindings": [
+        "5-tier architecture from exact hash match to full semantic search",
+        "SQLite-backed persistence with WAL journal mode",
+        "TTL-based and LRU eviction strategies",
+        "Thread-safe via threading.Lock",
+        "Invalidated on every remember() call via version counter",
+        "Tracks detailed stats: hits/misses per tier, hit_rate"
+      ],
+      "dependencies": ["sqlite3", "hashlib", "math", "threading"],
+      "exportedItems": ["QueryCache class"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "query_intent.py": {
+      "fileName": "query_intent.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/query_intent.py",
+      "category": "code",
+      "type": "python",
+      "description": "Regex-based query intent classification for hybrid scoring optimization",
+      "purpose": "Adapt vector/FTS/importance weights based on detected query intent to optimize hybrid search relevance",
+      "keyFindings": [
+        "6 intent categories: temporal, factual, entity, preference, procedural, general",
+        "29 total regex patterns across categories",
+        "Weight biases adjusted per intent (e.g., temporal boosts FTS 1.5x)",
+        "Normalized weights always sum to 1.0",
+        "Confidence scoring with base 0.3 + 0.15 per match, max 1.0"
+      ],
+      "dependencies": ["re", "dataclasses"],
+      "exportedItems": ["classify_intent()", "adjust_weights()", "QueryIntent dataclass"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "synonyms.py": {
+      "fileName": "synonyms.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/synonyms.py",
+      "category": "code",
+      "type": "python",
+      "description": "Concept-group synonym expansion for improved recall quality",
+      "purpose": "Improve recall by normalizing query terms to canonical forms and expanding queries with synonym OR-groups for FTS5",
+      "keyFindings": [
+        "~40 concept groups covering DevOps, development, and general terms",
+        "Reverse lookup dictionary for O(1) word-to-canonical mapping",
+        "expand_query() produces FTS5-compatible OR groups",
+        "normalize_query() produces sorted canonical cache keys",
+        "90 English stop words filtered during normalization"
+      ],
+      "dependencies": [],
+      "exportedItems": ["normalize_query()", "expand_query()", "get_synonyms()", "SYNONYM_GROUPS"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "temporal_parser.py": {
+      "fileName": "temporal_parser.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/temporal_parser.py",
+      "category": "code",
+      "type": "python",
+      "description": "Natural language temporal parser for date extraction",
+      "purpose": "Extract and resolve temporal references from natural language text to concrete dates for memory annotation",
+      "keyFindings": [
+        "Python port of JS temporal-extraction.mjs",
+        "Supports 10+ date formats and expressions",
+        "Relative day resolution for this/last/next qualifiers",
+        "Interval parsing (2 days ago, in 3 weeks)",
+        "Named time-of-day detection (morning, evening, etc.)",
+        "Returns structured result with event_date, precision, and tags",
+        "Vague reference handling (recently, a while ago)"
+      ],
+      "dependencies": ["re", "datetime"],
+      "exportedItems": ["extract_temporal()", "parse_nl_date()", "extract_date_from_text()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "token_counter.py": {
+      "fileName": "token_counter.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/token_counter.py",
+      "category": "code",
+      "type": "python",
+      "description": "Lightweight token estimation for memory context benchmarking",
+      "purpose": "Estimate token counts for memory content to budget context window usage and API costs",
+      "keyFindings": [
+        "tiktoken cl100k_base as primary tokenizer (graceful fallback if missing)",
+        "Characters/4 fallback heuristic for English/Spanish",
+        "API cost estimation for Claude, GPT-4o, GPT-4o-mini models",
+        "Zero dependencies (tiktoken is optional)"
+      ],
+      "dependencies": ["os", "typing"],
+      "exportedItems": ["estimate_tokens()", "estimate_cost()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "weibull.py": {
+      "fileName": "weibull.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/weibull.py",
+      "category": "code",
+      "type": "python",
+      "description": "Weibull distribution temporal decay scoring per memory type",
+      "purpose": "Replace uniform exponential decay with memory-type-specific Weibull survival functions for more nuanced recency scoring",
+      "keyFindings": [
+        "20 memory types with custom k (shape) and eta (scale) parameters",
+        "Long-term stable: profile, preference, relationship (k<0.5, eta>4000h)",
+        "Medium-term: fact, entity, setup, context (k=0.5-0.85, eta=360-4380h)",
+        "Fast-decaying: event, request, issue (k>1.0, eta<336h)",
+        "Fallback to simple exponential for unknown types (168h halflife)",
+        "Timezone-aware UTC normalization",
+        "Future timestamps clamped to boost=1.0"
+      ],
+      "dependencies": ["math", "datetime"],
+      "exportedItems": ["weibull_boost()", "weibull_decay_factor()", "WEIBULL_PARAMS"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "diagnose.py": {
+      "fileName": "diagnose.py",
+      "filePath": "/root/mnemosyne/mnemosyne/diagnose.py",
+      "category": "code",
+      "type": "python",
+      "description": "PII-safe diagnostic logging and auto-fix for installation issues",
+      "purpose": "Troubleshoot Mnemosyne installation and runtime issues without leaking sensitive information",
+      "keyFindings": [
+        "Comprehensive system health check: Python env, packages, deps, DB state, env vars",
+        "PII-safe: never logs memory content, user queries, or API keys",
+        "Auto-fix mode installs missing dependencies via pip",
+        "Detects common problems: missing embeddings, vector search, consolidation status",
+        "Logs to timestamped JSONL files in ~/.hermes/mnemosyne/logs/"
+      ],
+      "dependencies": ["json", "os", "subprocess", "sys", "pathlib"],
+      "exportedItems": ["run_diagnostics()", "auto_fix()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "dr/recovery.py": {
+      "fileName": "recovery.py",
+      "filePath": "/root/mnemosyne/mnemosyne/dr/recovery.py",
+      "category": "code",
+      "type": "python",
+      "description": "Backup, restore, integrity verification for Mnemosyne DB",
+      "purpose": "Provide comprehensive disaster recovery: compressed backups, restoration, integrity checks, and automatic emergency recovery",
+      "keyFindings": [
+        "SQLite online backup API for lock-aware, atomic backups including WAL frames",
+        "Gzip compressed backups with SHA256 checksum metadata",
+        "Emergency restore from most recent valid backup",
+        "Integrity verification via PRAGMA integrity_check",
+        "Backup rotation keeping N most recent",
+        "Comprehensive health check of database and backup state",
+        "CLI interface for all operations"
+      ],
+      "dependencies": ["sqlite3", "gzip", "hashlib", "shutil", "json", "pathlib", "datetime"],
+      "exportedItems": ["create_backup()", "restore_backup()", "emergency_restore()", "verify_integrity()", "list_backups()", "rotate_backups()", "health_check()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "install.py": {
+      "fileName": "install.py",
+      "filePath": "/root/mnemosyne/mnemosyne/install.py",
+      "category": "code",
+      "type": "python",
+      "description": "One-command Hermes Mnemosyne MemoryProvider installer",
+      "purpose": "Automate the installation of Mnemosyne as the Hermes Agent memory provider",
+      "keyFindings": [
+        "Cross-platform: symlinks on POSIX, directory junctions on Windows",
+        "Creates plugin link in ~/.hermes/plugins/hermes-mnemosyne",
+        "Configures ~/.hermes/config.yaml with memory.provider=mnemosyne",
+        "Verifies the provider loads correctly",
+        "Full uninstall support",
+        "Discovers Hermes home via HERMES_HOME env var or default ~/.hermes"
+      ],
+      "dependencies": ["os", "sys", "pathlib"],
+      "exportedItems": ["install()", "uninstall()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "memory_browser.py": {
+      "fileName": "memory_browser.py",
+      "filePath": "/root/mnemosyne/mnemosyne/integrations/memory_browser.py",
+      "category": "code",
+      "type": "python",
+      "description": "Web dashboard for browsing and searching Mnemosyne memories",
+      "purpose": "Provide a user-friendly web interface for browsing, searching, and inspecting Mnemosyne memory stores",
+      "keyFindings": [
+        "FastAPI/Starlette web server with 4 routes",
+        "Full-text search via FTS5 or LIKE fallback",
+        "Multi-tier search: working_memory, episodic_memory, memories",
+        "Filter by source, tier, sort (recent/importance)",
+        "Bank-aware: supports multiple memory banks",
+        "Responsive dark-toned CSS design",
+        "REST API endpoints for programmatic access"
+      ],
+      "dependencies": ["argparse", "json", "logging", "os", "sqlite3", "datetime", "pathlib"],
+      "exportedItems": ["create_app()", "main()"],
+      "securityConcerns": [],
+      "recommendations": []
+    }
+  }
+}

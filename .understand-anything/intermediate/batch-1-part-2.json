@@ -1,0 +1,867 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_gap_e_g_analysis.py",
+      "type": "file",
+      "name": "test_gap_e_g_analysis.py",
+      "filePath": "tests/test_gap_e_g_analysis.py",
+      "summary": "Gap analysis tests for linear voice scores in recall and paired outcomes JSONL generation, validating scoring behavior and output format correctness.",
+      "tags": [
+        "test",
+        "analysis",
+        "scoring",
+        "jsonl"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_gap_e_g_analysis.py:TestLinearVoiceScores",
+      "type": "class",
+      "name": "TestLinearVoiceScores",
+      "filePath": "tests/test_gap_e_g_analysis.py",
+      "lineRange": [
+        51,
+        138
+      ],
+      "summary": "Tests linear voice score computation in recall results for the gap analysis.",
+      "tags": [
+        "test",
+        "voice",
+        "scoring",
+        "analysis"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_gap_e_g_analysis.py:TestPairedOutcomesJSONL",
+      "type": "class",
+      "name": "TestPairedOutcomesJSONL",
+      "filePath": "tests/test_gap_e_g_analysis.py",
+      "lineRange": [
+        146,
+        236
+      ],
+      "summary": "Tests paired outcomes JSONL generation format and content correctness.",
+      "tags": [
+        "test",
+        "jsonl",
+        "outcomes",
+        "format"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_orphan_vec_episodes_cleanup.py",
+      "type": "file",
+      "name": "test_orphan_vec_episodes_cleanup.py",
+      "filePath": "tests/test_orphan_vec_episodes_cleanup.py",
+      "summary": "Regression tests for orphan vec_episodes cleanup on import_from_dict. Verifies that force=True cleans stale vector entries, force=False preserves them, and multiple force=True calls are idempotent.",
+      "tags": [
+        "test",
+        "vector-cleanup",
+        "import",
+        "regression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_telemetry_and_env_followups.py",
+      "type": "file",
+      "name": "test_telemetry_and_env_followups.py",
+      "filePath": "tests/test_telemetry_and_env_followups.py",
+      "summary": "Tests for C30/C31/C32 telemetry and environment variable follow-ups including episodic fallback dense score, entity/fact paths, env truthy parser, and veracity weight override warnings.",
+      "tags": [
+        "test",
+        "telemetry",
+        "environment",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_telemetry_and_env_followups.py:TestC30EpisodicFallbackDenseScore",
+      "type": "class",
+      "name": "TestC30EpisodicFallbackDenseScore",
+      "filePath": "tests/test_telemetry_and_env_followups.py",
+      "lineRange": [
+        50,
+        116
+      ],
+      "summary": "Tests C30 episodic fallback dense score behavior when vector search fails.",
+      "tags": [
+        "test",
+        "telemetry",
+        "fallback",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_telemetry_and_env_followups.py:TestC31EnvTruthyParser",
+      "type": "class",
+      "name": "TestC31EnvTruthyParser",
+      "filePath": "tests/test_telemetry_and_env_followups.py",
+      "lineRange": [
+        158,
+        231
+      ],
+      "summary": "Tests the env truthy parser used throughout the beam module for feature toggles.",
+      "tags": [
+        "test",
+        "environment",
+        "parsing",
+        "truthy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_telemetry_and_env_followups.py:TestC32VeracityWeightOverrideWarn",
+      "type": "class",
+      "name": "TestC32VeracityWeightOverrideWarn",
+      "filePath": "tests/test_telemetry_and_env_followups.py",
+      "lineRange": [
+        239,
+        404
+      ],
+      "summary": "Tests veracity weight override warning behavior when non-standard weights are configured via env vars.",
+      "tags": [
+        "test",
+        "veracity",
+        "weight",
+        "warning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_temporal_recall.py",
+      "type": "file",
+      "name": "test_temporal_recall.py",
+      "filePath": "tests/test_temporal_recall.py",
+      "summary": "Tests for temporal recall functionality including temporal boost function, query time parsing, and end-to-end temporal recall with time-weighted scoring.",
+      "tags": [
+        "test",
+        "temporal",
+        "recall",
+        "time-scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_temporal_recall.py:TestTemporalBoostFunction",
+      "type": "class",
+      "name": "TestTemporalBoostFunction",
+      "filePath": "tests/test_temporal_recall.py",
+      "lineRange": [
+        30,
+        81
+      ],
+      "summary": "Unit tests for the temporal boost scoring function that weights memory by temporal proximity.",
+      "tags": [
+        "test",
+        "temporal",
+        "boost",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_temporal_recall.py:TestParseQueryTime",
+      "type": "class",
+      "name": "TestParseQueryTime",
+      "filePath": "tests/test_temporal_recall.py",
+      "lineRange": [
+        84,
+        123
+      ],
+      "summary": "Tests the _parse_query_time function that converts various time formats to UTC timestamps.",
+      "tags": [
+        "test",
+        "time",
+        "parsing",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_temporal_recall.py:TestTemporalRecallEndToEnd",
+      "type": "class",
+      "name": "TestTemporalRecallEndToEnd",
+      "filePath": "tests/test_temporal_recall.py",
+      "lineRange": [
+        126,
+        336
+      ],
+      "summary": "End-to-end tests for temporal recall including time-weighted scoring and time-range queries.",
+      "tags": [
+        "test",
+        "temporal",
+        "recall",
+        "e2e"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_voice_attribution_and_beam_opt.py",
+      "type": "file",
+      "name": "test_voice_attribution_and_beam_opt.py",
+      "filePath": "tests/test_voice_attribution_and_beam_opt.py",
+      "summary": "Tests for voice attribution in recall results and beam optimization environment variables, including answer_with_memory return_memories kwarg, summarize_recall_memories, and recall provenance in result dicts.",
+      "tags": [
+        "test",
+        "voice-attribution",
+        "optimization",
+        "recall"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_voice_attribution_and_beam_opt.py:TestBeamOptimizationsEnvParser",
+      "type": "class",
+      "name": "TestBeamOptimizationsEnvParser",
+      "filePath": "tests/test_voice_attribution_and_beam_opt.py",
+      "lineRange": [
+        40,
+        63
+      ],
+      "summary": "Tests the beam optimization environment variable parser for feature flags.",
+      "tags": [
+        "test",
+        "optimization",
+        "environment",
+        "parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_voice_attribution_and_beam_opt.py:TestAnswerWithMemoryReturnMemoriesKwarg",
+      "type": "class",
+      "name": "TestAnswerWithMemoryReturnMemoriesKwarg",
+      "filePath": "tests/test_voice_attribution_and_beam_opt.py",
+      "lineRange": [
+        71,
+        138
+      ],
+      "summary": "Tests the return_memories kwarg in answer_with_memory for proper voice attribution.",
+      "tags": [
+        "test",
+        "memory",
+        "attribution",
+        "api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/beam_phase3_test.py",
+      "type": "file",
+      "name": "beam_phase3_test.py",
+      "filePath": "tools/beam_phase3_test.py",
+      "summary": "Phase 3 test runner that evaluates BeamMemory's end-to-end performance using the evaluate_beam_end_to_end module with specific configuration presets.",
+      "tags": [
+        "tool",
+        "test-runner",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/bench_100k_fast.py",
+      "type": "file",
+      "name": "bench_100k_fast.py",
+      "filePath": "tools/bench_100k_fast.py",
+      "summary": "Fast 100K conversation benchmark using non-LLM string-similarity judge for scoring recall quality at scale.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "100k",
+        "fast-eval"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/bench_100k_gemma.py",
+      "type": "file",
+      "name": "bench_100k_gemma.py",
+      "filePath": "tools/bench_100k_gemma.py",
+      "summary": "100K conversation benchmark using Gemma LLM as the judge for scoring recall quality in the BEAM evaluation pipeline.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "100k",
+        "llm-judge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/bench_nai0.py",
+      "type": "file",
+      "name": "bench_nai0.py",
+      "filePath": "tools/bench_nai0.py",
+      "summary": "NAI-0 benchmark (baseline, no vector search) that evaluates BeamMemory recall quality without vector search enabled, establishing baseline performance for the NAI experiment series.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "nai",
+        "ablation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_nai1.py",
+      "type": "file",
+      "name": "bench_nai1.py",
+      "filePath": "tools/bench_nai1.py",
+      "summary": "NAI-1 benchmark testing the impact of chat normalization on recall quality, using normalize_chat from chat_normalize.py to preprocess messages before ingestion.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "nai",
+        "normalization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_nai2.py",
+      "type": "file",
+      "name": "bench_nai2.py",
+      "filePath": "tools/bench_nai2.py",
+      "summary": "NAI-2 benchmark testing temporal weight tuning impact on recall quality, varying temporal_weight and temporal_halflife parameters.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "nai",
+        "temporal"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_rerank.py",
+      "type": "file",
+      "name": "bench_rerank.py",
+      "filePath": "tools/bench_rerank.py",
+      "summary": "Benchmark evaluating the impact of MMR reranking on BeamMemory recall quality, comparing results with and without reranking enabled.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "rerank",
+        "mmr"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/diag_fact_precision.py",
+      "type": "file",
+      "name": "diag_fact_precision.py",
+      "filePath": "tools/diag_fact_precision.py",
+      "summary": "Diagnostic tool that evaluates fact extraction precision by running BeamMemory's fact extraction against a test dataset and scoring with a JudgeLLM helper.",
+      "tags": [
+        "tool",
+        "diagnostics",
+        "fact-extraction",
+        "precision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/diagnostic_tr.py",
+      "type": "file",
+      "name": "diagnostic_tr.py",
+      "filePath": "tools/diagnostic_tr.py",
+      "summary": "Minimal diagnostic script that runs a temporal recall test using evaluate_beam_end_to_end module to verify temporal recall functionality.",
+      "tags": [
+        "tool",
+        "diagnostics",
+        "temporal-recall"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "file",
+      "name": "evaluate_beam_end_to_end.py",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "summary": "BEAM End-to-End Evaluation Pipeline that downloads the BEAM dataset from HuggingFace, ingests conversations into Mnemosyne, retrieves memories for probing questions, uses LLM-as-judge scoring, and reports per-scale per-ability scores comparable to published SOTA.",
+      "tags": [
+        "tool",
+        "evaluation",
+        "pipeline",
+        "benchmark",
+        "llm-judge"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Large evaluation orchestrator (2612 lines) with multi-strategy recall, LLM judge with rubrics, and SOTA comparison reporting."
+    },
+    {
+      "id": "class:tools/evaluate_beam_end_to_end.py:LLMClient",
+      "type": "class",
+      "name": "LLMClient",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        141,
+        200
+      ],
+      "summary": "HTTP client for calling LLM APIs (OpenAI-compatible) used as the answer generator and judge in the evaluation pipeline.",
+      "tags": [
+        "llm",
+        "client",
+        "api",
+        "evaluation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:load_beam_dataset",
+      "type": "function",
+      "name": "load_beam_dataset",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        207,
+        352
+      ],
+      "summary": "Downloads and loads the BEAM benchmark dataset from HuggingFace at specified conversation scales (100K, 500K, 1M, 10M).",
+      "tags": [
+        "dataset",
+        "loading",
+        "huggingface"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:ingest_conversation",
+      "type": "function",
+      "name": "ingest_conversation",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        439,
+        646
+      ],
+      "summary": "Ingests a single BEAM conversation (messages, probing questions, gold answers) into Mnemosyne's BeamMemory, preserving metadata.",
+      "tags": [
+        "ingest",
+        "memory",
+        "conversation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:answer_with_memory",
+      "type": "function",
+      "name": "answer_with_memory",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        1411,
+        1997
+      ],
+      "summary": "Core evaluation function that retrieves memories from BeamMemory for a probing question, formats context, calls the LLM to produce an answer, and returns both the answer and retrieved memories.",
+      "tags": [
+        "evaluation",
+        "recall",
+        "llm",
+        "answer-generation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:_multi_strategy_recall",
+      "type": "function",
+      "name": "_multi_strategy_recall",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        964,
+        1028
+      ],
+      "summary": "Orchestrates multiple recall strategies (entity-based, fact-based, full-text, semantic) and combines results for robust memory retrieval.",
+      "tags": [
+        "recall",
+        "multi-strategy",
+        "retrieval"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:evaluate_conversation",
+      "type": "function",
+      "name": "evaluate_conversation",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        2086,
+        2172
+      ],
+      "summary": "Evaluates a single conversation by running all probing questions through answer_with_memory and scoring with LLM-as-judge.",
+      "tags": [
+        "evaluation",
+        "conversation",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:judge_with_rubrics",
+      "type": "function",
+      "name": "judge_with_rubrics",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        2021,
+        2068
+      ],
+      "summary": "Uses an LLM judge to score answer quality against a rubric, returning a 0-10 score with explanation.",
+      "tags": [
+        "evaluation",
+        "judge",
+        "llm",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        2293,
+        2608
+      ],
+      "summary": "Entry point that parses CLI arguments, orchestrates the end-to-end evaluation across scales, and prints a SOTA comparison report.",
+      "tags": [
+        "entry-point",
+        "cli",
+        "orchestration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/evaluate_beam_end_to_end.py:compute_ability_scores",
+      "type": "function",
+      "name": "compute_ability_scores",
+      "filePath": "tools/evaluate_beam_end_to_end.py",
+      "lineRange": [
+        2175,
+        2208
+      ],
+      "summary": "Aggregates per-question scores into ability-level summary statistics for the final report.",
+      "tags": [
+        "evaluation",
+        "scoring",
+        "statistics"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_gap_e_g_analysis.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_orphan_vec_episodes_cleanup.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_telemetry_and_env_followups.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_temporal_recall.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_voice_attribution_and_beam_opt.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/beam_phase3_test.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_100k_fast.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_100k_fast.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_100k_gemma.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_100k_gemma.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_nai0.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_nai1.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_nai1.py",
+      "target": "file:mnemosyne/core/chat_normalize.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_nai2.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/bench_rerank.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/diag_fact_precision.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/diag_fact_precision.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/diagnostic_tr.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "class:tools/evaluate_beam_end_to_end.py:LLMClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:load_beam_dataset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:ingest_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:answer_with_memory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:_multi_strategy_recall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:evaluate_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:judge_with_rubrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "function:tools/evaluate_beam_end_to_end.py:compute_ability_scores",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_gap_e_g_analysis.py",
+      "target": "class:tests/test_gap_e_g_analysis.py:TestLinearVoiceScores",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_gap_e_g_analysis.py",
+      "target": "class:tests/test_gap_e_g_analysis.py:TestPairedOutcomesJSONL",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_telemetry_and_env_followups.py",
+      "target": "class:tests/test_telemetry_and_env_followups.py:TestC30EpisodicFallbackDenseScore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_telemetry_and_env_followups.py",
+      "target": "class:tests/test_telemetry_and_env_followups.py:TestC31EnvTruthyParser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_telemetry_and_env_followups.py",
+      "target": "class:tests/test_telemetry_and_env_followups.py:TestC32VeracityWeightOverrideWarn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_temporal_recall.py",
+      "target": "class:tests/test_temporal_recall.py:TestTemporalBoostFunction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_temporal_recall.py",
+      "target": "class:tests/test_temporal_recall.py:TestParseQueryTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_temporal_recall.py",
+      "target": "class:tests/test_temporal_recall.py:TestTemporalRecallEndToEnd",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_voice_attribution_and_beam_opt.py",
+      "target": "class:tests/test_voice_attribution_and_beam_opt.py:TestBeamOptimizationsEnvParser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_voice_attribution_and_beam_opt.py",
+      "target": "class:tests/test_voice_attribution_and_beam_opt.py:TestAnswerWithMemoryReturnMemoriesKwarg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/evaluate_beam_end_to_end.py",
+      "target": "file:tools/beam_phase3_test.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/beam_phase3_test.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tools/bench_100k_fast.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tools/bench_100k_gemma.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tools/diag_fact_precision.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tools/bench_nai0.py",
+      "target": "file:tools/bench_nai1.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/bench_nai1.py",
+      "target": "file:tools/bench_nai2.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

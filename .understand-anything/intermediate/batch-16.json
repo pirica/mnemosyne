@@ -1,0 +1,346 @@
+{
+  "batchIndex": 16,
+  "schemaVersion": 1,
+  "description": "Integrations documentation and project config files for Mnemosyne (docs + config batch)",
+  "nodes": [
+    {
+      "id": "file:docs/integrations/README.md",
+      "type": "file",
+      "name": "README.md",
+      "filePath": "docs/integrations/README.md",
+      "status": "existing",
+      "summary": "Integrations overview page for Mnemosyne. Provides a platform compatibility table covering Cursor, Claude Code, OpenAI Codex CLI, Windsurf, OpenWebUI, and Hermes Agent with their integration methods (MCP stdio, native @tool, MCP+Plugin) and config file locations. Includes a universal MCP quick-start JSON snippet and Python API fallback usage. 44 lines, concise and navigational. Structural analysis: 3 sections (Mnemosyne Integrations, Quick Start, Not using MCP?), 34 non-empty lines.",
+      "tags": ["documentation", "integrations", "mcp", "overview", "cross-platform", "landing-page"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with a markdown table summarizing platform compatibility. Includes JSON and Python code blocks."
+    },
+    {
+      "id": "file:docs/integrations/claude-code-mcp.md",
+      "type": "file",
+      "name": "claude-code-mcp.md",
+      "filePath": "docs/integrations/claude-code-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Claude Code as an MCP tool. Covers 3-step setup (pip install mcp extra, add to claude.json, restart Claude Code), natural language usage examples (remember/recall/forget patterns), CLI slash commands (mnemosyne_remember/recall/forget), and per-project memory bank isolation via --bank flag in claude.json. 64 lines, practical and example-driven. Structural analysis: 5 sections (Introduction, Setup, Usage, CLI shortcuts, Project isolation), 48 non-empty lines.",
+      "tags": ["documentation", "integration", "claude-code", "mcp", "memory", "anthropic"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples, bash install commands, and natural language usage prompts."
+    },
+    {
+      "id": "file:docs/integrations/codex-mcp.md",
+      "type": "file",
+      "name": "codex-mcp.md",
+      "filePath": "docs/integrations/codex-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting OpenAI Codex CLI to Mnemosyne via MCP. Covers 3-step setup (pip install mcp extra, configure .codex/mcp.json, restart Codex), natural language usage examples, and per-project memory bank isolation with {{project-name}} templating for dynamic bank naming. 50 lines, concise and example-focused. Structural analysis: 4 sections (Introduction, Setup, Usage, Memory Banks), 38 non-empty lines.",
+      "tags": ["documentation", "integration", "codex-cli", "openai", "mcp", "memory"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts. Uses {{project-name}} template syntax in config."
+    },
+    {
+      "id": "file:docs/integrations/cursor-mcp.md",
+      "type": "file",
+      "name": "cursor-mcp.md",
+      "filePath": "docs/integrations/cursor-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Cursor as an MCP tool. Covers 3-step setup (pip install mcp extra, .cursor/mcp.json config with MCP stdio protocol, restart Cursor), natural language usage examples for remembering preferences and recalling context, per-project bank isolation via --bank flag, and a tips section covering memory persistence across projects and checking memory stats. 51 lines, well-structured with tips for power users. Structural analysis: 4 sections (Introduction, Setup, Usage, Tips), 40 non-empty lines.",
+      "tags": ["documentation", "integration", "cursor", "mcp", "memory", "ide"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts. Includes tips subsection for power users."
+    },
+    {
+      "id": "file:docs/integrations/custom-mcp-server.md",
+      "type": "file",
+      "name": "custom-mcp-server.md",
+      "filePath": "docs/integrations/custom-mcp-server.md",
+      "status": "missing",
+      "summary": "PLANNED — Guide for creating custom MCP server integrations with Mnemosyne. Does not yet exist at this path. Related reference exists at docs/integrations/integration-template.md which provides a Python adapter template (MnemosyneAdapter class covering remember/recall/forget/stats), platform-specific integration point table, MCP shortcut config, and a verification checklist. Would document MCP protocol details, tool registration, custom banking, and advanced configuration for platforms not directly covered by existing integration docs.",
+      "tags": ["documentation", "integration", "mcp", "custom-server", "planned", "missing", "template"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover MCP server development, custom tool registration, integration patterns, and platform-specific glue code."
+    },
+    {
+      "id": "file:docs/integrations/openwebui-bridge.md",
+      "type": "file",
+      "name": "openwebui-bridge.md",
+      "filePath": "docs/integrations/openwebui-bridge.md",
+      "status": "missing",
+      "summary": "PLANNED — Integration setup for OpenWebUI bridge. Does not yet exist under this filename. Related content exists at docs/integrations/openwebui-tool.md (native @tool integration with configurable Valves: db_path, bank, top_k, vec/fts/importance weights) and docs/integrations/openwebui-deep.md (auto-conversation memory service via REST API polling with systemd service support, tagging messages by source and role). The integrations README table references OpenWebUI as using 'Native @tool' method. Would bridge these approaches or provide alternative integration path.",
+      "tags": ["documentation", "integration", "openwebui", "planned", "missing", "bridge"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation — would cover OpenWebUI tool configuration, bridge setup between different integration approaches."
+    },
+    {
+      "id": "file:docs/integrations/vscode.md",
+      "type": "file",
+      "name": "vscode.md",
+      "filePath": "docs/integrations/vscode.md",
+      "status": "missing",
+      "summary": "PLANNED — Integration setup for VS Code extension. Does not yet exist at this path. A complete VS Code extension exists at integrations/vscode-mnemosyne/ (TypeScript source with extension.ts for activation/deactivation, client.ts for MnemosyneClient, provider.ts for MemoriesProvider tree view, webview.ts for MemoryWebview panel) but no documentation file covers its installation and usage from the user's perspective. Would document installing the VS Code extension, configuring MCP, and using the Mnemosyne sidebar webview for browsing and searching memories.",
+      "tags": ["documentation", "integration", "vscode", "extension", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "Markdown documentation — would cover VS Code extension installation from VSIX or marketplace, MCP configuration, sidebar tree view usage, and webview memory browser."
+    },
+    {
+      "id": "file:docs/integrations/windsurf-mcp.md",
+      "type": "file",
+      "name": "windsurf-mcp.md",
+      "filePath": "docs/integrations/windsurf-mcp.md",
+      "status": "existing",
+      "summary": "Integration guide for connecting Mnemosyne to Windsurf via MCP. Covers 3-step setup (pip install mcp extra, .windsurf/mcp_config.json config, restart Windsurf) and natural language usage examples (remember commit message style, recall API rate limits, recall stored codebase context). 34 lines, the most concise integration doc in the set — minimal but complete. Structural analysis: 3 sections (Introduction, Setup, Usage), 25 non-empty lines.",
+      "tags": ["documentation", "integration", "windsurf", "mcp", "memory"],
+      "complexity": "simple",
+      "languageNotes": "Markdown with JSON configuration examples and natural language usage prompts. Shortest integration doc — covers only essential setup and usage."
+    },
+    {
+      "id": "file:mkdocs.yml",
+      "type": "file",
+      "name": "mkdocs.yml",
+      "filePath": "mkdocs.yml",
+      "status": "missing",
+      "summary": "PLANNED — MkDocs configuration file for building Mnemosyne's documentation site. Does not yet exist. The project has extensive Markdown documentation in docs/ (getting-started, architecture, configuration, API reference, integration guides, comparison, benchmarking, audit reports, changelog, glossary planning) organized in subdirectories (docs/integrations/, docs/experiments/). A mkdocs.yml would configure the site structure (nav hierarchy, theme, plugins like mkdocs-material, search), enabling a deployable documentation site via GitHub Pages or ReadTheDocs. Related: pyproject.toml references Documentation URL pointing to the GitHub README.",
+      "tags": ["config", "documentation", "mkdocs", "site-generator", "planned", "missing"],
+      "complexity": "moderate",
+      "languageNotes": "YAML configuration for MkDocs — would define navigation structure, theme settings (likely mkdocs-material), plugins (search, autorefs, macros), and build settings for documentation site deployment."
+    },
+    {
+      "id": "file:pyproject.toml",
+      "type": "file",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "status": "existing",
+      "summary": "Python project configuration for mnemosyne-memory package. Defines build system (setuptools), project metadata (name: mnemosyne-memory, version dynamic, Python >=3.10, MIT license, author Abdias J), 20+ keywords covering AI memory ecosystem (sqlite, embeddings, vector-store, MCP, cursor, claude-code, codex, hermes, openwebui), classifiers (Production/Stable, OS Independent). Optional dependency groups: llm (ctransformers, llama-cpp-python), embeddings (fastembed, sqlite-vec), mcp (mcp, anyio), openclaw, all, dev. Entry points: mnemosyne-install, mnemosyne-uninstall, mnemosyne CLI. Package excludes tests, benchmark, scripts, docs. Version sourced from mnemosyne/__init__.py. 72 lines, comprehensive. Structural analysis: 7 TOML sections, 66 non-empty lines.",
+      "tags": ["config", "python", "package", "setuptools", "build-system", "dependencies", "metadata"],
+      "complexity": "moderate",
+      "languageNotes": "TOML configuration following PEP 621. Uses setuptools build backend with dynamic versioning. Defines multiple optional dependency extras (llm, embeddings, mcp, openclaw, all, dev). Console scripts entry points for CLI. Copyright MIT license."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/claude-code-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/codex-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/cursor-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/windsurf-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/custom-mcp-server.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/openwebui-bridge.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:docs/integrations/README.md",
+      "target": "file:docs/integrations/vscode.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:docs/integrations/claude-code-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/codex-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/cursor-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/windsurf-mcp.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:docs/integrations/custom-mcp-server.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:docs/integrations/openwebui-bridge.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:docs/integrations/vscode.md",
+      "target": "file:docs/integrations/README.md",
+      "type": "part-of",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:docs/integrations/custom-mcp-server.md",
+      "target": "file:docs/integrations/integration-template.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/integrations/openwebui-bridge.md",
+      "target": "file:docs/integrations/openwebui-tool.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/integrations/openwebui-bridge.md",
+      "target": "file:docs/integrations/openwebui-deep.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/integrations/vscode.md",
+      "target": "file:integrations/vscode-mnemosyne/src/extension.ts",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:docs/integrations/README.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:docs/integrations/claude-code-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:docs/integrations/cursor-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:docs/integrations/codex-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:docs/integrations/windsurf-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.2
+    },
+    {
+      "source": "file:pyproject.toml",
+      "target": "file:mkdocs.yml",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:mkdocs.yml",
+      "target": "file:docs/integrations/README.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mkdocs.yml",
+      "target": "file:docs/integrations/claude-code-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:mkdocs.yml",
+      "target": "file:docs/integrations/cursor-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:mkdocs.yml",
+      "target": "file:docs/integrations/codex-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    },
+    {
+      "source": "file:mkdocs.yml",
+      "target": "file:docs/integrations/windsurf-mcp.md",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.2
+    },
+    {
+      "source": "file:docs/integrations/custom-mcp-server.md",
+      "target": "file:pyproject.toml",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.3
+    }
+  ],
+  "metadata": {
+    "generatedAt": "2026-06-03T00:05:00.000Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 10,
+    "categories": ["docs", "config"],
+    "types": ["document", "yaml", "toml"],
+    "existingFiles": 6,
+    "missingFiles": 4,
+    "fileStatusSummary": "6 of 10 documented files exist on disk (docs/integrations/README.md, docs/integrations/claude-code-mcp.md, docs/integrations/codex-mcp.md, docs/integrations/cursor-mcp.md, docs/integrations/windsurf-mcp.md, pyproject.toml). 4 files are planned/missing: docs/integrations/custom-mcp-server.md, docs/integrations/openwebui-bridge.md, docs/integrations/vscode.md, mkdocs.yml.",
+    "extractStats": {
+      "scriptCompleted": true,
+      "filesAnalyzed": 6,
+      "filesSkipped": 4,
+      "totalSectionsFound": 26,
+      "totalNonEmptyLines": 251
+    }
+  }
+}

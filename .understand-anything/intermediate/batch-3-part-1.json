@@ -1,0 +1,1521 @@
+{
+  "nodes": [
+    {
+      "id": "file:hermes_memory_provider/cli.py",
+      "type": "file",
+      "name": "cli.py",
+      "filePath": "hermes_memory_provider/cli.py",
+      "summary": "Registers Hermes CLI subcommands for stats, inspect, sleep, diagnose, export, import, and MCP operations on Mnemosyne memory.",
+      "tags": [
+        "python",
+        "code"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:hermes_memory_provider/cli.py:register_cli",
+      "type": "function",
+      "name": "register_cli",
+      "filePath": "hermes_memory_provider/cli.py",
+      "lineRange": [
+        17,
+        60
+      ],
+      "summary": "Registers all Mnemosyne CLI subcommands with argument parsers.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:hermes_memory_provider/cli.py:mnemosyne_command",
+      "type": "function",
+      "name": "mnemosyne_command",
+      "filePath": "hermes_memory_provider/cli.py",
+      "lineRange": [
+        63,
+        336
+      ],
+      "summary": "Dispatches CLI commands to BeamMemory/Mnemosyne core operations based on subcommand name.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/core/banks.py",
+      "type": "file",
+      "name": "banks.py",
+      "filePath": "mnemosyne/core/banks.py",
+      "summary": "Provides the BankManager class and module-level functions to create, delete, list, and query isolated memory banks.",
+      "tags": [
+        "python",
+        "code"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/banks.py:_default_data_dir",
+      "type": "function",
+      "name": "_default_data_dir",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        39,
+        43
+      ],
+      "summary": "Function _default_data_dir in mnemosyne/core/banks.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/banks.py:create_bank",
+      "type": "function",
+      "name": "create_bank",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        188,
+        190
+      ],
+      "summary": "Function create_bank in mnemosyne/core/banks.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/banks.py:delete_bank",
+      "type": "function",
+      "name": "delete_bank",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        193,
+        195
+      ],
+      "summary": "Function delete_bank in mnemosyne/core/banks.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/banks.py:list_banks",
+      "type": "function",
+      "name": "list_banks",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        198,
+        200
+      ],
+      "summary": "Function list_banks in mnemosyne/core/banks.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/banks.py:bank_exists",
+      "type": "function",
+      "name": "bank_exists",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        203,
+        205
+      ],
+      "summary": "Function bank_exists in mnemosyne/core/banks.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/banks.py:BankManager",
+      "type": "class",
+      "name": "BankManager",
+      "filePath": "mnemosyne/core/banks.py",
+      "lineRange": [
+        46,
+        184
+      ],
+      "summary": "Manages creation, deletion, listing, renaming, and statistics of isolated memory bank directories.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/core/memory.py",
+      "type": "file",
+      "name": "memory.py",
+      "filePath": "mnemosyne/core/memory.py",
+      "summary": "Core Mnemosyne memory module exposing the Mnemosyne class and module-level facade functions for remember, recall, forget, update, sleep, and scratchpad operations backed by BeamMemory.",
+      "tags": [
+        "core",
+        "data-model",
+        "python"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python facade pattern wrapping BeamMemory with module-level convenience functions."
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:_default_data_dir",
+      "type": "function",
+      "name": "_default_data_dir",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        41,
+        45
+      ],
+      "summary": "Function _default_data_dir in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:_default_db_path",
+      "type": "function",
+      "name": "_default_db_path",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        48,
+        50
+      ],
+      "summary": "Function _default_db_path in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:_get_connection",
+      "type": "function",
+      "name": "_get_connection",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        53,
+        70
+      ],
+      "summary": "Function _get_connection in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:init_db",
+      "type": "function",
+      "name": "init_db",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        73,
+        109
+      ],
+      "summary": "Function init_db in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:generate_id",
+      "type": "function",
+      "name": "generate_id",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        116,
+        118
+      ],
+      "summary": "Function generate_id in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:_get_default",
+      "type": "function",
+      "name": "_get_default",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        750,
+        757
+      ],
+      "summary": "Function _get_default in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:set_bank",
+      "type": "function",
+      "name": "set_bank",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        760,
+        767
+      ],
+      "summary": "Function set_bank in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:get_bank",
+      "type": "function",
+      "name": "get_bank",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        770,
+        772
+      ],
+      "summary": "Function get_bank in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:remember",
+      "type": "function",
+      "name": "remember",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        776,
+        786
+      ],
+      "summary": "Stores a memory with content, source, importance, metadata, and optional entity/fact extraction.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:recall",
+      "type": "function",
+      "name": "recall",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        789,
+        808
+      ],
+      "summary": "Queries memories by text with configurable scoring weights, temporal filters, and top-k results.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:get_context",
+      "type": "function",
+      "name": "get_context",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        811,
+        813
+      ],
+      "summary": "Function get_context in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:get_stats",
+      "type": "function",
+      "name": "get_stats",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        816,
+        818
+      ],
+      "summary": "Function get_stats in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:forget",
+      "type": "function",
+      "name": "forget",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        821,
+        823
+      ],
+      "summary": "Function forget in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:get",
+      "type": "function",
+      "name": "get",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        826,
+        830
+      ],
+      "summary": "Function get in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:update",
+      "type": "function",
+      "name": "update",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        833,
+        835
+      ],
+      "summary": "Function update in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:sleep",
+      "type": "function",
+      "name": "sleep",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        838,
+        840
+      ],
+      "summary": "Function sleep in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:sleep_all_sessions",
+      "type": "function",
+      "name": "sleep_all_sessions",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        843,
+        845
+      ],
+      "summary": "Function sleep_all_sessions in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:scratchpad_write",
+      "type": "function",
+      "name": "scratchpad_write",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        848,
+        850
+      ],
+      "summary": "Function scratchpad_write in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:scratchpad_read",
+      "type": "function",
+      "name": "scratchpad_read",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        853,
+        855
+      ],
+      "summary": "Function scratchpad_read in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/memory.py:scratchpad_clear",
+      "type": "function",
+      "name": "scratchpad_clear",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        858,
+        860
+      ],
+      "summary": "Function scratchpad_clear in mnemosyne/core/memory.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/memory.py:Mnemosyne",
+      "type": "class",
+      "name": "Mnemosyne",
+      "filePath": "mnemosyne/core/memory.py",
+      "lineRange": [
+        121,
+        742
+      ],
+      "summary": "Core memory class providing remember, recall, forget, sleep, streaming, compression, pattern detection, and import/export operations.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/core/streaming.py",
+      "type": "file",
+      "name": "streaming.py",
+      "filePath": "mnemosyne/core/streaming.py",
+      "summary": "Defines event types, memory stream pub/sub, streaming iterator, sync checkpointing, and delta-sync for replicating memory state between instances.",
+      "tags": [
+        "core",
+        "event-handler",
+        "python"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Event-driven pub/sub pattern with checkpoint-based incremental sync."
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:EventType",
+      "type": "class",
+      "name": "EventType",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        96,
+        101
+      ],
+      "summary": "Class EventType.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:MemoryEvent",
+      "type": "class",
+      "name": "MemoryEvent",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        105,
+        128
+      ],
+      "summary": "Class MemoryEvent.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:MemoryStream",
+      "type": "class",
+      "name": "MemoryStream",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        131,
+        225
+      ],
+      "summary": "Event emitter with callback registration, buffering, and async iterator support for memory events.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:_StreamIterator",
+      "type": "class",
+      "name": "_StreamIterator",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        228,
+        258
+      ],
+      "summary": "Class _StreamIterator.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:SyncCheckpoint",
+      "type": "class",
+      "name": "SyncCheckpoint",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        262,
+        273
+      ],
+      "summary": "Class SyncCheckpoint.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/streaming.py:DeltaSync",
+      "type": "class",
+      "name": "DeltaSync",
+      "filePath": "mnemosyne/core/streaming.py",
+      "lineRange": [
+        276,
+        617
+      ],
+      "summary": "Computes and applies incremental deltas between memory databases with table/column allowlist enforcement.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "type": "file",
+      "name": "auto_save_openwebui.py",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "summary": "Periodically syncs Open WebUI chat history into Mnemosyne via REST API polling with deduplication and persistence tracking.",
+      "tags": [
+        "python",
+        "code"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:_load_processed_ids",
+      "type": "function",
+      "name": "_load_processed_ids",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        62,
+        71
+      ],
+      "summary": "Function _load_processed_ids in mnemosyne/integrations/auto_save_openwebui.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:_save_processed_ids",
+      "type": "function",
+      "name": "_save_processed_ids",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        74,
+        80
+      ],
+      "summary": "Function _save_processed_ids in mnemosyne/integrations/auto_save_openwebui.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get",
+      "type": "function",
+      "name": "_api_get",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        86,
+        93
+      ],
+      "summary": "Function _api_get in mnemosyne/integrations/auto_save_openwebui.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get_async",
+      "type": "function",
+      "name": "_api_get_async",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        96,
+        99
+      ],
+      "summary": "Function _api_get_async in mnemosyne/integrations/auto_save_openwebui.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:_health_check",
+      "type": "function",
+      "name": "_health_check",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        102,
+        108
+      ],
+      "summary": "Function _health_check in mnemosyne/integrations/auto_save_openwebui.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/integrations/auto_save_openwebui.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        310,
+        344
+      ],
+      "summary": "Entry point that parses arguments and runs auto_save_openwebui.py main logic.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/integrations/auto_save_openwebui.py:MemorySaver",
+      "type": "class",
+      "name": "MemorySaver",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        114,
+        200
+      ],
+      "summary": "Saves Open WebUI messages to Mnemosyne with deduplication, statistics tracking, and persistence.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/integrations/auto_save_openwebui.py:SyncEngine",
+      "type": "class",
+      "name": "SyncEngine",
+      "filePath": "mnemosyne/integrations/auto_save_openwebui.py",
+      "lineRange": [
+        206,
+        304
+      ],
+      "summary": "Periodically polls Open WebUI API and syncs new messages to Mnemosyne memory.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mnemosyne/integrations/openwebui_tool.py",
+      "type": "file",
+      "name": "openwebui_tool.py",
+      "filePath": "mnemosyne/integrations/openwebui_tool.py",
+      "summary": "Exposes Mnemosyne remember/recall/forget/stats/sleep as an Open WebUI-compatible tool class.",
+      "tags": [
+        "python",
+        "code"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/integrations/openwebui_tool.py:MnemosyneTool",
+      "type": "class",
+      "name": "MnemosyneTool",
+      "filePath": "mnemosyne/integrations/openwebui_tool.py",
+      "lineRange": [
+        39,
+        207
+      ],
+      "summary": "Open WebUI tool wrapper around Mnemosyne remember, recall, forget, stats, and sleep operations.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:hermes_memory_provider/cli.py",
+      "target": "function:hermes_memory_provider/cli.py:register_cli",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:hermes_memory_provider/cli.py",
+      "target": "function:hermes_memory_provider/cli.py:register_cli",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:hermes_memory_provider/cli.py",
+      "target": "function:hermes_memory_provider/cli.py:mnemosyne_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:hermes_memory_provider/cli.py",
+      "target": "function:hermes_memory_provider/cli.py:mnemosyne_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:_default_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:_default_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:create_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:create_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:delete_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:delete_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:list_banks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:list_banks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:bank_exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "function:mnemosyne/core/banks.py:bank_exists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "class:mnemosyne/core/banks.py:BankManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "class:mnemosyne/core/banks.py:BankManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_default_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_default_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_default_db_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_default_db_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_get_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_get_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:init_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:init_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:generate_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:generate_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_get_default",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:_get_default",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:set_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:set_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:remember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:remember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:recall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:recall",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_context",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_context",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:forget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:forget",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:get",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:update",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:update",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:sleep",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:sleep_all_sessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:sleep_all_sessions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_write",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_write",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_read",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_read",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_clear",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "function:mnemosyne/core/memory.py:scratchpad_clear",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "class:mnemosyne/core/memory.py:Mnemosyne",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "class:mnemosyne/core/memory.py:Mnemosyne",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:EventType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:EventType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:MemoryEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:MemoryEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:MemoryStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:MemoryStream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:_StreamIterator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:_StreamIterator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:SyncCheckpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:SyncCheckpoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:DeltaSync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "class:mnemosyne/core/streaming.py:DeltaSync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_load_processed_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_load_processed_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_save_processed_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_save_processed_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get_async",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_api_get_async",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_health_check",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:_health_check",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "function:mnemosyne/integrations/auto_save_openwebui.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "class:mnemosyne/integrations/auto_save_openwebui.py:MemorySaver",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "class:mnemosyne/integrations/auto_save_openwebui.py:MemorySaver",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "class:mnemosyne/integrations/auto_save_openwebui.py:SyncEngine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "class:mnemosyne/integrations/auto_save_openwebui.py:SyncEngine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/integrations/openwebui_tool.py",
+      "target": "class:mnemosyne/integrations/openwebui_tool.py:MnemosyneTool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/integrations/openwebui_tool.py",
+      "target": "class:mnemosyne/integrations/openwebui_tool.py:MnemosyneTool",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:mnemosyne/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/integrations/auto_save_openwebui.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/integrations/openwebui_tool.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/benchmark_beam_comprehensive.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_c25_deltasync_allowlist.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "file:tests/test_c25_deltasync_allowlist.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_cli_stats.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_configurable_scoring.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_extract_parity.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:hermes_memory_provider/cli.py",
+      "target": "file:tests/test_hermes_hindsight_cli.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_hermes_hindsight_cli.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/banks.py",
+      "target": "file:tests/test_memory_banks.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_memory_banks.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_multi_agent_identity.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/memory.py",
+      "target": "file:tests/test_streaming.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/streaming.py",
+      "target": "file:tests/test_streaming.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

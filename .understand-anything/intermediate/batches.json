@@ -1,0 +1,6080 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 270,
+  "totalBatches": 22,
+  "exportsByPath": {
+    "__init__.py": [],
+    ".githooks/pre-commit": [],
+    ".githooks/pre-push": [],
+    ".mailmap": [],
+    ".understand-anything/.understandignore": [],
+    "hermes_memory_provider/__init__.py": [
+      "_get_beam_class",
+      "_get_triple_module",
+      "_prefetch_content_char_limit",
+      "_format_prefetch_content",
+      "_parse_env_float",
+      "MnemosyneMemoryProvider",
+      "register_memory_provider",
+      "register"
+    ],
+    "hermes_memory_provider/audit.py": [
+      "AuditLog"
+    ],
+    "hermes_memory_provider/cli.py": [
+      "register_cli",
+      "mnemosyne_command"
+    ],
+    "hermes_memory_provider/hermes_llm_adapter.py": [
+      "HermesAuxLLMBackend",
+      "_extract_content",
+      "register_hermes_host_llm",
+      "unregister_hermes_host_llm"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/__init__.py": [
+      "_get_beam_class",
+      "_get_triple_module",
+      "_prefetch_content_char_limit",
+      "_format_prefetch_content",
+      "_sync_turn_user_limit",
+      "_sync_turn_assistant_limit",
+      "_parse_env_float",
+      "MnemosyneMemoryProvider",
+      "register_memory_provider",
+      "register"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/audit.py": [
+      "AuditLog"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/cli.py": [
+      "register_cli",
+      "mnemosyne_command"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py": [
+      "HermesAuxLLMBackend",
+      "_extract_content",
+      "register_hermes_host_llm",
+      "unregister_hermes_host_llm"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/install.py": [
+      "hermes_home",
+      "plugin_source_dir",
+      "plugin_target_dir",
+      "_ignore_copy_names",
+      "check_mnemosyne_core",
+      "install_plugin",
+      "uninstall_plugin",
+      "is_installed",
+      "_parser",
+      "main"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/tools.py": [],
+    "integrations/obsidian-mnemosyne/main.ts": [
+      "default"
+    ],
+    "integrations/vscode-mnemosyne/.vscodeignore": [],
+    "integrations/vscode-mnemosyne/src/client.ts": [
+      "MnemosyneClient"
+    ],
+    "integrations/vscode-mnemosyne/src/extension.ts": [
+      "activate",
+      "deactivate"
+    ],
+    "integrations/vscode-mnemosyne/src/provider.ts": [
+      "MemoriesProvider"
+    ],
+    "integrations/vscode-mnemosyne/src/webview.ts": [
+      "MemoryWebview"
+    ],
+    "MANIFEST.in": [],
+    "mnemosyne/__init__.py": [
+      "__getattr__"
+    ],
+    "mnemosyne/cli.py": [
+      "_fail",
+      "_usage",
+      "_parse_float",
+      "_parse_int",
+      "_get_memory",
+      "cmd_store",
+      "cmd_recall",
+      "cmd_update",
+      "cmd_delete",
+      "cmd_stats",
+      "cmd_sleep",
+      "cmd_diagnose",
+      "cmd_export",
+      "cmd_import",
+      "cmd_import_hindsight",
+      "cmd_mcp",
+      "cmd_backup",
+      "cmd_restore",
+      "cmd_verify",
+      "cmd_backups_list",
+      "cmd_bank",
+      "run_cli"
+    ],
+    "mnemosyne/core/__init__.py": [],
+    "mnemosyne/core/aaak.py": [
+      "_apply_category_prefixes",
+      "_apply_phrases",
+      "_apply_structural",
+      "_compact_parens",
+      "encode"
+    ],
+    "mnemosyne/core/annotations.py": [
+      "_is_noisy_mention",
+      "filter_clean_mentions",
+      "filter_facts",
+      "_get_conn",
+      "init_annotations",
+      "_init_annotations_with_conn",
+      "AnnotationStore",
+      "add_annotation",
+      "query_annotations"
+    ],
+    "mnemosyne/core/banks.py": [
+      "_default_data_dir",
+      "BankManager",
+      "create_bank",
+      "delete_bank",
+      "list_banks",
+      "bank_exists"
+    ],
+    "mnemosyne/core/beam.py": [
+      "_source_to_trust_tier",
+      "_env_truthy",
+      "_default_data_dir",
+      "_default_db_path",
+      "_env_disabled",
+      "_env_float",
+      "_detect_veracity_weight_overrides",
+      "_warn_about_veracity_weight_overrides",
+      "_get_connection",
+      "_detect_vec_type",
+      "init_beam",
+      "_BeamConnection",
+      "_deferred_commits",
+      "_generate_id",
+      "_sanitize_utf8",
+      "_add_column_if_missing",
+      "_normalize_weights",
+      "_normalize_datetime_utc",
+      "_parse_iso_datetime_utc",
+      "_recency_decay",
+      "_parse_query_time",
+      "_parse_ts_fast",
+      "_temporal_boost",
+      "_vec_available",
+      "_extract_and_store_entities",
+      "_extract_and_store_facts",
+      "_store_facts_in_table",
+      "_find_memories_by_entity",
+      "_recall_tokens",
+      "_expanded_query_tokens",
+      "_minimum_recall_relevance",
+      "_fact_match_tokens",
+      "_contains_spaceless_cjk",
+      "_cjk_fts_terms",
+      "_lexical_relevance",
+      "_strict_fact_matches",
+      "_find_memories_by_fact",
+      "_in_memory_vec_search",
+      "_effective_vec_type",
+      "_vec_insert",
+      "_vec_search",
+      "_fts_query_terms",
+      "_has_cjk",
+      "_cjk_like_search",
+      "_fts_search",
+      "_fts_search_working",
+      "_wm_vec_search",
+      "BeamMemory"
+    ],
+    "mnemosyne/core/binary_vectors.py": [
+      "maximally_informative_binarization",
+      "hamming_distance",
+      "BinaryVectorStore",
+      "FastBinarySearch"
+    ],
+    "mnemosyne/core/chat_normalize.py": [
+      "normalize_chat",
+      "normalize_batch",
+      "extraction_rate"
+    ],
+    "mnemosyne/core/content_sanitizer.py": [
+      "_blob_root",
+      "_compute_sha256",
+      "_is_data_uri",
+      "_parse_data_uri",
+      "_shannon_entropy",
+      "_looks_like_base64_blob",
+      "_store_blob",
+      "sanitize_content"
+    ],
+    "mnemosyne/core/cost_log.py": [
+      "_get_conn",
+      "init_cost_log",
+      "log_cost",
+      "get_cost_stats"
+    ],
+    "mnemosyne/core/embeddings.py": [
+      "_is_api_model",
+      "_get_embedding_dim",
+      "_get_model",
+      "_embed_api",
+      "available",
+      "available_api",
+      "embed_query",
+      "embed",
+      "serialize"
+    ],
+    "mnemosyne/core/entities.py": [
+      "levenshtein_distance",
+      "similarity",
+      "extract_entities_regex",
+      "find_similar_entities",
+      "entity_extraction_performance"
+    ],
+    "mnemosyne/core/episodic_graph.py": [
+      "Gist",
+      "Fact",
+      "GraphEdge",
+      "EpisodicGraph"
+    ],
+    "mnemosyne/core/extraction.py": [
+      "_build_extraction_prompt",
+      "_parse_facts",
+      "_call_local_extraction_llm",
+      "extract_facts",
+      "extract_facts_safe"
+    ],
+    "mnemosyne/core/importers/__init__.py": [
+      "list_providers",
+      "get_provider_info",
+      "import_from_provider",
+      "generate_script"
+    ],
+    "mnemosyne/core/importers/agentic.py": [
+      "AgenticImporter",
+      "generate_migration_script",
+      "generate_agent_instructions",
+      "generate_docs_instructions"
+    ],
+    "mnemosyne/core/importers/base.py": [
+      "ImporterResult",
+      "BaseImporter",
+      "import_from_file"
+    ],
+    "mnemosyne/core/importers/cognee.py": [
+      "CogneeImporter"
+    ],
+    "mnemosyne/core/importers/hindsight.py": [
+      "HindsightImporter",
+      "import_from_hindsight"
+    ],
+    "mnemosyne/core/importers/honcho.py": [
+      "HonchoImporter"
+    ],
+    "mnemosyne/core/importers/letta.py": [
+      "LettaImporter"
+    ],
+    "mnemosyne/core/importers/mem0.py": [
+      "Mem0Importer",
+      "import_from_mem0"
+    ],
+    "mnemosyne/core/importers/supermemory.py": [
+      "SuperMemoryImporter"
+    ],
+    "mnemosyne/core/importers/zep.py": [
+      "ZepImporter"
+    ],
+    "mnemosyne/core/llm_backends.py": [
+      "LLMBackend",
+      "CallableLLMBackend",
+      "set_host_llm_backend",
+      "get_host_llm_backend",
+      "call_host_llm"
+    ],
+    "mnemosyne/core/llm_conflict_detector.py": [
+      "_estimate_tokens",
+      "_calculate_cost",
+      "_call_conflict_llm_with_retry",
+      "validate_conflict_pair"
+    ],
+    "mnemosyne/core/local_llm.py": [
+      "_ensure_sys_path",
+      "_model_path",
+      "_download_model",
+      "_load_llm_llamacpp",
+      "_load_llm_ctransformers",
+      "_load_llm",
+      "_call_local_llm",
+      "_memory_lines",
+      "_format_sleep_prompt",
+      "_build_prompt",
+      "_build_host_prompt",
+      "_host_backend_will_handle_call",
+      "_try_host_llm",
+      "_clean_output",
+      "_estimate_tokens",
+      "_prompt_token_budget",
+      "chunk_memories_by_budget",
+      "llm_available",
+      "_is_retryable_status",
+      "_call_remote_llm_with_model",
+      "_call_remote_llm",
+      "summarize_memories"
+    ],
+    "mnemosyne/core/memory.py": [
+      "_default_data_dir",
+      "_default_db_path",
+      "_get_connection",
+      "init_db",
+      "generate_id",
+      "Mnemosyne",
+      "_get_default",
+      "set_bank",
+      "get_bank",
+      "remember",
+      "recall",
+      "get_context",
+      "get_stats",
+      "forget",
+      "get",
+      "update",
+      "sleep",
+      "sleep_all_sessions",
+      "scratchpad_write",
+      "scratchpad_read",
+      "scratchpad_clear"
+    ],
+    "mnemosyne/core/mmr.py": [
+      "_jaccard_similarity",
+      "mmr_rerank"
+    ],
+    "mnemosyne/core/orchestrator.py": [
+      "orchestrate_recall"
+    ],
+    "mnemosyne/core/patterns.py": [
+      "CompressionStats",
+      "MemoryCompressor",
+      "DetectedPattern",
+      "PatternDetector"
+    ],
+    "mnemosyne/core/plugins.py": [
+      "MnemosynePlugin",
+      "LoggingPlugin",
+      "MetricsPlugin",
+      "FilterPlugin",
+      "CompressionPlugin",
+      "PluginManager",
+      "get_manager",
+      "reset_manager"
+    ],
+    "mnemosyne/core/polyphonic_recall.py": [
+      "_env_disabled",
+      "RecallResult",
+      "PolyphonicResult",
+      "PolyphonicRecallEngine"
+    ],
+    "mnemosyne/core/query_cache.py": [
+      "QueryCache"
+    ],
+    "mnemosyne/core/query_intent.py": [
+      "QueryIntent",
+      "classify_intent",
+      "adjust_weights"
+    ],
+    "mnemosyne/core/recall_diagnostics.py": [
+      "_TierStats",
+      "RecallDiagnostics",
+      "get_diagnostics",
+      "get_recall_diagnostics",
+      "reset_recall_diagnostics"
+    ],
+    "mnemosyne/core/shmr.py": [
+      "_init_schema",
+      "_embed",
+      "_cosine_similarity",
+      "_cluster_by_similarity",
+      "_format_cluster_for_llm",
+      "_call_llm",
+      "_compute_harmony_score",
+      "_extract_json_from_llm_output",
+      "_apply_beliefs",
+      "harmonize",
+      "recall_beliefs",
+      "reflect",
+      "get_resonance_log"
+    ],
+    "mnemosyne/core/streaming.py": [
+      "EventType",
+      "MemoryEvent",
+      "MemoryStream",
+      "_StreamIterator",
+      "SyncCheckpoint",
+      "DeltaSync"
+    ],
+    "mnemosyne/core/synonyms.py": [
+      "_build_reverse_map",
+      "normalize_query",
+      "expand_query",
+      "get_synonyms"
+    ],
+    "mnemosyne/core/temporal_parser.py": [
+      "_resolve_relative_day",
+      "parse_nl_date",
+      "extract_temporal",
+      "extract_date_from_text"
+    ],
+    "mnemosyne/core/token_counter.py": [
+      "estimate_tokens",
+      "estimate_cost"
+    ],
+    "mnemosyne/core/triples.py": [
+      "_copy_legacy_db",
+      "_resolve_default_db",
+      "_get_conn",
+      "init_triples",
+      "TripleStore",
+      "add_triple",
+      "query_triples"
+    ],
+    "mnemosyne/core/typed_memory.py": [
+      "MemoryType",
+      "TypeMatch",
+      "classify_memory",
+      "classify_batch",
+      "get_type_priority",
+      "should_consolidate",
+      "get_decay_rate"
+    ],
+    "mnemosyne/core/veracity_consolidation.py": [
+      "compute_fact_id",
+      "clamp_veracity",
+      "aggregate_veracity",
+      "ConsolidatedFact",
+      "VeracityConsolidator"
+    ],
+    "mnemosyne/core/weibull.py": [
+      "weibull_boost",
+      "weibull_decay_factor"
+    ],
+    "mnemosyne/diagnose.py": [
+      "_ensure_log_dir",
+      "_log_path",
+      "_safe_env",
+      "run_diagnostics",
+      "auto_fix"
+    ],
+    "mnemosyne/dr/__init__.py": [],
+    "mnemosyne/dr/recovery.py": [
+      "get_default_paths",
+      "create_backup",
+      "restore_backup",
+      "emergency_restore",
+      "verify_integrity",
+      "list_backups",
+      "rotate_backups",
+      "health_check"
+    ],
+    "mnemosyne/extraction/__init__.py": [
+      "ExtractionConfig"
+    ],
+    "mnemosyne/extraction/client.py": [
+      "ExtractionClient"
+    ],
+    "mnemosyne/extraction/diagnostics.py": [
+      "_safe_for_log",
+      "_TierStats",
+      "ExtractionDiagnostics",
+      "get_diagnostics",
+      "get_extraction_stats",
+      "reset_extraction_stats"
+    ],
+    "mnemosyne/extraction/prompts.py": [],
+    "mnemosyne/install.py": [
+      "_get_mnemosyne_root",
+      "_get_hermes_home",
+      "_get_hermes_agent_path",
+      "_is_windows",
+      "_remove_link",
+      "_ensure_link",
+      "_configure_hermes",
+      "_verify",
+      "install",
+      "uninstall"
+    ],
+    "mnemosyne/integrations/__init__.py": [],
+    "mnemosyne/integrations/auto_save_openwebui.py": [
+      "_load_processed_ids",
+      "_save_processed_ids",
+      "_api_get",
+      "_api_get_async",
+      "_health_check",
+      "MemorySaver",
+      "SyncEngine",
+      "main"
+    ],
+    "mnemosyne/integrations/memory_browser.py": [
+      "_resolve_db_path",
+      "_get_connection",
+      "get_memory_stats",
+      "search_memories",
+      "get_memory_detail",
+      "_build_html",
+      "lifespan",
+      "create_app",
+      "main"
+    ],
+    "mnemosyne/integrations/openclaw.py": [
+      "_MnemosyneError",
+      "MnemosyneProvider",
+      "create_provider"
+    ],
+    "mnemosyne/integrations/openwebui_tool.py": [
+      "MnemosyneTool"
+    ],
+    "mnemosyne/mcp_server.py": [
+      "_is_loopback",
+      "_resolve_sse_auth",
+      "_run_stdio",
+      "_build_sse_app",
+      "_run_sse",
+      "run_mcp_server",
+      "main"
+    ],
+    "mnemosyne/mcp_tools.py": [
+      "_create_instance",
+      "_resolve_bank",
+      "_handle_remember",
+      "_handle_recall",
+      "_handle_sleep",
+      "_handle_scratchpad_read",
+      "_handle_scratchpad_write",
+      "_handle_get_stats",
+      "_handle_triple_add",
+      "_handle_triple_query",
+      "handle_tool_call",
+      "get_tool_definitions"
+    ],
+    "mnemosyne/migrations/__init__.py": [],
+    "mnemosyne/migrations/e6_triplestore_split.py": [
+      "_has_table",
+      "has_pending_migration",
+      "_classify_rows",
+      "_migrate_rows",
+      "_kind_counts",
+      "migrate"
+    ],
+    "scripts/backfill_temporal_triples.py": [
+      "get_db_path",
+      "count_missing_triples",
+      "backfill_working_memory",
+      "backfill_episodic_memory",
+      "main"
+    ],
+    "scripts/cleanup_noisy_mentions.py": [
+      "main"
+    ],
+    "scripts/heal_quality.py": [
+      "_call_mmx",
+      "_call_mnemosyne_llm",
+      "_estimate_tokens",
+      "extract_memory_units",
+      "judge_summary",
+      "generate_summary",
+      "repair_summary",
+      "_extract_facts_from_text",
+      "should_retry",
+      "get_db_path",
+      "get_session_path",
+      "detect_degraded_entries",
+      "update_entry",
+      "get_episodic_stats",
+      "heal_entry",
+      "run_heal_pipeline",
+      "main"
+    ],
+    "scripts/memoria_audit.py": [
+      "classify_fact",
+      "classify_instruction",
+      "classify_preference",
+      "classify_timeline",
+      "classify_kg",
+      "run_audit"
+    ],
+    "scripts/migrate_from_legacy.py": [
+      "ensure_schema",
+      "get_existing_ids",
+      "migrate_legacy_db",
+      "main"
+    ],
+    "scripts/migrate_triplestore_split.py": [
+      "main"
+    ],
+    "scripts/mnemosyne-stats.py": [
+      "q",
+      "cnt",
+      "pct",
+      "collect",
+      "show",
+      "save_snapshot",
+      "load_trends",
+      "show_trends",
+      "main"
+    ],
+    "setup.py": [],
+    "tests/benchmark_beam_comprehensive.py": [
+      "benchmark_writes",
+      "benchmark_episodic_insert",
+      "benchmark_recall_scaling",
+      "benchmark_sleep",
+      "benchmark_legacy_vs_beam",
+      "benchmark_scratchpad",
+      "main"
+    ],
+    "tests/benchmark_beam_scale.py": [
+      "benchmark"
+    ],
+    "tests/benchmark_beam_sota.py": [
+      "fmt_ms",
+      "fmt_size",
+      "pcnt",
+      "load_beam_dataset",
+      "load_beam_10m",
+      "ingest_conversation",
+      "ingest_for_ablation",
+      "compute_relevance",
+      "evaluate_retrieval",
+      "compute_robustness",
+      "aggregate_metrics",
+      "BaselineRetriever",
+      "KeywordRetriever",
+      "FTS5OnlyRetriever",
+      "VecOnlyRetriever",
+      "run_benchmark_scale",
+      "print_results",
+      "main"
+    ],
+    "tests/benchmark_beam_working_memory.py": [
+      "benchmark"
+    ],
+    "tests/benchmark_beam.py": [
+      "benchmark"
+    ],
+    "tests/benchmark_vs_vectordbs.py": [
+      "get_embedder",
+      "load_beam_data",
+      "benchmark_mnemosyne",
+      "benchmark_faiss",
+      "benchmark_chroma",
+      "print_report",
+      "main"
+    ],
+    "tests/conftest.py": [
+      "_close_cached_connections",
+      "_reset_thread_local_connections",
+      "_disable_local_llm_inference",
+      "local_llm_enabled"
+    ],
+    "tests/test_ab_toggles.py": [
+      "temp_db",
+      "_clean_toggle_env",
+      "TestEnvDisabledHelper",
+      "TestPolyphonicVoiceToggles",
+      "TestLinearBonusToggles",
+      "TestVeracityMultiplierToggle",
+      "TestCrossTierDedupToggle",
+      "TestToggleCoverageMap"
+    ],
+    "tests/test_annotations.py": [
+      "TestAnnotationStoreMultiValuePreservation",
+      "TestAnnotationStoreQueries",
+      "TestAnnotationStoreExportImport",
+      "TestE6EndToEndProductionPath",
+      "TestTripleStoreAddFactsDeprecation",
+      "TestTripleStoreSilentInvalidationBehavior"
+    ],
+    "tests/test_beam_db_path_string_coercion.py": [
+      "TestBeamMemoryDbPathCoercion"
+    ],
+    "tests/test_beam_e3_additive_sleep.py": [
+      "temp_db",
+      "_wm_count",
+      "_consolidated_rows",
+      "_seed_old_wm",
+      "TestE3AdditiveSleep"
+    ],
+    "tests/test_beam_e4_remember_batch_veracity.py": [
+      "temp_db",
+      "_veracity_for",
+      "TestClampVeracity",
+      "TestRememberBatchVeracity"
+    ],
+    "tests/test_beam_e5_polyphonic_recall.py": [
+      "temp_db",
+      "disable_llm",
+      "_seed_recallable_content",
+      "TestE5FeatureFlag",
+      "TestE5EnginePlumbing",
+      "TestE5FilterEnforcement",
+      "TestE5MultiplierComposition",
+      "TestE5TelemetryUpdates",
+      "TestE5EngineCache",
+      "TestE5ResultShape"
+    ],
+    "tests/test_beam_e6_auto_migrate.py": [
+      "_seed_legacy_triples",
+      "TestBeamE6AutoMigrate"
+    ],
+    "tests/test_beam.py": [
+      "temp_db",
+      "_FakeAnnotations",
+      "_FakeBeam",
+      "TestFactAnnotationMatching",
+      "TestBeamSchema",
+      "TestWorkingMemory",
+      "TestEpisodicMemory",
+      "TestScratchpad",
+      "TestSleepCycle",
+      "TestMnemosyneIntegration",
+      "TestExportImport",
+      "TestProviderContextSafety",
+      "TestCrossSessionRecall",
+      "TestTemporalQueries",
+      "TestTokenAwareConsolidation",
+      "TestTieredDegradation",
+      "TestSmartCompression",
+      "TestVeracity",
+      "TestConsolidationHealth",
+      "TestUpdateRefreshesDerivedState",
+      "TestEmbeddingDimConfig"
+    ],
+    "tests/test_benchmark_preflight.py": [
+      "clean_env",
+      "_run_harness",
+      "TestPreflightRefusesWithoutPureRecall"
+    ],
+    "tests/test_benchmark_pure_recall_gate.py": [
+      "temp_db",
+      "fake_llm",
+      "_build_msgs",
+      "beam_with_context_facts",
+      "TestDefaultModeBehaviorUnchanged",
+      "TestPureRecallModeDisablesBypasses",
+      "TestPureRecallEnvValueParsing",
+      "TestPureRecallPrecedenceOverFullContext",
+      "TestPureRecallActuallyRoutesThroughRecall"
+    ],
+    "tests/test_c13b_extraction_diagnostics.py": [
+      "fresh_diag",
+      "TestExtractionDiagnosticsClass",
+      "TestProcessGlobalSingleton",
+      "TestExtractFactsIntegration",
+      "TestExtractionClientIntegration",
+      "TestReviewHardening",
+      "TestOperatorVisibleLogs"
+    ],
+    "tests/test_c25_deltasync_allowlist.py": [
+      "temp_db",
+      "mnem",
+      "sync_ckpt_dir",
+      "TestC25TableAllowlist",
+      "TestC25ColumnAllowlist",
+      "TestC25ReviewHardening",
+      "TestC25EndToEndRoundtrip"
+    ],
+    "tests/test_c28_import_all_content_aware.py": [
+      "_TwoStoreFixture",
+      "TestTripleStoreImportAll",
+      "TestAnnotationStoreImportAll",
+      "TestBackupRestoreNoSilentLoss",
+      "TestCodexReviewFinding1NoIdBeforeExplicitId",
+      "TestCodexReviewFinding1NoIdBeforeExplicitIdAnnotations",
+      "TestCodexReviewFinding2DefaultNormalization",
+      "TestCodexReviewFinding3AnnotationsUniqueIndex",
+      "TestCodexReviewFinding4TransactionRollback",
+      "TestCodexReviewFinding5DuplicateIdInBatch",
+      "TestCodexReviewFinding5DuplicateIdInBatchAnnotations",
+      "TestCodexReviewFinding7CLIShowsRenumbered"
+    ],
+    "tests/test_c4_recall_diagnostics.py": [
+      "fresh_recall_diag",
+      "temp_db",
+      "TestRecallDiagnosticsClass",
+      "TestProcessGlobalSingleton",
+      "TestBeamRecallInstrumentation",
+      "TestReviewHardening"
+    ],
+    "tests/test_cli_errors.py": [
+      "run_cli",
+      "test_import_hindsight_errors_return_nonzero_exit",
+      "test_invalid_cli_input_reports_error_without_traceback",
+      "test_import_non_object_json_reports_error_without_traceback",
+      "test_import_malformed_json_reports_error_without_traceback",
+      "test_export_reports_actual_exported_memory_counts",
+      "test_import_reports_actual_imported_memory_counts",
+      "test_bank_cli_list_create_delete_uses_configured_data_dir",
+      "test_bank_cli_validation_errors_are_user_facing"
+    ],
+    "tests/test_cli_operation_failures.py": [
+      "run_cli",
+      "test_update_delete_missing_memory_report_operation_failure"
+    ],
+    "tests/test_cli_stats.py": [
+      "_seed",
+      "_run_cmd_stats",
+      "_line_value",
+      "TestCliStatsRegression",
+      "TestGetStatsShape"
+    ],
+    "tests/test_cli_usage_errors.py": [
+      "run_cli",
+      "test_missing_required_args_report_usage_error_without_traceback",
+      "test_unknown_command_reports_error_without_traceback",
+      "test_help_exits_successfully"
+    ],
+    "tests/test_configurable_scoring.py": [
+      "TestNormalizeWeights",
+      "temp_db",
+      "TestRecallConfigurableWeights",
+      "TestPublicRecallConfigurableWeights",
+      "TestEdgeCases"
+    ],
+    "tests/test_consolidate_fact_concurrency.py": [
+      "temp_db",
+      "_consolidate_in_thread",
+      "test_two_threads_same_spo_produce_one_row_count_2",
+      "test_eight_threads_same_spo_produce_one_row_count_8",
+      "test_eight_threads_distinct_spos_produce_eight_rows",
+      "test_consolidate_fact_nested_in_outer_transaction",
+      "test_consolidate_fact_rolls_back_own_transaction_on_error",
+      "test_concurrent_updates_compound_confidence_correctly",
+      "TestReviewHardening"
+    ],
+    "tests/test_consolidate_fact_id_collision.py": [
+      "temp_db",
+      "test_compute_fact_id_is_deterministic_for_same_spo",
+      "test_compute_fact_id_distinguishes_distinct_spos",
+      "test_compute_fact_id_format_is_stable",
+      "test_compute_fact_id_long_content_does_not_collide",
+      "test_compute_fact_id_separator_prevents_smuggling",
+      "test_consolidate_fact_stores_hash_based_id",
+      "test_consolidate_fact_dedup_by_spo_still_works",
+      "test_consolidate_fact_distinct_long_content_both_stored",
+      "test_mixed_format_db_dedup_still_finds_old_rows",
+      "test_polyphonic_fact_voice_id_matches_stored",
+      "test_resolve_conflict_with_compute_fact_id",
+      "TestReviewHardening"
+    ],
+    "tests/test_consolidate_fact_sibling_races.py": [
+      "temp_db",
+      "test_concurrent_resolve_conflict_different_winners_deterministic",
+      "test_resolve_conflict_happy_path_unchanged",
+      "test_resolve_conflict_by_facts_happy_path_unchanged",
+      "test_concurrent_resolve_conflict_by_facts_idempotent",
+      "test_run_consolidation_pass_resolves_obvious_conflicts",
+      "test_run_consolidation_pass_nested_resolve_does_not_crash",
+      "test_serialized_write_begins_immediate_when_not_in_tx",
+      "test_serialized_write_rolls_back_on_exception",
+      "test_serialized_write_participates_in_outer_transaction",
+      "TestReviewHardening"
+    ],
+    "tests/test_content_sanitizer.py": [
+      "TestDataUriDetection",
+      "TestShannonEntropy",
+      "TestLooksLikeBase64Blob",
+      "TestBlobStorage",
+      "TestSanitizeContent"
+    ],
+    "tests/test_data_dir_scripts.py": [
+      "_isolated_env",
+      "_store_memory",
+      "test_backfill_temporal_triples_uses_mnemosyne_data_dir",
+      "test_migrate_from_legacy_uses_mnemosyne_data_dir_as_canonical",
+      "test_empty_mnemosyne_data_dir_falls_back_to_default_for_scripts"
+    ],
+    "tests/test_degrade_vector.py": [
+      "temp_db",
+      "_content_to_vec",
+      "fake_embeddings",
+      "_read_fallback_embedding",
+      "_read_binary_vector",
+      "TestDegradeEpisodicVectorRefresh"
+    ],
+    "tests/test_e1_benchmark_adapter_additive.py": [
+      "temp_db",
+      "disable_llm",
+      "_make_messages",
+      "_import_benchmark_adapter",
+      "TestE1AdditiveBenchmarkIngest"
+    ],
+    "tests/test_e2_remember_batch_enrichment.py": [
+      "temp_db",
+      "_annotation_rows",
+      "_gist_count",
+      "_fact_count",
+      "_consolidated_fact_count",
+      "test_remember_batch_writes_temporal_annotations_for_every_row",
+      "test_remember_batch_writes_has_source_when_source_is_non_default",
+      "test_remember_batch_extracts_gists_and_consolidated_facts",
+      "test_per_row_veracity_threads_into_consolidated_facts",
+      "test_per_row_source_flows_to_has_source_annotation",
+      "test_extract_entities_off_by_default",
+      "test_extract_entities_true_populates_mentions",
+      "test_extract_false_does_not_call_llm",
+      "test_extract_true_calls_llm_fact_extractor_per_row",
+      "test_remember_batch_parity_with_remember_for_annotations",
+      "test_remember_batch_parity_with_remember_for_gists",
+      "test_enrichment_exception_does_not_break_batch",
+      "TestReviewHardening"
+    ],
+    "tests/test_e3a3_cross_tier_dedup.py": [
+      "temp_db",
+      "_seed_wm",
+      "_seed_episodic",
+      "_make_result",
+      "TestDedupHelperUnit",
+      "TestLinearRecallPathIntegration",
+      "_FakeEngine",
+      "TestPolyphonicRecallPathIntegration",
+      "TestReviewHardening"
+    ],
+    "tests/test_e5a_vector_voice_dense_rewire.py": [
+      "temp_db",
+      "_seed_embedding",
+      "_unit_vec",
+      "test_vector_voice_returns_candidates_from_memory_embeddings",
+      "test_vector_voice_covers_both_wm_and_em_tiers",
+      "test_vector_voice_skips_superseded_wm_rows",
+      "test_vector_voice_skips_expired_wm_rows",
+      "test_vector_voice_returns_empty_for_none_query_embedding",
+      "test_vector_voice_returns_empty_when_no_embeddings_stored",
+      "test_vector_voice_tolerates_bad_embedding_json",
+      "test_polyphonic_recall_includes_vector_voice_in_rrf",
+      "test_polyphonic_vector_score_outranks_unrelated_query",
+      "test_engine_does_not_construct_binary_vector_store",
+      "test_engine_get_stats_reports_embedded_row_count",
+      "TestReviewHardening"
+    ],
+    "tests/test_e6a_followup_gaps.py": [
+      "TestForgetCascadeToAnnotations",
+      "TestForgetCrossSessionDoesNotLeakAnnotations",
+      "TestForgetCascadeIsAtomic"
+    ],
+    "tests/test_embeddings_multilingual.py": [
+      "setup_module",
+      "test_get_embedding_dim_english_models",
+      "test_get_embedding_dim_chinese_models",
+      "test_get_embedding_dim_multilingual_models",
+      "test_get_embedding_dim_jina_models",
+      "test_get_embedding_dim_env_override",
+      "test_get_embedding_dim_unknown_model_fallback",
+      "test_get_embedding_dim_openai_models",
+      "_clean_env",
+      "test_is_api_model_openai_patterns",
+      "test_is_api_model_unknown_without_custom_endpoint",
+      "test_is_api_model_custom_endpoint_non_openrouter",
+      "test_is_api_model_openrouter_url_not_custom",
+      "test_is_api_model_text_embedding_substring"
+    ],
+    "tests/test_entities.py": [
+      "TestLevenshtein",
+      "TestSimilarity",
+      "TestRegexEntityExtraction",
+      "TestFindSimilarEntities",
+      "TestStopWords",
+      "TestEdgeCases"
+    ],
+    "tests/test_entity_integration.py": [
+      "_reset_caches",
+      "TestEntityStorageIntegration",
+      "TestRememberEntityIntegration",
+      "TestEndToEndEntityWorkflow"
+    ],
+    "tests/test_extract_parity.py": [
+      "fake_extract_facts",
+      "_facts_table_count",
+      "_triples_table_count",
+      "TestWrapperExtractFactsTableParity",
+      "TestWrapperExtractEntitiesParity"
+    ],
+    "tests/test_extraction_integration.py": [
+      "MockLLMExtractor",
+      "test_end_to_end_extract_recall",
+      "test_fact_recall_keyword_matching",
+      "test_fact_and_entity_extraction_together",
+      "test_backward_compatibility",
+      "test_graceful_fallback_no_llm",
+      "test_fact_aware_recall_boosts_scores",
+      "run_all_tests"
+    ],
+    "tests/test_extraction.py": [
+      "MockLLM",
+      "test_build_extraction_prompt",
+      "test_parse_facts_basic",
+      "test_parse_facts_with_numbering",
+      "test_parse_facts_no_facts",
+      "test_parse_facts_empty",
+      "test_call_local_extraction_llm_uses_llamacpp_chat_api",
+      "test_call_local_extraction_llm_preserves_ctransformers_kwargs",
+      "test_extract_facts_safe_no_llm",
+      "test_extract_facts_safe_exception_handling",
+      "test_annotation_store_add_many",
+      "test_annotation_store_add_many_empty",
+      "test_extraction_prompt_configurable",
+      "run_all_tests",
+      "_enable_host",
+      "test_host_extract_facts_uses_temperature_zero",
+      "test_host_extract_facts_skips_remote_on_host_miss",
+      "test_host_extract_facts_unchanged_when_HOST_LLM_ENABLED_false",
+      "test_host_extract_facts_preserves_bulleted_output",
+      "test_host_extract_facts_remote_path_uses_temperature_zero",
+      "test_host_extract_facts_returns_empty_when_both_host_and_local_fail",
+      "test_host_extract_facts_swallows_exception_then_local"
+    ],
+    "tests/test_fact_recall_integration.py": [
+      "FakeFactBeam",
+      "test_fact_recall_integration_enabled",
+      "test_fact_recall_integration_disabled",
+      "test_fact_recall_integration_dedup",
+      "test_fact_recall_graceful_fallback"
+    ],
+    "tests/test_gap_e_g_analysis.py": [
+      "temp_db",
+      "TestLinearVoiceScores",
+      "TestPairedOutcomesJSONL"
+    ],
+    "tests/test_graph_tools.py": [
+      "_make_beam",
+      "_build_provider",
+      "_provider",
+      "TestFindRelatedMemories",
+      "TestGraphToolSchemas",
+      "TestGraphQueryTool",
+      "TestGraphLinkTool",
+      "TestAutoPopulatedEdges"
+    ],
+    "tests/test_hermes_hindsight_cli.py": [
+      "_sample_items",
+      "_args",
+      "_patch_cli_memory",
+      "_write_export",
+      "_db_counts_and_row",
+      "test_hermes_cli_hindsight_file_import_preserves_timestamp",
+      "test_hermes_cli_hindsight_accepts_input_alias",
+      "test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+      "test_hermes_cli_hindsight_forwards_non_default_bank",
+      "test_hermes_cli_hindsight_dry_run_writes_no_rows",
+      "test_hermes_cli_hindsight_requires_file_or_base_url",
+      "test_hermes_cli_other_provider_still_requires_api_key"
+    ],
+    "tests/test_hermes_llm_adapter.py": [
+      "fake_agent_module",
+      "_import_adapter",
+      "test_complete_calls_call_llm_with_compression_task",
+      "test_complete_passes_provider_and_model_overrides",
+      "test_complete_returns_none_when_agent_import_unavailable",
+      "test_complete_returns_none_when_call_llm_raises",
+      "test_complete_returns_none_when_response_has_no_content",
+      "test_extract_content_prefers_hermes_canonical_helper",
+      "test_extract_content_falls_back_when_helper_returns_empty",
+      "test_extract_content_handles_object_response",
+      "test_extract_content_handles_dict_response",
+      "test_extract_content_handles_object_with_content_attr",
+      "test_extract_content_returns_none_for_unrecognized_shape",
+      "test_register_hermes_host_llm_installs_backend",
+      "test_unregister_clears_backend",
+      "test_register_returns_false_when_mnemosyne_registry_missing"
+    ],
+    "tests/test_hermes_memory_provider_audit.py": [
+      "_provider",
+      "_call",
+      "TestAuditLogModule",
+      "TestAuditIntegration"
+    ],
+    "tests/test_hermes_memory_provider_diagnose_active_db.py": [
+      "_provider_with_beam",
+      "test_diagnose_reports_active_provider_db_path_and_counts",
+      "test_diagnose_without_active_beam_keeps_base_diagnostics",
+      "test_diagnose_reports_count_error_without_failing"
+    ],
+    "tests/test_hermes_memory_provider_shared_crud.py": [
+      "_provider",
+      "_call",
+      "test_shared_surface_db_uses_configured_path",
+      "test_shared_remember_stores_global_surface_memory",
+      "test_shared_remember_is_idempotent_for_same_content",
+      "test_shared_recall_tags_rows_as_surface_bank",
+      "test_shared_forget_deletes_then_reports_not_found",
+      "test_shared_stats_returns_counts_and_path",
+      "test_private_remember_does_not_write_shared_db"
+    ],
+    "tests/test_hermes_memory_provider_shared_multi_agent.py": [
+      "_call",
+      "_agent_provider",
+      "test_five_profile_agents_share_surface_but_keep_private_memories_isolated",
+      "test_five_profile_agents_reject_raw_chat_shared_dump"
+    ],
+    "tests/test_hermes_memory_provider_thread_isolation.py": [
+      "_make_provider",
+      "_remember",
+      "_recall",
+      "test_gateway_session_key_isolates_session_memories",
+      "test_no_gateway_session_key_falls_back_to_session_id",
+      "test_gateway_session_key_sanitized_for_session_id",
+      "test_empty_gateway_session_key_falls_back",
+      "test_prefetch_scopes_to_thread"
+    ],
+    "tests/test_hermes_memory_provider_unified_recall.py": [
+      "_provider",
+      "_call",
+      "_seed_private",
+      "_seed_surface",
+      "test_recall_default_returns_private_only",
+      "test_recall_default_tags_results_as_private",
+      "test_recall_with_surface_read_includes_shared_results",
+      "test_recall_tags_surface_results_with_bank_surface",
+      "test_recall_merges_results_from_both_banks",
+      "test_recall_truncates_to_top_k_after_merge",
+      "test_recall_surface_init_failure_falls_back_to_private",
+      "test_shared_surface_read_in_config_schema",
+      "test_shared_surface_read_reads_from_config_yaml",
+      "test_shared_surface_read_kwarg_overrides_config"
+    ],
+    "tests/test_hermes_memory_provider_validation.py": [
+      "_provider",
+      "_call",
+      "_seed_private",
+      "_seed_surface",
+      "_row",
+      "_validation_log",
+      "test_validator_columns_exist_after_init",
+      "test_memory_validations_table_exists",
+      "test_trim_trigger_exists",
+      "test_validate_attest_preserves_author_and_records_validator",
+      "test_validate_attest_falls_back_to_agent_identity",
+      "test_validate_update_replaces_content_and_keeps_author",
+      "test_validate_update_requires_new_content",
+      "test_validate_invalidate_sets_valid_until",
+      "test_validate_delete_removes_row",
+      "test_validate_works_on_shared_surface",
+      "test_ring_buffer_keeps_only_last_three_validations",
+      "test_validation_count_grows_unbounded",
+      "test_validate_unknown_memory_returns_error",
+      "test_validate_unknown_action_rejected",
+      "test_validate_unknown_bank_rejected",
+      "test_validate_missing_memory_id_rejected",
+      "test_collaborative_attestation_chain"
+    ],
+    "tests/test_hermes_memory_provider.py": [
+      "test_initialize_registers_host_llm_when_register_returns_true",
+      "test_initialize_does_not_fail_when_register_raises",
+      "test_initialize_does_not_fail_when_register_returns_false",
+      "test_initialize_skips_for_non_primary_context",
+      "test_shutdown_clears_host_backend",
+      "test_shutdown_swallows_unregister_failure",
+      "_make_provider_with_blocking_sleep",
+      "test_on_session_end_returns_within_timeout_when_sleep_blocks",
+      "test_on_session_end_logs_warning_on_timeout",
+      "test_session_end_timeout_default_matches_design",
+      "test_on_session_end_completes_when_sleep_is_fast",
+      "test_on_session_end_no_op_without_beam",
+      "test_on_session_end_logs_when_sleep_raises_in_daemon_thread",
+      "test_shutdown_drains_in_flight_session_end_thread",
+      "test_shutdown_proceeds_when_drain_times_out",
+      "test_shutdown_drain_default_matches_design",
+      "test_session_end_timeout_default_is_15",
+      "test_session_end_timeout_env_override",
+      "test_session_end_timeout_invalid_env_falls_back",
+      "test_auto_sleep_timeout_default_is_5",
+      "test_auto_sleep_timeout_env_override",
+      "test_auto_sleep_timeout_invalid_env_falls_back",
+      "test_shutdown_drain_timeout_default_is_2",
+      "test_shutdown_drain_timeout_env_override",
+      "test_shutdown_drain_timeout_invalid_env_falls_back",
+      "test_remember_schema_advertises_extract_and_metadata_and_veracity",
+      "test_handle_remember_passes_extract_metadata_veracity_to_beam",
+      "test_handle_remember_defaults_when_new_kwargs_omitted",
+      "test_handle_remember_clamps_unknown_veracity_to_unknown",
+      "test_handle_remember_response_echoes_metadata",
+      "test_recall_schema_advertises_scoring_weights",
+      "test_handle_recall_forwards_scoring_weights_to_beam",
+      "test_handle_recall_omits_weights_when_caller_does_not_supply",
+      "TestSanitizeBankName",
+      "TestResolveProfileBank",
+      "TestInitializeProfileIsolation"
+    ],
+    "tests/test_identity_memory.py": [
+      "TestIdentitySignals"
+    ],
+    "tests/test_importers/test_base.py": [
+      "TestImporterResult",
+      "TestBaseImporter",
+      "TestImportFromFile"
+    ],
+    "tests/test_importers/test_cognee.py": [
+      "_make_cognee_db",
+      "TestCogneeDirectImport"
+    ],
+    "tests/test_importers/test_hindsight.py": [
+      "_sample_items",
+      "test_hindsight_importer_preserves_timestamps_and_uses_episodic_memory",
+      "test_hindsight_importer_skips_duplicates_with_stable_ids",
+      "test_hindsight_provider_registry_import",
+      "test_hindsight_importer_adds_quality_metadata_and_can_skip_low_value",
+      "test_hindsight_importer_generates_binary_vectors_when_embedding_backend_available"
+    ],
+    "tests/test_importers/test_mem0.py": [
+      "TestMem0Transform",
+      "TestMem0Run",
+      "TestMem0SDKMock",
+      "TestConvenienceFunction"
+    ],
+    "tests/test_integration.py": [
+      "TestTypedMemory",
+      "TestBinaryVectors",
+      "TestEpisodicGraph",
+      "TestVeracityConsolidation",
+      "TestPolyphonicRecall",
+      "TestIntegration"
+    ],
+    "tests/test_llm_backends.py": [
+      "test_set_get_backend_round_trip",
+      "test_call_host_llm_returns_none_without_backend",
+      "test_call_host_llm_passes_args_through",
+      "test_call_host_llm_swallows_exception_returns_none",
+      "test_callable_llm_backend_dispatches_to_func",
+      "test_set_none_unregisters_backend"
+    ],
+    "tests/test_llm_conflict_detector.py": [
+      "temp_db",
+      "test_llm_conflict_detector_gating",
+      "test_llm_conflict_detector_success",
+      "test_llm_conflict_detector_retry_logic",
+      "test_beam_integration_with_llm_conflict"
+    ],
+    "tests/test_local_llm.py": [
+      "TestRemoteLLM",
+      "TestSleepPromptOverride",
+      "TestHostLLMBackend",
+      "TestLLMAvailable",
+      "TestHostAwareChunking",
+      "TestThinkTagStripping",
+      "TestRemoteLLMFallback"
+    ],
+    "tests/test_mcp_server.py": [
+      "TestToolSchemas",
+      "TestToolHandlers",
+      "TestMCPIntegration",
+      "TestImportGuard"
+    ],
+    "tests/test_memory_banks.py": [
+      "TestBankManager",
+      "TestMnemosyneBankIsolation",
+      "TestModuleLevelBankSwitching",
+      "TestBankEdgeCases"
+    ],
+    "tests/test_migrate_triplestore_split.py": [
+      "TestMigrateTripleStoreSplit",
+      "TestHasPendingMigration",
+      "TestMigrationViaCLI"
+    ],
+    "tests/test_mnemosyne_stats.py": [
+      "_safe_count",
+      "run",
+      "_test",
+      "test_full_dashboard",
+      "test_compact_mode",
+      "test_json_mode",
+      "test_json_mode_uses_mnemosyne_data_dir",
+      "test_json_mode_empty_mnemosyne_data_dir_falls_back_to_default",
+      "test_save_snapshot",
+      "test_trends",
+      "test_auto_snapshot",
+      "test_health_score_in_output",
+      "test_db_size_in_output",
+      "test_quality_indicators_section",
+      "test_recommendations_section",
+      "test_invalid_flag",
+      "test_multiple_flags",
+      "test_empty_db_path",
+      "test_corrupted_json_snapshot",
+      "test_empty_snapshot_dir",
+      "test_special_characters_in_memory",
+      "test_large_output",
+      "test_json_valid_structure",
+      "test_snapshot_json_valid",
+      "test_concurrent_access",
+      "test_wiki_count_matches",
+      "test_db_count_matches",
+      "test_episodic_count_matches",
+      "test_triples_count_matches",
+      "test_consolidation_count_matches",
+      "test_rapid_fire",
+      "test_json_pipe_to_python",
+      "test_output_encoding",
+      "test_performance",
+      "test_snapshot_growth",
+      "test_importance_distribution_sums",
+      "test_recall_distribution_sums",
+      "test_noise_pct_calculation",
+      "test_global_count_accuracy",
+      "test_quality_score_bounds"
+    ],
+    "tests/test_multi_agent_identity.py": [
+      "temp_db",
+      "TestSchemaMigration",
+      "TestRememberIdentity",
+      "TestRecallIdentity",
+      "TestStatsIdentity",
+      "TestMcpIdentity",
+      "TestBackwardCompatibility"
+    ],
+    "tests/test_multilingual_local_recall.py": [
+      "test_recall_tokens_preserve_unicode_words",
+      "test_sentence_transformers_multilingual_dimensions_are_known"
+    ],
+    "tests/test_optional_embeddings.py": [
+      "_run_with_optional_embedding_deps_blocked",
+      "test_embeddings_module_imports_without_numpy_or_fastembed",
+      "test_cli_stats_works_without_optional_embedding_dependencies"
+    ],
+    "tests/test_orphan_vec_episodes_cleanup.py": [
+      "temp_db",
+      "_vec_count",
+      "_em_count",
+      "test_import_from_dict_force_cleans_vec_episodes_orphan",
+      "test_import_from_dict_no_force_does_not_touch_vec_episodes",
+      "test_import_from_dict_force_idempotent_no_orphan_accumulation",
+      "test_import_from_dict_cleanup_failure_is_best_effort",
+      "test_import_from_dict_force_with_new_embeddings_no_orphan"
+    ],
+    "tests/test_outer_package_version.py": [
+      "test_outer_package_reexports_version_and_author"
+    ],
+    "tests/test_patterns.py": [
+      "TestCompressionStats",
+      "TestMemoryCompressor",
+      "TestPatternDetector",
+      "TestMnemosynePatternMethods"
+    ],
+    "tests/test_plugins.py": [
+      "reset_global_manager",
+      "manager",
+      "sample_memory",
+      "sample_summary",
+      "TestMnemosynePlugin",
+      "TestPluginManagerRegistration",
+      "TestPluginManagerLoadUnload",
+      "TestPluginManagerList",
+      "TestLoggingPlugin",
+      "TestMetricsPlugin",
+      "TestFilterPlugin",
+      "TestPluginNotifications",
+      "TestPluginDiscovery",
+      "TestGlobalManager",
+      "TestCompressionPlugin",
+      "TestPluginIntegration"
+    ],
+    "tests/test_pre_experiment_fidelity.py": [
+      "temp_db",
+      "TestC29WeightCentralization",
+      "TestAggregateVeracityHelper",
+      "TestE4a1ConsolidateToEpisodicVeracity",
+      "TestE4a1SleepEndToEndVeracity",
+      "TestE2a10EmbeddingLoopDefense",
+      "TestReviewHardening"
+    ],
+    "tests/test_prefetch_content_truncation.py": [
+      "FakeBeam",
+      "test_prefetch_preserves_full_memory_content_by_default",
+      "test_prefetch_content_limit_is_opt_in_and_word_boundary",
+      "test_prefetch_content_limit_zero_means_no_truncation"
+    ],
+    "tests/test_proactive_linking.py": [
+      "_make_beam",
+      "_enable_linking",
+      "_disable_linking",
+      "TestProactiveContentLinking",
+      "TestProactiveEntityLinking",
+      "TestProactiveLinkingGating",
+      "TestNonBlocking",
+      "TestEdgeDeduplication",
+      "TestEdgeTypesAndWeights"
+    ],
+    "tests/test_provider_all_15_tools.py": [
+      "_make_beam",
+      "_build_provider",
+      "_provider",
+      "_tool_names",
+      "TestToolRegistration",
+      "TestScratchpad",
+      "TestUpdate",
+      "TestForget",
+      "TestExport",
+      "TestImport",
+      "TestDiagnose",
+      "TestUnavailableGuard"
+    ],
+    "tests/test_query_cache_synonyms.py": [
+      "TestSynonyms",
+      "TestQueryCache"
+    ],
+    "tests/test_recall_precision_regressions.py": [
+      "TestRecallPrecisionRegressions",
+      "FakeEmbeddings",
+      "TestHindsightImportEmbeddingBackfill"
+    ],
+    "tests/test_s1_mcp_sse_auth.py": [
+      "TestIsLoopback",
+      "TestResolveSseAuth",
+      "TestMainHostArg",
+      "_starlette_available",
+      "TestBuildSseApp"
+    ],
+    "tests/test_scope_auto_default.py": [
+      "test_scope_defaults_to_session_when_extract_false",
+      "test_scope_defaults_to_global_when_extract_true",
+      "test_explicit_scope_respected_even_with_extract",
+      "test_explicit_global_scope_respected",
+      "test_extract_entities_does_not_affect_scope"
+    ],
+    "tests/test_streaming.py": [
+      "stream",
+      "sample_event",
+      "mnemosyne",
+      "TestMemoryEvent",
+      "TestMemoryStream",
+      "TestDeltaSync",
+      "TestSyncCheckpoint"
+    ],
+    "tests/test_sync_roles.py": [
+      "TestSyncRoles",
+      "TestSyncRolesConfig",
+      "TestSyncRolesEnvVar"
+    ],
+    "tests/test_sync_turn_content_limit.py": [
+      "_sync_turn_user_limit",
+      "_sync_turn_assistant_limit",
+      "test_default_user_limit_is_500",
+      "test_default_assistant_limit_is_800",
+      "test_env_var_overrides_user_limit",
+      "test_env_var_overrides_assistant_limit",
+      "test_zero_disables_truncation",
+      "test_invalid_env_var_falls_back",
+      "test_negative_value_clamped_to_zero",
+      "test_sync_turn_truncation_behavior"
+    ],
+    "tests/test_t1_local_llm_default_disabled.py": [
+      "TestDefaultDisabled",
+      "TestOptInFixture",
+      "TestPerTestPatchOverridesAutouse",
+      "TestSleepIsFast"
+    ],
+    "tests/test_telemetry_and_env_followups.py": [
+      "temp_db",
+      "TestC30EpisodicFallbackDenseScore",
+      "TestC30ExtendedToEntityFactPaths",
+      "TestC31EnvTruthyParser",
+      "TestC32VeracityWeightOverrideWarn"
+    ],
+    "tests/test_temporal_parser.py": [
+      "TestTemporalParser"
+    ],
+    "tests/test_temporal_recall.py": [
+      "TestTemporalBoostFunction",
+      "TestParseQueryTime",
+      "TestTemporalRecallEndToEnd"
+    ],
+    "tests/test_triples_data_dir.py": [
+      "_run_python",
+      "test_triplestore_default_db_uses_mnemosyne_data_dir",
+      "test_triplestore_copies_legacy_db_into_mnemosyne_data_dir"
+    ],
+    "tests/test_voice_attribution_and_beam_opt.py": [
+      "TestBeamOptimizationsEnvParser",
+      "TestAnswerWithMemoryReturnMemoriesKwarg",
+      "TestSummarizeRecallMemories",
+      "TestRecallProvenanceInResultDict"
+    ],
+    "tests/test_weibull_mmr_intent.py": [
+      "TestWeibullDecay",
+      "TestQueryIntent",
+      "TestMMRRerank",
+      "TestEnhancedRecallE2E"
+    ],
+    "tools/beam_phase3_test.py": [
+      "main"
+    ],
+    "tools/bench_100k_fast.py": [
+      "score_answer",
+      "main"
+    ],
+    "tools/bench_100k_gemma.py": [
+      "ask_llm",
+      "main"
+    ],
+    "tools/bench_audit_log.py": [
+      "_bootstrap",
+      "_measure_remember",
+      "_toggle_audit",
+      "_summary",
+      "main"
+    ],
+    "tools/bench_nai0.py": [
+      "score_answer",
+      "run_benchmark"
+    ],
+    "tools/bench_nai1.py": [
+      "score_answer",
+      "run_bench"
+    ],
+    "tools/bench_nai2.py": [
+      "score_answer",
+      "run_bench"
+    ],
+    "tools/bench_rerank.py": [
+      "score_answer",
+      "setup_db",
+      "run_bench"
+    ],
+    "tools/bench_unified_recall.py": [
+      "_bootstrap",
+      "_seed",
+      "_measure",
+      "_summary",
+      "main"
+    ],
+    "tools/bench_validation.py": [
+      "_bootstrap",
+      "_seed_targets",
+      "_measure",
+      "_summary",
+      "main"
+    ],
+    "tools/diag_fact_precision.py": [
+      "JudgeLLM",
+      "main"
+    ],
+    "tools/diagnostic_tr.py": [],
+    "tools/evaluate_beam_end_to_end.py": [
+      "_env_truthy",
+      "LLMClient",
+      "load_beam_dataset",
+      "_extract_facts",
+      "ingest_conversation",
+      "normalize_for_judge",
+      "_recall_safe",
+      "_extract_search_terms",
+      "_multi_strategy_recall",
+      "_extract_timeline_from_conversation",
+      "_build_tr_timeline_prompt",
+      "_compute_tr_python",
+      "_compute_tr_answer",
+      "_detect_contradictions",
+      "_summarize_recall_memories",
+      "answer_with_memory",
+      "judge_with_rubrics",
+      "basic_text_similarity",
+      "evaluate_conversation",
+      "compute_ability_scores",
+      "print_sota_report",
+      "main"
+    ],
+    "tools/generate_beam_charts.py": [
+      "apply_dark_style",
+      "save_chart",
+      "chart_e2e_comparison",
+      "chart_retrieval_performance",
+      "chart_storage",
+      "chart_ability_radar",
+      "chart_throughput",
+      "chart_sota_card",
+      "chart_latency_distribution"
+    ],
+    "tools/generate_sota_report.py": [
+      "generate_report"
+    ]
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "mnemosyne/core/beam.py",
+          "language": "python",
+          "sizeLines": 7291,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/chat_normalize.py",
+          "language": "python",
+          "sizeLines": 149,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/recall_diagnostics.py",
+          "language": "python",
+          "sizeLines": 270,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_beam.py",
+          "language": "python",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_beam_scale.py",
+          "language": "python",
+          "sizeLines": 55,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_beam_working_memory.py",
+          "language": "python",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_vs_vectordbs.py",
+          "language": "python",
+          "sizeLines": 556,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_ab_toggles.py",
+          "language": "python",
+          "sizeLines": 447,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam_db_path_string_coercion.py",
+          "language": "python",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam_e3_additive_sleep.py",
+          "language": "python",
+          "sizeLines": 477,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam_e5_polyphonic_recall.py",
+          "language": "python",
+          "sizeLines": 487,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_benchmark_pure_recall_gate.py",
+          "language": "python",
+          "sizeLines": 450,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_c4_recall_diagnostics.py",
+          "language": "python",
+          "sizeLines": 515,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_e1_benchmark_adapter_additive.py",
+          "language": "python",
+          "sizeLines": 345,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_e2_remember_batch_enrichment.py",
+          "language": "python",
+          "sizeLines": 590,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_e3a3_cross_tier_dedup.py",
+          "language": "python",
+          "sizeLines": 614,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_gap_e_g_analysis.py",
+          "language": "python",
+          "sizeLines": 236,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_orphan_vec_episodes_cleanup.py",
+          "language": "python",
+          "sizeLines": 441,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_telemetry_and_env_followups.py",
+          "language": "python",
+          "sizeLines": 404,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_temporal_recall.py",
+          "language": "python",
+          "sizeLines": 340,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_voice_attribution_and_beam_opt.py",
+          "language": "python",
+          "sizeLines": 252,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/beam_phase3_test.py",
+          "language": "python",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_100k_fast.py",
+          "language": "python",
+          "sizeLines": 94,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_100k_gemma.py",
+          "language": "python",
+          "sizeLines": 128,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_nai0.py",
+          "language": "python",
+          "sizeLines": 169,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_nai1.py",
+          "language": "python",
+          "sizeLines": 144,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_nai2.py",
+          "language": "python",
+          "sizeLines": 171,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_rerank.py",
+          "language": "python",
+          "sizeLines": 141,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/diag_fact_precision.py",
+          "language": "python",
+          "sizeLines": 133,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/diagnostic_tr.py",
+          "language": "python",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/evaluate_beam_end_to_end.py",
+          "language": "python",
+          "sizeLines": 2612,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/beam.py": [
+          "mnemosyne/core/__init__.py"
+        ],
+        "mnemosyne/core/chat_normalize.py": [],
+        "mnemosyne/core/recall_diagnostics.py": [],
+        "tests/benchmark_beam.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/benchmark_beam_scale.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/benchmark_beam_working_memory.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/benchmark_vs_vectordbs.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_ab_toggles.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_beam_db_path_string_coercion.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_beam_e3_additive_sleep.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_beam_e5_polyphonic_recall.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_benchmark_pure_recall_gate.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_c4_recall_diagnostics.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/recall_diagnostics.py"
+        ],
+        "tests/test_e1_benchmark_adapter_additive.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_e2_remember_batch_enrichment.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_e3a3_cross_tier_dedup.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_gap_e_g_analysis.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_orphan_vec_episodes_cleanup.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_telemetry_and_env_followups.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_temporal_recall.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_voice_attribution_and_beam_opt.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tools/beam_phase3_test.py": [
+          "tools/evaluate_beam_end_to_end.py"
+        ],
+        "tools/bench_100k_fast.py": [
+          "mnemosyne/core/beam.py",
+          "tools/evaluate_beam_end_to_end.py"
+        ],
+        "tools/bench_100k_gemma.py": [
+          "mnemosyne/core/beam.py",
+          "tools/evaluate_beam_end_to_end.py"
+        ],
+        "tools/bench_nai0.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tools/bench_nai1.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/chat_normalize.py"
+        ],
+        "tools/bench_nai2.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tools/bench_rerank.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tools/diag_fact_precision.py": [
+          "mnemosyne/core/beam.py",
+          "tools/evaluate_beam_end_to_end.py"
+        ],
+        "tools/diagnostic_tr.py": [
+          "mnemosyne/core/beam.py"
+        ],
+        "tools/evaluate_beam_end_to_end.py": [
+          "mnemosyne/core/beam.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/beam.py": [
+          {
+            "path": "mnemosyne/core/__init__.py",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          },
+          {
+            "path": "tests/benchmark_beam_comprehensive.py",
+            "batchIndex": 3,
+            "symbols": [
+              "benchmark_writes",
+              "benchmark_episodic_insert",
+              "benchmark_recall_scaling",
+              "benchmark_sleep",
+              "benchmark_legacy_vs_beam",
+              "benchmark_scratchpad",
+              "main"
+            ]
+          },
+          {
+            "path": "tests/benchmark_beam_sota.py",
+            "batchIndex": 2,
+            "symbols": [
+              "fmt_ms",
+              "fmt_size",
+              "pcnt",
+              "load_beam_dataset",
+              "load_beam_10m",
+              "ingest_conversation",
+              "ingest_for_ablation",
+              "compute_relevance",
+              "evaluate_retrieval",
+              "compute_robustness",
+              "aggregate_metrics",
+              "BaselineRetriever",
+              "KeywordRetriever",
+              "FTS5OnlyRetriever",
+              "VecOnlyRetriever",
+              "run_benchmark_scale",
+              "print_results",
+              "main"
+            ]
+          },
+          {
+            "path": "tests/test_beam_e4_remember_batch_veracity.py",
+            "batchIndex": 4,
+            "symbols": [
+              "temp_db",
+              "_veracity_for",
+              "TestClampVeracity",
+              "TestRememberBatchVeracity"
+            ]
+          },
+          {
+            "path": "tests/test_beam_e6_auto_migrate.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_seed_legacy_triples",
+              "TestBeamE6AutoMigrate"
+            ]
+          },
+          {
+            "path": "tests/test_beam.py",
+            "batchIndex": 2,
+            "symbols": [
+              "temp_db",
+              "_FakeAnnotations",
+              "_FakeBeam",
+              "TestFactAnnotationMatching",
+              "TestBeamSchema",
+              "TestWorkingMemory",
+              "TestEpisodicMemory",
+              "TestScratchpad",
+              "TestSleepCycle",
+              "TestMnemosyneIntegration",
+              "TestExportImport",
+              "TestProviderContextSafety",
+              "TestCrossSessionRecall",
+              "TestTemporalQueries",
+              "TestTokenAwareConsolidation",
+              "TestTieredDegradation",
+              "TestSmartCompression",
+              "TestVeracity",
+              "TestConsolidationHealth",
+              "TestUpdateRefreshesDerivedState",
+              "TestEmbeddingDimConfig"
+            ]
+          },
+          {
+            "path": "tests/test_configurable_scoring.py",
+            "batchIndex": 3,
+            "symbols": [
+              "TestNormalizeWeights",
+              "temp_db",
+              "TestRecallConfigurableWeights",
+              "TestPublicRecallConfigurableWeights",
+              "TestEdgeCases"
+            ]
+          },
+          {
+            "path": "tests/test_degrade_vector.py",
+            "batchIndex": 2,
+            "symbols": [
+              "temp_db",
+              "_content_to_vec",
+              "fake_embeddings",
+              "_read_fallback_embedding",
+              "_read_binary_vector",
+              "TestDegradeEpisodicVectorRefresh"
+            ]
+          },
+          {
+            "path": "tests/test_e5a_vector_voice_dense_rewire.py",
+            "batchIndex": 4,
+            "symbols": [
+              "temp_db",
+              "_seed_embedding",
+              "_unit_vec",
+              "test_vector_voice_returns_candidates_from_memory_embeddings",
+              "test_vector_voice_covers_both_wm_and_em_tiers",
+              "test_vector_voice_skips_superseded_wm_rows",
+              "test_vector_voice_skips_expired_wm_rows",
+              "test_vector_voice_returns_empty_for_none_query_embedding",
+              "test_vector_voice_returns_empty_when_no_embeddings_stored",
+              "test_vector_voice_tolerates_bad_embedding_json",
+              "test_polyphonic_recall_includes_vector_voice_in_rrf",
+              "test_polyphonic_vector_score_outranks_unrelated_query",
+              "test_engine_does_not_construct_binary_vector_store",
+              "test_engine_get_stats_reports_embedded_row_count",
+              "TestReviewHardening"
+            ]
+          },
+          {
+            "path": "tests/test_e6a_followup_gaps.py",
+            "batchIndex": 5,
+            "symbols": [
+              "TestForgetCascadeToAnnotations",
+              "TestForgetCrossSessionDoesNotLeakAnnotations",
+              "TestForgetCascadeIsAtomic"
+            ]
+          },
+          {
+            "path": "tests/test_extraction_integration.py",
+            "batchIndex": 5,
+            "symbols": [
+              "MockLLMExtractor",
+              "test_end_to_end_extract_recall",
+              "test_fact_recall_keyword_matching",
+              "test_fact_and_entity_extraction_together",
+              "test_backward_compatibility",
+              "test_graceful_fallback_no_llm",
+              "test_fact_aware_recall_boosts_scores",
+              "run_all_tests"
+            ]
+          },
+          {
+            "path": "tests/test_graph_tools.py",
+            "batchIndex": 4,
+            "symbols": [
+              "_make_beam",
+              "_build_provider",
+              "_provider",
+              "TestFindRelatedMemories",
+              "TestGraphToolSchemas",
+              "TestGraphQueryTool",
+              "TestGraphLinkTool",
+              "TestAutoPopulatedEdges"
+            ]
+          },
+          {
+            "path": "tests/test_hermes_memory_provider_audit.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_provider",
+              "_call",
+              "TestAuditLogModule",
+              "TestAuditIntegration"
+            ]
+          },
+          {
+            "path": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_provider_with_beam",
+              "test_diagnose_reports_active_provider_db_path_and_counts",
+              "test_diagnose_without_active_beam_keeps_base_diagnostics",
+              "test_diagnose_reports_count_error_without_failing"
+            ]
+          },
+          {
+            "path": "tests/test_llm_conflict_detector.py",
+            "batchIndex": 10,
+            "symbols": [
+              "temp_db",
+              "test_llm_conflict_detector_gating",
+              "test_llm_conflict_detector_success",
+              "test_llm_conflict_detector_retry_logic",
+              "test_beam_integration_with_llm_conflict"
+            ]
+          },
+          {
+            "path": "tests/test_multi_agent_identity.py",
+            "batchIndex": 3,
+            "symbols": [
+              "temp_db",
+              "TestSchemaMigration",
+              "TestRememberIdentity",
+              "TestRecallIdentity",
+              "TestStatsIdentity",
+              "TestMcpIdentity",
+              "TestBackwardCompatibility"
+            ]
+          },
+          {
+            "path": "tests/test_multilingual_local_recall.py",
+            "batchIndex": 2,
+            "symbols": [
+              "test_recall_tokens_preserve_unicode_words",
+              "test_sentence_transformers_multilingual_dimensions_are_known"
+            ]
+          },
+          {
+            "path": "tests/test_pre_experiment_fidelity.py",
+            "batchIndex": 4,
+            "symbols": [
+              "temp_db",
+              "TestC29WeightCentralization",
+              "TestAggregateVeracityHelper",
+              "TestE4a1ConsolidateToEpisodicVeracity",
+              "TestE4a1SleepEndToEndVeracity",
+              "TestE2a10EmbeddingLoopDefense",
+              "TestReviewHardening"
+            ]
+          },
+          {
+            "path": "tests/test_proactive_linking.py",
+            "batchIndex": 4,
+            "symbols": [
+              "_make_beam",
+              "_enable_linking",
+              "_disable_linking",
+              "TestProactiveContentLinking",
+              "TestProactiveEntityLinking",
+              "TestProactiveLinkingGating",
+              "TestNonBlocking",
+              "TestEdgeDeduplication",
+              "TestEdgeTypesAndWeights"
+            ]
+          },
+          {
+            "path": "tests/test_provider_all_15_tools.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_make_beam",
+              "_build_provider",
+              "_provider",
+              "_tool_names",
+              "TestToolRegistration",
+              "TestScratchpad",
+              "TestUpdate",
+              "TestForget",
+              "TestExport",
+              "TestImport",
+              "TestDiagnose",
+              "TestUnavailableGuard"
+            ]
+          },
+          {
+            "path": "tests/test_recall_precision_regressions.py",
+            "batchIndex": 6,
+            "symbols": [
+              "TestRecallPrecisionRegressions",
+              "FakeEmbeddings",
+              "TestHindsightImportEmbeddingBackfill"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "mnemosyne/core/__init__.py",
+          "language": "python",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/embeddings.py",
+          "language": "python",
+          "sizeLines": 247,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/extraction.py",
+          "language": "python",
+          "sizeLines": 364,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/llm_backends.py",
+          "language": "python",
+          "sizeLines": 123,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/local_llm.py",
+          "language": "python",
+          "sizeLines": 648,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/patterns.py",
+          "language": "python",
+          "sizeLines": 412,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/plugins.py",
+          "language": "python",
+          "sizeLines": 676,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/shmr.py",
+          "language": "python",
+          "sizeLines": 656,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_beam_sota.py",
+          "language": "python",
+          "sizeLines": 1056,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam.py",
+          "language": "python",
+          "sizeLines": 1762,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_degrade_vector.py",
+          "language": "python",
+          "sizeLines": 374,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_embeddings_multilingual.py",
+          "language": "python",
+          "sizeLines": 121,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_extraction.py",
+          "language": "python",
+          "sizeLines": 425,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_llm_adapter.py",
+          "language": "python",
+          "sizeLines": 221,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider.py",
+          "language": "python",
+          "sizeLines": 738,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_llm_backends.py",
+          "language": "python",
+          "sizeLines": 103,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_local_llm.py",
+          "language": "python",
+          "sizeLines": 576,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_multilingual_local_recall.py",
+          "language": "python",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_patterns.py",
+          "language": "python",
+          "sizeLines": 311,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_plugins.py",
+          "language": "python",
+          "sizeLines": 840,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/__init__.py": [
+          "mnemosyne/core/patterns.py",
+          "mnemosyne/core/plugins.py",
+          "mnemosyne/core/streaming.py"
+        ],
+        "mnemosyne/core/embeddings.py": [],
+        "mnemosyne/core/extraction.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/local_llm.py"
+        ],
+        "mnemosyne/core/llm_backends.py": [],
+        "mnemosyne/core/local_llm.py": [],
+        "mnemosyne/core/patterns.py": [],
+        "mnemosyne/core/plugins.py": [],
+        "mnemosyne/core/shmr.py": [
+          "mnemosyne/core/__init__.py"
+        ],
+        "tests/benchmark_beam_sota.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_beam.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_degrade_vector.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_embeddings_multilingual.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/embeddings.py"
+        ],
+        "tests/test_extraction.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/extraction.py",
+          "mnemosyne/core/llm_backends.py",
+          "mnemosyne/core/local_llm.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_hermes_llm_adapter.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/llm_backends.py"
+        ],
+        "tests/test_hermes_memory_provider.py": [
+          "hermes_memory_provider/__init__.py",
+          "mnemosyne/core/llm_backends.py"
+        ],
+        "tests/test_llm_backends.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/llm_backends.py"
+        ],
+        "tests/test_local_llm.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/llm_backends.py",
+          "mnemosyne/core/local_llm.py"
+        ],
+        "tests/test_multilingual_local_recall.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/embeddings.py"
+        ],
+        "tests/test_patterns.py": [
+          "mnemosyne/core/patterns.py"
+        ],
+        "tests/test_plugins.py": [
+          "mnemosyne/core/plugins.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/__init__.py": [
+          {
+            "path": "mnemosyne/core/streaming.py",
+            "batchIndex": 3,
+            "symbols": [
+              "EventType",
+              "MemoryEvent",
+              "MemoryStream",
+              "_StreamIterator",
+              "SyncCheckpoint",
+              "DeltaSync"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          },
+          {
+            "path": "tests/test_beam_e6_auto_migrate.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_seed_legacy_triples",
+              "TestBeamE6AutoMigrate"
+            ]
+          }
+        ],
+        "mnemosyne/core/llm_backends.py": [
+          {
+            "path": "mnemosyne/core/llm_conflict_detector.py",
+            "batchIndex": 10,
+            "symbols": [
+              "_estimate_tokens",
+              "_calculate_cost",
+              "_call_conflict_llm_with_retry",
+              "validate_conflict_pair"
+            ]
+          }
+        ],
+        "tests/benchmark_beam_sota.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_beam.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ],
+        "tests/test_degrade_vector.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_extraction.py": [
+          {
+            "path": "mnemosyne/core/triples.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_copy_legacy_db",
+              "_resolve_default_db",
+              "_get_conn",
+              "init_triples",
+              "TripleStore",
+              "add_triple",
+              "query_triples"
+            ]
+          }
+        ],
+        "tests/test_hermes_memory_provider.py": [
+          {
+            "path": "hermes_memory_provider/__init__.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_get_beam_class",
+              "_get_triple_module",
+              "_prefetch_content_char_limit",
+              "_format_prefetch_content",
+              "_parse_env_float",
+              "MnemosyneMemoryProvider",
+              "register_memory_provider",
+              "register"
+            ]
+          }
+        ],
+        "tests/test_multilingual_local_recall.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "hermes_memory_provider/cli.py",
+          "language": "python",
+          "sizeLines": 336,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/banks.py",
+          "language": "python",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/memory.py",
+          "language": "python",
+          "sizeLines": 860,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/streaming.py",
+          "language": "python",
+          "sizeLines": 617,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/integrations/auto_save_openwebui.py",
+          "language": "python",
+          "sizeLines": 348,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/integrations/openwebui_tool.py",
+          "language": "python",
+          "sizeLines": 207,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/mcp_server.py",
+          "language": "python",
+          "sizeLines": 303,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/mcp_tools.py",
+          "language": "python",
+          "sizeLines": 575,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/benchmark_beam_comprehensive.py",
+          "language": "python",
+          "sizeLines": 153,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_c25_deltasync_allowlist.py",
+          "language": "python",
+          "sizeLines": 607,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_cli_stats.py",
+          "language": "python",
+          "sizeLines": 121,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_configurable_scoring.py",
+          "language": "python",
+          "sizeLines": 323,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_extract_parity.py",
+          "language": "python",
+          "sizeLines": 213,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_hindsight_cli.py",
+          "language": "python",
+          "sizeLines": 196,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_mcp_server.py",
+          "language": "python",
+          "sizeLines": 370,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_memory_banks.py",
+          "language": "python",
+          "sizeLines": 378,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_multi_agent_identity.py",
+          "language": "python",
+          "sizeLines": 250,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_streaming.py",
+          "language": "python",
+          "sizeLines": 316,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "hermes_memory_provider/cli.py": [],
+        "mnemosyne/core/banks.py": [],
+        "mnemosyne/core/memory.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "mnemosyne/core/streaming.py": [],
+        "mnemosyne/integrations/auto_save_openwebui.py": [
+          "mnemosyne/core/memory.py"
+        ],
+        "mnemosyne/integrations/openwebui_tool.py": [
+          "mnemosyne/core/memory.py"
+        ],
+        "mnemosyne/mcp_server.py": [
+          "mnemosyne/mcp_tools.py"
+        ],
+        "mnemosyne/mcp_tools.py": [
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/benchmark_beam_comprehensive.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_c25_deltasync_allowlist.py": [
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/streaming.py"
+        ],
+        "tests/test_cli_stats.py": [
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_configurable_scoring.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_extract_parity.py": [
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_hermes_hindsight_cli.py": [
+          "hermes_memory_provider/cli.py",
+          "mnemosyne/core/importers/base.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_mcp_server.py": [
+          "mnemosyne/mcp_tools.py"
+        ],
+        "tests/test_memory_banks.py": [
+          "mnemosyne/core/banks.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_multi_agent_identity.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py",
+          "mnemosyne/mcp_tools.py"
+        ],
+        "tests/test_streaming.py": [
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/streaming.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/memory.py": [
+          {
+            "path": "mnemosyne/core/__init__.py",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          },
+          {
+            "path": "mnemosyne/integrations/openclaw.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_MnemosyneError",
+              "MnemosyneProvider",
+              "create_provider"
+            ]
+          },
+          {
+            "path": "tests/test_beam.py",
+            "batchIndex": 2,
+            "symbols": [
+              "temp_db",
+              "_FakeAnnotations",
+              "_FakeBeam",
+              "TestFactAnnotationMatching",
+              "TestBeamSchema",
+              "TestWorkingMemory",
+              "TestEpisodicMemory",
+              "TestScratchpad",
+              "TestSleepCycle",
+              "TestMnemosyneIntegration",
+              "TestExportImport",
+              "TestProviderContextSafety",
+              "TestCrossSessionRecall",
+              "TestTemporalQueries",
+              "TestTokenAwareConsolidation",
+              "TestTieredDegradation",
+              "TestSmartCompression",
+              "TestVeracity",
+              "TestConsolidationHealth",
+              "TestUpdateRefreshesDerivedState",
+              "TestEmbeddingDimConfig"
+            ]
+          },
+          {
+            "path": "tests/test_e6a_followup_gaps.py",
+            "batchIndex": 5,
+            "symbols": [
+              "TestForgetCascadeToAnnotations",
+              "TestForgetCrossSessionDoesNotLeakAnnotations",
+              "TestForgetCascadeIsAtomic"
+            ]
+          },
+          {
+            "path": "tests/test_entity_integration.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_reset_caches",
+              "TestEntityStorageIntegration",
+              "TestRememberEntityIntegration",
+              "TestEndToEndEntityWorkflow"
+            ]
+          },
+          {
+            "path": "tests/test_extraction_integration.py",
+            "batchIndex": 5,
+            "symbols": [
+              "MockLLMExtractor",
+              "test_end_to_end_extract_recall",
+              "test_fact_recall_keyword_matching",
+              "test_fact_and_entity_extraction_together",
+              "test_backward_compatibility",
+              "test_graceful_fallback_no_llm",
+              "test_fact_aware_recall_boosts_scores",
+              "run_all_tests"
+            ]
+          },
+          {
+            "path": "tests/test_importers/test_hindsight.py",
+            "batchIndex": 6,
+            "symbols": [
+              "_sample_items",
+              "test_hindsight_importer_preserves_timestamps_and_uses_episodic_memory",
+              "test_hindsight_importer_skips_duplicates_with_stable_ids",
+              "test_hindsight_provider_registry_import",
+              "test_hindsight_importer_adds_quality_metadata_and_can_skip_low_value",
+              "test_hindsight_importer_generates_binary_vectors_when_embedding_backend_available"
+            ]
+          }
+        ],
+        "mnemosyne/core/streaming.py": [
+          {
+            "path": "mnemosyne/core/__init__.py",
+            "batchIndex": 2,
+            "symbols": []
+          }
+        ],
+        "tests/benchmark_beam_comprehensive.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_configurable_scoring.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_hermes_hindsight_cli.py": [
+          {
+            "path": "mnemosyne/core/importers/base.py",
+            "batchIndex": 6,
+            "symbols": [
+              "ImporterResult",
+              "BaseImporter",
+              "import_from_file"
+            ]
+          }
+        ],
+        "tests/test_multi_agent_identity.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+          "language": "python",
+          "sizeLines": 1557,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/tools.py",
+          "language": "python",
+          "sizeLines": 460,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/binary_vectors.py",
+          "language": "python",
+          "sizeLines": 372,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/episodic_graph.py",
+          "language": "python",
+          "sizeLines": 595,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/polyphonic_recall.py",
+          "language": "python",
+          "sizeLines": 878,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/typed_memory.py",
+          "language": "python",
+          "sizeLines": 349,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/veracity_consolidation.py",
+          "language": "python",
+          "sizeLines": 947,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam_e4_remember_batch_veracity.py",
+          "language": "python",
+          "sizeLines": 451,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_consolidate_fact_concurrency.py",
+          "language": "python",
+          "sizeLines": 537,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_consolidate_fact_id_collision.py",
+          "language": "python",
+          "sizeLines": 439,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_consolidate_fact_sibling_races.py",
+          "language": "python",
+          "sizeLines": 582,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_e5a_vector_voice_dense_rewire.py",
+          "language": "python",
+          "sizeLines": 853,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_graph_tools.py",
+          "language": "python",
+          "sizeLines": 272,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_integration.py",
+          "language": "python",
+          "sizeLines": 268,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_pre_experiment_fidelity.py",
+          "language": "python",
+          "sizeLines": 588,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_proactive_linking.py",
+          "language": "python",
+          "sizeLines": 332,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "integrations/hermes/src/mnemosyne_hermes/__init__.py": [
+          "integrations/hermes/src/mnemosyne_hermes/tools.py",
+          "mnemosyne/core/episodic_graph.py"
+        ],
+        "integrations/hermes/src/mnemosyne_hermes/tools.py": [],
+        "mnemosyne/core/binary_vectors.py": [],
+        "mnemosyne/core/episodic_graph.py": [],
+        "mnemosyne/core/polyphonic_recall.py": [
+          "mnemosyne/core/episodic_graph.py",
+          "mnemosyne/core/typed_memory.py",
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "mnemosyne/core/typed_memory.py": [],
+        "mnemosyne/core/veracity_consolidation.py": [],
+        "tests/test_beam_e4_remember_batch_veracity.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_consolidate_fact_concurrency.py": [
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_consolidate_fact_id_collision.py": [
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_consolidate_fact_sibling_races.py": [
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_e5a_vector_voice_dense_rewire.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/polyphonic_recall.py"
+        ],
+        "tests/test_graph_tools.py": [
+          "hermes_memory_provider/__init__.py",
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/episodic_graph.py"
+        ],
+        "tests/test_integration.py": [
+          "mnemosyne/core/binary_vectors.py",
+          "mnemosyne/core/episodic_graph.py",
+          "mnemosyne/core/polyphonic_recall.py",
+          "mnemosyne/core/typed_memory.py",
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_pre_experiment_fidelity.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/veracity_consolidation.py"
+        ],
+        "tests/test_proactive_linking.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/episodic_graph.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/episodic_graph.py": [
+          {
+            "path": "hermes_memory_provider/__init__.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_get_beam_class",
+              "_get_triple_module",
+              "_prefetch_content_char_limit",
+              "_format_prefetch_content",
+              "_parse_env_float",
+              "MnemosyneMemoryProvider",
+              "register_memory_provider",
+              "register"
+            ]
+          }
+        ],
+        "tests/test_beam_e4_remember_batch_veracity.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_e5a_vector_voice_dense_rewire.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_graph_tools.py": [
+          {
+            "path": "hermes_memory_provider/__init__.py",
+            "batchIndex": 7,
+            "symbols": [
+              "_get_beam_class",
+              "_get_triple_module",
+              "_prefetch_content_char_limit",
+              "_format_prefetch_content",
+              "_parse_env_float",
+              "MnemosyneMemoryProvider",
+              "register_memory_provider",
+              "register"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_pre_experiment_fidelity.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_proactive_linking.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "mnemosyne/core/annotations.py",
+          "language": "python",
+          "sizeLines": 552,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/entities.py",
+          "language": "python",
+          "sizeLines": 237,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/triples.py",
+          "language": "python",
+          "sizeLines": 497,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/integrations/openclaw.py",
+          "language": "python",
+          "sizeLines": 356,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/migrations/__init__.py",
+          "language": "python",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/migrations/e6_triplestore_split.py",
+          "language": "python",
+          "sizeLines": 250,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/migrate_triplestore_split.py",
+          "language": "python",
+          "sizeLines": 104,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_annotations.py",
+          "language": "python",
+          "sizeLines": 421,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_beam_e6_auto_migrate.py",
+          "language": "python",
+          "sizeLines": 262,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_c28_import_all_content_aware.py",
+          "language": "python",
+          "sizeLines": 604,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_e6a_followup_gaps.py",
+          "language": "python",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_entities.py",
+          "language": "python",
+          "sizeLines": 221,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_entity_integration.py",
+          "language": "python",
+          "sizeLines": 260,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_extraction_integration.py",
+          "language": "python",
+          "sizeLines": 287,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_migrate_triplestore_split.py",
+          "language": "python",
+          "sizeLines": 467,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/annotations.py": [],
+        "mnemosyne/core/entities.py": [],
+        "mnemosyne/core/triples.py": [],
+        "mnemosyne/integrations/openclaw.py": [
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "mnemosyne/migrations/__init__.py": [],
+        "mnemosyne/migrations/e6_triplestore_split.py": [
+          "mnemosyne/core/annotations.py"
+        ],
+        "scripts/migrate_triplestore_split.py": [
+          "mnemosyne/migrations/e6_triplestore_split.py"
+        ],
+        "tests/test_annotations.py": [
+          "mnemosyne/core/annotations.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_beam_e6_auto_migrate.py": [
+          "mnemosyne/core/__init__.py",
+          "mnemosyne/core/annotations.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_c28_import_all_content_aware.py": [
+          "mnemosyne/core/annotations.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_e6a_followup_gaps.py": [
+          "mnemosyne/core/annotations.py",
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_entities.py": [
+          "mnemosyne/core/entities.py"
+        ],
+        "tests/test_entity_integration.py": [
+          "mnemosyne/core/entities.py",
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_extraction_integration.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/memory.py",
+          "mnemosyne/core/triples.py"
+        ],
+        "tests/test_migrate_triplestore_split.py": [
+          "mnemosyne/core/annotations.py",
+          "mnemosyne/core/triples.py",
+          "mnemosyne/migrations/__init__.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/triples.py": [
+          {
+            "path": "tests/test_extraction.py",
+            "batchIndex": 2,
+            "symbols": [
+              "MockLLM",
+              "test_build_extraction_prompt",
+              "test_parse_facts_basic",
+              "test_parse_facts_with_numbering",
+              "test_parse_facts_no_facts",
+              "test_parse_facts_empty",
+              "test_call_local_extraction_llm_uses_llamacpp_chat_api",
+              "test_call_local_extraction_llm_preserves_ctransformers_kwargs",
+              "test_extract_facts_safe_no_llm",
+              "test_extract_facts_safe_exception_handling",
+              "test_annotation_store_add_many",
+              "test_annotation_store_add_many_empty",
+              "test_extraction_prompt_configurable",
+              "run_all_tests",
+              "_enable_host",
+              "test_host_extract_facts_uses_temperature_zero",
+              "test_host_extract_facts_skips_remote_on_host_miss",
+              "test_host_extract_facts_unchanged_when_HOST_LLM_ENABLED_false",
+              "test_host_extract_facts_preserves_bulleted_output",
+              "test_host_extract_facts_remote_path_uses_temperature_zero",
+              "test_host_extract_facts_returns_empty_when_both_host_and_local_fail",
+              "test_host_extract_facts_swallows_exception_then_local"
+            ]
+          }
+        ],
+        "mnemosyne/integrations/openclaw.py": [
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ],
+        "tests/test_beam_e6_auto_migrate.py": [
+          {
+            "path": "mnemosyne/core/__init__.py",
+            "batchIndex": 2,
+            "symbols": []
+          },
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_e6a_followup_gaps.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ],
+        "tests/test_entity_integration.py": [
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ],
+        "tests/test_extraction_integration.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          },
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "mnemosyne/core/importers/__init__.py",
+          "language": "python",
+          "sizeLines": 163,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/agentic.py",
+          "language": "python",
+          "sizeLines": 391,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/base.py",
+          "language": "python",
+          "sizeLines": 245,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/cognee.py",
+          "language": "python",
+          "sizeLines": 298,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/hindsight.py",
+          "language": "python",
+          "sizeLines": 448,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/honcho.py",
+          "language": "python",
+          "sizeLines": 283,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/letta.py",
+          "language": "python",
+          "sizeLines": 313,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/mem0.py",
+          "language": "python",
+          "sizeLines": 378,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/supermemory.py",
+          "language": "python",
+          "sizeLines": 260,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/importers/zep.py",
+          "language": "python",
+          "sizeLines": 322,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_importers/test_base.py",
+          "language": "python",
+          "sizeLines": 168,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_importers/test_cognee.py",
+          "language": "python",
+          "sizeLines": 126,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_importers/test_hindsight.py",
+          "language": "python",
+          "sizeLines": 164,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_importers/test_mem0.py",
+          "language": "python",
+          "sizeLines": 264,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_recall_precision_regressions.py",
+          "language": "python",
+          "sizeLines": 260,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/importers/__init__.py": [
+          "mnemosyne/core/importers/agentic.py",
+          "mnemosyne/core/importers/base.py",
+          "mnemosyne/core/importers/cognee.py",
+          "mnemosyne/core/importers/hindsight.py",
+          "mnemosyne/core/importers/honcho.py",
+          "mnemosyne/core/importers/letta.py",
+          "mnemosyne/core/importers/mem0.py",
+          "mnemosyne/core/importers/supermemory.py",
+          "mnemosyne/core/importers/zep.py"
+        ],
+        "mnemosyne/core/importers/agentic.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/base.py": [],
+        "mnemosyne/core/importers/cognee.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/hindsight.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/honcho.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/letta.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/mem0.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/supermemory.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "mnemosyne/core/importers/zep.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "tests/test_importers/test_base.py": [
+          "mnemosyne/core/importers/base.py"
+        ],
+        "tests/test_importers/test_cognee.py": [
+          "mnemosyne/core/importers/cognee.py"
+        ],
+        "tests/test_importers/test_hindsight.py": [
+          "mnemosyne/core/importers/__init__.py",
+          "mnemosyne/core/importers/hindsight.py",
+          "mnemosyne/core/memory.py"
+        ],
+        "tests/test_importers/test_mem0.py": [
+          "mnemosyne/core/importers/base.py",
+          "mnemosyne/core/importers/mem0.py"
+        ],
+        "tests/test_recall_precision_regressions.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/importers/__init__.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/importers/base.py": [
+          {
+            "path": "tests/test_hermes_hindsight_cli.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_sample_items",
+              "_args",
+              "_patch_cli_memory",
+              "_write_export",
+              "_db_counts_and_row",
+              "test_hermes_cli_hindsight_file_import_preserves_timestamp",
+              "test_hermes_cli_hindsight_accepts_input_alias",
+              "test_hermes_cli_hindsight_base_url_does_not_require_api_key",
+              "test_hermes_cli_hindsight_forwards_non_default_bank",
+              "test_hermes_cli_hindsight_dry_run_writes_no_rows",
+              "test_hermes_cli_hindsight_requires_file_or_base_url",
+              "test_hermes_cli_other_provider_still_requires_api_key"
+            ]
+          }
+        ],
+        "tests/test_importers/test_hindsight.py": [
+          {
+            "path": "mnemosyne/core/memory.py",
+            "batchIndex": 3,
+            "symbols": [
+              "_default_data_dir",
+              "_default_db_path",
+              "_get_connection",
+              "init_db",
+              "generate_id",
+              "Mnemosyne",
+              "_get_default",
+              "set_bank",
+              "get_bank",
+              "remember",
+              "recall",
+              "get_context",
+              "get_stats",
+              "forget",
+              "get",
+              "update",
+              "sleep",
+              "sleep_all_sessions",
+              "scratchpad_write",
+              "scratchpad_read",
+              "scratchpad_clear"
+            ]
+          }
+        ],
+        "tests/test_recall_precision_regressions.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": "hermes_memory_provider/__init__.py",
+          "language": "python",
+          "sizeLines": 2040,
+          "fileCategory": "code"
+        },
+        {
+          "path": "hermes_memory_provider/audit.py",
+          "language": "python",
+          "sizeLines": 138,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_audit.py",
+          "language": "python",
+          "sizeLines": 165,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+          "language": "python",
+          "sizeLines": 82,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_shared_crud.py",
+          "language": "python",
+          "sizeLines": 137,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_shared_multi_agent.py",
+          "language": "python",
+          "sizeLines": 102,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_thread_isolation.py",
+          "language": "python",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_unified_recall.py",
+          "language": "python",
+          "sizeLines": 202,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_hermes_memory_provider_validation.py",
+          "language": "python",
+          "sizeLines": 329,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_provider_all_15_tools.py",
+          "language": "python",
+          "sizeLines": 294,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "hermes_memory_provider/__init__.py": [
+          "mnemosyne/core/episodic_graph.py"
+        ],
+        "hermes_memory_provider/audit.py": [],
+        "tests/test_hermes_memory_provider_audit.py": [
+          "hermes_memory_provider/__init__.py",
+          "hermes_memory_provider/audit.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_hermes_memory_provider_diagnose_active_db.py": [
+          "hermes_memory_provider/__init__.py",
+          "mnemosyne/core/beam.py"
+        ],
+        "tests/test_hermes_memory_provider_shared_crud.py": [
+          "hermes_memory_provider/__init__.py"
+        ],
+        "tests/test_hermes_memory_provider_shared_multi_agent.py": [
+          "hermes_memory_provider/__init__.py"
+        ],
+        "tests/test_hermes_memory_provider_thread_isolation.py": [
+          "hermes_memory_provider/__init__.py"
+        ],
+        "tests/test_hermes_memory_provider_unified_recall.py": [
+          "hermes_memory_provider/__init__.py"
+        ],
+        "tests/test_hermes_memory_provider_validation.py": [
+          "hermes_memory_provider/__init__.py"
+        ],
+        "tests/test_provider_all_15_tools.py": [
+          "hermes_memory_provider/__init__.py",
+          "mnemosyne/core/beam.py"
+        ]
+      },
+      "neighborMap": {
+        "hermes_memory_provider/__init__.py": [
+          {
+            "path": "mnemosyne/core/episodic_graph.py",
+            "batchIndex": 4,
+            "symbols": [
+              "Gist",
+              "Fact",
+              "GraphEdge",
+              "EpisodicGraph"
+            ]
+          },
+          {
+            "path": "tests/test_graph_tools.py",
+            "batchIndex": 4,
+            "symbols": [
+              "_make_beam",
+              "_build_provider",
+              "_provider",
+              "TestFindRelatedMemories",
+              "TestGraphToolSchemas",
+              "TestGraphQueryTool",
+              "TestGraphLinkTool",
+              "TestAutoPopulatedEdges"
+            ]
+          },
+          {
+            "path": "tests/test_hermes_memory_provider.py",
+            "batchIndex": 2,
+            "symbols": [
+              "test_initialize_registers_host_llm_when_register_returns_true",
+              "test_initialize_does_not_fail_when_register_raises",
+              "test_initialize_does_not_fail_when_register_returns_false",
+              "test_initialize_skips_for_non_primary_context",
+              "test_shutdown_clears_host_backend",
+              "test_shutdown_swallows_unregister_failure",
+              "_make_provider_with_blocking_sleep",
+              "test_on_session_end_returns_within_timeout_when_sleep_blocks",
+              "test_on_session_end_logs_warning_on_timeout",
+              "test_session_end_timeout_default_matches_design",
+              "test_on_session_end_completes_when_sleep_is_fast",
+              "test_on_session_end_no_op_without_beam",
+              "test_on_session_end_logs_when_sleep_raises_in_daemon_thread",
+              "test_shutdown_drains_in_flight_session_end_thread",
+              "test_shutdown_proceeds_when_drain_times_out",
+              "test_shutdown_drain_default_matches_design",
+              "test_session_end_timeout_default_is_15",
+              "test_session_end_timeout_env_override",
+              "test_session_end_timeout_invalid_env_falls_back",
+              "test_auto_sleep_timeout_default_is_5",
+              "test_auto_sleep_timeout_env_override",
+              "test_auto_sleep_timeout_invalid_env_falls_back",
+              "test_shutdown_drain_timeout_default_is_2",
+              "test_shutdown_drain_timeout_env_override",
+              "test_shutdown_drain_timeout_invalid_env_falls_back",
+              "test_remember_schema_advertises_extract_and_metadata_and_veracity",
+              "test_handle_remember_passes_extract_metadata_veracity_to_beam",
+              "test_handle_remember_defaults_when_new_kwargs_omitted",
+              "test_handle_remember_clamps_unknown_veracity_to_unknown",
+              "test_handle_remember_response_echoes_metadata",
+              "test_recall_schema_advertises_scoring_weights",
+              "test_handle_recall_forwards_scoring_weights_to_beam",
+              "test_handle_recall_omits_weights_when_caller_does_not_supply",
+              "TestSanitizeBankName",
+              "TestResolveProfileBank",
+              "TestInitializeProfileIsolation"
+            ]
+          }
+        ],
+        "tests/test_hermes_memory_provider_audit.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_hermes_memory_provider_diagnose_active_db.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ],
+        "tests/test_provider_all_15_tools.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "mnemosyne/extraction/__init__.py",
+          "language": "python",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/extraction/client.py",
+          "language": "python",
+          "sizeLines": 233,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/extraction/diagnostics.py",
+          "language": "python",
+          "sizeLines": 308,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/extraction/prompts.py",
+          "language": "python",
+          "sizeLines": 36,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_c13b_extraction_diagnostics.py",
+          "language": "python",
+          "sizeLines": 737,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/extraction/__init__.py": [
+          "mnemosyne/extraction/client.py",
+          "mnemosyne/extraction/diagnostics.py",
+          "mnemosyne/extraction/prompts.py"
+        ],
+        "mnemosyne/extraction/client.py": [],
+        "mnemosyne/extraction/diagnostics.py": [],
+        "mnemosyne/extraction/prompts.py": [],
+        "tests/test_c13b_extraction_diagnostics.py": [
+          "mnemosyne/extraction/diagnostics.py"
+        ]
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": "integrations/vscode-mnemosyne/src/client.ts",
+          "language": "typescript",
+          "sizeLines": 190,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/src/extension.ts",
+          "language": "typescript",
+          "sizeLines": 89,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/src/provider.ts",
+          "language": "typescript",
+          "sizeLines": 168,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/src/webview.ts",
+          "language": "typescript",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "integrations/vscode-mnemosyne/src/client.ts": [],
+        "integrations/vscode-mnemosyne/src/extension.ts": [
+          "integrations/vscode-mnemosyne/src/client.ts",
+          "integrations/vscode-mnemosyne/src/provider.ts",
+          "integrations/vscode-mnemosyne/src/webview.ts"
+        ],
+        "integrations/vscode-mnemosyne/src/provider.ts": [
+          "integrations/vscode-mnemosyne/src/client.ts"
+        ],
+        "integrations/vscode-mnemosyne/src/webview.ts": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": "mnemosyne/core/cost_log.py",
+          "language": "python",
+          "sizeLines": 78,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/llm_conflict_detector.py",
+          "language": "python",
+          "sizeLines": 215,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_llm_conflict_detector.py",
+          "language": "python",
+          "sizeLines": 154,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/cost_log.py": [],
+        "mnemosyne/core/llm_conflict_detector.py": [
+          "mnemosyne/core/cost_log.py",
+          "mnemosyne/core/llm_backends.py"
+        ],
+        "tests/test_llm_conflict_detector.py": [
+          "mnemosyne/core/beam.py",
+          "mnemosyne/core/cost_log.py",
+          "mnemosyne/core/llm_conflict_detector.py"
+        ]
+      },
+      "neighborMap": {
+        "mnemosyne/core/llm_conflict_detector.py": [
+          {
+            "path": "mnemosyne/core/llm_backends.py",
+            "batchIndex": 2,
+            "symbols": [
+              "LLMBackend",
+              "CallableLLMBackend",
+              "set_host_llm_backend",
+              "get_host_llm_backend",
+              "call_host_llm"
+            ]
+          }
+        ],
+        "tests/test_llm_conflict_detector.py": [
+          {
+            "path": "mnemosyne/core/beam.py",
+            "batchIndex": 1,
+            "symbols": [
+              "_source_to_trust_tier",
+              "_env_truthy",
+              "_default_data_dir",
+              "_default_db_path",
+              "_env_disabled",
+              "_env_float",
+              "_detect_veracity_weight_overrides",
+              "_warn_about_veracity_weight_overrides",
+              "_get_connection",
+              "_detect_vec_type",
+              "init_beam",
+              "_BeamConnection",
+              "_deferred_commits",
+              "_generate_id",
+              "_sanitize_utf8",
+              "_add_column_if_missing",
+              "_normalize_weights",
+              "_normalize_datetime_utc",
+              "_parse_iso_datetime_utc",
+              "_recency_decay",
+              "_parse_query_time",
+              "_parse_ts_fast",
+              "_temporal_boost",
+              "_vec_available",
+              "_extract_and_store_entities",
+              "_extract_and_store_facts",
+              "_store_facts_in_table",
+              "_find_memories_by_entity",
+              "_recall_tokens",
+              "_expanded_query_tokens",
+              "_minimum_recall_relevance",
+              "_fact_match_tokens",
+              "_contains_spaceless_cjk",
+              "_cjk_fts_terms",
+              "_lexical_relevance",
+              "_strict_fact_matches",
+              "_find_memories_by_fact",
+              "_in_memory_vec_search",
+              "_effective_vec_type",
+              "_vec_insert",
+              "_vec_search",
+              "_fts_query_terms",
+              "_has_cjk",
+              "_cjk_like_search",
+              "_fts_search",
+              "_fts_search_working",
+              "_wm_vec_search",
+              "BeamMemory"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 11,
+      "files": [
+        {
+          "path": ".dockerignore",
+          "language": "unknown",
+          "sizeLines": 14,
+          "fileCategory": "infra"
+        },
+        {
+          "path": "docker-compose.yml",
+          "language": "yaml",
+          "sizeLines": 16,
+          "fileCategory": "infra"
+        },
+        {
+          "path": "Dockerfile",
+          "language": "dockerfile",
+          "sizeLines": 44,
+          "fileCategory": "infra"
+        }
+      ],
+      "batchImportData": {
+        ".dockerignore": [],
+        "docker-compose.yml": [],
+        "Dockerfile": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 12,
+      "files": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "language": "yaml",
+          "sizeLines": 51,
+          "fileCategory": "infra"
+        },
+        {
+          "path": ".github/workflows/release.yml",
+          "language": "yaml",
+          "sizeLines": 39,
+          "fileCategory": "infra"
+        }
+      ],
+      "batchImportData": {
+        ".github/workflows/ci.yml": [],
+        ".github/workflows/release.yml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 13,
+      "files": [
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "language": "markdown",
+          "sizeLines": 74,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/config.yml",
+          "language": "yaml",
+          "sizeLines": 7,
+          "fileCategory": "config"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/docs_improvement.md",
+          "language": "markdown",
+          "sizeLines": 23,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+          "language": "markdown",
+          "sizeLines": 29,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        ".github/ISSUE_TEMPLATE/bug_report.md": [],
+        ".github/ISSUE_TEMPLATE/config.yml": [],
+        ".github/ISSUE_TEMPLATE/docs_improvement.md": [],
+        ".github/ISSUE_TEMPLATE/feature_request.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 14,
+      "files": [
+        {
+          "path": "CHANGELOG.md",
+          "language": "markdown",
+          "sizeLines": 783,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "language": "markdown",
+          "sizeLines": 132,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "language": "markdown",
+          "sizeLines": 93,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "CONTRIBUTING_LANGUAGES.md",
+          "language": "markdown",
+          "sizeLines": 179,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 383,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "RELEASING.md",
+          "language": "markdown",
+          "sizeLines": 111,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "SECURITY.md",
+          "language": "markdown",
+          "sizeLines": 47,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "UPDATING.md",
+          "language": "markdown",
+          "sizeLines": 665,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "pyproject.toml",
+          "language": "toml",
+          "sizeLines": 72,
+          "fileCategory": "config"
+        },
+        {
+          "path": "requirements-benchmark.txt",
+          "language": "txt",
+          "sizeLines": 18,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "run_beam_all_scales.sh",
+          "language": "shell",
+          "sizeLines": 29,
+          "fileCategory": "script"
+        },
+        {
+          "path": "run_beam_bench.sh",
+          "language": "shell",
+          "sizeLines": 32,
+          "fileCategory": "script"
+        },
+        {
+          "path": "run_beam_clean.sh",
+          "language": "shell",
+          "sizeLines": 28,
+          "fileCategory": "script"
+        },
+        {
+          "path": "run_hybrid_all_scales.sh",
+          "language": "shell",
+          "sizeLines": 28,
+          "fileCategory": "script"
+        }
+      ],
+      "batchImportData": {
+        "CHANGELOG.md": [],
+        "CODE_OF_CONDUCT.md": [],
+        "CONTRIBUTING.md": [],
+        "CONTRIBUTING_LANGUAGES.md": [],
+        "README.md": [],
+        "RELEASING.md": [],
+        "SECURITY.md": [],
+        "UPDATING.md": [],
+        "pyproject.toml": [],
+        "requirements-benchmark.txt": [],
+        "run_beam_all_scales.sh": [],
+        "run_beam_bench.sh": [],
+        "run_beam_clean.sh": [],
+        "run_hybrid_all_scales.sh": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 15,
+      "files": [
+        {
+          "path": "docs/README.md",
+          "language": "markdown",
+          "sizeLines": 28,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/api-reference.md",
+          "language": "markdown",
+          "sizeLines": 750,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/architecture.md",
+          "language": "markdown",
+          "sizeLines": 167,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/audit-report-2026-05-11.md",
+          "language": "markdown",
+          "sizeLines": 113,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/audit-report-2026-05-13.md",
+          "language": "markdown",
+          "sizeLines": 148,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/audit-workflow.md",
+          "language": "markdown",
+          "sizeLines": 408,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/beam-benchmark.md",
+          "language": "markdown",
+          "sizeLines": 125,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/benchmark-results-analysis.md",
+          "language": "markdown",
+          "sizeLines": 433,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/benchmarking.md",
+          "language": "markdown",
+          "sizeLines": 309,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/changelog.md",
+          "language": "markdown",
+          "sizeLines": 115,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/comparison.md",
+          "language": "markdown",
+          "sizeLines": 274,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/compression-plugin.md",
+          "language": "markdown",
+          "sizeLines": 54,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/configuration.md",
+          "language": "markdown",
+          "sizeLines": 263,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/getting-started.md",
+          "language": "markdown",
+          "sizeLines": 80,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/hermes-integration.md",
+          "language": "markdown",
+          "sizeLines": 130,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/hermes-llm-integration.md",
+          "language": "markdown",
+          "sizeLines": 151,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/llm-installation-guide.md",
+          "language": "markdown",
+          "sizeLines": 311,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        "docs/README.md": [],
+        "docs/api-reference.md": [],
+        "docs/architecture.md": [],
+        "docs/audit-report-2026-05-11.md": [],
+        "docs/audit-report-2026-05-13.md": [],
+        "docs/audit-workflow.md": [],
+        "docs/beam-benchmark.md": [],
+        "docs/benchmark-results-analysis.md": [],
+        "docs/benchmarking.md": [],
+        "docs/changelog.md": [],
+        "docs/comparison.md": [],
+        "docs/compression-plugin.md": [],
+        "docs/configuration.md": [],
+        "docs/getting-started.md": [],
+        "docs/hermes-integration.md": [],
+        "docs/hermes-llm-integration.md": [],
+        "docs/llm-installation-guide.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 16,
+      "files": [
+        {
+          "path": "docs/integrations/README.md",
+          "language": "markdown",
+          "sizeLines": 44,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/claude-code-mcp.md",
+          "language": "markdown",
+          "sizeLines": 64,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/codex-mcp.md",
+          "language": "markdown",
+          "sizeLines": 50,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/cursor-mcp.md",
+          "language": "markdown",
+          "sizeLines": 51,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/hermes-mcp.md",
+          "language": "markdown",
+          "sizeLines": 36,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/integration-template.md",
+          "language": "markdown",
+          "sizeLines": 159,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/openclaw.md",
+          "language": "markdown",
+          "sizeLines": 79,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/openwebui-deep.md",
+          "language": "markdown",
+          "sizeLines": 125,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/openwebui-tool.md",
+          "language": "markdown",
+          "sizeLines": 65,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "docs/integrations/windsurf-mcp.md",
+          "language": "markdown",
+          "sizeLines": 34,
+          "fileCategory": "docs"
+        }
+      ],
+      "batchImportData": {
+        "docs/integrations/README.md": [],
+        "docs/integrations/claude-code-mcp.md": [],
+        "docs/integrations/codex-mcp.md": [],
+        "docs/integrations/cursor-mcp.md": [],
+        "docs/integrations/hermes-mcp.md": [],
+        "docs/integrations/integration-template.md": [],
+        "docs/integrations/openclaw.md": [],
+        "docs/integrations/openwebui-deep.md": [],
+        "docs/integrations/openwebui-tool.md": [],
+        "docs/integrations/windsurf-mcp.md": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 17,
+      "files": [
+        {
+          "path": "integrations/hermes/README.md",
+          "language": "markdown",
+          "sizeLines": 185,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "integrations/hermes/plugin.yaml",
+          "language": "yaml",
+          "sizeLines": 6,
+          "fileCategory": "config"
+        },
+        {
+          "path": "integrations/hermes/pyproject.toml",
+          "language": "toml",
+          "sizeLines": 54,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "integrations/hermes/README.md": [],
+        "integrations/hermes/plugin.yaml": [],
+        "integrations/hermes/pyproject.toml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 18,
+      "files": [
+        {
+          "path": "integrations/obsidian-mnemosyne/README.md",
+          "language": "markdown",
+          "sizeLines": 43,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "integrations/obsidian-mnemosyne/manifest.json",
+          "language": "json",
+          "sizeLines": 11,
+          "fileCategory": "config"
+        },
+        {
+          "path": "integrations/obsidian-mnemosyne/package.json",
+          "language": "json",
+          "sizeLines": 21,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "integrations/obsidian-mnemosyne/README.md": [],
+        "integrations/obsidian-mnemosyne/manifest.json": [],
+        "integrations/obsidian-mnemosyne/package.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 19,
+      "files": [
+        {
+          "path": "integrations/vscode-mnemosyne/README.md",
+          "language": "markdown",
+          "sizeLines": 43,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/package.json",
+          "language": "json",
+          "sizeLines": 104,
+          "fileCategory": "config"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/tsconfig.json",
+          "language": "json",
+          "sizeLines": 15,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "integrations/vscode-mnemosyne/README.md": [],
+        "integrations/vscode-mnemosyne/package.json": [],
+        "integrations/vscode-mnemosyne/tsconfig.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 20,
+      "files": [
+        {
+          "path": "__init__.py",
+          "language": "python",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".githooks/pre-commit",
+          "language": "unknown",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".githooks/pre-push",
+          "language": "unknown",
+          "sizeLines": 76,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".github/FUNDING.yml",
+          "language": "yaml",
+          "sizeLines": 4,
+          "fileCategory": "config"
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "language": "markdown",
+          "sizeLines": 32,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".mailmap",
+          "language": "unknown",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": ".understand-anything/.understandignore",
+          "language": "unknown",
+          "sizeLines": 69,
+          "fileCategory": "code"
+        },
+        {
+          "path": "docs/experiments/2026-05-12-beam-recovery-arms-abc.md",
+          "language": "markdown",
+          "sizeLines": 307,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "hermes_memory_provider/hermes_llm_adapter.py",
+          "language": "python",
+          "sizeLines": 164,
+          "fileCategory": "code"
+        },
+        {
+          "path": "hermes_memory_provider/plugin.yaml",
+          "language": "yaml",
+          "sizeLines": 27,
+          "fileCategory": "config"
+        },
+        {
+          "path": "hermes_memory_provider/README.md",
+          "language": "markdown",
+          "sizeLines": 89,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/audit.py",
+          "language": "python",
+          "sizeLines": 138,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/cli.py",
+          "language": "python",
+          "sizeLines": 332,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+          "language": "python",
+          "sizeLines": 164,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/install.py",
+          "language": "python",
+          "sizeLines": 190,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+          "language": "yaml",
+          "sizeLines": 27,
+          "fileCategory": "config"
+        },
+        {
+          "path": "integrations/obsidian-mnemosyne/main.ts",
+          "language": "typescript",
+          "sizeLines": 318,
+          "fileCategory": "code"
+        },
+        {
+          "path": "integrations/vscode-mnemosyne/.vscodeignore",
+          "language": "unknown",
+          "sizeLines": 6,
+          "fileCategory": "code"
+        },
+        {
+          "path": "MANIFEST.in",
+          "language": "in",
+          "sizeLines": 11,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/__init__.py",
+          "language": "python",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/cli.py",
+          "language": "python",
+          "sizeLines": 452,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/aaak.py",
+          "language": "python",
+          "sizeLines": 152,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/content_sanitizer.py",
+          "language": "python",
+          "sizeLines": 169,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/mmr.py",
+          "language": "python",
+          "sizeLines": 95,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/orchestrator.py",
+          "language": "python",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "__init__.py": [],
+        ".githooks/pre-commit": [],
+        ".githooks/pre-push": [],
+        ".github/FUNDING.yml": [],
+        ".github/PULL_REQUEST_TEMPLATE.md": [],
+        ".mailmap": [],
+        ".understand-anything/.understandignore": [],
+        "docs/experiments/2026-05-12-beam-recovery-arms-abc.md": [],
+        "hermes_memory_provider/hermes_llm_adapter.py": [],
+        "hermes_memory_provider/plugin.yaml": [],
+        "hermes_memory_provider/README.md": [],
+        "integrations/hermes/src/mnemosyne_hermes/audit.py": [],
+        "integrations/hermes/src/mnemosyne_hermes/cli.py": [],
+        "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py": [],
+        "integrations/hermes/src/mnemosyne_hermes/install.py": [],
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml": [],
+        "integrations/obsidian-mnemosyne/main.ts": [],
+        "integrations/vscode-mnemosyne/.vscodeignore": [],
+        "MANIFEST.in": [],
+        "mnemosyne/__init__.py": [],
+        "mnemosyne/cli.py": [],
+        "mnemosyne/core/aaak.py": [],
+        "mnemosyne/core/content_sanitizer.py": [],
+        "mnemosyne/core/mmr.py": [],
+        "mnemosyne/core/orchestrator.py": []
+      },
+      "neighborMap": {
+        "mnemosyne/core/content_sanitizer.py": [
+          {
+            "path": "tests/test_content_sanitizer.py",
+            "batchIndex": 22,
+            "symbols": [
+              "TestDataUriDetection",
+              "TestShannonEntropy",
+              "TestLooksLikeBase64Blob",
+              "TestBlobStorage",
+              "TestSanitizeContent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 21,
+      "files": [
+        {
+          "path": "mnemosyne/core/query_cache.py",
+          "language": "python",
+          "sizeLines": 343,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/query_intent.py",
+          "language": "python",
+          "sizeLines": 167,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/synonyms.py",
+          "language": "python",
+          "sizeLines": 152,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/temporal_parser.py",
+          "language": "python",
+          "sizeLines": 404,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/token_counter.py",
+          "language": "python",
+          "sizeLines": 72,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/core/weibull.py",
+          "language": "python",
+          "sizeLines": 183,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/diagnose.py",
+          "language": "python",
+          "sizeLines": 254,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/dr/__init__.py",
+          "language": "python",
+          "sizeLines": 1,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/dr/recovery.py",
+          "language": "python",
+          "sizeLines": 338,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/install.py",
+          "language": "python",
+          "sizeLines": 264,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/integrations/__init__.py",
+          "language": "python",
+          "sizeLines": 1,
+          "fileCategory": "code"
+        },
+        {
+          "path": "mnemosyne/integrations/memory_browser.py",
+          "language": "python",
+          "sizeLines": 452,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/backfill_temporal_triples.py",
+          "language": "python",
+          "sizeLines": 218,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/cleanup_noisy_mentions.py",
+          "language": "python",
+          "sizeLines": 115,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/heal_quality.py",
+          "language": "python",
+          "sizeLines": 495,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/memoria_audit.py",
+          "language": "python",
+          "sizeLines": 316,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/migrate_from_legacy.py",
+          "language": "python",
+          "sizeLines": 323,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/mnemosyne-stats.py",
+          "language": "python",
+          "sizeLines": 401,
+          "fileCategory": "code"
+        },
+        {
+          "path": "setup.py",
+          "language": "python",
+          "sizeLines": 86,
+          "fileCategory": "code"
+        },
+        {
+          "path": "skills/mnemosyne-memory-override.md",
+          "language": "markdown",
+          "sizeLines": 64,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "tests/conftest.py",
+          "language": "python",
+          "sizeLines": 187,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_benchmark_preflight.py",
+          "language": "python",
+          "sizeLines": 120,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_cli_errors.py",
+          "language": "python",
+          "sizeLines": 171,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_cli_operation_failures.py",
+          "language": "python",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_cli_usage_errors.py",
+          "language": "python",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "mnemosyne/core/query_cache.py": [],
+        "mnemosyne/core/query_intent.py": [],
+        "mnemosyne/core/synonyms.py": [],
+        "mnemosyne/core/temporal_parser.py": [],
+        "mnemosyne/core/token_counter.py": [],
+        "mnemosyne/core/weibull.py": [],
+        "mnemosyne/diagnose.py": [],
+        "mnemosyne/dr/__init__.py": [],
+        "mnemosyne/dr/recovery.py": [],
+        "mnemosyne/install.py": [],
+        "mnemosyne/integrations/__init__.py": [],
+        "mnemosyne/integrations/memory_browser.py": [],
+        "scripts/backfill_temporal_triples.py": [],
+        "scripts/cleanup_noisy_mentions.py": [],
+        "scripts/heal_quality.py": [],
+        "scripts/memoria_audit.py": [],
+        "scripts/migrate_from_legacy.py": [],
+        "scripts/mnemosyne-stats.py": [],
+        "setup.py": [],
+        "skills/mnemosyne-memory-override.md": [],
+        "tests/conftest.py": [],
+        "tests/test_benchmark_preflight.py": [],
+        "tests/test_cli_errors.py": [],
+        "tests/test_cli_operation_failures.py": [],
+        "tests/test_cli_usage_errors.py": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 22,
+      "files": [
+        {
+          "path": "tests/test_content_sanitizer.py",
+          "language": "python",
+          "sizeLines": 164,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_data_dir_scripts.py",
+          "language": "python",
+          "sizeLines": 105,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_fact_recall_integration.py",
+          "language": "python",
+          "sizeLines": 166,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_identity_memory.py",
+          "language": "python",
+          "sizeLines": 118,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_importers/fixtures/mem0_export.json",
+          "language": "json",
+          "sizeLines": 56,
+          "fileCategory": "config"
+        },
+        {
+          "path": "tests/test_importers/fixtures/mem0_paginated_response.json",
+          "language": "json",
+          "sizeLines": 61,
+          "fileCategory": "config"
+        },
+        {
+          "path": "tests/test_mnemosyne_stats.py",
+          "language": "python",
+          "sizeLines": 523,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_optional_embeddings.py",
+          "language": "python",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_outer_package_version.py",
+          "language": "python",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_prefetch_content_truncation.py",
+          "language": "python",
+          "sizeLines": 70,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_query_cache_synonyms.py",
+          "language": "python",
+          "sizeLines": 91,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_s1_mcp_sse_auth.py",
+          "language": "python",
+          "sizeLines": 255,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_scope_auto_default.py",
+          "language": "python",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_sync_roles.py",
+          "language": "python",
+          "sizeLines": 226,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_sync_turn_content_limit.py",
+          "language": "python",
+          "sizeLines": 91,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_t1_local_llm_default_disabled.py",
+          "language": "python",
+          "sizeLines": 215,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_temporal_parser.py",
+          "language": "python",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_triples_data_dir.py",
+          "language": "python",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_weibull_mmr_intent.py",
+          "language": "python",
+          "sizeLines": 194,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_audit_log.py",
+          "language": "python",
+          "sizeLines": 138,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_unified_recall.py",
+          "language": "python",
+          "sizeLines": 152,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/bench_validation.py",
+          "language": "python",
+          "sizeLines": 132,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/generate_beam_charts.py",
+          "language": "python",
+          "sizeLines": 462,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/generate_sota_report.py",
+          "language": "python",
+          "sizeLines": 132,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "tests/test_content_sanitizer.py": [
+          "mnemosyne/core/content_sanitizer.py"
+        ],
+        "tests/test_data_dir_scripts.py": [],
+        "tests/test_fact_recall_integration.py": [],
+        "tests/test_identity_memory.py": [],
+        "tests/test_importers/fixtures/mem0_export.json": [],
+        "tests/test_importers/fixtures/mem0_paginated_response.json": [],
+        "tests/test_mnemosyne_stats.py": [],
+        "tests/test_optional_embeddings.py": [],
+        "tests/test_outer_package_version.py": [],
+        "tests/test_prefetch_content_truncation.py": [],
+        "tests/test_query_cache_synonyms.py": [],
+        "tests/test_s1_mcp_sse_auth.py": [],
+        "tests/test_scope_auto_default.py": [],
+        "tests/test_sync_roles.py": [],
+        "tests/test_sync_turn_content_limit.py": [],
+        "tests/test_t1_local_llm_default_disabled.py": [],
+        "tests/test_temporal_parser.py": [],
+        "tests/test_triples_data_dir.py": [],
+        "tests/test_weibull_mmr_intent.py": [],
+        "tools/bench_audit_log.py": [],
+        "tools/bench_unified_recall.py": [],
+        "tools/bench_validation.py": [],
+        "tools/generate_beam_charts.py": [],
+        "tools/generate_sota_report.py": []
+      },
+      "neighborMap": {
+        "tests/test_content_sanitizer.py": [
+          {
+            "path": "mnemosyne/core/content_sanitizer.py",
+            "batchIndex": 20,
+            "symbols": [
+              "_blob_root",
+              "_compute_sha256",
+              "_is_data_uri",
+              "_parse_data_uri",
+              "_shannon_entropy",
+              "_looks_like_base64_blob",
+              "_store_blob",
+              "sanitize_content"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

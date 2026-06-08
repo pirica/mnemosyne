@@ -1,0 +1,1430 @@
+{
+  "nodes": [
+    {
+      "id": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "summary": "Hermes agent memory provider integration: adapts Mnemosyne BeamMemory as a Hermes provider with full lifecycle management, config, tool schemas, audit logging, shared surface memory, profile isolation, and session management.",
+      "tags": [
+        "entry-point",
+        "memory-provider",
+        "integration",
+        "hermes"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Large Python provider module with 50+ methods implementing the Hermes agent memory plugin API."
+    },
+    {
+      "id": "file:integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "type": "file",
+      "name": "tools.py",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "summary": "Defines 19 JSON tool schemas (remember, recall, graph_query, graph_link, etc.) exposed by the Mnemosyne Hermes memory provider for agent tool-calling interfaces.",
+      "tags": [
+        "tool-schemas",
+        "api-handler",
+        "integration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mnemosyne/core/binary_vectors.py",
+      "type": "file",
+      "name": "binary_vectors.py",
+      "filePath": "mnemosyne/core/binary_vectors.py",
+      "summary": "Information-theoretic binary vector implementation with Maximally Informative Binarization (MIB), Hamming distance via bitwise ops, and SQLite-native BinaryVectorStore for deterministic 32x compressed retrieval.",
+      "tags": [
+        "binary-vectors",
+        "retrieval",
+        "information-theoretic",
+        "compression"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Implements MIB from Moorcheh ITS (arXiv:2601.11557). Uses numpy bitwise operations for fast Hamming distance computation."
+    },
+    {
+      "id": "file:mnemosyne/core/episodic_graph.py",
+      "type": "file",
+      "name": "episodic_graph.py",
+      "filePath": "mnemosyne/core/episodic_graph.py",
+      "summary": "Episodic knowledge graph data model with Gist, Fact, GraphEdge, and EpisodicGraph classes representing structured semantic memory with timestamps, veracity tracking, and graph traversal for recall.",
+      "tags": [
+        "knowledge-graph",
+        "data-model",
+        "episodic-memory",
+        "structured"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/core/polyphonic_recall.py",
+      "type": "file",
+      "name": "polyphonic_recall.py",
+      "filePath": "mnemosyne/core/polyphonic_recall.py",
+      "summary": "Multi-strategy parallel retrieval engine combining vector, graph, fact, and temporal voices with deterministic RRF re-ranking, budget-aware context assembly, and diversity penalty for unified recall.",
+      "tags": [
+        "recall",
+        "multi-strategy",
+        "retrieval",
+        "re-ranking"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Four-voice architecture inspired by Hindsight multi-strategy retrieval and Memanto information-theoretic scoring."
+    },
+    {
+      "id": "file:mnemosyne/core/typed_memory.py",
+      "type": "file",
+      "name": "typed_memory.py",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "summary": "Deterministic, rule-based memory type classification system with 13 memory types (fact, preference, decision, etc.), pattern matchers, confidence scoring, priority signals, and conflict detection \u2014 zero LLM calls.",
+      "tags": [
+        "classification",
+        "memory-types",
+        "rule-based",
+        "schema"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "file",
+      "name": "veracity_consolidation.py",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "summary": "Fact veracity tracking and consolidation engine with deterministic fact ID computation, veracity aggregation (stated/tool/inferred/unknown), confidence compounding, and conflict resolution for structured facts.",
+      "tags": [
+        "veracity",
+        "consolidation",
+        "facts",
+        "confidence"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "type": "file",
+      "name": "test_beam_e4_remember_batch_veracity.py",
+      "filePath": "tests/test_beam_e4_remember_batch_veracity.py",
+      "summary": "Tests for veracity clamping and batch remember veracity propagation, ensuring correct veracity tag assignment and clamping behavior in BeamMemory.",
+      "tags": [
+        "test",
+        "veracity",
+        "batch-remember"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:integrations/hermes/src/mnemosyne_hermes/__init__.py:MnemosyneMemoryProvider",
+      "type": "class",
+      "name": "MnemosyneMemoryProvider",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        154,
+        1531
+      ],
+      "summary": "Hermes agent memory provider implementing ~50 lifecycle, config, tool, and session methods for Mnemosyne integration with profile isolation, shared surface memory, and audit logging.",
+      "tags": [
+        "memory-provider",
+        "hermes",
+        "lifecycle",
+        "tools"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/core/binary_vectors.py:BinaryVectorStore",
+      "type": "class",
+      "name": "BinaryVectorStore",
+      "filePath": "mnemosyne/core/binary_vectors.py",
+      "lineRange": [
+        128,
+        330
+      ],
+      "summary": "SQLite-backed binary vector store supporting insert, search via Hamming distance, and metadata storage with 32x compression over float32 embeddings.",
+      "tags": [
+        "vector-store",
+        "binary",
+        "sqlite",
+        "hamming"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/core/binary_vectors.py:FastBinarySearch",
+      "type": "class",
+      "name": "FastBinarySearch",
+      "filePath": "mnemosyne/core/binary_vectors.py",
+      "lineRange": [
+        333,
+        372
+      ],
+      "summary": "Optimized binary vector search using precomputed popcount and early termination for fast Hamming distance queries.",
+      "tags": [
+        "search",
+        "binary",
+        "optimized"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/episodic_graph.py:Gist",
+      "type": "class",
+      "name": "Gist",
+      "filePath": "mnemosyne/core/episodic_graph.py",
+      "lineRange": [
+        46,
+        80
+      ],
+      "summary": "Represents a condensed summary/gist node in the episodic knowledge graph with content, source, and timestamp metadata.",
+      "tags": [
+        "knowledge-graph",
+        "gist",
+        "summary"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/episodic_graph.py:Fact",
+      "type": "class",
+      "name": "Fact",
+      "filePath": "mnemosyne/core/episodic_graph.py",
+      "lineRange": [
+        83,
+        140
+      ],
+      "summary": "Represents a structured subject-predicate-object fact in the episodic graph with veracity, confidence, and temporal scoping.",
+      "tags": [
+        "knowledge-graph",
+        "fact",
+        "spo",
+        "structured"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/episodic_graph.py:GraphEdge",
+      "type": "class",
+      "name": "GraphEdge",
+      "filePath": "mnemosyne/core/episodic_graph.py",
+      "lineRange": [
+        143,
+        185
+      ],
+      "summary": "Represents a directed edge between two graph nodes with type, weight, and metadata for knowledge graph traversal.",
+      "tags": [
+        "knowledge-graph",
+        "edge",
+        "traversal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/episodic_graph.py:EpisodicGraph",
+      "type": "class",
+      "name": "EpisodicGraph",
+      "filePath": "mnemosyne/core/episodic_graph.py",
+      "lineRange": [
+        188,
+        595
+      ],
+      "summary": "Core episodic knowledge graph manager with CRUD for gists, facts, and edges, graph traversal, proximity queries, and database persistence.",
+      "tags": [
+        "knowledge-graph",
+        "manager",
+        "crud",
+        "traversal"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/core/polyphonic_recall.py:RecallResult",
+      "type": "class",
+      "name": "RecallResult",
+      "filePath": "mnemosyne/core/polyphonic_recall.py",
+      "lineRange": [
+        52,
+        95
+      ],
+      "summary": "Data class for a single recall candidate with content, score, provenance, tier info, and metadata from a voice strategy.",
+      "tags": [
+        "recall",
+        "data-class",
+        "scoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicResult",
+      "type": "class",
+      "name": "PolyphonicResult",
+      "filePath": "mnemosyne/core/polyphonic_recall.py",
+      "lineRange": [
+        98,
+        138
+      ],
+      "summary": "Aggregated recall result combining multiple voice strategies with fused scores, provenance traces, and metadata.",
+      "tags": [
+        "recall",
+        "aggregation",
+        "multi-strategy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "type": "class",
+      "name": "PolyphonicRecallEngine",
+      "filePath": "mnemosyne/core/polyphonic_recall.py",
+      "lineRange": [
+        141,
+        878
+      ],
+      "summary": "Central multi-strategy recall orchestrator running 4 parallel voices (vector, graph, fact, temporal), fusing scores via RRF, applying diversity penalty and budget-aware assembly.",
+      "tags": [
+        "recall",
+        "engine",
+        "multi-strategy",
+        "orchestrator",
+        "rrf"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/core/typed_memory.py:MemoryType",
+      "type": "class",
+      "name": "MemoryType",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        45,
+        200
+      ],
+      "summary": "Enum-like class defining 13 memory types with pattern matchers, default priorities, and decay characteristics for rule-based classification.",
+      "tags": [
+        "classification",
+        "memory-types",
+        "enum",
+        "patterns"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/typed_memory.py:TypeMatch",
+      "type": "class",
+      "name": "TypeMatch",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        203,
+        230
+      ],
+      "summary": "Result container for a type classification match with type, confidence score, and matched pattern details.",
+      "tags": [
+        "classification",
+        "match-result"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/core/veracity_consolidation.py:ConsolidatedFact",
+      "type": "class",
+      "name": "ConsolidatedFact",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "lineRange": [
+        95,
+        175
+      ],
+      "summary": "Persistent fact record with veracity, confidence, occurrence count, and first/last seen timestamps for structured fact consolidation.",
+      "tags": [
+        "consolidation",
+        "fact",
+        "veracity",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/veracity_consolidation.py:VeracityConsolidator",
+      "type": "class",
+      "name": "VeracityConsolidator",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "lineRange": [
+        178,
+        947
+      ],
+      "summary": "Fact consolidation orchestrator handling insert/dedup, veracity aggregation, conflict resolution, serialized writes, and database-backed consolidation passes.",
+      "tags": [
+        "consolidation",
+        "orchestrator",
+        "veracity",
+        "conflicts"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_beam_class",
+      "type": "function",
+      "name": "_get_beam_class",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        48,
+        50
+      ],
+      "summary": "Returns the BeamMemory class for use by the Hermes provider.",
+      "tags": [
+        "utility",
+        "beam",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_triple_module",
+      "type": "function",
+      "name": "_get_triple_module",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        53,
+        55
+      ],
+      "summary": "Returns the TripleStore module reference for triple operations.",
+      "tags": [
+        "utility",
+        "triples",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_prefetch_content_char_limit",
+      "type": "function",
+      "name": "_prefetch_content_char_limit",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        58,
+        74
+      ],
+      "summary": "Reads the MNEMOSYNE_PREFETCH_CONTENT_CHARS env var to cap content length in prefetch responses.",
+      "tags": [
+        "prefetch",
+        "config",
+        "limit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_format_prefetch_content",
+      "type": "function",
+      "name": "_format_prefetch_content",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        77,
+        91
+      ],
+      "summary": "Truncates prefetch content at a word boundary respecting the configured char limit.",
+      "tags": [
+        "prefetch",
+        "formatting",
+        "truncation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_user_limit",
+      "type": "function",
+      "name": "_sync_turn_user_limit",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        94,
+        108
+      ],
+      "summary": "Reads the MNEMOSYNE_SYNC_TURN_USER_LIMIT env var (default 500) for user message truncation in sync_turn.",
+      "tags": [
+        "sync-turn",
+        "config",
+        "limit",
+        "user"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_assistant_limit",
+      "type": "function",
+      "name": "_sync_turn_assistant_limit",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        111,
+        125
+      ],
+      "summary": "Reads the MNEMOSYNE_SYNC_TURN_ASSISTANT_LIMIT env var (default 800) for assistant message truncation in sync_turn.",
+      "tags": [
+        "sync-turn",
+        "config",
+        "limit",
+        "assistant"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_parse_env_float",
+      "type": "function",
+      "name": "_parse_env_float",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        143,
+        151
+      ],
+      "summary": "Safely parses an env var as float with fallback default and error logging.",
+      "tags": [
+        "utility",
+        "env",
+        "parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register_memory_provider",
+      "type": "function",
+      "name": "register_memory_provider",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        1538,
+        1541
+      ],
+      "summary": "Hermes agent entry point that registers MnemosyneMemoryProvider with the agent context.",
+      "tags": [
+        "entry-point",
+        "registration",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register",
+      "type": "function",
+      "name": "register",
+      "filePath": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "lineRange": [
+        1548,
+        1557
+      ],
+      "summary": "Top-level register function called by Hermes plugin system to install the memory provider.",
+      "tags": [
+        "entry-point",
+        "registration",
+        "plugin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/binary_vectors.py:maximally_informative_binarization",
+      "type": "function",
+      "name": "maximally_informative_binarization",
+      "filePath": "mnemosyne/core/binary_vectors.py",
+      "lineRange": [
+        45,
+        82
+      ],
+      "summary": "Converts float32 embeddings to binary vectors using median-based MIB thresholding for 32x compression.",
+      "tags": [
+        "binarization",
+        "compression",
+        "mib",
+        "embeddings"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/binary_vectors.py:hamming_distance",
+      "type": "function",
+      "name": "hamming_distance",
+      "filePath": "mnemosyne/core/binary_vectors.py",
+      "lineRange": [
+        85,
+        125
+      ],
+      "summary": "Computes normalized Hamming distance between two binary vectors using bitwise XOR and popcount.",
+      "tags": [
+        "distance",
+        "hamming",
+        "bitwise"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/typed_memory.py:classify_memory",
+      "type": "function",
+      "name": "classify_memory",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        232,
+        260
+      ],
+      "summary": "Classifies a single memory string into one of 13 memory types using pattern matching.",
+      "tags": [
+        "classification",
+        "memory-type",
+        "pattern-matching"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/typed_memory.py:classify_batch",
+      "type": "function",
+      "name": "classify_batch",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        263,
+        280
+      ],
+      "summary": "Batch classifies multiple memory strings into their respective types.",
+      "tags": [
+        "classification",
+        "batch",
+        "memory-type"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/typed_memory.py:get_type_priority",
+      "type": "function",
+      "name": "get_type_priority",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        283,
+        300
+      ],
+      "summary": "Returns the priority signal for a given memory type (stable, decaying, or time-critical).",
+      "tags": [
+        "priority",
+        "memory-type",
+        "signal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/typed_memory.py:should_consolidate",
+      "type": "function",
+      "name": "should_consolidate",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        303,
+        320
+      ],
+      "summary": "Determines whether a memory of the given type should be consolidated during sleep.",
+      "tags": [
+        "consolidation",
+        "sleep",
+        "memory-type"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/typed_memory.py:get_decay_rate",
+      "type": "function",
+      "name": "get_decay_rate",
+      "filePath": "mnemosyne/core/typed_memory.py",
+      "lineRange": [
+        323,
+        349
+      ],
+      "summary": "Returns the decay rate for a given memory type, controlling how quickly it fades without reinforcement.",
+      "tags": [
+        "decay",
+        "memory-type",
+        "forgetting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/veracity_consolidation.py:compute_fact_id",
+      "type": "function",
+      "name": "compute_fact_id",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "lineRange": [
+        32,
+        60
+      ],
+      "summary": "Computes a deterministic SHA-256 based fact ID from subject, predicate, and object for dedup.",
+      "tags": [
+        "hashing",
+        "fact-id",
+        "dedup",
+        "sha256"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/veracity_consolidation.py:clamp_veracity",
+      "type": "function",
+      "name": "clamp_veracity",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "lineRange": [
+        63,
+        92
+      ],
+      "summary": "Clamps a veracity string to one of the allowed values: stated, tool, inferred, or unknown.",
+      "tags": [
+        "veracity",
+        "validation",
+        "clamping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/veracity_consolidation.py:aggregate_veracity",
+      "type": "function",
+      "name": "aggregate_veracity",
+      "filePath": "mnemosyne/core/veracity_consolidation.py",
+      "lineRange": [
+        130,
+        175
+      ],
+      "summary": "Aggregates multiple veracity observations into a single consolidated veracity using majority-weight logic.",
+      "tags": [
+        "veracity",
+        "aggregation",
+        "majority"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/polyphonic_recall.py:_env_disabled",
+      "type": "function",
+      "name": "_env_disabled",
+      "filePath": "mnemosyne/core/polyphonic_recall.py",
+      "lineRange": [
+        33,
+        48
+      ],
+      "summary": "Checks MNEMOSYNE_DISABLE_POLYPHONIC_RECALL env var to gate the polyphonic engine.",
+      "tags": [
+        "gating",
+        "env",
+        "polyphonic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_beam_e4_remember_batch_veracity.py:TestClampVeracity",
+      "type": "class",
+      "name": "TestClampVeracity",
+      "filePath": "tests/test_beam_e4_remember_batch_veracity.py",
+      "lineRange": [
+        20,
+        100
+      ],
+      "summary": "Tests veracity clamping logic ensuring invalid veracity values are normalized.",
+      "tags": [
+        "test",
+        "veracity",
+        "clamping"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_beam_e4_remember_batch_veracity.py:TestRememberBatchVeracity",
+      "type": "class",
+      "name": "TestRememberBatchVeracity",
+      "filePath": "tests/test_beam_e4_remember_batch_veracity.py",
+      "lineRange": [
+        105,
+        451
+      ],
+      "summary": "Tests veracity propagation through remember_batch ensuring per-row veracity flows to consolidated facts.",
+      "tags": [
+        "test",
+        "veracity",
+        "batch-remember",
+        "consolidation"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "file:integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/typed_memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "class:integrations/hermes/src/mnemosyne_hermes/__init__.py:MnemosyneMemoryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "class:mnemosyne/core/binary_vectors.py:BinaryVectorStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "class:mnemosyne/core/binary_vectors.py:FastBinarySearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:Gist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:Fact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:GraphEdge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:EpisodicGraph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:RecallResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "class:mnemosyne/core/typed_memory.py:MemoryType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "class:mnemosyne/core/typed_memory.py:TypeMatch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:ConsolidatedFact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:VeracityConsolidator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "target": "class:tests/test_beam_e4_remember_batch_veracity.py:TestClampVeracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "target": "class:tests/test_beam_e4_remember_batch_veracity.py:TestRememberBatchVeracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_beam_class",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_triple_module",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_prefetch_content_char_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_format_prefetch_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_user_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_assistant_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_parse_env_float",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register_memory_provider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "function:mnemosyne/core/binary_vectors.py:maximally_informative_binarization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "function:mnemosyne/core/binary_vectors.py:hamming_distance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:classify_memory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:classify_batch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:get_type_priority",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:should_consolidate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:get_decay_rate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:compute_fact_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:clamp_veracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:aggregate_veracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "function:mnemosyne/core/polyphonic_recall.py:_env_disabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_beam_class",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_get_triple_module",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_prefetch_content_char_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_format_prefetch_content",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_user_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_sync_turn_assistant_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:_parse_env_float",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register_memory_provider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "function:integrations/hermes/src/mnemosyne_hermes/__init__.py:register",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "class:integrations/hermes/src/mnemosyne_hermes/__init__.py:MnemosyneMemoryProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "function:mnemosyne/core/binary_vectors.py:maximally_informative_binarization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "function:mnemosyne/core/binary_vectors.py:hamming_distance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "class:mnemosyne/core/binary_vectors.py:BinaryVectorStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "class:mnemosyne/core/binary_vectors.py:FastBinarySearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:Gist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:Fact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:GraphEdge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "class:mnemosyne/core/episodic_graph.py:EpisodicGraph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:RecallResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "function:mnemosyne/core/polyphonic_recall.py:_env_disabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "class:mnemosyne/core/typed_memory.py:MemoryType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "class:mnemosyne/core/typed_memory.py:TypeMatch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:classify_memory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:classify_batch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:get_type_priority",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:should_consolidate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "function:mnemosyne/core/typed_memory.py:get_decay_rate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:compute_fact_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:clamp_veracity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:aggregate_veracity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:ConsolidatedFact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:VeracityConsolidator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "target": "class:mnemosyne/core/episodic_graph.py:EpisodicGraph",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "target": "function:mnemosyne/core/typed_memory.py:classify_memory",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:mnemosyne/core/polyphonic_recall.py:PolyphonicRecallEngine",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:VeracityConsolidator",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_beam_e4_remember_batch_veracity.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_consolidate_fact_concurrency.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_consolidate_fact_id_collision.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_consolidate_fact_sibling_races.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:tests/test_e5a_vector_voice_dense_rewire.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "file:tests/test_graph_tools.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/binary_vectors.py",
+      "target": "file:tests/test_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "file:tests/test_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:tests/test_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/typed_memory.py",
+      "target": "file:tests/test_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_integration.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/veracity_consolidation.py",
+      "target": "file:tests/test_pre_experiment_fidelity.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/episodic_graph.py",
+      "target": "file:tests/test_proactive_linking.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/typed_memory.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:mnemosyne/core/polyphonic_recall.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "file:integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -80,12 +80,16 @@ Returned context can include prior decisions, constraints, failure modes, projec
 
 **Prerequisites:** Hermes Agent (pipx install), Python 3.10+, no API keys needed.
 
+**Do NOT install Mnemosyne inside Hermes' managed venv.** The managed Hermes installer
+rebuilds its venv on every `hermes update`, wiping any packages you added.
+Use pipx (recommended) or a dedicated virtualenv.
+
 ### Install
 
 ```bash
 pipx install mnemosyne-hermes
 hermes config set memory.provider mnemosyne
-hermes memory status
+hermes gateway restart
 ```
 
 That's it. The entry point in `mnemosyne-hermes` registers with Hermes' memory
@@ -93,7 +97,26 @@ provider discovery system (`hermes_agent.memory_providers`). No symlinks. No
 directory copying. No plugin.yaml gymnastics. The provider surfaces
 automatically on the next Hermes start.
 
-Verify:
+### Disable legacy memory
+
+When Mnemosyne is active, disable Hermes' built-in memory to avoid
+duplication and token waste:
+
+```bash
+# Disable built-in MEMORY.md / USER.md storage
+hermes tools disable memory
+
+# Also disable in config.yaml to cover startup paths:
+# memory:
+#   enabled: false
+#   user_profile_enabled: false
+```
+
+Add these to `~/.hermes/config.yaml` under the `memory:` block. Both
+the CLI disable AND the config keys are needed — the CLI handles
+runtime, the config handles startup.
+
+### Verify
 
 ```bash
 hermes memory status
@@ -102,25 +125,23 @@ hermes memory status
 #   Plugin:    installed ✓
 ```
 
-### How it works
-
-When you install via pipx, the package registers two entry points:
-
-- `hermes_agent.memory_providers` - discovered by Hermes' `discover_memory_providers()`
-  so `hermes memory status` sees it as an installed plugin
-- `hermes_agent.plugins` - discovered by Hermes' `PluginManager` for tool and
-  CLI registration
-
-Hermes checks pipx-installed packages alongside directory-based plugins. No
-extra setup steps needed.
-
-### Development install
+### Upgrade
 
 ```bash
-git clone https://github.com/AxDSan/mnemosyne.git
-cd mnemosyne
-pip install -e .
-pipx install -e integrations/hermes   # replaces hook with editable path
+pipx upgrade mnemosyne-hermes
+hermes gateway restart
+```
+
+### Standalone venv (fallback)
+
+If pipx isn't available:
+
+```bash
+python3 -m venv ~/.hermes/mnemosyne-venv
+~/.hermes/mnemosyne-venv/bin/pip install mnemosyne-hermes
+~/.hermes/mnemosyne-venv/bin/mnemosyne-hermes install --force
+hermes config set memory.provider mnemosyne
+hermes gateway restart
 ```
 
 ## Configuration

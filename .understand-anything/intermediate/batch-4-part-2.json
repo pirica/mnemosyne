@@ -1,0 +1,903 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_consolidate_fact_concurrency.py",
+      "type": "file",
+      "name": "test_consolidate_fact_concurrency.py",
+      "filePath": "tests/test_consolidate_fact_concurrency.py",
+      "summary": "Concurrency tests for fact consolidation verifying thread-safe SPO deduplication, correct confidence compounding, and transaction rollback under concurrent access.",
+      "tags": [
+        "test",
+        "concurrency",
+        "consolidation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_consolidate_fact_id_collision.py",
+      "type": "file",
+      "name": "test_consolidate_fact_id_collision.py",
+      "filePath": "tests/test_consolidate_fact_id_collision.py",
+      "summary": "Tests for deterministic fact ID computation ensuring hash-based IDs are stable, collision-resistant, and correctly deduplicate identical SPO triples across varying content lengths.",
+      "tags": [
+        "test",
+        "fact-id",
+        "hashing",
+        "dedup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_consolidate_fact_sibling_races.py",
+      "type": "file",
+      "name": "test_consolidate_fact_sibling_races.py",
+      "filePath": "tests/test_consolidate_fact_sibling_races.py",
+      "summary": "Race condition tests for concurrent conflict resolution in fact consolidation, verifying deterministic winners, idempotent resolution, and safe serialized writes under contention.",
+      "tags": [
+        "test",
+        "race-conditions",
+        "consolidation",
+        "concurrency"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_e5a_vector_voice_dense_rewire.py",
+      "type": "file",
+      "name": "test_e5a_vector_voice_dense_rewire.py",
+      "filePath": "tests/test_e5a_vector_voice_dense_rewire.py",
+      "summary": "Comprehensive tests for the vector voice strategy in polyphonic recall, verifying embedding-based candidate retrieval across WM/EM tiers, empty states, and integration into the RRF pipeline.",
+      "tags": [
+        "test",
+        "vector-voice",
+        "polyphonic-recall",
+        "embeddings"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_graph_tools.py",
+      "type": "file",
+      "name": "test_graph_tools.py",
+      "filePath": "tests/test_graph_tools.py",
+      "summary": "Tests for episodic graph query and link tools used in the memory provider, covering related memory discovery, tool schema generation, query parsing, edge creation, and auto-population.",
+      "tags": [
+        "test",
+        "graph-tools",
+        "episodic-graph"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_integration.py",
+      "type": "file",
+      "name": "test_integration.py",
+      "filePath": "tests/test_integration.py",
+      "summary": "Integration tests exercising typed memory classification, binary vector operations, episodic graph traversal, veracity consolidation, and polyphonic recall end-to-end.",
+      "tags": [
+        "test",
+        "integration",
+        "e2e"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_pre_experiment_fidelity.py",
+      "type": "file",
+      "name": "test_pre_experiment_fidelity.py",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "summary": "Pre-experiment fidelity tests verifying weight centralization, veracity aggregation helper, consolidation-to-episodic veracity pipeline, sleep-cycle veracity, and embedding loop defense.",
+      "tags": [
+        "test",
+        "fidelity",
+        "veracity",
+        "experiment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_proactive_linking.py",
+      "type": "file",
+      "name": "test_proactive_linking.py",
+      "filePath": "tests/test_proactive_linking.py",
+      "summary": "Tests for proactive content and entity linking in the episodic graph, verifying gating logic, non-blocking behavior, edge deduplication, and correct edge types/weights.",
+      "tags": [
+        "test",
+        "proactive-linking",
+        "graph",
+        "entities"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_consolidate_fact_concurrency.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_consolidate_fact_concurrency.py",
+      "lineRange": [
+        100,
+        537
+      ],
+      "summary": "Concurrent consolidation tests for thread safety and transaction isolation.",
+      "tags": [
+        "test",
+        "concurrency",
+        "consolidation",
+        "hardening"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_consolidate_fact_id_collision.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_consolidate_fact_id_collision.py",
+      "lineRange": [
+        20,
+        439
+      ],
+      "summary": "Tests for deterministic fact ID stability and collision resistance across varying inputs.",
+      "tags": [
+        "test",
+        "fact-id",
+        "hashing",
+        "collision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_consolidate_fact_sibling_races.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_consolidate_fact_sibling_races.py",
+      "lineRange": [
+        20,
+        582
+      ],
+      "summary": "Race condition tests for concurrent conflict resolution in fact consolidation.",
+      "tags": [
+        "test",
+        "race-conditions",
+        "conflict-resolution"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e5a_vector_voice_dense_rewire.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_e5a_vector_voice_dense_rewire.py",
+      "lineRange": [
+        30,
+        853
+      ],
+      "summary": "Tests for vector voice retrieval strategy including embedding search, empty states, and polyphonic integration.",
+      "tags": [
+        "test",
+        "vector-voice",
+        "embeddings",
+        "polyphonic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_graph_tools.py:TestFindRelatedMemories",
+      "type": "class",
+      "name": "TestFindRelatedMemories",
+      "filePath": "tests/test_graph_tools.py",
+      "lineRange": [
+        20,
+        80
+      ],
+      "summary": "Tests for finding related memories via episodic graph traversal.",
+      "tags": [
+        "test",
+        "related-memories",
+        "graph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_graph_tools.py:TestGraphToolSchemas",
+      "type": "class",
+      "name": "TestGraphToolSchemas",
+      "filePath": "tests/test_graph_tools.py",
+      "lineRange": [
+        85,
+        130
+      ],
+      "summary": "Tests graph tool JSON schema generation for graph_query and graph_link tools.",
+      "tags": [
+        "test",
+        "tool-schemas",
+        "graph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_graph_tools.py:TestGraphQueryTool",
+      "type": "class",
+      "name": "TestGraphQueryTool",
+      "filePath": "tests/test_graph_tools.py",
+      "lineRange": [
+        135,
+        180
+      ],
+      "summary": "Tests the graph_query tool handler for querying episodic graph nodes and edges.",
+      "tags": [
+        "test",
+        "graph-query",
+        "tool"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_graph_tools.py:TestGraphLinkTool",
+      "type": "class",
+      "name": "TestGraphLinkTool",
+      "filePath": "tests/test_graph_tools.py",
+      "lineRange": [
+        185,
+        230
+      ],
+      "summary": "Tests the graph_link tool handler for creating edges in the episodic graph.",
+      "tags": [
+        "test",
+        "graph-link",
+        "tool"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_graph_tools.py:TestAutoPopulatedEdges",
+      "type": "class",
+      "name": "TestAutoPopulatedEdges",
+      "filePath": "tests/test_graph_tools.py",
+      "lineRange": [
+        235,
+        272
+      ],
+      "summary": "Tests automatic edge population behavior in the episodic graph.",
+      "tags": [
+        "test",
+        "auto-populated",
+        "edges"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestTypedMemory",
+      "type": "class",
+      "name": "TestTypedMemory",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        10,
+        50
+      ],
+      "summary": "Integration test for typed memory classification.",
+      "tags": [
+        "test",
+        "integration",
+        "typed-memory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestBinaryVectors",
+      "type": "class",
+      "name": "TestBinaryVectors",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        55,
+        95
+      ],
+      "summary": "Integration test for binary vector operations.",
+      "tags": [
+        "test",
+        "integration",
+        "binary-vectors"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestEpisodicGraph",
+      "type": "class",
+      "name": "TestEpisodicGraph",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        100,
+        140
+      ],
+      "summary": "Integration test for episodic graph traversal.",
+      "tags": [
+        "test",
+        "integration",
+        "episodic-graph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestVeracityConsolidation",
+      "type": "class",
+      "name": "TestVeracityConsolidation",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        145,
+        185
+      ],
+      "summary": "Integration test for veracity consolidation pipeline.",
+      "tags": [
+        "test",
+        "integration",
+        "veracity",
+        "consolidation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestPolyphonicRecall",
+      "type": "class",
+      "name": "TestPolyphonicRecall",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        190,
+        230
+      ],
+      "summary": "Integration test for polyphonic recall engine.",
+      "tags": [
+        "test",
+        "integration",
+        "polyphonic-recall"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_integration.py:TestIntegration",
+      "type": "class",
+      "name": "TestIntegration",
+      "filePath": "tests/test_integration.py",
+      "lineRange": [
+        235,
+        268
+      ],
+      "summary": "End-to-end integration test exercising the full memory pipeline.",
+      "tags": [
+        "test",
+        "integration",
+        "e2e"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestC29WeightCentralization",
+      "type": "class",
+      "name": "TestC29WeightCentralization",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        20,
+        120
+      ],
+      "summary": "Tests for weight centralization ensuring scoring weights are correctly normalized.",
+      "tags": [
+        "test",
+        "weight-centralization",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestAggregateVeracityHelper",
+      "type": "class",
+      "name": "TestAggregateVeracityHelper",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        125,
+        220
+      ],
+      "summary": "Tests for the aggregate_veracity helper function used in consolidation.",
+      "tags": [
+        "test",
+        "veracity",
+        "aggregation",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestE4a1ConsolidateToEpisodicVeracity",
+      "type": "class",
+      "name": "TestE4a1ConsolidateToEpisodicVeracity",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        225,
+        350
+      ],
+      "summary": "Tests the consolidation-to-episodic veracity pipeline ensuring facts carry correct veracity into episodic storage.",
+      "tags": [
+        "test",
+        "consolidation",
+        "veracity",
+        "episodic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestE4a1SleepEndToEndVeracity",
+      "type": "class",
+      "name": "TestE4a1SleepEndToEndVeracity",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        355,
+        470
+      ],
+      "summary": "End-to-end test of veracity flow through the sleep cycle from consolidation to episodic storage.",
+      "tags": [
+        "test",
+        "sleep",
+        "veracity",
+        "e2e"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestE2a10EmbeddingLoopDefense",
+      "type": "class",
+      "name": "TestE2a10EmbeddingLoopDefense",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        475,
+        530
+      ],
+      "summary": "Tests preventing infinite embedding generation loops during write operations.",
+      "tags": [
+        "test",
+        "embedding",
+        "loop-defense"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_pre_experiment_fidelity.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_pre_experiment_fidelity.py",
+      "lineRange": [
+        535,
+        588
+      ],
+      "summary": "Review hardening tests for fidelity of pre-experiment validation.",
+      "tags": [
+        "test",
+        "review",
+        "hardening"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestProactiveContentLinking",
+      "type": "class",
+      "name": "TestProactiveContentLinking",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        20,
+        100
+      ],
+      "summary": "Tests proactive linking of new memories to existing ones based on content similarity.",
+      "tags": [
+        "test",
+        "proactive-linking",
+        "content"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestProactiveEntityLinking",
+      "type": "class",
+      "name": "TestProactiveEntityLinking",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        105,
+        170
+      ],
+      "summary": "Tests entity-based proactive linking between memories sharing named entities.",
+      "tags": [
+        "test",
+        "proactive-linking",
+        "entities"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestProactiveLinkingGating",
+      "type": "class",
+      "name": "TestProactiveLinkingGating",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        175,
+        220
+      ],
+      "summary": "Tests that proactive linking can be enabled/disabled via feature gates.",
+      "tags": [
+        "test",
+        "gating",
+        "proactive-linking"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestNonBlocking",
+      "type": "class",
+      "name": "TestNonBlocking",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        225,
+        260
+      ],
+      "summary": "Tests that linking failures do not block memory write operations.",
+      "tags": [
+        "test",
+        "non-blocking",
+        "resilience"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestEdgeDeduplication",
+      "type": "class",
+      "name": "TestEdgeDeduplication",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        265,
+        295
+      ],
+      "summary": "Tests that linking does not produce duplicate edges between the same node pair.",
+      "tags": [
+        "test",
+        "dedup",
+        "edges"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_proactive_linking.py:TestEdgeTypesAndWeights",
+      "type": "class",
+      "name": "TestEdgeTypesAndWeights",
+      "filePath": "tests/test_proactive_linking.py",
+      "lineRange": [
+        300,
+        332
+      ],
+      "summary": "Tests that linked edges have correct types and weight values.",
+      "tags": [
+        "test",
+        "edge-types",
+        "weights"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_consolidate_fact_concurrency.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_id_collision.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_sibling_races.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e5a_vector_voice_dense_rewire.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e5a_vector_voice_dense_rewire.py",
+      "target": "file:mnemosyne/core/polyphonic_recall.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "file:mnemosyne/core/binary_vectors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "file:mnemosyne/core/polyphonic_recall.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "file:mnemosyne/core/typed_memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "file:mnemosyne/core/veracity_consolidation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "file:mnemosyne/core/episodic_graph.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_concurrency.py",
+      "target": "class:tests/test_consolidate_fact_concurrency.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_id_collision.py",
+      "target": "class:tests/test_consolidate_fact_id_collision.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_sibling_races.py",
+      "target": "class:tests/test_consolidate_fact_sibling_races.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e5a_vector_voice_dense_rewire.py",
+      "target": "class:tests/test_e5a_vector_voice_dense_rewire.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "class:tests/test_graph_tools.py:TestFindRelatedMemories",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "class:tests/test_graph_tools.py:TestGraphToolSchemas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "class:tests/test_graph_tools.py:TestGraphQueryTool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "class:tests/test_graph_tools.py:TestGraphLinkTool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_graph_tools.py",
+      "target": "class:tests/test_graph_tools.py:TestAutoPopulatedEdges",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestTypedMemory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestBinaryVectors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestEpisodicGraph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestVeracityConsolidation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestPolyphonicRecall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_integration.py",
+      "target": "class:tests/test_integration.py:TestIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestC29WeightCentralization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestAggregateVeracityHelper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestE4a1ConsolidateToEpisodicVeracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestE4a1SleepEndToEndVeracity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestE2a10EmbeddingLoopDefense",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_pre_experiment_fidelity.py",
+      "target": "class:tests/test_pre_experiment_fidelity.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestProactiveContentLinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestProactiveEntityLinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestProactiveLinkingGating",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestNonBlocking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestEdgeDeduplication",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_proactive_linking.py",
+      "target": "class:tests/test_proactive_linking.py:TestEdgeTypesAndWeights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_concurrency.py",
+      "target": "class:mnemosyne/core/veracity_consolidation.py:VeracityConsolidator",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tests/test_consolidate_fact_id_collision.py",
+      "target": "function:mnemosyne/core/veracity_consolidation.py:compute_fact_id",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

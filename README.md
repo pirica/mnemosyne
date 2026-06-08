@@ -62,13 +62,18 @@ See [docs/integrations/](docs/integrations/README.md) for complete setup guides 
 ## Quick Start
 
 ```bash
-pip install mnemosyne-memory
+# Install (pipx recommended for stability)
+pipx install mnemosyne-memory
 
 # With all features (vector search + MCP server)
-pip install "mnemosyne-memory[all]"
+pipx install "mnemosyne-memory[all]"
+
+# Or traditional pip
+pip install mnemosyne-memory
 
 # Upgrade
 pip install --upgrade mnemosyne-memory
+# or: pipx upgrade mnemosyne-memory
 ```
 
 ### Add to your agent

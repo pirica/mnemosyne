@@ -1,0 +1,602 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "integrations/vscode-mnemosyne/src/client.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 190,
+      "nonEmptyLines": 180,
+      "classes": [
+        {
+          "name": "MnemosyneClient",
+          "startLine": 22,
+          "endLine": 190,
+          "methods": [
+            "constructor",
+            "runPython",
+            "search",
+            "getStats",
+            "remember",
+            "listRecent"
+          ],
+          "properties": [
+            "pythonCmd"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MnemosyneClient",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "execSync",
+          "lineNumber": 29
+        },
+        {
+          "caller": "constructor",
+          "callee": "execSync",
+          "lineNumber": 32
+        },
+        {
+          "caller": "runPython",
+          "callee": "execAsync",
+          "lineNumber": 44
+        },
+        {
+          "caller": "runPython",
+          "callee": "JSON.stringify",
+          "lineNumber": 45
+        },
+        {
+          "caller": "runPython",
+          "callee": "console.error",
+          "lineNumber": 48
+        },
+        {
+          "caller": "runPython",
+          "callee": "stdout.trim",
+          "lineNumber": 49
+        },
+        {
+          "caller": "search",
+          "callee": "JSON.stringify",
+          "lineNumber": 60
+        },
+        {
+          "caller": "search",
+          "callee": "this.runPython",
+          "lineNumber": 76
+        },
+        {
+          "caller": "search",
+          "callee": "JSON.parse",
+          "lineNumber": 78
+        },
+        {
+          "caller": "search",
+          "callee": "console.error",
+          "lineNumber": 80
+        },
+        {
+          "caller": "getStats",
+          "callee": "this.runPython",
+          "lineNumber": 116
+        },
+        {
+          "caller": "getStats",
+          "callee": "JSON.parse",
+          "lineNumber": 118
+        },
+        {
+          "caller": "remember",
+          "callee": "JSON.stringify",
+          "lineNumber": 132
+        },
+        {
+          "caller": "remember",
+          "callee": "JSON.stringify",
+          "lineNumber": 132
+        },
+        {
+          "caller": "remember",
+          "callee": "this.runPython",
+          "lineNumber": 137
+        },
+        {
+          "caller": "remember",
+          "callee": "JSON.parse",
+          "lineNumber": 139
+        },
+        {
+          "caller": "listRecent",
+          "callee": "this.runPython",
+          "lineNumber": 183
+        },
+        {
+          "caller": "listRecent",
+          "callee": "JSON.parse",
+          "lineNumber": 185
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/extension.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "activate",
+          "startLine": 9,
+          "endLine": 85,
+          "params": [
+            "context"
+          ]
+        },
+        {
+          "name": "deactivate",
+          "startLine": 87,
+          "endLine": 89,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "activate",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "deactivate",
+          "line": 87,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 15
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.registerWebviewViewProvider",
+          "lineNumber": 16
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 20
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.commands.registerCommand",
+          "lineNumber": 21
+        },
+        {
+          "caller": "activate",
+          "callee": "provider.refresh",
+          "lineNumber": 22
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.showInformationMessage",
+          "lineNumber": 23
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 27
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.commands.registerCommand",
+          "lineNumber": 28
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.showInputBox",
+          "lineNumber": 29
+        },
+        {
+          "caller": "activate",
+          "callee": "client.search",
+          "lineNumber": 34
+        },
+        {
+          "caller": "activate",
+          "callee": "provider.showResults",
+          "lineNumber": 35
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 40
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.commands.registerCommand",
+          "lineNumber": 41
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.showInputBox",
+          "lineNumber": 42
+        },
+        {
+          "caller": "activate",
+          "callee": "text.trim",
+          "lineNumber": 45
+        },
+        {
+          "caller": "activate",
+          "callee": "client.remember",
+          "lineNumber": 48
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.showInformationMessage",
+          "lineNumber": 49
+        },
+        {
+          "caller": "activate",
+          "callee": "provider.refresh",
+          "lineNumber": 50
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 55
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.commands.registerCommand",
+          "lineNumber": 56
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.Uri.joinPath",
+          "lineNumber": 57
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.Uri.file",
+          "lineNumber": 58
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.workspace.openTextDocument",
+          "lineNumber": 61
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.showTextDocument",
+          "lineNumber": 62
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.window.createStatusBarItem",
+          "lineNumber": 67
+        },
+        {
+          "caller": "activate",
+          "callee": "statusBar.show",
+          "lineNumber": 74
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 75
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.workspace.getConfiguration('mnemosyne').get",
+          "lineNumber": 78
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.workspace.getConfiguration",
+          "lineNumber": 78
+        },
+        {
+          "caller": "activate",
+          "callee": "context.subscriptions.push",
+          "lineNumber": 79
+        },
+        {
+          "caller": "activate",
+          "callee": "vscode.workspace.onDidSaveTextDocument",
+          "lineNumber": 80
+        },
+        {
+          "caller": "activate",
+          "callee": "provider.refresh",
+          "lineNumber": 80
+        },
+        {
+          "caller": "activate",
+          "callee": "console.log",
+          "lineNumber": 84
+        },
+        {
+          "caller": "deactivate",
+          "callee": "console.log",
+          "lineNumber": 88
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/provider.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 168,
+      "nonEmptyLines": 152,
+      "classes": [
+        {
+          "name": "MemoriesProvider",
+          "startLine": 4,
+          "endLine": 168,
+          "methods": [
+            "constructor",
+            "resolveWebviewView",
+            "refresh",
+            "showResults",
+            "_refresh",
+            "_renderResults",
+            "_getHtml",
+            "_escape"
+          ],
+          "properties": [
+            "_view",
+            "_results"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MemoriesProvider",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._getHtml",
+          "lineNumber": 25
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._refresh",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "webviewView.webview.onDidReceiveMessage",
+          "lineNumber": 29
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._refresh",
+          "lineNumber": 32
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._client.search",
+          "lineNumber": 36
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._renderResults",
+          "lineNumber": 37
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "this._refresh",
+          "lineNumber": 40
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "vscode.commands.executeCommand",
+          "lineNumber": 44
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "vscode.window.showInformationMessage",
+          "lineNumber": 48
+        },
+        {
+          "caller": "resolveWebviewView",
+          "callee": "(message.content || '').substring",
+          "lineNumber": 49
+        },
+        {
+          "caller": "refresh",
+          "callee": "this._refresh",
+          "lineNumber": 58
+        },
+        {
+          "caller": "showResults",
+          "callee": "this._renderResults",
+          "lineNumber": 63
+        },
+        {
+          "caller": "_refresh",
+          "callee": "Promise.all",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_refresh",
+          "callee": "this._client.getStats",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_refresh",
+          "callee": "this._client.listRecent",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_refresh",
+          "callee": "this._getHtml",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_renderResults",
+          "callee": "this._getHtml",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "Object.entries(stats.tiers || {})\n          .map(([tier, count]) => `<span class=\"stat\">${count} ${tier.replace('_', ' ')}</span>`)\n          .join",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "Object.entries(stats.tiers || {})\n          .map",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "Object.entries",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "tier.replace",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "memories.map(m => `\n        <div class=\"memory\" onclick=\"vscode.postMessage({type:'openDetail',content:${JSON.stringify(m.content)}})\">\n          <div class=\"meta\">\n            <span class=\"tag ${m.tier}\">${m.tier.replace('_', ' ')}</span>\n            <span class=\"src\">${m.source}</span>\n            <span class=\"imp\">${'★'.repeat(Math.max(1, Math.round(m.importance * 5)))}</span>\n          </div>\n          <div class=\"content\">${this._escape(m.content)}</div>\n          <div class=\"ts\">${(m.timestamp || '').substring(0, 19)}</div>\n        </div>`).join",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "memories.map",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "JSON.stringify",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "m.tier.replace",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "'★'.repeat",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "Math.max",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "Math.round",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "this._escape",
+          "lineNumber": 97
+        },
+        {
+          "caller": "_getHtml",
+          "callee": "(m.timestamp || '').substring",
+          "lineNumber": 98
+        },
+        {
+          "caller": "_escape",
+          "callee": "text\n      .replace(/&/g, '&amp;')\n      .replace(/</g, '&lt;')\n      .replace(/>/g, '&gt;')\n      .replace",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_escape",
+          "callee": "text\n      .replace(/&/g, '&amp;')\n      .replace(/</g, '&lt;')\n      .replace",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_escape",
+          "callee": "text\n      .replace(/&/g, '&amp;')\n      .replace",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_escape",
+          "callee": "text\n      .replace",
+          "lineNumber": 162
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/webview.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 16,
+      "classes": [
+        {
+          "name": "MemoryWebview",
+          "startLine": 6,
+          "endLine": 18,
+          "methods": [
+            "constructor",
+            "show"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MemoryWebview",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "show",
+          "callee": "vscode.window.createWebviewPanel",
+          "lineNumber": 10
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    }
+  ]
+}

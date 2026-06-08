@@ -1,0 +1,73 @@
+{
+  "batchIndex": 18,
+  "schemaVersion": 1,
+  "description": "Obsidian Mnemosyne integration plugin files (docs + config) — 3 files",
+  "nodes": [
+    {
+      "id": "file:integrations/obsidian-mnemosyne/README.md",
+      "type": "file",
+      "name": "README.md",
+      "filePath": "integrations/obsidian-mnemosyne/README.md",
+      "status": "existing",
+      "summary": "README documentation for the Mnemosyne Sync Obsidian plugin. Describes a plugin that exports Mnemosyne AI agent memories as markdown notes with YAML frontmatter into an Obsidian vault. Lists 6 features: memory sync, searchable notes, smart merge (won't overwrite edited notes), auto-sync (5-120 min interval), filtering (option to exclude assistant messages), and ribbon icon. Covers 2 installation methods (Obsidian Community Store coming soon, manual download from GitHub releases). Lists requirements: Mnemosyne installed (pip install mnemosyne-memory), Python 3.9+, desktop Obsidian. Defines 6 settings: data directory (~-relative path to Mnemosyne DB), memory bank selection, sync folder in vault, auto-sync toggle, sync interval in minutes, and include assistant toggle (default: user only). 43 lines.",
+      "tags": ["documentation", "obsidian-plugin", "readme", "plugin-config", "sync"],
+      "complexity": "simple",
+      "languageNotes": "Markdown documentation with a markdown table summarizing plugin settings. Includes bash commands for pip installation and descriptive lists for features. Makes no mention of API endpoints, authentication, or cloud services — purely local-first design."
+    },
+    {
+      "id": "file:integrations/obsidian-mnemosyne/manifest.json",
+      "type": "file",
+      "name": "manifest.json",
+      "filePath": "integrations/obsidian-mnemosyne/manifest.json",
+      "status": "existing",
+      "summary": "Obsidian plugin manifest defining the mnemosyne-sync plugin. Plugin ID: 'mnemosyne-sync', display name: 'Mnemosyne Sync', version 0.1.0, minimum Obsidian app version 1.5.0. Description: 'Browse, search, and manage Mnemosyne AI agent memories as markdown notes in your vault.' Author: Abdias J (github.com/AxDSan), desktop-only plugin, with a funding URL for GitHub Sponsors. 11 lines of JSON, minimal and standard Obsidian manifest format.",
+      "tags": ["config", "obsidian-plugin-manifest", "version-0.1.0", "identity"],
+      "complexity": "simple",
+      "languageNotes": "JSON following the Obsidian plugin manifest schema. Requires obsidian >=1.5.0, isDesktopOnly: true confirms it's a desktop-only plugin (no mobile support in v0.1.0)."
+    },
+    {
+      "id": "file:integrations/obsidian-mnemosyne/package.json",
+      "type": "file",
+      "name": "package.json",
+      "filePath": "integrations/obsidian-mnemosyne/package.json",
+      "status": "existing",
+      "summary": "Node.js package definition for the mnemosyne-sync Obsidian plugin build toolchain. Package name: 'mnemosyne-sync', version 0.1.0, MIT license. Main entry point: main.js. Two npm scripts: 'dev' (node esbuild.config.mjs) for development and 'build' (tsc -noEmit -skipLibCheck && node esbuild.config.mjs production) for production. Keywords: mnemosyne, memory, ai, agent, sync. Author: Abdias J. DevDependencies: @types/node ^20.0.0, builtin-modules 3.3.0, esbuild 0.19.0, obsidian ^1.5.0, tslib 2.6.0, typescript ^5.3.0. No production dependencies — the plugin is built with esbuild + TypeScript targeting the Obsidian API. 21 lines.",
+      "tags": ["config", "package-definition", "build-toolchain", "typescript", "esbuild"],
+      "complexity": "simple",
+      "languageNotes": "Standard npm package.json. Build relies on esbuild (a fast JS bundler) and TypeScript compiler (tsc). The obsidian devDependency at ^1.5.0 provides Obsidian API type definitions. No runtime dependencies — the plugin bundles directly into main.js."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:integrations/obsidian-mnemosyne/README.md",
+      "target": "file:integrations/obsidian-mnemosyne/manifest.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:integrations/obsidian-mnemosyne/README.md",
+      "target": "file:integrations/obsidian-mnemosyne/package.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:integrations/obsidian-mnemosyne/manifest.json",
+      "target": "file:integrations/obsidian-mnemosyne/package.json",
+      "type": "co-versioned",
+      "direction": "bidirectional",
+      "weight": 1.0
+    }
+  ],
+  "metadata": {
+    "generatedAt": "2026-06-03T00:08:00.000Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 3,
+    "categories": ["docs", "config"],
+    "types": ["document", "json"],
+    "existingFiles": 3,
+    "missingFiles": 0,
+    "fileStatusSummary": "All 3 files exist on disk. The obsidian-mnemosyne integration is a minimal v0.1.0 plugin with documentation (README.md), plugin manifest (manifest.json), and build config (package.json). A companion source file (main.ts) exists in the same directory but is not part of this batch."
+  }
+}

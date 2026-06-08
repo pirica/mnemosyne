@@ -1,0 +1,77 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {
+      "path": "docs/integrations/README.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/claude-code-mcp.md",
+      "language": "markdown",
+      "sizeLines": 64,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/codex-mcp.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/cursor-mcp.md",
+      "language": "markdown",
+      "sizeLines": 51,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/custom-mcp-server.md",
+      "language": "markdown",
+      "sizeLines": 0,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/openwebui-bridge.md",
+      "language": "markdown",
+      "sizeLines": 0,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/vscode.md",
+      "language": "markdown",
+      "sizeLines": 0,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/windsurf-mcp.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "mkdocs.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 72,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    "docs/integrations/README.md": [],
+    "docs/integrations/claude-code-mcp.md": [],
+    "docs/integrations/codex-mcp.md": [],
+    "docs/integrations/cursor-mcp.md": [],
+    "docs/integrations/custom-mcp-server.md": [],
+    "docs/integrations/openwebui-bridge.md": [],
+    "docs/integrations/vscode.md": [],
+    "docs/integrations/windsurf-mcp.md": [],
+    "mkdocs.yml": [],
+    "pyproject.toml": []
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "batchIndex": 12,
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "file:.github/workflows/ci.yml",
+      "type": "file",
+      "name": "ci.yml",
+      "filePath": ".github/workflows/ci.yml",
+      "summary": "GitHub Actions CI workflow triggered on push/PR to main/master. Runs the test suite across Python 3.10-3.13 with a matrix strategy (pytest), then builds the package and validates it with twine on Python 3.11.",
+      "tags": ["pipeline", "ci", "github-actions", "testing", "build"],
+      "complexity": "moderate",
+      "languageNotes": "GitHub Actions YAML workflow with a two-job structure: a matrix-strategy test job and a sequential build+twine-check job, both using pinned action SHAs."
+    },
+    {
+      "id": "pipeline-job:.github/workflows/ci.yml:test",
+      "type": "pipeline-job",
+      "name": "test",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [10, 30],
+      "summary": "Matrix test job running pytest on Python 3.10, 3.11, 3.12, and 3.13. Installs the package with all extras and dev dependencies before executing the test suite.",
+      "tags": ["ci", "test", "matrix", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "pipeline-job:.github/workflows/ci.yml:build",
+      "type": "pipeline-job",
+      "name": "build",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [32, 51],
+      "summary": "Build job on Python 3.11 that installs build+twine, builds the Python package with python -m build, and validates the built artifacts with twine check.",
+      "tags": ["ci", "build", "packaging", "twine"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.github/workflows/release.yml",
+      "type": "file",
+      "name": "release.yml",
+      "filePath": ".github/workflows/release.yml",
+      "summary": "GitHub Actions Release workflow triggered on version tag pushes (v*). Builds the Python package, creates a GitHub Release with auto-generated release notes, and publishes the package to PyPI using Trusted Publishing (id-token).",
+      "tags": ["pipeline", "release", "github-actions", "pypi", "publishing"],
+      "complexity": "moderate",
+      "languageNotes": "GitHub Actions YAML workflow with a single build-and-release job using softprops/action-gh-release for GitHub Releases and pypa/gh-action-pypi-publish for PyPI publication. Requires contents:write and id-token:write permissions."
+    },
+    {
+      "id": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "type": "pipeline-job",
+      "name": "build-and-release",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [13, 39],
+      "summary": "Single job that checks out the repo, sets up Python 3.11, installs build dependencies, builds the package, creates a GitHub Release with the dist/ artifacts attached, and publishes to PyPI via pypa/gh-action-pypi-publish.",
+      "tags": ["release", "pypi", "github-release", "build", "publishing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:test:checkout",
+      "type": "pipeline-step",
+      "name": "Checkout",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [17, 17],
+      "summary": "Checks out repository source code using actions/checkout@v4.3.1.",
+      "tags": ["checkout", "setup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:test:setup-python",
+      "type": "pipeline-step",
+      "name": "Set up Python",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [19, 22],
+      "summary": "Configures the requested matrix Python version using actions/setup-python@v5.6.0.",
+      "tags": ["setup", "python"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:test:install-deps",
+      "type": "pipeline-step",
+      "name": "Install dependencies",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [24, 27],
+      "summary": "Upgrades pip and installs the package with all extra and dev dependencies.",
+      "tags": ["dependencies", "install"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:test:run-tests",
+      "type": "pipeline-step",
+      "name": "Run tests",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [29, 30],
+      "summary": "Executes test suite via pytest with verbose output and short traceback format.",
+      "tags": ["testing", "pytest"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:build:checkout",
+      "type": "pipeline-step",
+      "name": "Checkout",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [35, 35],
+      "summary": "Checks out repository source code using actions/checkout@v4.3.1.",
+      "tags": ["checkout", "setup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:build:setup-python",
+      "type": "pipeline-step",
+      "name": "Set up Python",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [37, 40],
+      "summary": "Configures Python 3.11 using actions/setup-python@v5.6.0 for the build job.",
+      "tags": ["setup", "python"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:build:install-build-deps",
+      "type": "pipeline-step",
+      "name": "Install build dependencies",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [42, 45],
+      "summary": "Installs build and twine for package building and validation.",
+      "tags": ["dependencies", "build", "twine"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:build:build-package",
+      "type": "pipeline-step",
+      "name": "Build package",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [47, 48],
+      "summary": "Builds the Python package distribution files using python -m build.",
+      "tags": ["build", "packaging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/ci.yml:build:twine-check",
+      "type": "pipeline-step",
+      "name": "Check package with twine",
+      "filePath": ".github/workflows/ci.yml",
+      "lineRange": [50, 51],
+      "summary": "Validates the built distribution files using twine check.",
+      "tags": ["validation", "twine", "quality"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:checkout",
+      "type": "pipeline-step",
+      "name": "Checkout",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [16, 17],
+      "summary": "Checks out repository source code using actions/checkout@v4.3.1.",
+      "tags": ["checkout", "setup"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:setup-python",
+      "type": "pipeline-step",
+      "name": "Set up Python",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [19, 22],
+      "summary": "Configures Python 3.11 using actions/setup-python@v5.6.0 for the release job.",
+      "tags": ["setup", "python"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:install-build-deps",
+      "type": "pipeline-step",
+      "name": "Install build dependencies",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [24, 27],
+      "summary": "Installs build for package building.",
+      "tags": ["dependencies", "build"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:build-package",
+      "type": "pipeline-step",
+      "name": "Build package",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [29, 30],
+      "summary": "Builds the Python package distribution files using python -m build.",
+      "tags": ["build", "packaging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:create-release",
+      "type": "pipeline-step",
+      "name": "Create GitHub Release",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [32, 36],
+      "summary": "Creates a GitHub Release with the built dist artifacts and auto-generated release notes using softprops/action-gh-release@v2.6.2.",
+      "tags": ["github-release", "publishing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "pipeline-step:.github/workflows/release.yml:build-and-release:publish-pypi",
+      "type": "pipeline-step",
+      "name": "Publish to PyPI",
+      "filePath": ".github/workflows/release.yml",
+      "lineRange": [38, 39],
+      "summary": "Publishes the built package to PyPI using pypa/gh-action-pypi-publish with Trusted Publishing (id-token).",
+      "tags": ["pypi", "publishing", "trusted-publishing"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.github/workflows/ci.yml",
+      "target": "pipeline-job:.github/workflows/ci.yml:test",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/workflows/ci.yml",
+      "target": "pipeline-job:.github/workflows/ci.yml:build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/workflows/release.yml",
+      "target": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:test",
+      "target": "pipeline-step:.github/workflows/ci.yml:test:checkout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:test",
+      "target": "pipeline-step:.github/workflows/ci.yml:test:setup-python",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:test",
+      "target": "pipeline-step:.github/workflows/ci.yml:test:install-deps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:test",
+      "target": "pipeline-step:.github/workflows/ci.yml:test:run-tests",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:build",
+      "target": "pipeline-step:.github/workflows/ci.yml:build:checkout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:build",
+      "target": "pipeline-step:.github/workflows/ci.yml:build:setup-python",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:build",
+      "target": "pipeline-step:.github/workflows/ci.yml:build:install-build-deps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:build",
+      "target": "pipeline-step:.github/workflows/ci.yml:build:build-package",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/ci.yml:build",
+      "target": "pipeline-step:.github/workflows/ci.yml:build:twine-check",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:checkout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:setup-python",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:install-build-deps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:build-package",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:create-release",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "pipeline-job:.github/workflows/release.yml:build-and-release",
+      "target": "pipeline-step:.github/workflows/release.yml:build-and-release:publish-pypi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

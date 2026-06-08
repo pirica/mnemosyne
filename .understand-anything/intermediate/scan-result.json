@@ -1,0 +1,2226 @@
+{
+  "name": "mnemosyne-memory",
+  "description": "The Universal Memory Layer for Any AI Agent — Zero-Dependency, Sub-Millisecond, Fully Private. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "languages": [
+    "dockerfile",
+    "in",
+    "json",
+    "markdown",
+    "python",
+    "shell",
+    "toml",
+    "txt",
+    "typescript",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "Docker",
+    "Docker Compose",
+    "GitHub Actions",
+    "pytest"
+  ],
+  "files": [
+    {
+      "path": "__init__.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".dockerignore",
+      "language": "unknown",
+      "sizeLines": 14,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".githooks/pre-commit",
+      "language": "unknown",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".githooks/pre-push",
+      "language": "unknown",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".github/FUNDING.yml",
+      "language": "yaml",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "language": "markdown",
+      "sizeLines": 74,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "language": "yaml",
+      "sizeLines": 7,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/docs_improvement.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "language": "markdown",
+      "sizeLines": 29,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "language": "markdown",
+      "sizeLines": 32,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "language": "yaml",
+      "sizeLines": 51,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "language": "yaml",
+      "sizeLines": 39,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".mailmap",
+      "language": "unknown",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "language": "markdown",
+      "sizeLines": 783,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "language": "markdown",
+      "sizeLines": 132,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CONTRIBUTING_LANGUAGES.md",
+      "language": "markdown",
+      "sizeLines": 179,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "language": "markdown",
+      "sizeLines": 93,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 16,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 44,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "docs/api-reference.md",
+      "language": "markdown",
+      "sizeLines": 750,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/architecture.md",
+      "language": "markdown",
+      "sizeLines": 167,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/audit-report-2026-05-11.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/audit-report-2026-05-13.md",
+      "language": "markdown",
+      "sizeLines": 148,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/audit-workflow.md",
+      "language": "markdown",
+      "sizeLines": 408,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/beam-benchmark.md",
+      "language": "markdown",
+      "sizeLines": 125,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/benchmark-results-analysis.md",
+      "language": "markdown",
+      "sizeLines": 433,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/benchmarking.md",
+      "language": "markdown",
+      "sizeLines": 309,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/changelog.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/comparison.md",
+      "language": "markdown",
+      "sizeLines": 274,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/compression-plugin.md",
+      "language": "markdown",
+      "sizeLines": 54,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/configuration.md",
+      "language": "markdown",
+      "sizeLines": 263,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/experiments/2026-05-12-beam-recovery-arms-abc.md",
+      "language": "markdown",
+      "sizeLines": 307,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/getting-started.md",
+      "language": "markdown",
+      "sizeLines": 80,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/hermes-integration.md",
+      "language": "markdown",
+      "sizeLines": 130,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/hermes-llm-integration.md",
+      "language": "markdown",
+      "sizeLines": 151,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/claude-code-mcp.md",
+      "language": "markdown",
+      "sizeLines": 64,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/codex-mcp.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/cursor-mcp.md",
+      "language": "markdown",
+      "sizeLines": 51,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/hermes-mcp.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/integration-template.md",
+      "language": "markdown",
+      "sizeLines": 159,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/openclaw.md",
+      "language": "markdown",
+      "sizeLines": 79,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/openwebui-deep.md",
+      "language": "markdown",
+      "sizeLines": 125,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/openwebui-tool.md",
+      "language": "markdown",
+      "sizeLines": 65,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/README.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/integrations/windsurf-mcp.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/llm-installation-guide.md",
+      "language": "markdown",
+      "sizeLines": 311,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/README.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "hermes_memory_provider/__init__.py",
+      "language": "python",
+      "sizeLines": 2040,
+      "fileCategory": "code"
+    },
+    {
+      "path": "hermes_memory_provider/audit.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "hermes_memory_provider/cli.py",
+      "language": "python",
+      "sizeLines": 336,
+      "fileCategory": "code"
+    },
+    {
+      "path": "hermes_memory_provider/hermes_llm_adapter.py",
+      "language": "python",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "hermes_memory_provider/plugin.yaml",
+      "language": "yaml",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "hermes_memory_provider/README.md",
+      "language": "markdown",
+      "sizeLines": 89,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "integrations/hermes/plugin.yaml",
+      "language": "yaml",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/hermes/pyproject.toml",
+      "language": "toml",
+      "sizeLines": 54,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/hermes/README.md",
+      "language": "markdown",
+      "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/__init__.py",
+      "language": "python",
+      "sizeLines": 1557,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/audit.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/cli.py",
+      "language": "python",
+      "sizeLines": 332,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+      "language": "python",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/install.py",
+      "language": "python",
+      "sizeLines": 190,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+      "language": "yaml",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "language": "python",
+      "sizeLines": 460,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/obsidian-mnemosyne/main.ts",
+      "language": "typescript",
+      "sizeLines": 318,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/obsidian-mnemosyne/manifest.json",
+      "language": "json",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/obsidian-mnemosyne/package.json",
+      "language": "json",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/obsidian-mnemosyne/README.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/.vscodeignore",
+      "language": "unknown",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/package.json",
+      "language": "json",
+      "sizeLines": 104,
+      "fileCategory": "config"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/README.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/client.ts",
+      "language": "typescript",
+      "sizeLines": 190,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/extension.ts",
+      "language": "typescript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/provider.ts",
+      "language": "typescript",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/src/webview.ts",
+      "language": "typescript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "integrations/vscode-mnemosyne/tsconfig.json",
+      "language": "json",
+      "sizeLines": 15,
+      "fileCategory": "config"
+    },
+    {
+      "path": "MANIFEST.in",
+      "language": "in",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/__init__.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/cli.py",
+      "language": "python",
+      "sizeLines": 452,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/__init__.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/aaak.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/annotations.py",
+      "language": "python",
+      "sizeLines": 552,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/banks.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/beam.py",
+      "language": "python",
+      "sizeLines": 7291,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/binary_vectors.py",
+      "language": "python",
+      "sizeLines": 372,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/chat_normalize.py",
+      "language": "python",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/content_sanitizer.py",
+      "language": "python",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/cost_log.py",
+      "language": "python",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/embeddings.py",
+      "language": "python",
+      "sizeLines": 247,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/entities.py",
+      "language": "python",
+      "sizeLines": 237,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/episodic_graph.py",
+      "language": "python",
+      "sizeLines": 595,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/extraction.py",
+      "language": "python",
+      "sizeLines": 364,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/__init__.py",
+      "language": "python",
+      "sizeLines": 163,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/agentic.py",
+      "language": "python",
+      "sizeLines": 391,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/base.py",
+      "language": "python",
+      "sizeLines": 245,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/cognee.py",
+      "language": "python",
+      "sizeLines": 298,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/hindsight.py",
+      "language": "python",
+      "sizeLines": 448,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/honcho.py",
+      "language": "python",
+      "sizeLines": 283,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/letta.py",
+      "language": "python",
+      "sizeLines": 313,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/mem0.py",
+      "language": "python",
+      "sizeLines": 378,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/supermemory.py",
+      "language": "python",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/importers/zep.py",
+      "language": "python",
+      "sizeLines": 322,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/llm_backends.py",
+      "language": "python",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/llm_conflict_detector.py",
+      "language": "python",
+      "sizeLines": 215,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/local_llm.py",
+      "language": "python",
+      "sizeLines": 648,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/memory.py",
+      "language": "python",
+      "sizeLines": 860,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/mmr.py",
+      "language": "python",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/orchestrator.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/patterns.py",
+      "language": "python",
+      "sizeLines": 412,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/plugins.py",
+      "language": "python",
+      "sizeLines": 676,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/polyphonic_recall.py",
+      "language": "python",
+      "sizeLines": 878,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/query_cache.py",
+      "language": "python",
+      "sizeLines": 343,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/query_intent.py",
+      "language": "python",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/recall_diagnostics.py",
+      "language": "python",
+      "sizeLines": 270,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/shmr.py",
+      "language": "python",
+      "sizeLines": 656,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/streaming.py",
+      "language": "python",
+      "sizeLines": 617,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/synonyms.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/temporal_parser.py",
+      "language": "python",
+      "sizeLines": 404,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/token_counter.py",
+      "language": "python",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/triples.py",
+      "language": "python",
+      "sizeLines": 497,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/typed_memory.py",
+      "language": "python",
+      "sizeLines": 349,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/veracity_consolidation.py",
+      "language": "python",
+      "sizeLines": 947,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/core/weibull.py",
+      "language": "python",
+      "sizeLines": 183,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/diagnose.py",
+      "language": "python",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/dr/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/dr/recovery.py",
+      "language": "python",
+      "sizeLines": 338,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/extraction/__init__.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/extraction/client.py",
+      "language": "python",
+      "sizeLines": 233,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/extraction/diagnostics.py",
+      "language": "python",
+      "sizeLines": 308,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/extraction/prompts.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/install.py",
+      "language": "python",
+      "sizeLines": 264,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/integrations/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/integrations/auto_save_openwebui.py",
+      "language": "python",
+      "sizeLines": 348,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/integrations/memory_browser.py",
+      "language": "python",
+      "sizeLines": 452,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/integrations/openclaw.py",
+      "language": "python",
+      "sizeLines": 356,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/integrations/openwebui_tool.py",
+      "language": "python",
+      "sizeLines": 207,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/mcp_server.py",
+      "language": "python",
+      "sizeLines": 303,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/mcp_tools.py",
+      "language": "python",
+      "sizeLines": 575,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/migrations/__init__.py",
+      "language": "python",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mnemosyne/migrations/e6_triplestore_split.py",
+      "language": "python",
+      "sizeLines": 250,
+      "fileCategory": "code"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 72,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 383,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "RELEASING.md",
+      "language": "markdown",
+      "sizeLines": 111,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements-benchmark.txt",
+      "language": "txt",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "run_beam_all_scales.sh",
+      "language": "shell",
+      "sizeLines": 29,
+      "fileCategory": "script"
+    },
+    {
+      "path": "run_beam_bench.sh",
+      "language": "shell",
+      "sizeLines": 32,
+      "fileCategory": "script"
+    },
+    {
+      "path": "run_beam_clean.sh",
+      "language": "shell",
+      "sizeLines": 28,
+      "fileCategory": "script"
+    },
+    {
+      "path": "run_hybrid_all_scales.sh",
+      "language": "shell",
+      "sizeLines": 28,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/backfill_temporal_triples.py",
+      "language": "python",
+      "sizeLines": 218,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/cleanup_noisy_mentions.py",
+      "language": "python",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/heal_quality.py",
+      "language": "python",
+      "sizeLines": 495,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/memoria_audit.py",
+      "language": "python",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/migrate_from_legacy.py",
+      "language": "python",
+      "sizeLines": 323,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/migrate_triplestore_split.py",
+      "language": "python",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/mnemosyne-stats.py",
+      "language": "python",
+      "sizeLines": 401,
+      "fileCategory": "code"
+    },
+    {
+      "path": "SECURITY.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "setup.py",
+      "language": "python",
+      "sizeLines": 86,
+      "fileCategory": "code"
+    },
+    {
+      "path": "skills/mnemosyne-memory-override.md",
+      "language": "markdown",
+      "sizeLines": 64,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tests/benchmark_beam_comprehensive.py",
+      "language": "python",
+      "sizeLines": 153,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/benchmark_beam_scale.py",
+      "language": "python",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/benchmark_beam_sota.py",
+      "language": "python",
+      "sizeLines": 1056,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/benchmark_beam_working_memory.py",
+      "language": "python",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/benchmark_beam.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/benchmark_vs_vectordbs.py",
+      "language": "python",
+      "sizeLines": 556,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/conftest.py",
+      "language": "python",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_ab_toggles.py",
+      "language": "python",
+      "sizeLines": 447,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_annotations.py",
+      "language": "python",
+      "sizeLines": 421,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam_db_path_string_coercion.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam_e3_additive_sleep.py",
+      "language": "python",
+      "sizeLines": 477,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam_e4_remember_batch_veracity.py",
+      "language": "python",
+      "sizeLines": 451,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam_e5_polyphonic_recall.py",
+      "language": "python",
+      "sizeLines": 487,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam_e6_auto_migrate.py",
+      "language": "python",
+      "sizeLines": 262,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_beam.py",
+      "language": "python",
+      "sizeLines": 1762,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_benchmark_preflight.py",
+      "language": "python",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_benchmark_pure_recall_gate.py",
+      "language": "python",
+      "sizeLines": 450,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_c13b_extraction_diagnostics.py",
+      "language": "python",
+      "sizeLines": 737,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_c25_deltasync_allowlist.py",
+      "language": "python",
+      "sizeLines": 607,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_c28_import_all_content_aware.py",
+      "language": "python",
+      "sizeLines": 604,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_c4_recall_diagnostics.py",
+      "language": "python",
+      "sizeLines": 515,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_cli_errors.py",
+      "language": "python",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_cli_operation_failures.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_cli_stats.py",
+      "language": "python",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_cli_usage_errors.py",
+      "language": "python",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_configurable_scoring.py",
+      "language": "python",
+      "sizeLines": 323,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_consolidate_fact_concurrency.py",
+      "language": "python",
+      "sizeLines": 537,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_consolidate_fact_id_collision.py",
+      "language": "python",
+      "sizeLines": 439,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_consolidate_fact_sibling_races.py",
+      "language": "python",
+      "sizeLines": 582,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_content_sanitizer.py",
+      "language": "python",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_data_dir_scripts.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_degrade_vector.py",
+      "language": "python",
+      "sizeLines": 374,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_e1_benchmark_adapter_additive.py",
+      "language": "python",
+      "sizeLines": 345,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_e2_remember_batch_enrichment.py",
+      "language": "python",
+      "sizeLines": 590,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_e3a3_cross_tier_dedup.py",
+      "language": "python",
+      "sizeLines": 614,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_e5a_vector_voice_dense_rewire.py",
+      "language": "python",
+      "sizeLines": 853,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_e6a_followup_gaps.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_embeddings_multilingual.py",
+      "language": "python",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_entities.py",
+      "language": "python",
+      "sizeLines": 221,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_entity_integration.py",
+      "language": "python",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_extract_parity.py",
+      "language": "python",
+      "sizeLines": 213,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_extraction_integration.py",
+      "language": "python",
+      "sizeLines": 287,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_extraction.py",
+      "language": "python",
+      "sizeLines": 425,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_fact_recall_integration.py",
+      "language": "python",
+      "sizeLines": 166,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_gap_e_g_analysis.py",
+      "language": "python",
+      "sizeLines": 236,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_graph_tools.py",
+      "language": "python",
+      "sizeLines": 272,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_hindsight_cli.py",
+      "language": "python",
+      "sizeLines": 196,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_llm_adapter.py",
+      "language": "python",
+      "sizeLines": 221,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_audit.py",
+      "language": "python",
+      "sizeLines": 165,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_shared_crud.py",
+      "language": "python",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_shared_multi_agent.py",
+      "language": "python",
+      "sizeLines": 102,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_unified_recall.py",
+      "language": "python",
+      "sizeLines": 202,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider_validation.py",
+      "language": "python",
+      "sizeLines": 329,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_hermes_memory_provider.py",
+      "language": "python",
+      "sizeLines": 738,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_identity_memory.py",
+      "language": "python",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_importers/fixtures/mem0_export.json",
+      "language": "json",
+      "sizeLines": 56,
+      "fileCategory": "config"
+    },
+    {
+      "path": "tests/test_importers/fixtures/mem0_paginated_response.json",
+      "language": "json",
+      "sizeLines": 61,
+      "fileCategory": "config"
+    },
+    {
+      "path": "tests/test_importers/test_base.py",
+      "language": "python",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_importers/test_cognee.py",
+      "language": "python",
+      "sizeLines": 126,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_importers/test_hindsight.py",
+      "language": "python",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_importers/test_mem0.py",
+      "language": "python",
+      "sizeLines": 264,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_integration.py",
+      "language": "python",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_llm_backends.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_llm_conflict_detector.py",
+      "language": "python",
+      "sizeLines": 154,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_local_llm.py",
+      "language": "python",
+      "sizeLines": 576,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_mcp_server.py",
+      "language": "python",
+      "sizeLines": 370,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_memory_banks.py",
+      "language": "python",
+      "sizeLines": 378,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_migrate_triplestore_split.py",
+      "language": "python",
+      "sizeLines": 467,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_mnemosyne_stats.py",
+      "language": "python",
+      "sizeLines": 523,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_multi_agent_identity.py",
+      "language": "python",
+      "sizeLines": 250,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_multilingual_local_recall.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_optional_embeddings.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_orphan_vec_episodes_cleanup.py",
+      "language": "python",
+      "sizeLines": 441,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_outer_package_version.py",
+      "language": "python",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_patterns.py",
+      "language": "python",
+      "sizeLines": 311,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_plugins.py",
+      "language": "python",
+      "sizeLines": 840,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_pre_experiment_fidelity.py",
+      "language": "python",
+      "sizeLines": 588,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_prefetch_content_truncation.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_proactive_linking.py",
+      "language": "python",
+      "sizeLines": 332,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_provider_all_15_tools.py",
+      "language": "python",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_query_cache_synonyms.py",
+      "language": "python",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_recall_precision_regressions.py",
+      "language": "python",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_s1_mcp_sse_auth.py",
+      "language": "python",
+      "sizeLines": 255,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_scope_auto_default.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_streaming.py",
+      "language": "python",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_sync_roles.py",
+      "language": "python",
+      "sizeLines": 226,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_sync_turn_content_limit.py",
+      "language": "python",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_t1_local_llm_default_disabled.py",
+      "language": "python",
+      "sizeLines": 215,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_telemetry_and_env_followups.py",
+      "language": "python",
+      "sizeLines": 404,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_temporal_parser.py",
+      "language": "python",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_temporal_recall.py",
+      "language": "python",
+      "sizeLines": 340,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_triples_data_dir.py",
+      "language": "python",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_voice_attribution_and_beam_opt.py",
+      "language": "python",
+      "sizeLines": 252,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_weibull_mmr_intent.py",
+      "language": "python",
+      "sizeLines": 194,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/beam_phase3_test.py",
+      "language": "python",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_100k_fast.py",
+      "language": "python",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_100k_gemma.py",
+      "language": "python",
+      "sizeLines": 128,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_audit_log.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_nai0.py",
+      "language": "python",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_nai1.py",
+      "language": "python",
+      "sizeLines": 144,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_nai2.py",
+      "language": "python",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_rerank.py",
+      "language": "python",
+      "sizeLines": 141,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_unified_recall.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/bench_validation.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/diag_fact_precision.py",
+      "language": "python",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/diagnostic_tr.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/evaluate_beam_end_to_end.py",
+      "language": "python",
+      "sizeLines": 2612,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/generate_beam_charts.py",
+      "language": "python",
+      "sizeLines": 462,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/generate_sota_report.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "UPDATING.md",
+      "language": "markdown",
+      "sizeLines": 665,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 270,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "large",
+  "importMap": {
+    "__init__.py": [],
+    ".dockerignore": [],
+    ".githooks/pre-commit": [],
+    ".githooks/pre-push": [],
+    ".github/FUNDING.yml": [],
+    ".github/ISSUE_TEMPLATE/bug_report.md": [],
+    ".github/ISSUE_TEMPLATE/config.yml": [],
+    ".github/ISSUE_TEMPLATE/docs_improvement.md": [],
+    ".github/ISSUE_TEMPLATE/feature_request.md": [],
+    ".github/PULL_REQUEST_TEMPLATE.md": [],
+    ".github/workflows/ci.yml": [],
+    ".github/workflows/release.yml": [],
+    ".mailmap": [],
+    ".understand-anything/.understandignore": [],
+    "CHANGELOG.md": [],
+    "CODE_OF_CONDUCT.md": [],
+    "CONTRIBUTING_LANGUAGES.md": [],
+    "CONTRIBUTING.md": [],
+    "docker-compose.yml": [],
+    "Dockerfile": [],
+    "docs/api-reference.md": [],
+    "docs/architecture.md": [],
+    "docs/audit-report-2026-05-11.md": [],
+    "docs/audit-report-2026-05-13.md": [],
+    "docs/audit-workflow.md": [],
+    "docs/beam-benchmark.md": [],
+    "docs/benchmark-results-analysis.md": [],
+    "docs/benchmarking.md": [],
+    "docs/changelog.md": [],
+    "docs/comparison.md": [],
+    "docs/compression-plugin.md": [],
+    "docs/configuration.md": [],
+    "docs/experiments/2026-05-12-beam-recovery-arms-abc.md": [],
+    "docs/getting-started.md": [],
+    "docs/hermes-integration.md": [],
+    "docs/hermes-llm-integration.md": [],
+    "docs/integrations/claude-code-mcp.md": [],
+    "docs/integrations/codex-mcp.md": [],
+    "docs/integrations/cursor-mcp.md": [],
+    "docs/integrations/hermes-mcp.md": [],
+    "docs/integrations/integration-template.md": [],
+    "docs/integrations/openclaw.md": [],
+    "docs/integrations/openwebui-deep.md": [],
+    "docs/integrations/openwebui-tool.md": [],
+    "docs/integrations/README.md": [],
+    "docs/integrations/windsurf-mcp.md": [],
+    "docs/llm-installation-guide.md": [],
+    "docs/README.md": [],
+    "hermes_memory_provider/__init__.py": [
+      "mnemosyne/core/episodic_graph.py"
+    ],
+    "hermes_memory_provider/audit.py": [],
+    "hermes_memory_provider/cli.py": [],
+    "hermes_memory_provider/hermes_llm_adapter.py": [],
+    "hermes_memory_provider/plugin.yaml": [],
+    "hermes_memory_provider/README.md": [],
+    "integrations/hermes/plugin.yaml": [],
+    "integrations/hermes/pyproject.toml": [],
+    "integrations/hermes/README.md": [],
+    "integrations/hermes/src/mnemosyne_hermes/__init__.py": [
+      "integrations/hermes/src/mnemosyne_hermes/tools.py",
+      "mnemosyne/core/episodic_graph.py"
+    ],
+    "integrations/hermes/src/mnemosyne_hermes/audit.py": [],
+    "integrations/hermes/src/mnemosyne_hermes/cli.py": [],
+    "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py": [],
+    "integrations/hermes/src/mnemosyne_hermes/install.py": [],
+    "integrations/hermes/src/mnemosyne_hermes/plugin.yaml": [],
+    "integrations/hermes/src/mnemosyne_hermes/tools.py": [],
+    "integrations/obsidian-mnemosyne/main.ts": [],
+    "integrations/obsidian-mnemosyne/manifest.json": [],
+    "integrations/obsidian-mnemosyne/package.json": [],
+    "integrations/obsidian-mnemosyne/README.md": [],
+    "integrations/vscode-mnemosyne/.vscodeignore": [],
+    "integrations/vscode-mnemosyne/package.json": [],
+    "integrations/vscode-mnemosyne/README.md": [],
+    "integrations/vscode-mnemosyne/src/client.ts": [],
+    "integrations/vscode-mnemosyne/src/extension.ts": [
+      "integrations/vscode-mnemosyne/src/client.ts",
+      "integrations/vscode-mnemosyne/src/provider.ts",
+      "integrations/vscode-mnemosyne/src/webview.ts"
+    ],
+    "integrations/vscode-mnemosyne/src/provider.ts": [
+      "integrations/vscode-mnemosyne/src/client.ts"
+    ],
+    "integrations/vscode-mnemosyne/src/webview.ts": [],
+    "integrations/vscode-mnemosyne/tsconfig.json": [],
+    "MANIFEST.in": [],
+    "mnemosyne/__init__.py": [],
+    "mnemosyne/cli.py": [],
+    "mnemosyne/core/__init__.py": [
+      "mnemosyne/core/patterns.py",
+      "mnemosyne/core/plugins.py",
+      "mnemosyne/core/streaming.py"
+    ],
+    "mnemosyne/core/aaak.py": [],
+    "mnemosyne/core/annotations.py": [],
+    "mnemosyne/core/banks.py": [],
+    "mnemosyne/core/beam.py": [
+      "mnemosyne/core/__init__.py"
+    ],
+    "mnemosyne/core/binary_vectors.py": [],
+    "mnemosyne/core/chat_normalize.py": [],
+    "mnemosyne/core/content_sanitizer.py": [],
+    "mnemosyne/core/cost_log.py": [],
+    "mnemosyne/core/embeddings.py": [],
+    "mnemosyne/core/entities.py": [],
+    "mnemosyne/core/episodic_graph.py": [],
+    "mnemosyne/core/extraction.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/local_llm.py"
+    ],
+    "mnemosyne/core/importers/__init__.py": [
+      "mnemosyne/core/importers/agentic.py",
+      "mnemosyne/core/importers/base.py",
+      "mnemosyne/core/importers/cognee.py",
+      "mnemosyne/core/importers/hindsight.py",
+      "mnemosyne/core/importers/honcho.py",
+      "mnemosyne/core/importers/letta.py",
+      "mnemosyne/core/importers/mem0.py",
+      "mnemosyne/core/importers/supermemory.py",
+      "mnemosyne/core/importers/zep.py"
+    ],
+    "mnemosyne/core/importers/agentic.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/base.py": [],
+    "mnemosyne/core/importers/cognee.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/hindsight.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/honcho.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/letta.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/mem0.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/supermemory.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/importers/zep.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "mnemosyne/core/llm_backends.py": [],
+    "mnemosyne/core/llm_conflict_detector.py": [
+      "mnemosyne/core/cost_log.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "mnemosyne/core/local_llm.py": [],
+    "mnemosyne/core/memory.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "mnemosyne/core/mmr.py": [],
+    "mnemosyne/core/orchestrator.py": [],
+    "mnemosyne/core/patterns.py": [],
+    "mnemosyne/core/plugins.py": [],
+    "mnemosyne/core/polyphonic_recall.py": [
+      "mnemosyne/core/episodic_graph.py",
+      "mnemosyne/core/typed_memory.py",
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "mnemosyne/core/query_cache.py": [],
+    "mnemosyne/core/query_intent.py": [],
+    "mnemosyne/core/recall_diagnostics.py": [],
+    "mnemosyne/core/shmr.py": [
+      "mnemosyne/core/__init__.py"
+    ],
+    "mnemosyne/core/streaming.py": [],
+    "mnemosyne/core/synonyms.py": [],
+    "mnemosyne/core/temporal_parser.py": [],
+    "mnemosyne/core/token_counter.py": [],
+    "mnemosyne/core/triples.py": [],
+    "mnemosyne/core/typed_memory.py": [],
+    "mnemosyne/core/veracity_consolidation.py": [],
+    "mnemosyne/core/weibull.py": [],
+    "mnemosyne/diagnose.py": [],
+    "mnemosyne/dr/__init__.py": [],
+    "mnemosyne/dr/recovery.py": [],
+    "mnemosyne/extraction/__init__.py": [
+      "mnemosyne/extraction/client.py",
+      "mnemosyne/extraction/diagnostics.py",
+      "mnemosyne/extraction/prompts.py"
+    ],
+    "mnemosyne/extraction/client.py": [],
+    "mnemosyne/extraction/diagnostics.py": [],
+    "mnemosyne/extraction/prompts.py": [],
+    "mnemosyne/install.py": [],
+    "mnemosyne/integrations/__init__.py": [],
+    "mnemosyne/integrations/auto_save_openwebui.py": [
+      "mnemosyne/core/memory.py"
+    ],
+    "mnemosyne/integrations/memory_browser.py": [],
+    "mnemosyne/integrations/openclaw.py": [
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "mnemosyne/integrations/openwebui_tool.py": [
+      "mnemosyne/core/memory.py"
+    ],
+    "mnemosyne/mcp_server.py": [
+      "mnemosyne/mcp_tools.py"
+    ],
+    "mnemosyne/mcp_tools.py": [
+      "mnemosyne/core/memory.py"
+    ],
+    "mnemosyne/migrations/__init__.py": [],
+    "mnemosyne/migrations/e6_triplestore_split.py": [
+      "mnemosyne/core/annotations.py"
+    ],
+    "pyproject.toml": [],
+    "README.md": [],
+    "RELEASING.md": [],
+    "requirements-benchmark.txt": [],
+    "run_beam_all_scales.sh": [],
+    "run_beam_bench.sh": [],
+    "run_beam_clean.sh": [],
+    "run_hybrid_all_scales.sh": [],
+    "scripts/backfill_temporal_triples.py": [],
+    "scripts/cleanup_noisy_mentions.py": [],
+    "scripts/heal_quality.py": [],
+    "scripts/memoria_audit.py": [],
+    "scripts/migrate_from_legacy.py": [],
+    "scripts/migrate_triplestore_split.py": [
+      "mnemosyne/migrations/e6_triplestore_split.py"
+    ],
+    "scripts/mnemosyne-stats.py": [],
+    "SECURITY.md": [],
+    "setup.py": [],
+    "skills/mnemosyne-memory-override.md": [],
+    "tests/benchmark_beam_comprehensive.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/benchmark_beam_scale.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/benchmark_beam_sota.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/benchmark_beam_working_memory.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/benchmark_beam.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/benchmark_vs_vectordbs.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/conftest.py": [],
+    "tests/test_ab_toggles.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_annotations.py": [
+      "mnemosyne/core/annotations.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_beam_db_path_string_coercion.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_beam_e3_additive_sleep.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_beam_e4_remember_batch_veracity.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_beam_e5_polyphonic_recall.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_beam_e6_auto_migrate.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/annotations.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_beam.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_benchmark_preflight.py": [],
+    "tests/test_benchmark_pure_recall_gate.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_c13b_extraction_diagnostics.py": [
+      "mnemosyne/extraction/diagnostics.py"
+    ],
+    "tests/test_c25_deltasync_allowlist.py": [
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/streaming.py"
+    ],
+    "tests/test_c28_import_all_content_aware.py": [
+      "mnemosyne/core/annotations.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_c4_recall_diagnostics.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/recall_diagnostics.py"
+    ],
+    "tests/test_cli_errors.py": [],
+    "tests/test_cli_operation_failures.py": [],
+    "tests/test_cli_stats.py": [
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_cli_usage_errors.py": [],
+    "tests/test_configurable_scoring.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_consolidate_fact_concurrency.py": [
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_consolidate_fact_id_collision.py": [
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_consolidate_fact_sibling_races.py": [
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_content_sanitizer.py": [
+      "mnemosyne/core/content_sanitizer.py"
+    ],
+    "tests/test_data_dir_scripts.py": [],
+    "tests/test_degrade_vector.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_e1_benchmark_adapter_additive.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_e2_remember_batch_enrichment.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_e3a3_cross_tier_dedup.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_e5a_vector_voice_dense_rewire.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/polyphonic_recall.py"
+    ],
+    "tests/test_e6a_followup_gaps.py": [
+      "mnemosyne/core/annotations.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_embeddings_multilingual.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/embeddings.py"
+    ],
+    "tests/test_entities.py": [
+      "mnemosyne/core/entities.py"
+    ],
+    "tests/test_entity_integration.py": [
+      "mnemosyne/core/entities.py",
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_extract_parity.py": [
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_extraction_integration.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_extraction.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/extraction.py",
+      "mnemosyne/core/llm_backends.py",
+      "mnemosyne/core/local_llm.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_fact_recall_integration.py": [],
+    "tests/test_gap_e_g_analysis.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_graph_tools.py": [
+      "hermes_memory_provider/__init__.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/episodic_graph.py"
+    ],
+    "tests/test_hermes_hindsight_cli.py": [
+      "hermes_memory_provider/cli.py",
+      "mnemosyne/core/importers/base.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_hermes_llm_adapter.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_hermes_memory_provider_audit.py": [
+      "hermes_memory_provider/__init__.py",
+      "hermes_memory_provider/audit.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_hermes_memory_provider_diagnose_active_db.py": [
+      "hermes_memory_provider/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_hermes_memory_provider_shared_crud.py": [
+      "hermes_memory_provider/__init__.py"
+    ],
+    "tests/test_hermes_memory_provider_shared_multi_agent.py": [
+      "hermes_memory_provider/__init__.py"
+    ],
+    "tests/test_hermes_memory_provider_thread_isolation.py": [
+      "hermes_memory_provider/__init__.py"
+    ],
+    "tests/test_hermes_memory_provider_unified_recall.py": [
+      "hermes_memory_provider/__init__.py"
+    ],
+    "tests/test_hermes_memory_provider_validation.py": [
+      "hermes_memory_provider/__init__.py"
+    ],
+    "tests/test_hermes_memory_provider.py": [
+      "hermes_memory_provider/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_identity_memory.py": [],
+    "tests/test_importers/fixtures/mem0_export.json": [],
+    "tests/test_importers/fixtures/mem0_paginated_response.json": [],
+    "tests/test_importers/test_base.py": [
+      "mnemosyne/core/importers/base.py"
+    ],
+    "tests/test_importers/test_cognee.py": [
+      "mnemosyne/core/importers/cognee.py"
+    ],
+    "tests/test_importers/test_hindsight.py": [
+      "mnemosyne/core/importers/__init__.py",
+      "mnemosyne/core/importers/hindsight.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_importers/test_mem0.py": [
+      "mnemosyne/core/importers/base.py",
+      "mnemosyne/core/importers/mem0.py"
+    ],
+    "tests/test_integration.py": [
+      "mnemosyne/core/binary_vectors.py",
+      "mnemosyne/core/episodic_graph.py",
+      "mnemosyne/core/polyphonic_recall.py",
+      "mnemosyne/core/typed_memory.py",
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_llm_backends.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_llm_conflict_detector.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/cost_log.py",
+      "mnemosyne/core/llm_conflict_detector.py"
+    ],
+    "tests/test_local_llm.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py",
+      "mnemosyne/core/local_llm.py"
+    ],
+    "tests/test_mcp_server.py": [
+      "mnemosyne/mcp_tools.py"
+    ],
+    "tests/test_memory_banks.py": [
+      "mnemosyne/core/banks.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_migrate_triplestore_split.py": [
+      "mnemosyne/core/annotations.py",
+      "mnemosyne/core/triples.py",
+      "mnemosyne/migrations/__init__.py"
+    ],
+    "tests/test_mnemosyne_stats.py": [],
+    "tests/test_multi_agent_identity.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py",
+      "mnemosyne/mcp_tools.py"
+    ],
+    "tests/test_multilingual_local_recall.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/embeddings.py"
+    ],
+    "tests/test_optional_embeddings.py": [],
+    "tests/test_orphan_vec_episodes_cleanup.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_outer_package_version.py": [],
+    "tests/test_patterns.py": [
+      "mnemosyne/core/patterns.py"
+    ],
+    "tests/test_plugins.py": [
+      "mnemosyne/core/plugins.py"
+    ],
+    "tests/test_pre_experiment_fidelity.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/veracity_consolidation.py"
+    ],
+    "tests/test_prefetch_content_truncation.py": [],
+    "tests/test_proactive_linking.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/episodic_graph.py"
+    ],
+    "tests/test_provider_all_15_tools.py": [
+      "hermes_memory_provider/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_query_cache_synonyms.py": [],
+    "tests/test_recall_precision_regressions.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/importers/__init__.py"
+    ],
+    "tests/test_s1_mcp_sse_auth.py": [],
+    "tests/test_scope_auto_default.py": [],
+    "tests/test_streaming.py": [
+      "mnemosyne/core/memory.py",
+      "mnemosyne/core/streaming.py"
+    ],
+    "tests/test_sync_roles.py": [],
+    "tests/test_sync_turn_content_limit.py": [],
+    "tests/test_t1_local_llm_default_disabled.py": [],
+    "tests/test_telemetry_and_env_followups.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_temporal_parser.py": [],
+    "tests/test_temporal_recall.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_triples_data_dir.py": [],
+    "tests/test_voice_attribution_and_beam_opt.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_weibull_mmr_intent.py": [],
+    "tools/beam_phase3_test.py": [
+      "tools/evaluate_beam_end_to_end.py"
+    ],
+    "tools/bench_100k_fast.py": [
+      "mnemosyne/core/beam.py",
+      "tools/evaluate_beam_end_to_end.py"
+    ],
+    "tools/bench_100k_gemma.py": [
+      "mnemosyne/core/beam.py",
+      "tools/evaluate_beam_end_to_end.py"
+    ],
+    "tools/bench_audit_log.py": [],
+    "tools/bench_nai0.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tools/bench_nai1.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/chat_normalize.py"
+    ],
+    "tools/bench_nai2.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tools/bench_rerank.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tools/bench_unified_recall.py": [],
+    "tools/bench_validation.py": [],
+    "tools/diag_fact_precision.py": [
+      "mnemosyne/core/beam.py",
+      "tools/evaluate_beam_end_to_end.py"
+    ],
+    "tools/diagnostic_tr.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tools/evaluate_beam_end_to_end.py": [
+      "mnemosyne/core/beam.py"
+    ],
+    "tools/generate_beam_charts.py": [],
+    "tools/generate_sota_report.py": [],
+    "UPDATING.md": []
+  }
+}

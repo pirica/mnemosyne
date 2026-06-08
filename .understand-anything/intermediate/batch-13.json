@@ -1,0 +1,82 @@
+{
+  "batchIndex": 13,
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "file:.github/ISSUE_TEMPLATE/bug_report.md",
+      "type": "file",
+      "name": "bug_report.md",
+      "filePath": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "summary": "Bug report issue template for Mnemosyne. Collects environment details (OS, Python version, Mnemosyne version/commit, installation method, Hermes version), reproduction steps with minimal code snippets, expected vs actual behavior, Mnemosyne status output (stats), optional database diagnostics, and a pre-submission checklist. Configured with label 'bug' and title prefix '[BUG]'.",
+      "tags": ["issue-template", "bug-report", "github", "documentation", "quality-assurance"],
+      "complexity": "simple",
+      "languageNotes": "GitHub issue template in Markdown with YAML frontmatter. Contains 8 H2 sections covering environment, reproduction, expected/actual behavior, diagnostics, and a checklist. Includes embedded code blocks for Python and shell commands."
+    },
+    {
+      "id": "file:.github/ISSUE_TEMPLATE/config.yml",
+      "type": "file",
+      "name": "config.yml",
+      "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+      "summary": "GitHub issue template chooser configuration for Mnemosyne. Disables blank issue submissions and redirects general questions/discussions to the GitHub Discussions forum and security vulnerabilities to the private advisory form.",
+      "tags": ["config", "github", "issue-template", "chooser-config"],
+      "complexity": "simple",
+      "languageNotes": "YAML config file with two entries: blank_issues_enabled flag (set to false) and two contact_links items directing users to Discussions and Security Advisories."
+    },
+    {
+      "id": "file:.github/ISSUE_TEMPLATE/docs_improvement.md",
+      "type": "file",
+      "name": "docs_improvement.md",
+      "filePath": ".github/ISSUE_TEMPLATE/docs_improvement.md",
+      "summary": "Documentation improvement request template for Mnemosyne. Guides contributors to specify the file/section needing improvement, current state (what it says now), suggested change with rationale, and any additional context. Configured with label 'documentation' and title prefix '[DOCS]'.",
+      "tags": ["issue-template", "documentation", "docs-improvement", "github", "contributing"],
+      "complexity": "simple",
+      "languageNotes": "GitHub issue template in Markdown with YAML frontmatter. Contains 4 H2 sections: Location, Current State, Suggested Change, and Additional Context. Designed for lightweight doc fix submissions."
+    },
+    {
+      "id": "file:.github/ISSUE_TEMPLATE/feature_request.md",
+      "type": "file",
+      "name": "feature_request.md",
+      "filePath": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "summary": "Feature request template for Mnemosyne. Prompts submitters to describe the problem/motivation, proposed solution with specifics, alternatives considered, impact assessment (breaking changes, beneficiaries), and willingness to contribute via PR. Configured with label 'enhancement' and title prefix '[FEATURE]'.",
+      "tags": ["issue-template", "feature-request", "enhancement", "github", "contributing"],
+      "complexity": "simple",
+      "languageNotes": "GitHub issue template in Markdown with YAML frontmatter. Contains 5 H2 sections: Problem/Motivation, Proposed Solution, Alternatives Considered, Impact, and Willing to Contribute (with checkbox options for PR readiness)."
+    },
+    {
+      "id": "contact-link:.github/ISSUE_TEMPLATE/config.yml:questions",
+      "type": "config-entry",
+      "name": "Questions & Discussions",
+      "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+      "lineRange": [2, 5],
+      "summary": "Contact link directing users to GitHub Discussions at https://github.com/AxDSan/mnemosyne/discussions for questions, use cases, and idea discussions before opening an issue.",
+      "tags": ["contact-link", "discussions", "community"],
+      "complexity": "simple"
+    },
+    {
+      "id": "contact-link:.github/ISSUE_TEMPLATE/config.yml:security",
+      "type": "config-entry",
+      "name": "Security Vulnerability",
+      "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+      "lineRange": [6, 8],
+      "summary": "Contact link directing users to the private security advisory form at https://github.com/AxDSan/mnemosyne/security/advisories/new for reporting security vulnerabilities confidentially.",
+      "tags": ["contact-link", "security", "private-reporting"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:.github/ISSUE_TEMPLATE/config.yml",
+      "target": "contact-link:.github/ISSUE_TEMPLATE/config.yml:questions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:.github/ISSUE_TEMPLATE/config.yml",
+      "target": "contact-link:.github/ISSUE_TEMPLATE/config.yml:security",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

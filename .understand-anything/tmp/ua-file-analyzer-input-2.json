@@ -1,0 +1,96 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {"path": "mnemosyne/core/__init__.py", "language": "python", "sizeLines": 44, "fileCategory": "code"},
+    {"path": "mnemosyne/core/embeddings.py", "language": "python", "sizeLines": 247, "fileCategory": "code"},
+    {"path": "mnemosyne/core/extraction.py", "language": "python", "sizeLines": 364, "fileCategory": "code"},
+    {"path": "mnemosyne/core/llm_backends.py", "language": "python", "sizeLines": 123, "fileCategory": "code"},
+    {"path": "mnemosyne/core/local_llm.py", "language": "python", "sizeLines": 648, "fileCategory": "code"},
+    {"path": "mnemosyne/core/patterns.py", "language": "python", "sizeLines": 412, "fileCategory": "code"},
+    {"path": "mnemosyne/core/plugins.py", "language": "python", "sizeLines": 676, "fileCategory": "code"},
+    {"path": "mnemosyne/core/shmr.py", "language": "python", "sizeLines": 656, "fileCategory": "code"},
+    {"path": "tests/benchmark_beam_sota.py", "language": "python", "sizeLines": 1056, "fileCategory": "code"},
+    {"path": "tests/test_beam.py", "language": "python", "sizeLines": 1762, "fileCategory": "code"},
+    {"path": "tests/test_degrade_vector.py", "language": "python", "sizeLines": 374, "fileCategory": "code"},
+    {"path": "tests/test_embeddings_multilingual.py", "language": "python", "sizeLines": 121, "fileCategory": "code"},
+    {"path": "tests/test_extraction.py", "language": "python", "sizeLines": 425, "fileCategory": "code"},
+    {"path": "tests/test_hermes_llm_adapter.py", "language": "python", "sizeLines": 221, "fileCategory": "code"},
+    {"path": "tests/test_hermes_memory_provider.py", "language": "python", "sizeLines": 738, "fileCategory": "code"},
+    {"path": "tests/test_llm_backends.py", "language": "python", "sizeLines": 103, "fileCategory": "code"},
+    {"path": "tests/test_local_llm.py", "language": "python", "sizeLines": 576, "fileCategory": "code"},
+    {"path": "tests/test_multilingual_local_recall.py", "language": "python", "sizeLines": 25, "fileCategory": "code"},
+    {"path": "tests/test_patterns.py", "language": "python", "sizeLines": 311, "fileCategory": "code"},
+    {"path": "tests/test_plugins.py", "language": "python", "sizeLines": 840, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "mnemosyne/core/__init__.py": [
+      "mnemosyne/core/patterns.py",
+      "mnemosyne/core/plugins.py",
+      "mnemosyne/core/streaming.py"
+    ],
+    "mnemosyne/core/embeddings.py": [],
+    "mnemosyne/core/extraction.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/local_llm.py"
+    ],
+    "mnemosyne/core/llm_backends.py": [],
+    "mnemosyne/core/local_llm.py": [],
+    "mnemosyne/core/patterns.py": [],
+    "mnemosyne/core/plugins.py": [],
+    "mnemosyne/core/shmr.py": [
+      "mnemosyne/core/__init__.py"
+    ],
+    "tests/benchmark_beam_sota.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_beam.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/memory.py"
+    ],
+    "tests/test_degrade_vector.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py"
+    ],
+    "tests/test_embeddings_multilingual.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/embeddings.py"
+    ],
+    "tests/test_extraction.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/extraction.py",
+      "mnemosyne/core/llm_backends.py",
+      "mnemosyne/core/local_llm.py",
+      "mnemosyne/core/triples.py"
+    ],
+    "tests/test_hermes_llm_adapter.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_hermes_memory_provider.py": [
+      "hermes_memory_provider/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_llm_backends.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_local_llm.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/llm_backends.py",
+      "mnemosyne/core/local_llm.py"
+    ],
+    "tests/test_multilingual_local_recall.py": [
+      "mnemosyne/core/__init__.py",
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/embeddings.py"
+    ],
+    "tests/test_patterns.py": [
+      "mnemosyne/core/patterns.py"
+    ],
+    "tests/test_plugins.py": [
+      "mnemosyne/core/plugins.py"
+    ]
+  }
+}

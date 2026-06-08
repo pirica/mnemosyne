@@ -1,0 +1,467 @@
+{
+  "batchIndex": 11,
+  "description": "Infra/config files for MiroShark deployment",
+  "files": {
+    ".dockerignore": {
+      "path": "/root/MiroShark/.dockerignore",
+      "category": "config",
+      "type": "dockerignore",
+      "description": "Docker build context exclusion rules",
+      "structure": {
+        "fileType": "dockerignore",
+        "rawLines": 15,
+        "patterns": [
+          "frontend/",
+          "node_modules/",
+          "package.json",
+          "package-lock.json",
+          "*.log",
+          ".env",
+          ".env.local",
+          "__pycache__/",
+          "*.pyc",
+          ".venv/",
+          ".pytest_cache/",
+          ".git/",
+          ".gitignore"
+        ],
+        "comments": [
+          "# Frontend files (not needed for backend-only Railway deployment)"
+        ],
+        "summary": "13 exclusion patterns, 1 comments",
+        "rawContent": "# Frontend files (not needed for backend-only Railway deployment)\nfrontend/\nnode_modules/\npackage.json\npackage-lock.json\n*.log\n.env\n.env.local\n__pycache__/\n*.pyc\n.venv/\n.pytest_cache/\n.git/\n.gitignore\n"
+      }
+    },
+    "docker-compose.yml": {
+      "path": "/root/MiroShark/docker-compose.yml",
+      "category": "config",
+      "type": "docker-compose",
+      "description": "Multi-service Docker Compose definition (neo4j, ollama, miroshark)",
+      "structure": {
+        "fileType": "docker-compose",
+        "services": [
+          "neo4j",
+          "environment",
+          "ports",
+          "volumes",
+          "ollama",
+          "ports",
+          "volumes",
+          "miroshark",
+          "environment",
+          "ports",
+          "depends_on",
+          "volumes",
+          "volumes",
+          "neo4j_data",
+          "ollama_data"
+        ],
+        "images": [
+          "neo4j:5.15-community",
+          "ollama/ollama:latest",
+          "ghcr.io/aaronjmars/miroshark:latest",
+          "ghcr.nju.edu.cn/aaronjmars/miroshark:latest"
+        ],
+        "volumes": [
+          "NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}",
+          "\"7474:7474\"",
+          "\"7687:7687\"",
+          "neo4j_data:/data",
+          "\"11434:11434\"",
+          "ollama_data:/root/.ollama",
+          "LLM_API_KEY=ollama",
+          "LLM_BASE_URL=http://ollama:11434/v1",
+          "LLM_MODEL_NAME=qwen2.5:32b",
+          "NEO4J_URI=bolt://neo4j:7687",
+          "NEO4J_USER=neo4j",
+          "NEO4J_PASSWORD=${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}",
+          "EMBEDDING_MODEL=nomic-embed-text",
+          "EMBEDDING_BASE_URL=http://ollama:11434",
+          "OPENAI_API_KEY=ollama",
+          "OPENAI_API_BASE_URL=http://ollama:11434/v1",
+          "\"3000:3000\"",
+          "\"5001:5001\"",
+          "neo4j",
+          "ollama",
+          "./backend/uploads:/app/backend/uploads"
+        ],
+        "ports": [
+          "7474:7474",
+          "7687:7687",
+          "11434:11434",
+          "3000:3000",
+          "5001:5001"
+        ],
+        "envDependencies": [
+          "NEO4J_PASSWORD",
+          "NEO4J_PASSWORD"
+        ],
+        "serviceDependencies": [
+          "NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}",
+          "\"7474:7474\"",
+          "\"7687:7687\"",
+          "neo4j_data:/data",
+          "\"11434:11434\"",
+          "ollama_data:/root/.ollama",
+          "LLM_API_KEY=ollama",
+          "LLM_BASE_URL=http://ollama:11434/v1",
+          "LLM_MODEL_NAME=qwen2.5:32b",
+          "NEO4J_URI=bolt://neo4j:7687",
+          "NEO4J_USER=neo4j",
+          "NEO4J_PASSWORD=${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}",
+          "EMBEDDING_MODEL=nomic-embed-text",
+          "EMBEDDING_BASE_URL=http://ollama:11434",
+          "OPENAI_API_KEY=ollama",
+          "OPENAI_API_BASE_URL=http://ollama:11434/v1",
+          "\"3000:3000\"",
+          "\"5001:5001\"",
+          "neo4j",
+          "ollama",
+          "./backend/uploads:/app/backend/uploads"
+        ],
+        "rawLines": 52,
+        "summary": "15 services, 4 images",
+        "rawContent": "services:\n  neo4j:\n    image: neo4j:5.15-community\n    container_name: miroshark-neo4j\n    environment:\n      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}\n    ports:\n      - \"7474:7474\"\n      - \"7687:7687\"\n    volumes:\n      - neo4j_data:/data\n    restart: unless-stopped\n\n  ollama:\n    image: ollama/ollama:latest\n    container_name: miroshark-ollama\n    ports:\n      - \"11434:11434\"\n    volumes:\n      - ollama_data:/root/.ollama\n    restart: unless-stopped\n\n  miroshark:\n    image: ghcr.io/aaronjmars/miroshark:latest\n    # Mirror image (replace the address above if pulling is slow)\n    # image: ghcr.nju.edu.cn/aaronjmars/miroshark:latest\n    container_name: miroshark\n    environment:\n      - LLM_API_KEY=ollama\n      - LLM_BASE_URL=http://ollama:11434/v1\n      - LLM_MODEL_NAME=qwen2.5:32b\n      - NEO4J_URI=bolt://neo4j:7687\n      - NEO4J_USER=neo4j\n      - NEO4J_PASSWORD=${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}\n      - EMBEDDING_MODEL=nomic-embed-text\n      - EMBEDDING_BASE_URL=http://ollama:11434\n      - OPENAI_API_KEY=ollama\n      - OPENAI_API_BASE_URL=http://ollama:11434/v1\n    ports:\n      - \"3000:3000\"\n      - \"5001:5001\"\n    depends_on:\n      - neo4j\n      - ollama\n    restart: unless-stopped\n    volumes:\n      - ./backend/uploads:/app/backend/uploads\n\nvolumes:\n  neo4j_data:\n  ollama_data:\n"
+      }
+    },
+    "Dockerfile": {
+      "path": "/root/MiroShark/Dockerfile",
+      "category": "infra",
+      "type": "service",
+      "description": "Main application Docker image build instructions",
+      "structure": {
+        "fileType": "dockerfile",
+        "baseImage": "python:3.11",
+        "multiStage": false,
+        "stages": [
+          "python:3.11"
+        ],
+        "runCommands": [
+          "apt-get update \\",
+          "npm ci \\"
+        ],
+        "copySources": [
+          "--from=ghcr.io/astral-sh/uv:0.9.26",
+          "package.json",
+          "frontend/package.json",
+          "backend/pyproject.toml",
+          "."
+        ],
+        "exposedPorts": [
+          "3000",
+          "5001"
+        ],
+        "workdirs": [
+          "/app"
+        ],
+        "instructions": [
+          {
+            "type": "FROM",
+            "value": "python:3.11"
+          },
+          {
+            "type": "RUN",
+            "value": "apt-get update \\"
+          },
+          {
+            "type": "COPY",
+            "value": "--from=ghcr.io/astral-sh/uv:0.9.26 /uv /uvx → /bin/"
+          },
+          {
+            "type": "WORKDIR",
+            "value": "/app"
+          },
+          {
+            "type": "COPY",
+            "value": "package.json package-lock.json → ./"
+          },
+          {
+            "type": "COPY",
+            "value": "frontend/package.json frontend/package-lock.json → ./frontend/"
+          },
+          {
+            "type": "COPY",
+            "value": "backend/pyproject.toml backend/uv.lock → ./backend/"
+          },
+          {
+            "type": "RUN",
+            "value": "npm ci \\"
+          },
+          {
+            "type": "COPY",
+            "value": ". → ."
+          },
+          {
+            "type": "EXPOSE",
+            "value": "3000, 5001"
+          },
+          {
+            "type": "CMD",
+            "value": "[\"npm\", \"run\", \"dev\"]"
+          }
+        ],
+        "rawLines": 29,
+        "summary": "11 instructions, base: python:3.11",
+        "rawContent": "FROM python:3.11\n\n# Install Node.js (>= 18) and necessary tools\nRUN apt-get update \\\n  && apt-get install -y --no-install-recommends nodejs npm \\\n  && rm -rf /var/lib/apt/lists/*\n\n# Copy uv from the official uv image\nCOPY --from=ghcr.io/astral-sh/uv:0.9.26 /uv /uvx /bin/\n\nWORKDIR /app\n\n# Copy dependency descriptor files first to leverage Docker cache\nCOPY package.json package-lock.json ./\nCOPY frontend/package.json frontend/package-lock.json ./frontend/\nCOPY backend/pyproject.toml backend/uv.lock ./backend/\n\n# Install dependencies (Node + Python)\nRUN npm ci \\\n  && npm ci --prefix frontend \\\n  && cd backend && uv sync --frozen\n\n# Copy project source code\nCOPY . .\n\nEXPOSE 3000 5001\n\n# Start both frontend and backend simultaneously (development mode)\nCMD [\"npm\", \"run\", \"dev\"]"
+      }
+    }
+  },
+  "batchImportData": {
+    "docker-compose.yml": {
+      "services": [
+        "neo4j:5.15-community",
+        "ollama/ollama:latest",
+        "ghcr.io/aaronjmars/miroshark:latest"
+      ],
+      "internal_refs": [],
+      "external_refs": [
+        "neo4j:5.15-community",
+        "ollama/ollama:latest",
+        "ghcr.io/aaronjmars/miroshark:latest"
+      ],
+      "volumes": [
+        "neo4j_data",
+        "ollama_data",
+        "./backend/uploads:/app/backend/uploads"
+      ],
+      "networks": [],
+      "env_dependencies": [
+        "NEO4J_PASSWORD"
+      ]
+    },
+    "Dockerfile": {
+      "base_image": "python:3.11",
+      "stages": [
+        {
+          "from": "python:3.11",
+          "purpose": "base"
+        },
+        {
+          "from": "ghcr.io/astral-sh/uv:0.9.26",
+          "purpose": "uv binary copy"
+        }
+      ],
+      "packages_installed": [
+        "nodejs",
+        "npm"
+      ],
+      "ports_exposed": [
+        3000,
+        5001
+      ],
+      "entrypoint": "npm run dev",
+      "external_refs": [
+        "python:3.11",
+        "ghcr.io/astral-sh/uv:0.9.26"
+      ]
+    },
+    ".dockerignore": {
+      "excluded_patterns": [
+        "frontend/",
+        "node_modules/",
+        "package.json",
+        "*.log",
+        ".env*",
+        "__pycache__/",
+        "*.pyc",
+        ".venv/",
+        ".pytest_cache/",
+        ".git/",
+        ".gitignore"
+      ],
+      "excluded_categories": [
+        "frontend",
+        "node_modules",
+        "env",
+        "cache",
+        "git"
+      ],
+      "purpose": "Optimize Docker build context for backend-only Railway deployment"
+    }
+  },
+  "neighborMap": {
+    ".dockerignore": {
+      "neighbors": [
+        "Dockerfile"
+      ],
+      "relationship": "dockerignore controls which files Dockerfile's COPY . . includes; excludes frontend/ since Railway deployment is backend-only",
+      "shared_context": "Docker build context optimization"
+    },
+    "docker-compose.yml": {
+      "neighbors": [
+        "Dockerfile"
+      ],
+      "relationship": "docker-compose.yml's miroshark service uses Dockerfile (implied via build context); the miroshark image is built from the Dockerfile or pulled from ghcr.io",
+      "shared_context": "Container orchestration for MiroShark stack"
+    },
+    "Dockerfile": {
+      "neighbors": [
+        ".dockerignore",
+        "docker-compose.yml"
+      ],
+      "relationship": "Dockerfile is the build target for the miroshark service in docker-compose.yml; .dockerignore filters its build context",
+      "shared_context": "Application image definition and deployment"
+    }
+  },
+  "semanticAnalysis": {
+    ".dockerignore": {
+      "fileName": ".dockerignore",
+      "filePath": "/root/MiroShark/.dockerignore",
+      "category": "config",
+      "type": "dockerignore",
+      "description": "Docker build context exclusion rules",
+      "purpose": "Optimize Docker build context by excluding unnecessary files",
+      "keyFindings": [
+        "Excludes frontend/ directory (frontend built separately for Railway deployment)",
+        "Excludes node_modules/, package.json, package-lock.json (dependencies installed inside container)",
+        "Excludes Python artifacts: __pycache__/, *.pyc, .venv/",
+        "Excludes .env, .env.local (sensitive credentials not baked into image)",
+        "Excludes .git/ and .gitignore (version control metadata not needed at runtime)",
+        "Excludes build/test artifacts: .pytest_cache/, *.log"
+      ],
+      "dependencies": [],
+      "exportedItems": [
+        "frontend/",
+        "node_modules/",
+        "package.json",
+        "*.log",
+        ".env*",
+        "__pycache__/",
+        "*.pyc",
+        ".venv/",
+        ".pytest_cache/",
+        ".git/",
+        ".gitignore"
+      ],
+      "securityConcerns": [
+        "Ensures .env files are not included in build context, preventing secret leakage"
+      ],
+      "recommendations": [
+        "Consider adding backend/uploads/ exclusion if using local volume mounts for uploads",
+        "Review if any additional development artifacts should be excluded"
+      ]
+    },
+    "docker-compose.yml": {
+      "fileName": "docker-compose.yml",
+      "filePath": "/root/MiroShark/docker-compose.yml",
+      "category": "config",
+      "type": "docker-compose",
+      "description": "Multi-service Docker Compose definition (neo4j, ollama, miroshark)",
+      "purpose": "Define and orchestrate the MiroShark multi-service architecture",
+      "keyFindings": [
+        "Three services defined: neo4j (graph DB), ollama (LLM runtime), miroshark (main app)",
+        "Neo4j 5.15-community used as the knowledge graph database",
+        "Ollama runs locally with qwen2.5:32b model for LLM inference",
+        "NEO4J_PASSWORD must be set via .env file (required variable)",
+        "Miroshark service connects to neo4j at bolt://neo4j:7687 and ollama at http://ollama:11434",
+        "Uses nomic-embed-text as the embedding model via Ollama",
+        "Named volumes: neo4j_data and ollama_data for data persistence",
+        "Bind mount: ./backend/uploads mapped to /app/backend/uploads"
+      ],
+      "dependencies": [
+        "docker",
+        "docker-compose",
+        "NEO4J_PASSWORD in .env"
+      ],
+      "exportedItems": [
+        {
+          "service": "neo4j",
+          "ports": [
+            "7474:7474",
+            "7687:7687"
+          ]
+        },
+        {
+          "service": "ollama",
+          "ports": [
+            "11434:11434"
+          ]
+        },
+        {
+          "service": "miroshark",
+          "ports": [
+            "3000:3000",
+            "5001:5001"
+          ]
+        }
+      ],
+      "securityConcerns": [
+        "NEO4J_PASSWORD required via environment - ensure .env is secure",
+        "Ollama exposed on host network port 11434 without authentication",
+        "Neo4j exposed on host network ports without built-in auth configuration beyond password"
+      ],
+      "recommendations": [
+        "Add internal network to isolate services from host where possible",
+        "Consider adding health checks for all services",
+        "Document how to pre-pull qwen2.5:32b and nomic-embed-text models for Ollama",
+        "Consider resource limits for services to prevent host resource exhaustion"
+      ]
+    },
+    "Dockerfile": {
+      "fileName": "Dockerfile",
+      "filePath": "/root/MiroShark/Dockerfile",
+      "category": "infra",
+      "type": "service",
+      "description": "Main application Docker image build instructions",
+      "purpose": "Build the MiroShark application container image for deployment",
+      "keyFindings": [
+        "Based on python:3.11 official image",
+        "Installs Node.js and npm via apt-get for frontend dependency management",
+        "Multi-stage copy from ghcr.io/astral-sh/uv:0.9.26 to include uv package manager",
+        "Dependency-first copy strategy: package files copied first for Docker layer caching",
+        "Installs both Node (npm ci) and Python (uv sync --frozen) dependencies",
+        "Exposes ports 3000 (frontend) and 5001 (backend)",
+        "Runs in development mode via CMD: npm run dev",
+        "Uses WORKDIR /app for the application directory"
+      ],
+      "dependencies": [
+        "python:3.11",
+        "ghcr.io/astral-sh/uv:0.9.26",
+        "npm",
+        "nodejs"
+      ],
+      "exportedItems": [
+        {
+          "type": "exposed_port",
+          "value": 3000,
+          "purpose": "Frontend web UI"
+        },
+        {
+          "type": "exposed_port",
+          "value": 5001,
+          "purpose": "Backend API server"
+        },
+        {
+          "type": "base_image",
+          "value": "python:3.11"
+        }
+      ],
+      "securityConcerns": [
+        "Runs as root by default (python:3.11 base image behavior)",
+        "Development mode enabled - CMD runs npm run dev which uses hot reloading",
+        "Full apt-get update/install without pinning package versions"
+      ],
+      "recommendations": [
+        "Add a non-root user for production deployment",
+        "Separate dev and production Dockerfiles (or use multi-stage build)",
+        "Pin apt package versions for reproducible builds",
+        "Add .dockerignore reference to ensure build context is minimal",
+        "Consider Alpine-based Python image for smaller image size"
+      ]
+    }
+  },
+  "metadata": {
+    "generatedAt": "2026-06-03T00:00:08.516Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 3,
+    "categories": [
+      "config",
+      "infra"
+    ],
+    "types": [
+      "dockerignore",
+      "docker-compose",
+      "service"
+    ]
+  }
+}

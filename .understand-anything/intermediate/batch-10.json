@@ -1,0 +1,172 @@
+{
+  "batchIndex": 10,
+  "files": [
+    "mnemosyne/core/cost_log.py",
+    "mnemosyne/core/llm_conflict_detector.py",
+    "tests/test_llm_conflict_detector.py"
+  ],
+  "extractStructure": {
+    "scriptCompleted": true,
+    "filesAnalyzed": 3,
+    "filesSkipped": [],
+    "results": [
+      {
+        "path": "mnemosyne/core/cost_log.py",
+        "language": "python",
+        "fileCategory": "code",
+        "totalLines": 78,
+        "nonEmptyLines": 66,
+        "functions": [
+          {"name": "_get_conn", "startLine": 16, "endLine": 21, "params": ["db_path"]},
+          {"name": "init_cost_log", "startLine": 24, "endLine": 38, "params": ["db_path"]},
+          {"name": "log_cost", "startLine": 41, "endLine": 51, "params": ["session_id", "memory_count", "token_count", "estimated_cost_usd", "model", "db_path"]},
+          {"name": "get_cost_stats", "startLine": 54, "endLine": 78, "params": ["session_id", "db_path"]}
+        ],
+        "exports": [
+          {"name": "_get_conn", "line": 16, "isDefault": false},
+          {"name": "init_cost_log", "line": 24, "isDefault": false},
+          {"name": "log_cost", "line": 41, "isDefault": false},
+          {"name": "get_cost_stats", "line": 54, "isDefault": false}
+        ],
+        "metrics": {
+          "importCount": 0,
+          "exportCount": 4,
+          "functionCount": 4,
+          "classCount": 0
+        }
+      },
+      {
+        "path": "mnemosyne/core/llm_conflict_detector.py",
+        "language": "python",
+        "fileCategory": "code",
+        "totalLines": 215,
+        "nonEmptyLines": 177,
+        "functions": [
+          {"name": "_estimate_tokens", "startLine": 43, "endLine": 45, "params": ["text"]},
+          {"name": "_calculate_cost", "startLine": 48, "endLine": 53, "params": ["input_tokens", "output_tokens", "model"]},
+          {"name": "_call_conflict_llm_with_retry", "startLine": 56, "endLine": 132, "params": ["prompt"]},
+          {"name": "validate_conflict_pair", "startLine": 135, "endLine": 214, "params": ["older_content", "newer_content", "session_id", "db_path"]}
+        ],
+        "exports": [
+          {"name": "_estimate_tokens", "line": 43, "isDefault": false},
+          {"name": "_calculate_cost", "line": 48, "isDefault": false},
+          {"name": "_call_conflict_llm_with_retry", "line": 56, "isDefault": false},
+          {"name": "validate_conflict_pair", "line": 135, "isDefault": false}
+        ],
+        "metrics": {
+          "importCount": 2,
+          "exportCount": 4,
+          "functionCount": 4,
+          "classCount": 0
+        }
+      },
+      {
+        "path": "tests/test_llm_conflict_detector.py",
+        "language": "python",
+        "fileCategory": "code",
+        "totalLines": 154,
+        "nonEmptyLines": 128,
+        "functions": [
+          {"name": "temp_db", "startLine": 14, "endLine": 19, "params": []},
+          {"name": "test_llm_conflict_detector_gating", "startLine": 22, "endLine": 29, "params": ["temp_db"]},
+          {"name": "test_llm_conflict_detector_success", "startLine": 33, "endLine": 58, "params": ["mock_call", "temp_db"]},
+          {"name": "test_llm_conflict_detector_retry_logic", "startLine": 63, "endLine": 86, "params": ["mock_sleep", "mock_client_class"]},
+          {"name": "test_beam_integration_with_llm_conflict", "startLine": 90, "endLine": 153, "params": ["mock_call", "temp_db"]}
+        ],
+        "exports": [
+          {"name": "temp_db", "line": 13, "isDefault": false},
+          {"name": "test_llm_conflict_detector_gating", "line": 22, "isDefault": false},
+          {"name": "test_llm_conflict_detector_success", "line": 32, "isDefault": false},
+          {"name": "test_llm_conflict_detector_retry_logic", "line": 61, "isDefault": false},
+          {"name": "test_beam_integration_with_llm_conflict", "line": 89, "isDefault": false}
+        ],
+        "metrics": {
+          "importCount": 3,
+          "exportCount": 5,
+          "functionCount": 5,
+          "classCount": 0
+        }
+      }
+    ]
+  },
+  "batchImportData": {
+    "mnemosyne/core/cost_log.py": [],
+    "mnemosyne/core/llm_conflict_detector.py": [
+      "mnemosyne/core/cost_log.py",
+      "mnemosyne/core/llm_backends.py"
+    ],
+    "tests/test_llm_conflict_detector.py": [
+      "mnemosyne/core/beam.py",
+      "mnemosyne/core/cost_log.py",
+      "mnemosyne/core/llm_conflict_detector.py"
+    ]
+  },
+  "neighborMap": {
+    "mnemosyne/core/llm_conflict_detector.py": [
+      {
+        "path": "mnemosyne/core/llm_backends.py",
+        "batchIndex": 2,
+        "symbols": ["LLMBackend", "CallableLLMBackend", "set_host_llm_backend", "get_host_llm_backend", "call_host_llm"]
+      }
+    ],
+    "tests/test_llm_conflict_detector.py": [
+      {
+        "path": "mnemosyne/core/beam.py",
+        "batchIndex": 1,
+        "symbols": ["_source_to_trust_tier", "_env_truthy", "_default_data_dir", "_default_db_path", "_env_disabled", "_env_float", "_detect_veracity_weight_overrides", "_warn_about_veracity_weight_overrides", "_get_connection", "_detect_vec_type", "init_beam", "_BeamConnection", "_deferred_commits", "_generate_id", "_sanitize_utf8", "_add_column_if_missing", "_normalize_weights", "_normalize_datetime_utc", "_parse_iso_datetime_utc", "_recency_decay", "_parse_query_time", "_parse_ts_fast", "_temporal_boost", "_vec_available", "_extract_and_store_entities", "_extract_and_store_facts", "_store_facts_in_table", "_find_memories_by_entity", "_recall_tokens", "_expanded_query_tokens", "_minimum_recall_relevance", "_fact_match_tokens", "_contains_spaceless_cjk", "_cjk_fts_terms", "_lexical_relevance", "_strict_fact_matches", "_find_memories_by_fact", "_in_memory_vec_search", "_effective_vec_type", "_vec_insert", "_vec_search", "_fts_query_terms", "_has_cjk", "_cjk_like_search", "_fts_search", "_fts_search_working", "_wm_vec_search", "BeamMemory"]
+      }
+    ]
+  },
+  "semanticAnalysis": {
+    "modulePurpose": {
+      "cost_log.py": "Simple SQLite-based cost tracking for memory injection operations. Provides init, log, and stats aggregation functions. Standalone utility module with no internal project dependencies.",
+      "llm_conflict_detector.py": "Phase 2 two-tier hybrid conflict validator using LLM calls. Detects factual contradictions between pairs of memories using an OpenAI-compatible API with retry logic, cost estimation, and cost logging integration.",
+      "test_llm_conflict_detector.py": "Test suite covering gating behavior (env flag), successful LLM response parsing, retry logic with exponential backoff, and full integration with BeamMemory's sleep() consolidation pipeline."
+    },
+    "dependencyGraph": "cost_log.py (root) <- llm_conflict_detector.py (depends on cost_log, llm_backends) <- test_llm_conflict_detector.py (depends on beam, cost_log, llm_conflict_detector)",
+    "crossBatchDependencies": {
+      "llm_conflict_detector.py -> llm_backends.py": {
+        "neighborBatch": 2,
+        "importedSymbols": ["call_host_llm", "get_host_llm_backend"]
+      },
+      "test_llm_conflict_detector.py -> beam.py": {
+        "neighborBatch": 1,
+        "importedSymbols": ["BeamMemory"]
+      },
+      "llm_backends.py -> llm_conflict_detector.py": {
+        "neighborBatch": 10,
+        "importedFromSymbols": ["validate_conflict_pair", "_estimate_tokens", "_calculate_cost", "_call_conflict_llm_with_retry"]
+      }
+    },
+    "keyPatterns": [
+      "Gated feature activation via MNEMOSYNE_LLM_CONFLICT_DETECTION env var (defaults to disabled)",
+      "Two-tier conflict detection: Phase 1 (heuristic/similarity) in beam.py, Phase 2 (LLM validation) in this module",
+      "Cost-aware design: model pricing table, token estimation, cost calculation, and SQLite persistence",
+      "Resilient API calls: exponential backoff retry (2 retries, 2x factor), dual http/urllib fallback",
+      "JSON output parsing with markdown code-block stripping for LLM response robustness"
+    ],
+    "architecturalRole": "These files implement the LLM-powered second stage of memory conflict resolution in the Mnemosyne memory consolidation pipeline. cost_log.py is a foundational utility; llm_conflict_detector.py is the orchestrator for Phase 2 validation; tests/ provides unit and integration test coverage including retry logic and full sleep() pipeline end-to-end testing with BeamMemory.",
+    "codeQuality": {
+      "strengths": [
+        "Clear separation of concerns between cost tracking (cost_log.py) and LLM validation logic",
+        "Comprehensive test coverage with mock-based unit tests and integration tests",
+        "Defensive programming: graceful degradation on LLM failure, fallback token estimation",
+        "Cost awareness and logging built into the validation flow",
+        "Good use of Python typing annotations for function signatures"
+      ],
+      "observations": [
+        "Token estimation is simplistic (~4 chars/token), may be inaccurate for non-English or code-heavy text",
+        "Pricing model hardcoded rather than configurable at runtime",
+        "Retry logic uses time.sleep() which blocks async event loops if used in async context",
+        "LLM_CONFLICT_DETECTION_ENABLED env var check is module-level (evaluated at import time)",
+        "Imports httpx/urllib inside function body rather than at module top (defensive for optional dependency)"
+      ]
+    },
+    "coverageAnalysis": {
+      "testCount": 4,
+      "testFunctions": ["test_llm_conflict_detector_gating", "test_llm_conflict_detector_success", "test_llm_conflict_detector_retry_logic", "test_beam_integration_with_llm_conflict"],
+      "testedFunctions": ["validate_conflict_pair", "_call_conflict_llm_with_retry", "get_cost_stats", "BeamMemory.sleep", "BeamMemory._detect_conflicts", "BeamMemory.remember", "BeamMemory.get_context"],
+      "untestedFunctions": ["_estimate_tokens", "_calculate_cost", "init_cost_log", "log_cost"]
+    }
+  }
+}

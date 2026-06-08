@@ -1,0 +1,448 @@
+{
+  "batchIndex": 8,
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "file:mnemosyne/extraction/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "mnemosyne/extraction/__init__.py",
+      "summary": "Package init for the mnemosyne.extraction module, re-exporting ExtractionClient, ExtractionDiagnostics, and extraction prompts from submodules, and defining the ExtractionConfig dataclass for configuring the LLM fact extraction engine (model, batch size, minimum confidence).",
+      "tags": ["entry-point", "barrel", "configuration", "extraction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/extraction/__init__.py:ExtractionConfig",
+      "type": "class",
+      "name": "ExtractionConfig",
+      "filePath": "mnemosyne/extraction/__init__.py",
+      "lineRange": [22, 28],
+      "summary": "Dataclass holding extraction engine configuration: enabled flag, model identifier (default google/gemini-2.5-flash), batch_size, and min_confidence threshold.",
+      "tags": ["configuration", "dataclass", "extraction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mnemosyne/extraction/client.py",
+      "type": "file",
+      "name": "client.py",
+      "filePath": "mnemosyne/extraction/client.py",
+      "summary": "OpenAI-compatible HTTP client for LLM fact extraction via OpenRouter. Implements retry-and-fallback logic across multiple models, JSON parsing of extracted facts, and diagnostics integration (C13.b) for cloud-tier extraction outcome tracking.",
+      "tags": ["api-client", "extraction", "llm-integration", "error-handling", "retry"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/extraction/client.py:ExtractionClient",
+      "type": "class",
+      "name": "ExtractionClient",
+      "filePath": "mnemosyne/extraction/client.py",
+      "lineRange": [31, 233],
+      "summary": "OpenRouter API client with multi-model fallback, retry on rate limits, and structured fact extraction from conversation messages. Integrates with ExtractionDiagnostics to record cloud-tier attempts, successes, failures, and JSON parse errors.",
+      "tags": ["api-client", "retry", "fallback", "json-parsing", "extraction"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mnemosyne/extraction/diagnostics.py",
+      "type": "file",
+      "name": "diagnostics.py",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "summary": "Process-global extraction failure diagnostics (C13.b). Exposes a thread-safe counter set recording every extraction attempt's outcome at each tier (host/remote/local/cloud/wrapper), enabling operators to detect silent extraction failures that previously degraded fact recall with zero observability.",
+      "tags": ["diagnostics", "monitoring", "telemetry", "thread-safe", "extraction"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/extraction/diagnostics.py:_TierStats",
+      "type": "class",
+      "name": "_TierStats",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [80, 88],
+      "summary": "Per-tier counter dataclass holding attempts, successes, no_output, failures counts and a bounded deque of recent error samples for operator triage.",
+      "tags": ["dataclass", "metrics", "telemetry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mnemosyne/extraction/diagnostics.py:ExtractionDiagnostics",
+      "type": "class",
+      "name": "ExtractionDiagnostics",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [91, 274],
+      "summary": "Thread-safe process-global extraction diagnostics singleton. Records per-tier attempts, successes, no-output events, and failures with error samples. Provides snapshot(), success_rate(), and reset() for operator dashboards and test isolation.",
+      "tags": ["diagnostics", "thread-safe", "monitoring", "singleton", "counters"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/extraction/diagnostics.py:_safe_for_log",
+      "type": "function",
+      "name": "_safe_for_log",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [63, 76],
+      "summary": "Sanitizes exception messages for log inclusion by stripping control characters, ANSI escapes, and newlines, capped at 200 characters to prevent log injection.",
+      "tags": ["utility", "sanitization", "logging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/extraction/diagnostics.py:get_diagnostics",
+      "type": "function",
+      "name": "get_diagnostics",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [283, 294],
+      "summary": "Returns the process-global ExtractionDiagnostics singleton with double-checked locking for thread-safe lazy initialization.",
+      "tags": ["singleton", "factory", "diagnostics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/extraction/diagnostics.py:get_extraction_stats",
+      "type": "function",
+      "name": "get_extraction_stats",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [297, 301],
+      "summary": "Convenience function returning a JSON-serializable snapshot of current extraction diagnostics via get_diagnostics().snapshot().",
+      "tags": ["convenience", "diagnostics", "monitoring"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/extraction/diagnostics.py:reset_extraction_stats",
+      "type": "function",
+      "name": "reset_extraction_stats",
+      "filePath": "mnemosyne/extraction/diagnostics.py",
+      "lineRange": [304, 308],
+      "summary": "Convenience function resetting all extraction diagnostics counters, primarily used for tests and fresh measurement windows.",
+      "tags": ["convenience", "diagnostics", "testing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mnemosyne/extraction/prompts.py",
+      "type": "file",
+      "name": "prompts.py",
+      "filePath": "mnemosyne/extraction/prompts.py",
+      "summary": "Defines EXTRACTION_SYSTEM_PROMPT and EXTRACTION_USER_TEMPLATE strings used by the fact extraction engine to guide LLM output toward structured JSON fact arrays with entities, relationships, temporal anchors, and contradictions.",
+      "tags": ["prompts", "llm", "extraction", "configuration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_c13b_extraction_diagnostics.py",
+      "type": "file",
+      "name": "test_c13b_extraction_diagnostics.py",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "summary": "Comprehensive regression tests for C13.b fact extraction failure diagnosability. Pins the ExtractionDiagnostics API, process-global singleton behavior, integration with extract_facts across all LLM availability scenarios, ExtractionClient cloud path, and review-hardening findings including thread safety, log sanitization, and snapshot isolation.",
+      "tags": ["test", "diagnostics", "extraction", "regression", "integration-test"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_c13b_extraction_diagnostics.py:fresh_diag",
+      "type": "function",
+      "name": "fresh_diag",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [44, 49],
+      "summary": "Pytest autouse fixture resetting extraction diagnostics before and after each test to prevent process-global state leakage between tests.",
+      "tags": ["fixture", "test-setup", "diagnostics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionDiagnosticsClass",
+      "type": "class",
+      "name": "TestExtractionDiagnosticsClass",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [52, 247],
+      "summary": "Tests the ExtractionDiagnostics class API: tier constants, snapshot initial state, all record methods, error sampling with bounding/truncation, outer call accounting (success/all_empty/hard failure), success rate math, unknown tier rejection, reset, JSON serializability, and concurrent thread safety.",
+      "tags": ["test", "unit-test", "diagnostics", "thread-safety"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestProcessGlobalSingleton",
+      "type": "class",
+      "name": "TestProcessGlobalSingleton",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [250, 268],
+      "summary": "Tests that get_diagnostics returns the same singleton instance and that module-level convenience helpers (get_extraction_stats, reset_extraction_stats) use the singleton correctly.",
+      "tags": ["test", "unit-test", "singleton"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractFactsIntegration",
+      "type": "class",
+      "name": "TestExtractFactsIntegration",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [271, 393],
+      "summary": "Tests extract_facts under various LLM availability scenarios: unavailable LLM, empty input (no recording), local LLM crashes, successful local extraction, and extract_facts_safe outer wrapper exception attribution to wrapper tier.",
+      "tags": ["test", "integration-test", "extraction", "error-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionClientIntegration",
+      "type": "class",
+      "name": "TestExtractionClientIntegration",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [396, 498],
+      "summary": "Tests ExtractionClient cloud path diagnostics: API key failure recording, chat() attempt counting without premature success recording, JSON parse failure on non-bracket output, and malformed JSON detection.",
+      "tags": ["test", "integration-test", "cloud", "extraction", "json-parsing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [501, 705],
+      "summary": "Review-hardening regression tests: phantom host attempt prevention, host adapter exception attribution, wrapper tier isolation from local tier, cloud chat success-only-on-parseable-output enforcement, record_call inclusion for cloud path, snapshot sample deep-copy independence, and log sanitization of ANSI/newline injection.",
+      "tags": ["test", "regression", "security", "hardening"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c13b_extraction_diagnostics.py:TestOperatorVisibleLogs",
+      "type": "class",
+      "name": "TestOperatorVisibleLogs",
+      "filePath": "tests/test_c13b_extraction_diagnostics.py",
+      "lineRange": [708, 737],
+      "summary": "Tests that local LLM failures produce WARNING-level log messages as a secondary signal for operators tailing logs, complementing the primary diagnostics counters.",
+      "tags": ["test", "logging", "observability"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mnemosyne/extraction/__init__.py",
+      "target": "file:mnemosyne/extraction/client.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/extraction/__init__.py",
+      "target": "file:mnemosyne/extraction/diagnostics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/extraction/__init__.py",
+      "target": "file:mnemosyne/extraction/prompts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "file:mnemosyne/extraction/diagnostics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/extraction/__init__.py",
+      "target": "class:mnemosyne/extraction/__init__.py:ExtractionConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/client.py",
+      "target": "class:mnemosyne/extraction/client.py:ExtractionClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "class:mnemosyne/extraction/diagnostics.py:_TierStats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "class:mnemosyne/extraction/diagnostics.py:ExtractionDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:_safe_for_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:get_diagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:get_extraction_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:reset_extraction_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "function:tests/test_c13b_extraction_diagnostics.py:fresh_diag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionDiagnosticsClass",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestProcessGlobalSingleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractFactsIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionClientIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestOperatorVisibleLogs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/extraction/__init__.py",
+      "target": "class:mnemosyne/extraction/__init__.py:ExtractionConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/client.py",
+      "target": "class:mnemosyne/extraction/client.py:ExtractionClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "class:mnemosyne/extraction/diagnostics.py:_TierStats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "class:mnemosyne/extraction/diagnostics.py:ExtractionDiagnostics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:_safe_for_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:get_diagnostics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:get_extraction_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "function:mnemosyne/extraction/diagnostics.py:reset_extraction_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "function:tests/test_c13b_extraction_diagnostics.py:fresh_diag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionDiagnosticsClass",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestProcessGlobalSingleton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractFactsIntegration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestExtractionClientIntegration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestReviewHardening",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c13b_extraction_diagnostics.py",
+      "target": "class:tests/test_c13b_extraction_diagnostics.py:TestOperatorVisibleLogs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/extraction/diagnostics.py",
+      "target": "file:tests/test_c13b_extraction_diagnostics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

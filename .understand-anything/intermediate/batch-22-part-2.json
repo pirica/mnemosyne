@@ -1,0 +1,1723 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_scope_auto_default.py",
+      "type": "file",
+      "name": "test_scope_auto_default.py",
+      "filePath": "tests/test_scope_auto_default.py",
+      "summary": "Tests for scope auto default functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "scope-auto-default",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_sync_roles.py",
+      "type": "file",
+      "name": "test_sync_roles.py",
+      "filePath": "tests/test_sync_roles.py",
+      "summary": "Tests for sync roles functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "sync-roles",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_sync_turn_content_limit.py",
+      "type": "file",
+      "name": "test_sync_turn_content_limit.py",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "summary": "Tests for sync turn content limit functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "sync-turn-content-limit",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_t1_local_llm_default_disabled.py",
+      "type": "file",
+      "name": "test_t1_local_llm_default_disabled.py",
+      "filePath": "tests/test_t1_local_llm_default_disabled.py",
+      "summary": "Tests for t1 local llm default disabled functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "t1-local-llm-default-disabled",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_temporal_parser.py",
+      "type": "file",
+      "name": "test_temporal_parser.py",
+      "filePath": "tests/test_temporal_parser.py",
+      "summary": "Tests for temporal parser functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "temporal-parser",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_triples_data_dir.py",
+      "type": "file",
+      "name": "test_triples_data_dir.py",
+      "filePath": "tests/test_triples_data_dir.py",
+      "summary": "Tests for triples data dir functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "triples-data-dir",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_weibull_mmr_intent.py",
+      "type": "file",
+      "name": "test_weibull_mmr_intent.py",
+      "filePath": "tests/test_weibull_mmr_intent.py",
+      "summary": "Tests for weibull mmr intent functionality in the Mnemosyne memory system.",
+      "tags": [
+        "test",
+        "weibull-mmr-intent",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_audit_log.py",
+      "type": "file",
+      "name": "bench_audit_log.py",
+      "filePath": "tools/bench_audit_log.py",
+      "summary": "Benchmark script measuring performance of audit_log operations.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_unified_recall.py",
+      "type": "file",
+      "name": "bench_unified_recall.py",
+      "filePath": "tools/bench_unified_recall.py",
+      "summary": "Benchmark script measuring performance of unified_recall operations.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/bench_validation.py",
+      "type": "file",
+      "name": "bench_validation.py",
+      "filePath": "tools/bench_validation.py",
+      "summary": "Benchmark script measuring performance of validation operations.",
+      "tags": [
+        "tool",
+        "benchmark",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/generate_beam_charts.py",
+      "type": "file",
+      "name": "generate_beam_charts.py",
+      "filePath": "tools/generate_beam_charts.py",
+      "summary": "Tool for generating visualization charts of beam metrics and memory retrieval performance data.",
+      "tags": [
+        "tool",
+        "generation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tools/generate_sota_report.py",
+      "type": "file",
+      "name": "generate_sota_report.py",
+      "filePath": "tools/generate_sota_report.py",
+      "summary": "Tool for generating state-of-the-art comparison reports benchmarking memory retrieval performance.",
+      "tags": [
+        "tool",
+        "generation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_session_when_extract_false",
+      "type": "function",
+      "name": "test_scope_defaults_to_session_when_extract_false",
+      "filePath": "tests/test_scope_auto_default.py",
+      "params": [],
+      "summary": "Function test_scope_defaults_to_session_when_extract_false.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_global_when_extract_true",
+      "type": "function",
+      "name": "test_scope_defaults_to_global_when_extract_true",
+      "filePath": "tests/test_scope_auto_default.py",
+      "params": [],
+      "summary": "Function test_scope_defaults_to_global_when_extract_true.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_scope_auto_default.py:test_explicit_scope_respected_even_with_extract",
+      "type": "function",
+      "name": "test_explicit_scope_respected_even_with_extract",
+      "filePath": "tests/test_scope_auto_default.py",
+      "params": [],
+      "summary": "Function test_explicit_scope_respected_even_with_extract.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_scope_auto_default.py:test_explicit_global_scope_respected",
+      "type": "function",
+      "name": "test_explicit_global_scope_respected",
+      "filePath": "tests/test_scope_auto_default.py",
+      "params": [],
+      "summary": "Function test_explicit_global_scope_respected.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_scope_auto_default.py:test_extract_entities_does_not_affect_scope",
+      "type": "function",
+      "name": "test_extract_entities_does_not_affect_scope",
+      "filePath": "tests/test_scope_auto_default.py",
+      "params": [],
+      "summary": "Function test_extract_entities_does_not_affect_scope.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRoles",
+      "type": "class",
+      "name": "TestSyncRoles",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [
+        9,
+        152
+      ],
+      "summary": "Test class TestSyncRoles with 11 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRolesConfig",
+      "type": "class",
+      "name": "TestSyncRolesConfig",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [
+        155,
+        203
+      ],
+      "summary": "Test class TestSyncRolesConfig with 10 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRolesEnvVar",
+      "type": "class",
+      "name": "TestSyncRolesEnvVar",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [
+        206,
+        226
+      ],
+      "summary": "Test class TestSyncRolesEnvVar with 3 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:_sync_turn_user_limit",
+      "type": "function",
+      "name": "_sync_turn_user_limit",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [],
+      "summary": "Function _sync_turn_user_limit.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:_sync_turn_assistant_limit",
+      "type": "function",
+      "name": "_sync_turn_assistant_limit",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [],
+      "summary": "Function _sync_turn_assistant_limit.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_default_user_limit_is_500",
+      "type": "function",
+      "name": "test_default_user_limit_is_500",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_default_user_limit_is_500.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_default_assistant_limit_is_800",
+      "type": "function",
+      "name": "test_default_assistant_limit_is_800",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_default_assistant_limit_is_800.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_user_limit",
+      "type": "function",
+      "name": "test_env_var_overrides_user_limit",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_env_var_overrides_user_limit.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_assistant_limit",
+      "type": "function",
+      "name": "test_env_var_overrides_assistant_limit",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_env_var_overrides_assistant_limit.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_zero_disables_truncation",
+      "type": "function",
+      "name": "test_zero_disables_truncation",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_zero_disables_truncation.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_invalid_env_var_falls_back",
+      "type": "function",
+      "name": "test_invalid_env_var_falls_back",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_invalid_env_var_falls_back.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_negative_value_clamped_to_zero",
+      "type": "function",
+      "name": "test_negative_value_clamped_to_zero",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_negative_value_clamped_to_zero.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_sync_turn_content_limit.py:test_sync_turn_truncation_behavior",
+      "type": "function",
+      "name": "test_sync_turn_truncation_behavior",
+      "filePath": "tests/test_sync_turn_content_limit.py",
+      "params": [
+        "monkeypatch"
+      ],
+      "summary": "Function test_sync_turn_truncation_behavior.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_t1_local_llm_default_disabled.py:TestDefaultDisabled",
+      "type": "class",
+      "name": "TestDefaultDisabled",
+      "filePath": "tests/test_t1_local_llm_default_disabled.py",
+      "lineRange": [
+        38,
+        66
+      ],
+      "summary": "Test class TestDefaultDisabled with 4 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_t1_local_llm_default_disabled.py:TestOptInFixture",
+      "type": "class",
+      "name": "TestOptInFixture",
+      "filePath": "tests/test_t1_local_llm_default_disabled.py",
+      "lineRange": [
+        74,
+        111
+      ],
+      "summary": "Test class TestOptInFixture with 5 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_t1_local_llm_default_disabled.py:TestPerTestPatchOverridesAutouse",
+      "type": "class",
+      "name": "TestPerTestPatchOverridesAutouse",
+      "filePath": "tests/test_t1_local_llm_default_disabled.py",
+      "lineRange": [
+        119,
+        157
+      ],
+      "summary": "Test class TestPerTestPatchOverridesAutouse with 2 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_temporal_parser.py:TestTemporalParser",
+      "type": "class",
+      "name": "TestTemporalParser",
+      "filePath": "tests/test_temporal_parser.py",
+      "lineRange": [
+        13,
+        81
+      ],
+      "summary": "Test class TestTemporalParser with 12 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_triples_data_dir.py:_run_python",
+      "type": "function",
+      "name": "_run_python",
+      "filePath": "tests/test_triples_data_dir.py",
+      "params": [
+        "script",
+        "home",
+        "data_dir"
+      ],
+      "summary": "Function _run_python.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_triples_data_dir.py:test_triplestore_default_db_uses_mnemosyne_data_dir",
+      "type": "function",
+      "name": "test_triplestore_default_db_uses_mnemosyne_data_dir",
+      "filePath": "tests/test_triples_data_dir.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_triplestore_default_db_uses_mnemosyne_data_dir.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_triples_data_dir.py:test_triplestore_copies_legacy_db_into_mnemosyne_data_dir",
+      "type": "function",
+      "name": "test_triplestore_copies_legacy_db_into_mnemosyne_data_dir",
+      "filePath": "tests/test_triples_data_dir.py",
+      "params": [
+        "tmp_path"
+      ],
+      "summary": "Function test_triplestore_copies_legacy_db_into_mnemosyne_data_dir.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_weibull_mmr_intent.py:TestWeibullDecay",
+      "type": "class",
+      "name": "TestWeibullDecay",
+      "filePath": "tests/test_weibull_mmr_intent.py",
+      "lineRange": [
+        17,
+        72
+      ],
+      "summary": "Test class TestWeibullDecay with 8 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_weibull_mmr_intent.py:TestQueryIntent",
+      "type": "class",
+      "name": "TestQueryIntent",
+      "filePath": "tests/test_weibull_mmr_intent.py",
+      "lineRange": [
+        75,
+        108
+      ],
+      "summary": "Test class TestQueryIntent with 6 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_weibull_mmr_intent.py:TestMMRRerank",
+      "type": "class",
+      "name": "TestMMRRerank",
+      "filePath": "tests/test_weibull_mmr_intent.py",
+      "lineRange": [
+        111,
+        144
+      ],
+      "summary": "Test class TestMMRRerank with 4 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_weibull_mmr_intent.py:TestEnhancedRecallE2E",
+      "type": "class",
+      "name": "TestEnhancedRecallE2E",
+      "filePath": "tests/test_weibull_mmr_intent.py",
+      "lineRange": [
+        147,
+        190
+      ],
+      "summary": "Test class TestEnhancedRecallE2E with 6 methods.",
+      "tags": [
+        "test",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/bench_audit_log.py:_bootstrap",
+      "type": "function",
+      "name": "_bootstrap",
+      "filePath": "tools/bench_audit_log.py",
+      "params": [
+        "env_dir"
+      ],
+      "summary": "Function _bootstrap.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_audit_log.py:_measure_remember",
+      "type": "function",
+      "name": "_measure_remember",
+      "filePath": "tools/bench_audit_log.py",
+      "params": [
+        "provider",
+        "n"
+      ],
+      "summary": "Function _measure_remember.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_audit_log.py:_toggle_audit",
+      "type": "function",
+      "name": "_toggle_audit",
+      "filePath": "tools/bench_audit_log.py",
+      "params": [
+        "provider",
+        "enabled"
+      ],
+      "summary": "Function _toggle_audit.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_audit_log.py:_summary",
+      "type": "function",
+      "name": "_summary",
+      "filePath": "tools/bench_audit_log.py",
+      "params": [
+        "label",
+        "samples"
+      ],
+      "summary": "Function _summary.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_audit_log.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/bench_audit_log.py",
+      "params": [],
+      "summary": "Function main.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_unified_recall.py:_bootstrap",
+      "type": "function",
+      "name": "_bootstrap",
+      "filePath": "tools/bench_unified_recall.py",
+      "params": [
+        "env_dir"
+      ],
+      "summary": "Function _bootstrap.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_unified_recall.py:_seed",
+      "type": "function",
+      "name": "_seed",
+      "filePath": "tools/bench_unified_recall.py",
+      "params": [
+        "provider",
+        "n_private",
+        "n_surface"
+      ],
+      "summary": "Function _seed.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_unified_recall.py:_measure",
+      "type": "function",
+      "name": "_measure",
+      "filePath": "tools/bench_unified_recall.py",
+      "params": [
+        "provider",
+        "query",
+        "surface_read",
+        "iters"
+      ],
+      "summary": "Function _measure.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_unified_recall.py:_summary",
+      "type": "function",
+      "name": "_summary",
+      "filePath": "tools/bench_unified_recall.py",
+      "params": [
+        "label",
+        "samples"
+      ],
+      "summary": "Function _summary.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_unified_recall.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/bench_unified_recall.py",
+      "params": [],
+      "summary": "Function main.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_validation.py:_bootstrap",
+      "type": "function",
+      "name": "_bootstrap",
+      "filePath": "tools/bench_validation.py",
+      "params": [
+        "env_dir"
+      ],
+      "summary": "Function _bootstrap.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_validation.py:_seed_targets",
+      "type": "function",
+      "name": "_seed_targets",
+      "filePath": "tools/bench_validation.py",
+      "params": [
+        "provider",
+        "n"
+      ],
+      "summary": "Function _seed_targets.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_validation.py:_measure",
+      "type": "function",
+      "name": "_measure",
+      "filePath": "tools/bench_validation.py",
+      "params": [
+        "provider",
+        "target_ids",
+        "action",
+        "iters"
+      ],
+      "summary": "Function _measure.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_validation.py:_summary",
+      "type": "function",
+      "name": "_summary",
+      "filePath": "tools/bench_validation.py",
+      "params": [
+        "label",
+        "samples"
+      ],
+      "summary": "Function _summary.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/bench_validation.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/bench_validation.py",
+      "params": [],
+      "summary": "Function main.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:apply_dark_style",
+      "type": "function",
+      "name": "apply_dark_style",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [
+        "fig",
+        "ax"
+      ],
+      "summary": "Function apply_dark_style.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:save_chart",
+      "type": "function",
+      "name": "save_chart",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [
+        "fig",
+        "name"
+      ],
+      "summary": "Function save_chart.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_e2e_comparison",
+      "type": "function",
+      "name": "chart_e2e_comparison",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_e2e_comparison.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_retrieval_performance",
+      "type": "function",
+      "name": "chart_retrieval_performance",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_retrieval_performance.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_storage",
+      "type": "function",
+      "name": "chart_storage",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_storage.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_ability_radar",
+      "type": "function",
+      "name": "chart_ability_radar",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_ability_radar.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_throughput",
+      "type": "function",
+      "name": "chart_throughput",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_throughput.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_sota_card",
+      "type": "function",
+      "name": "chart_sota_card",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_sota_card.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_beam_charts.py:chart_latency_distribution",
+      "type": "function",
+      "name": "chart_latency_distribution",
+      "filePath": "tools/generate_beam_charts.py",
+      "params": [],
+      "summary": "Function chart_latency_distribution.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/generate_sota_report.py:generate_report",
+      "type": "function",
+      "name": "generate_report",
+      "filePath": "tools/generate_sota_report.py",
+      "params": [
+        "json_path"
+      ],
+      "summary": "Function generate_report.",
+      "tags": [
+        "test",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_session_when_extract_false",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_session_when_extract_false",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_global_when_extract_true",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_scope_defaults_to_global_when_extract_true",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_explicit_scope_respected_even_with_extract",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_explicit_scope_respected_even_with_extract",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_explicit_global_scope_respected",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_explicit_global_scope_respected",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_extract_entities_does_not_affect_scope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_scope_auto_default.py",
+      "target": "function:tests/test_scope_auto_default.py:test_extract_entities_does_not_affect_scope",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesEnvVar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesEnvVar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:_sync_turn_user_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:_sync_turn_user_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:_sync_turn_assistant_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:_sync_turn_assistant_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_default_user_limit_is_500",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_default_user_limit_is_500",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_default_assistant_limit_is_800",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_default_assistant_limit_is_800",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_user_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_user_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_assistant_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_env_var_overrides_assistant_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_zero_disables_truncation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_zero_disables_truncation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_invalid_env_var_falls_back",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_invalid_env_var_falls_back",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_negative_value_clamped_to_zero",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_negative_value_clamped_to_zero",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_sync_turn_truncation_behavior",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_turn_content_limit.py",
+      "target": "function:tests/test_sync_turn_content_limit.py:test_sync_turn_truncation_behavior",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestDefaultDisabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestDefaultDisabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestOptInFixture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestOptInFixture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestPerTestPatchOverridesAutouse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_t1_local_llm_default_disabled.py",
+      "target": "class:tests/test_t1_local_llm_default_disabled.py:TestPerTestPatchOverridesAutouse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_temporal_parser.py",
+      "target": "class:tests/test_temporal_parser.py:TestTemporalParser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_temporal_parser.py",
+      "target": "class:tests/test_temporal_parser.py:TestTemporalParser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:_run_python",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:_run_python",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:test_triplestore_default_db_uses_mnemosyne_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:test_triplestore_default_db_uses_mnemosyne_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:test_triplestore_copies_legacy_db_into_mnemosyne_data_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_triples_data_dir.py",
+      "target": "function:tests/test_triples_data_dir.py:test_triplestore_copies_legacy_db_into_mnemosyne_data_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestWeibullDecay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestWeibullDecay",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestQueryIntent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestQueryIntent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestMMRRerank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestMMRRerank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestEnhancedRecallE2E",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_weibull_mmr_intent.py",
+      "target": "class:tests/test_weibull_mmr_intent.py:TestEnhancedRecallE2E",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_measure_remember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_measure_remember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_toggle_audit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_toggle_audit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_audit_log.py",
+      "target": "function:tools/bench_audit_log.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_measure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_measure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_unified_recall.py",
+      "target": "function:tools/bench_unified_recall.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_seed_targets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_seed_targets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_measure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_measure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/bench_validation.py",
+      "target": "function:tools/bench_validation.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:apply_dark_style",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:apply_dark_style",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:save_chart",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:save_chart",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_e2e_comparison",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_e2e_comparison",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_retrieval_performance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_retrieval_performance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_storage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_storage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_ability_radar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_ability_radar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_throughput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_throughput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_sota_card",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_sota_card",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_latency_distribution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_beam_charts.py",
+      "target": "function:tools/generate_beam_charts.py:chart_latency_distribution",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/generate_sota_report.py",
+      "target": "function:tools/generate_sota_report.py:generate_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tools/generate_sota_report.py",
+      "target": "function:tools/generate_sota_report.py:generate_report",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

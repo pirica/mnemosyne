@@ -1,0 +1,743 @@
+{
+  "nodes": [
+    {
+      "id": "file:hermes_memory_provider/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "hermes_memory_provider/__init__.py",
+      "summary": "Main entry point for the Mnemosyne Hermes MemoryProvider plugin. Defines all tool schemas (remember, recall, validate, graph query, etc.), the MnemosyneMemoryProvider class with full lifecycle management, lazy imports, config pipeline, and Hermes plugin registration.",
+      "tags": ["entry-point", "memory-provider", "tool-definitions", "configuration", "lifecycle-management"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:hermes_memory_provider/audit.py",
+      "type": "file",
+      "name": "audit.py",
+      "filePath": "hermes_memory_provider/audit.py",
+      "summary": "Append-only audit log for Mnemosyne memory mutations backed by a SQLite table co-located with the provider DB. Records events for remember, forget, invalidate, sleep, and shared-surface operations.",
+      "tags": ["audit-log", "sqlite", "persistence", "event-recording"],
+      "languageNotes": "Uses a separate SQLite table colocated with the provider DB; migrations are handled inline on first access.",
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider_audit.py",
+      "type": "file",
+      "name": "test_hermes_memory_provider_audit.py",
+      "filePath": "tests/test_hermes_memory_provider_audit.py",
+      "summary": "Tests for the memory audit log module (AuditLog) and its integration with MnemosyneMemoryProvider. Verifies table creation, event recording/querying, error resilience, and audit events for remember, forget, invalidate, sleep, and shared-surface operations.",
+      "tags": ["test", "audit-log", "integration-test", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "type": "file",
+      "name": "test_hermes_memory_provider_diagnose_active_db.py",
+      "filePath": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "summary": "Tests for the Mnemosyne diagnose handler, verifying it reports the active provider DB path, profile isolation status, memory counts, and gracefully handles missing or corrupted database tables.",
+      "tags": ["test", "diagnostics", "provider-test", "pytest"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider_thread_isolation.py",
+      "type": "file",
+      "name": "test_hermes_memory_provider_thread_isolation.py",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "summary": "Tests Telegram thread/topic isolation via gateway_session_key. Verifies that different gateway_session_keys isolate session-scoped memories per thread, scope='global' memories cross threads, and prefetch respects thread boundaries.",
+      "tags": ["test", "thread-isolation", "multi-tenant", "gateway", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider_unified_recall.py",
+      "type": "file",
+      "name": "test_hermes_memory_provider_unified_recall.py",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "summary": "Tests the unified recall feature that merges shared-surface results into private bank recall. Verifies default behavior (private only), opt-in shared_surface_read mode, result tagging, top-k truncation after merge, and graceful fallback on surface init failure.",
+      "tags": ["test", "recall", "shared-surface", "integration-test", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_hermes_memory_provider_validation.py",
+      "type": "file",
+      "name": "test_hermes_memory_provider_validation.py",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "summary": "Comprehensive tests for the mnemosyne_validate tool supporting collaborative memory ownership: attest, update, invalidate, delete actions across private and surface banks, 3-entry ring buffer, author preservation, and cross-agent attestation chains.",
+      "tags": ["test", "validation", "collaborative", "ring-buffer", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_recall_precision_regressions.py",
+      "type": "file",
+      "name": "test_recall_precision_regressions.py",
+      "filePath": "tests/test_recall_precision_regressions.py",
+      "summary": "Regression tests for Mnemosyne recall precision ensuring correct ranking behavior: natural language queries prefer relevant artifacts over noise, nonsense queries abstain, newer corrections override stale history, and multi-fact queries surface separate aspects. Includes hindsight import embedding backfill tests.",
+      "tags": ["test", "recall", "precision", "regression", "unittest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_s1_mcp_sse_auth.py",
+      "type": "file",
+      "name": "test_s1_mcp_sse_auth.py",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "summary": "Security regression tests for S1 MCP SSE auth hardening: verifies loopback detection, bearer-token enforcement for non-loopback hosts, CLI host flag plumbing, and Starlette middleware installation for the MCP SSE transport.",
+      "tags": ["test", "security", "mcp", "sse", "auth", "regression", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_sync_roles.py",
+      "type": "file",
+      "name": "test_sync_roles.py",
+      "filePath": "tests/test_sync_roles.py",
+      "summary": "Tests for sync_roles config controlling which conversation roles (user/assistant) are autosaved in sync_turn(). Verifies default dual-role save, single-role filtering, empty disabling, identity signal gating, config parsing from kwargs/config.yaml, and env var support.",
+      "tags": ["test", "sync-roles", "configuration", "conversation", "pytest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:hermes_memory_provider/__init__.py:MnemosyneMemoryProvider",
+      "type": "class",
+      "name": "MnemosyneMemoryProvider",
+      "filePath": "hermes_memory_provider/__init__.py",
+      "lineRange": [600, 2002],
+      "summary": "Core memory provider implementing the Hermes MemoryProvider protocol. Manages SQLite + vector FTS5 hybrid search, shared-surface read merging, config pipeline with layered precedence (kwargs > config.yaml > env vars > defaults), profile isolation, thread isolation via gateway_session_key, audit logging, auto-sleep consolidation, and tool dispatch for 20+ tools.",
+      "tags": ["memory-provider", "hybrid-search", "configuration", "tool-dispatch", "lifecycle"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:hermes_memory_provider/audit.py:AuditLog",
+      "type": "class",
+      "name": "AuditLog",
+      "filePath": "hermes_memory_provider/audit.py",
+      "lineRange": [47, 138],
+      "summary": "Append-only SQLite-backed audit log for recording memory mutation events (remember, forget, invalidate, sleep). Logs action type, memory ID, bank, scope, profile, session, tool, tokens, reason, and metadata. Non-blocking fire-and-forget design.",
+      "tags": ["audit-log", "sqlite", "persistence"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_hermes_memory_provider_audit.py:TestAuditLogModule",
+      "type": "class",
+      "name": "TestAuditLogModule",
+      "filePath": "tests/test_hermes_memory_provider_audit.py",
+      "lineRange": [29, 50],
+      "summary": "Unit tests for the AuditLog class: table creation, event recording and querying, error handling on bad paths.",
+      "tags": ["test", "unit-test", "audit-log"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_hermes_memory_provider_audit.py:TestAuditIntegration",
+      "type": "class",
+      "name": "TestAuditIntegration",
+      "filePath": "tests/test_hermes_memory_provider_audit.py",
+      "lineRange": [53, 165],
+      "summary": "Integration tests verifying that memory operations (remember, forget, invalidate, sleep, shared remember/forget) produce corresponding audit events through the MnemosyneMemoryProvider pipeline.",
+      "tags": ["test", "integration-test", "audit-log"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_diagnose_active_db.py:test_diagnose_reports_active_provider_db_path_and_counts",
+      "type": "function",
+      "name": "test_diagnose_reports_active_provider_db_path_and_counts",
+      "filePath": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "lineRange": [21, 54],
+      "summary": "Verifies diagnose handler reports the active provider DB path, profile isolation status, working/episodic/fact memory counts, and merges legacy diagnostics key findings.",
+      "tags": ["test", "diagnostics", "provider-test"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_diagnose_active_db.py:test_diagnose_without_active_beam_keeps_base_diagnostics",
+      "type": "function",
+      "name": "test_diagnose_without_active_beam_keeps_base_diagnostics",
+      "filePath": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "lineRange": [57, 66],
+      "summary": "Verifies diagnose handler still returns base diagnostics when no active beam is available.",
+      "tags": ["test", "diagnostics", "edge-case"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_diagnose_active_db.py:test_diagnose_reports_count_error_without_failing",
+      "type": "function",
+      "name": "test_diagnose_reports_count_error_without_failing",
+      "filePath": "tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "lineRange": [69, 82],
+      "summary": "Verifies diagnose handler gracefully reports a count error when a database table is missing, without crashing.",
+      "tags": ["test", "diagnostics", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_thread_isolation.py:test_gateway_session_key_isolates_session_memories",
+      "type": "function",
+      "name": "test_gateway_session_key_isolates_session_memories",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "lineRange": [59, 105],
+      "summary": "Core test: two threads with different gateway_session_keys must not see each other's session-scoped memories, but must both see scope='global' memories.",
+      "tags": ["test", "thread-isolation", "multi-tenant", "gateway"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_thread_isolation.py:test_no_gateway_session_key_falls_back_to_session_id",
+      "type": "function",
+      "name": "test_no_gateway_session_key_falls_back_to_session_id",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "lineRange": [108, 126],
+      "summary": "Verifies backward compatibility: without gateway_session_key, session_id is used directly (hermes_ prefix).",
+      "tags": ["test", "thread-isolation", "backward-compatibility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_thread_isolation.py:test_gateway_session_key_sanitized_for_session_id",
+      "type": "function",
+      "name": "test_gateway_session_key_sanitized_for_session_id",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "lineRange": [129, 148],
+      "summary": "Verifies gateway_session_key with colons is valid as session_id since SQLite TEXT columns handle any string.",
+      "tags": ["test", "thread-isolation", "edge-case"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_thread_isolation.py:test_empty_gateway_session_key_falls_back",
+      "type": "function",
+      "name": "test_empty_gateway_session_key_falls_back",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "lineRange": [151, 160],
+      "summary": "Verifies empty gateway_session_key is treated the same as None, falling back to session_id.",
+      "tags": ["test", "thread-isolation", "edge-case"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_thread_isolation.py:test_prefetch_scopes_to_thread",
+      "type": "function",
+      "name": "test_prefetch_scopes_to_thread",
+      "filePath": "tests/test_hermes_memory_provider_thread_isolation.py",
+      "lineRange": [163, 205],
+      "summary": "Verifies prefetch() respects thread boundaries by returning only current thread's session memories plus global memories.",
+      "tags": ["test", "thread-isolation", "prefetch"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_default_returns_private_only",
+      "type": "function",
+      "name": "test_recall_default_returns_private_only",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [54, 64],
+      "summary": "Default behavior: recall returns only private bank results, excluding shared-surface memories.",
+      "tags": ["test", "recall", "default-behavior"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_default_tags_results_as_private",
+      "type": "function",
+      "name": "test_recall_default_tags_results_as_private",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [67, 76],
+      "summary": "Default recall tags all results with bank='private' and shared_surface=False.",
+      "tags": ["test", "recall", "bank-tagging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_with_surface_read_includes_shared_results",
+      "type": "function",
+      "name": "test_recall_with_surface_read_includes_shared_results",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [81, 90],
+      "summary": "With shared_surface_read=True, recall merges shared-surface results into the response.",
+      "tags": ["test", "recall", "shared-surface"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_tags_surface_results_with_bank_surface",
+      "type": "function",
+      "name": "test_recall_tags_surface_results_with_bank_surface",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [93, 102],
+      "summary": "Surface results are tagged with bank='surface' and shared_surface=True.",
+      "tags": ["test", "recall", "bank-tagging"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_merges_results_from_both_banks",
+      "type": "function",
+      "name": "test_recall_merges_results_from_both_banks",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [105, 114],
+      "summary": "Verifies results from both private and surface banks appear in the unified recall response.",
+      "tags": ["test", "recall", "merged-results"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_truncates_to_top_k_after_merge",
+      "type": "function",
+      "name": "test_recall_truncates_to_top_k_after_merge",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [117, 127],
+      "summary": "After merging banks, results are truncated to the requested limit (top_k).",
+      "tags": ["test", "recall", "limit"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_recall_surface_init_failure_falls_back_to_private",
+      "type": "function",
+      "name": "test_recall_surface_init_failure_falls_back_to_private",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [130, 148],
+      "summary": "When shared-surface beam init fails, recall falls back to private-only results without crashing.",
+      "tags": ["test", "recall", "error-handling", "resilience"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_shared_surface_read_reads_from_config_yaml",
+      "type": "function",
+      "name": "test_shared_surface_read_reads_from_config_yaml",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [162, 180],
+      "summary": "Verifies shared_surface_read is read from config.yaml under memory.mnemosyne section.",
+      "tags": ["test", "configuration", "config-yaml"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_unified_recall.py:test_shared_surface_read_kwarg_overrides_config",
+      "type": "function",
+      "name": "test_shared_surface_read_kwarg_overrides_config",
+      "filePath": "tests/test_hermes_memory_provider_unified_recall.py",
+      "lineRange": [183, 202],
+      "summary": "Verifies kwargs override config.yaml values for shared_surface_read.",
+      "tags": ["test", "configuration", "config-override"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validate_attest_preserves_author_and_records_validator",
+      "type": "function",
+      "name": "test_validate_attest_preserves_author_and_records_validator",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [106, 126],
+      "summary": "Attest action preserves original author while recording the validator and incrementing the validation count.",
+      "tags": ["test", "validation", "attest"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validate_update_replaces_content_and_keeps_author",
+      "type": "function",
+      "name": "test_validate_update_replaces_content_and_keeps_author",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [143, 158],
+      "summary": "Update action replaces memory content while preserving authorship and recording the validator.",
+      "tags": ["test", "validation", "update"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validate_invalidate_sets_valid_until",
+      "type": "function",
+      "name": "test_validate_invalidate_sets_valid_until",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [175, 190],
+      "summary": "Invalidate action sets valid_until on the memory row to mark it as expired.",
+      "tags": ["test", "validation", "invalidate"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validate_delete_removes_row",
+      "type": "function",
+      "name": "test_validate_delete_removes_row",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [195, 206],
+      "summary": "Delete action physically removes the memory row from the database.",
+      "tags": ["test", "validation", "delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validate_works_on_shared_surface",
+      "type": "function",
+      "name": "test_validate_works_on_shared_surface",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [211, 225],
+      "summary": "Validate action works on the shared-surface bank as well as the private bank.",
+      "tags": ["test", "validation", "shared-surface"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_ring_buffer_keeps_only_last_three_validations",
+      "type": "function",
+      "name": "test_ring_buffer_keeps_only_last_three_validations",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [230, 244],
+      "summary": "The validation history ring buffer keeps only the last 3 entries, trimming older ones.",
+      "tags": ["test", "validation", "ring-buffer"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_validation_count_grows_unbounded",
+      "type": "function",
+      "name": "test_validation_count_grows_unbounded",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [247, 260],
+      "summary": "The validation_count column on the live row continues incrementing even when the log is trimmed.",
+      "tags": ["test", "validation", "ring-buffer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_hermes_memory_provider_validation.py:test_collaborative_attestation_chain",
+      "type": "function",
+      "name": "test_collaborative_attestation_chain",
+      "filePath": "tests/test_hermes_memory_provider_validation.py",
+      "lineRange": [303, 329],
+      "summary": "End-to-end collaborative scenario: sisyphus authors, albedo updates, sisyphus updates again, hopz attests. Author preserved throughout, ring buffer captures last 3 validations.",
+      "tags": ["test", "validation", "collaborative", "end-to-end"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_recall_precision_regressions.py:TestRecallPrecisionRegressions",
+      "type": "class",
+      "name": "TestRecallPrecisionRegressions",
+      "filePath": "tests/test_recall_precision_regressions.py",
+      "lineRange": [13, 199],
+      "summary": "Regression test suite for recall precision: natural queries rank correct artifacts first, nonsense abstains, multi-fact queries surface separate aspects, newer corrections override stale history, and memoria results carry source memory references.",
+      "tags": ["test", "recall", "precision", "regression", "ranking"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_recall_precision_regressions.py:TestHindsightImportEmbeddingBackfill",
+      "type": "class",
+      "name": "TestHindsightImportEmbeddingBackfill",
+      "filePath": "tests/test_recall_precision_regressions.py",
+      "lineRange": [213, 256],
+      "summary": "Tests that hindsight import backfill writes canonical memory embeddings to the memory_embeddings table.",
+      "tags": ["test", "embedding", "import", "backfill"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestIsLoopback",
+      "type": "class",
+      "name": "TestIsLoopback",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [32, 51],
+      "summary": "Parameterized tests confirming _is_loopback correctly identifies loopback addresses (127.0.0.1, localhost, ::1) and rejects non-loopback (0.0.0.0, LAN, ULA).",
+      "tags": ["test", "security", "loopback", "mcp"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestResolveSseAuth",
+      "type": "class",
+      "name": "TestResolveSseAuth",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [54, 101],
+      "summary": "Tests the auth enforcement gate: loopback skips auth, non-loopback without token raises, non-loopback with token returns (True, token), whitespace handling.",
+      "tags": ["test", "security", "auth", "mcp"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestMainHostArg",
+      "type": "class",
+      "name": "TestMainHostArg",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [109, 142],
+      "summary": "Tests CLI --host flag plumbing ensures default is 127.0.0.1 and explicit --host is threaded through.",
+      "tags": ["test", "security", "cli", "mcp"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_s1_mcp_sse_auth.py:TestBuildSseApp",
+      "type": "class",
+      "name": "TestBuildSseApp",
+      "filePath": "tests/test_s1_mcp_sse_auth.py",
+      "lineRange": [163, 255],
+      "summary": "Integration tests for _build_sse_app: loopback has no auth middleware, non-loopback with token installs bearer middleware, middleware rejects missing/wrong/malformed tokens, 401 response has WWW-Authenticate header.",
+      "tags": ["test", "security", "middleware", "starlette", "mcp"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRoles",
+      "type": "class",
+      "name": "TestSyncRoles",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [9, 152],
+      "summary": "Tests sync_roles behavior: default saves both roles, user-only/assistant-only filtering, empty disables autosave, identity signal gating, ignore_patterns still apply, skip_contexts overrides, turn counter increments.",
+      "tags": ["test", "sync-roles", "conversation", "filtering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRolesConfig",
+      "type": "class",
+      "name": "TestSyncRolesConfig",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [155, 203],
+      "summary": "Tests config parsing for sync_roles: list, empty list, CSV string, empty string, unknown roles ignored, not-set preserves default, case insensitivity, invalid types, unknown-only preserves default.",
+      "tags": ["test", "configuration", "parsing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_sync_roles.py:TestSyncRolesEnvVar",
+      "type": "class",
+      "name": "TestSyncRolesEnvVar",
+      "filePath": "tests/test_sync_roles.py",
+      "lineRange": [206, 226],
+      "summary": "Tests MNEMOSYNE_SYNC_ROLES env var support for configuring sync_roles.",
+      "tags": ["test", "configuration", "env-var"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:hermes_memory_provider/__init__.py",
+      "target": "class:hermes_memory_provider/__init__.py:MnemosyneMemoryProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:hermes_memory_provider/audit.py",
+      "target": "class:hermes_memory_provider/audit.py:AuditLog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "class:tests/test_hermes_memory_provider_audit.py:TestAuditLogModule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "class:tests/test_hermes_memory_provider_audit.py:TestAuditIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_recall_precision_regressions.py",
+      "target": "class:tests/test_recall_precision_regressions.py:TestRecallPrecisionRegressions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_recall_precision_regressions.py",
+      "target": "class:tests/test_recall_precision_regressions.py:TestHindsightImportEmbeddingBackfill",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestIsLoopback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestResolveSseAuth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestMainHostArg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "class:tests/test_s1_mcp_sse_auth.py:TestBuildSseApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "class:tests/test_sync_roles.py:TestSyncRolesEnvVar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:hermes_memory_provider/__init__.py",
+      "target": "class:hermes_memory_provider/__init__.py:MnemosyneMemoryProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:hermes_memory_provider/audit.py",
+      "target": "class:hermes_memory_provider/audit.py:AuditLog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:hermes_memory_provider/__init__.py",
+      "target": "file:hermes_memory_provider/audit.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "file:hermes_memory_provider/audit.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_thread_isolation.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_unified_recall.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_validation.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_audit.py",
+      "target": "file:hermes_memory_provider/audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_thread_isolation.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_unified_recall.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_validation.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "file:hermes_memory_provider/__init__.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_recall_precision_regressions.py",
+      "target": "file:tests/test_hermes_memory_provider_audit.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_s1_mcp_sse_auth.py",
+      "target": "file:tests/test_hermes_memory_provider_audit.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_sync_roles.py",
+      "target": "file:tests/test_hermes_memory_provider_audit.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_recall_precision_regressions.py",
+      "target": "file:tests/test_hermes_memory_provider_unified_recall.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_recall_precision_regressions.py",
+      "target": "file:tests/test_hermes_memory_provider_validation.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_thread_isolation.py",
+      "target": "file:tests/test_hermes_memory_provider_unified_recall.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_hermes_memory_provider_diagnose_active_db.py",
+      "target": "file:tests/test_hermes_memory_provider_validation.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:hermes_memory_provider/__init__.py",
+      "target": "file:hermes_memory_provider/audit.py",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

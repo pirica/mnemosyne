@@ -1,0 +1,2256 @@
+{
+  "nodes": [
+    {
+      "id": "file:mnemosyne/core/beam.py",
+      "type": "file",
+      "name": "beam.py",
+      "filePath": "mnemosyne/core/beam.py",
+      "summary": "Bilevel Episodic-Associative Memory (BEAM) architecture implementing Mnemosyne's core memory subsystem with working memory, episodic memory, scratchpad, vector search via sqlite-vec, FTS5 full-text retrieval, and hybrid ranking. Contains the main BeamMemory class with 65 methods for remember, recall, sleep, consolidation, polyphonic recall, fact extraction, and memory diagnostics.",
+      "tags": [
+        "memory-system",
+        "vector-search",
+        "fts5",
+        "sqlite",
+        "hybrid-retrieval"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python module using sqlite-vec for native vector search, FTS5 for full-text, and a 50/30/20 hybrid ranking formula."
+    },
+    {
+      "id": "class:mnemosyne/core/beam.py:BeamMemory",
+      "type": "class",
+      "name": "BeamMemory",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1925,
+        7291
+      ],
+      "summary": "Core memory class implementing the BEAM architecture. Manages working memory (hot cache), episodic memory (long-term storage), scratchpad (agent workspace), polyphonic recall, fact extraction, entity linking, temporal boosting, sleep consolidation, and export/import. Contains 65 methods for the full memory lifecycle.",
+      "tags": [
+        "memory",
+        "core",
+        "recall",
+        "storage",
+        "consolidation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:mnemosyne/core/beam.py:_BeamConnection",
+      "type": "class",
+      "name": "_BeamConnection",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        952,
+        986
+      ],
+      "summary": "Thread-local database connection wrapper with deferred commit support for batch operations.",
+      "tags": [
+        "database",
+        "connection",
+        "thread-safe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:init_beam",
+      "type": "function",
+      "name": "init_beam",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        479,
+        949
+      ],
+      "summary": "Initializes the beam database schema including working_memory, episodic_memory, scratchpad, consolidated_episodic tables, FTS5 indexes, and sqlite-vec virtual tables. Creates all required indexes and triggers.",
+      "tags": [
+        "initialization",
+        "schema",
+        "database"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_get_connection",
+      "type": "function",
+      "name": "_get_connection",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        398,
+        437
+      ],
+      "summary": "Gets or creates a thread-local sqlite3 connection to the beam database, enabling sqlite-vec extension, setting WAL/journal mode, and enforcing foreign keys.",
+      "tags": [
+        "database",
+        "connection",
+        "thread-local"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_detect_vec_type",
+      "type": "function",
+      "name": "_detect_vec_type",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        440,
+        476
+      ],
+      "summary": "Probes the database to detect which vector storage type is in use (sqlite-vec, binary vectors, or none).",
+      "tags": [
+        "vector-search",
+        "detection",
+        "database"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_lexical_relevance",
+      "type": "function",
+      "name": "_lexical_relevance",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1481,
+        1546
+      ],
+      "summary": "Computes a lexical relevance score between query tokens and memory content using token overlap scoring with position-aware penalties.",
+      "tags": [
+        "search",
+        "relevance",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_vec_search",
+      "type": "function",
+      "name": "_vec_search",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1724,
+        1760
+      ],
+      "summary": "Performs vector similarity search against the episodic_memory vec_episodes table using sqlite-vec, returning top-k results.",
+      "tags": [
+        "vector-search",
+        "similarity",
+        "episodic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_wm_vec_search",
+      "type": "function",
+      "name": "_wm_vec_search",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1881,
+        1922
+      ],
+      "summary": "Performs vector similarity search against working memory embeddings, with graceful fallback on errors.",
+      "tags": [
+        "vector-search",
+        "working-memory",
+        "similarity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_fts_search",
+      "type": "function",
+      "name": "_fts_search",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1840,
+        1861
+      ],
+      "summary": "Full-text search against episodic_memory using FTS5, returning top-k results ranked by BM25 relevance.",
+      "tags": [
+        "fts5",
+        "full-text-search",
+        "episodic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_cjk_like_search",
+      "type": "function",
+      "name": "_cjk_like_search",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1783,
+        1837
+      ],
+      "summary": "Specialized LIKE-based search for CJK (Chinese/Japanese/Korean) text that doesn't require word boundaries, generating n-gram patterns for matching.",
+      "tags": [
+        "search",
+        "cjk",
+        "multilingual",
+        "n-gram"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_vec_insert",
+      "type": "function",
+      "name": "_vec_insert",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1681,
+        1721
+      ],
+      "summary": "Inserts a vector embedding into the vec_episodes or vec_wm tables, handling binary vector compression when enabled.",
+      "tags": [
+        "vector-search",
+        "insert",
+        "embedding"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_extract_and_store_entities",
+      "type": "function",
+      "name": "_extract_and_store_entities",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1221,
+        1251
+      ],
+      "summary": "Extracts named entities from memory content using regex patterns and stores them in the entity linking tables.",
+      "tags": [
+        "entity-extraction",
+        "nlp",
+        "linking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_extract_and_store_facts",
+      "type": "function",
+      "name": "_extract_and_store_facts",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1254,
+        1293
+      ],
+      "summary": "Extracts factual statements from memory content using regex/heuristic patterns and stores them as structured facts with source attribution.",
+      "tags": [
+        "fact-extraction",
+        "nlp",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_recency_decay",
+      "type": "function",
+      "name": "_recency_decay",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1125,
+        1137
+      ],
+      "summary": "Computes a recency-based decay multiplier using exponential decay with configurable half-life.",
+      "tags": [
+        "scoring",
+        "recency",
+        "decay"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_temporal_boost",
+      "type": "function",
+      "name": "_temporal_boost",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1187,
+        1208
+      ],
+      "summary": "Applies a temporal relevance boost to memory scores based on how close the memory timestamp is to the query time.",
+      "tags": [
+        "scoring",
+        "temporal",
+        "boost"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_strict_fact_matches",
+      "type": "function",
+      "name": "_strict_fact_matches",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1549,
+        1585
+      ],
+      "summary": "Performs strict fact-level matching between query and stored fact text, checking for subject-predicate-object alignment.",
+      "tags": [
+        "fact-matching",
+        "search",
+        "precision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_source_to_trust_tier",
+      "type": "function",
+      "name": "_source_to_trust_tier",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        168,
+        188
+      ],
+      "summary": "Maps memory source identifiers (e.g., 'user', 'assistant', 'system') to trust tiers for veracity-weighted scoring.",
+      "tags": [
+        "trust",
+        "scoring",
+        "veracity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_normalize_weights",
+      "type": "function",
+      "name": "_normalize_weights",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1080,
+        1106
+      ],
+      "summary": "Normalizes vector, FTS, and importance weights to sum to 1.0 for the hybrid ranking formula, with validation and clamping.",
+      "tags": [
+        "scoring",
+        "weights",
+        "normalization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_cjk_fts_terms",
+      "type": "function",
+      "name": "_cjk_fts_terms",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1452,
+        1478
+      ],
+      "summary": "Generates FTS5-compatible search terms for CJK text by splitting on character boundaries and creating valid FTS5 query syntax.",
+      "tags": [
+        "cjk",
+        "fts5",
+        "search",
+        "multilingual"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_find_memories_by_entity",
+      "type": "function",
+      "name": "_find_memories_by_entity",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1332,
+        1362
+      ],
+      "summary": "Searches for memories linked to a given entity name using the entity-mentions index table.",
+      "tags": [
+        "entity-search",
+        "linking",
+        "recall"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_find_memories_by_fact",
+      "type": "function",
+      "name": "_find_memories_by_fact",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1588,
+        1623
+      ],
+      "summary": "Retrieves memories that contain factual statements matching the query, using strict fact matching with relevance scoring.",
+      "tags": [
+        "fact-search",
+        "recall",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_in_memory_vec_search",
+      "type": "function",
+      "name": "_in_memory_vec_search",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1626,
+        1661
+      ],
+      "summary": "Performs in-memory vector similarity search as a fallback when sqlite-vec extension is unavailable, computing cosine similarity directly.",
+      "tags": [
+        "vector-search",
+        "fallback",
+        "similarity"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_deferred_commits",
+      "type": "function",
+      "name": "_deferred_commits",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        990,
+        1042
+      ],
+      "summary": "Context manager for deferred commits that batches multiple database operations into a single transaction for performance.",
+      "tags": [
+        "database",
+        "transaction",
+        "batch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_sanitize_utf8",
+      "type": "function",
+      "name": "_sanitize_utf8",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1048,
+        1067
+      ],
+      "summary": "Sanitizes text by removing or replacing invalid UTF-8 sequences to prevent database insertion errors.",
+      "tags": [
+        "utility",
+        "utf8",
+        "sanitization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_detect_veracity_weight_overrides",
+      "type": "function",
+      "name": "_detect_veracity_weight_overrides",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        342,
+        357
+      ],
+      "summary": "Detects environment variable overrides for veracity weighting configuration used in truthfulness-scored recall.",
+      "tags": [
+        "configuration",
+        "veracity",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_store_facts_in_table",
+      "type": "function",
+      "name": "_store_facts_in_table",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        1296,
+        1329
+      ],
+      "summary": "Stores extracted fact triples (subject-predicate-object) in the facts database table with source and memory ID linkage.",
+      "tags": [
+        "fact-storage",
+        "database",
+        "knowledge-graph"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_env_truthy",
+      "type": "function",
+      "name": "_env_truthy",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        216,
+        231
+      ],
+      "summary": "Parses environment variable as a boolean truthy value supporting '1', 'true', 'yes', 'on' (case-insensitive).",
+      "tags": [
+        "utility",
+        "environment",
+        "parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_env_float",
+      "type": "function",
+      "name": "_env_float",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        309,
+        331
+      ],
+      "summary": "Parses environment variable as a float with logging warnings for parse failures.",
+      "tags": [
+        "utility",
+        "environment",
+        "parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_env_disabled",
+      "type": "function",
+      "name": "_env_disabled",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        285,
+        299
+      ],
+      "summary": "Checks if a feature toggle environment variable is set to a falsy/disabled value.",
+      "tags": [
+        "utility",
+        "feature-flag",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/beam.py:_warn_about_veracity_weight_overrides",
+      "type": "function",
+      "name": "_warn_about_veracity_weight_overrides",
+      "filePath": "mnemosyne/core/beam.py",
+      "lineRange": [
+        363,
+        387
+      ],
+      "summary": "Logs warnings when non-standard veracity weight overrides are detected via environment variables.",
+      "tags": [
+        "logging",
+        "warning",
+        "veracity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mnemosyne/core/chat_normalize.py",
+      "type": "file",
+      "name": "chat_normalize.py",
+      "filePath": "mnemosyne/core/chat_normalize.py",
+      "summary": "Aggressive regex-based chat text normalization for Mnemosyne ingestion (NAI-1 experiment). Expands contractions, strips filler words, and adds implicit subjects to make casual messages parseable by structured extraction tools. Zero LLM calls, zero new dependencies.",
+      "tags": [
+        "utility",
+        "normalization",
+        "regex",
+        "chat-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/chat_normalize.py:normalize_chat",
+      "type": "function",
+      "name": "normalize_chat",
+      "filePath": "mnemosyne/core/chat_normalize.py",
+      "lineRange": [
+        56,
+        120
+      ],
+      "summary": "Aggressively normalizes casual chat text by expanding contractions, stripping filler words, and optionally adding implicit subjects. Returns None for meaningless messages.",
+      "tags": [
+        "normalization",
+        "chat",
+        "regex",
+        "preprocessing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/core/chat_normalize.py:normalize_batch",
+      "type": "function",
+      "name": "normalize_batch",
+      "filePath": "mnemosyne/core/chat_normalize.py",
+      "lineRange": [
+        123,
+        128
+      ],
+      "summary": "Batch-normalizes a list of message dicts by applying normalize_chat to each message's content field.",
+      "tags": [
+        "normalization",
+        "batch",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/core/chat_normalize.py:extraction_rate",
+      "type": "function",
+      "name": "extraction_rate",
+      "filePath": "mnemosyne/core/chat_normalize.py",
+      "lineRange": [
+        133,
+        149
+      ],
+      "summary": "Computes the fraction of messages that survive normalization (have extractable meaning) for quality monitoring.",
+      "tags": [
+        "normalization",
+        "statistics",
+        "quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mnemosyne/core/recall_diagnostics.py",
+      "type": "file",
+      "name": "recall_diagnostics.py",
+      "filePath": "mnemosyne/core/recall_diagnostics.py",
+      "summary": "Recall path provenance diagnostics (C4 experiment). Exposes a process-global counter set that records per-recall-call signals: FTS hits, vec hits, and fallback usage. Operators query via get_recall_diagnostics() to measure fallback-usage rate over a measurement window. Read-only instrumentation that never alters recall behavior.",
+      "tags": [
+        "diagnostics",
+        "monitoring",
+        "recall",
+        "provenance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/recall_diagnostics.py:RecallDiagnostics",
+      "type": "class",
+      "name": "RecallDiagnostics",
+      "filePath": "mnemosyne/core/recall_diagnostics.py",
+      "lineRange": [
+        79,
+        241
+      ],
+      "summary": "Process-global recall diagnostics singleton that tracks per-tier counters (FTS hits, vec hits, fallback usage) for measuring recall path provenance.",
+      "tags": [
+        "diagnostics",
+        "monitoring",
+        "recall",
+        "provenance"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mnemosyne/core/recall_diagnostics.py:_TierStats",
+      "type": "class",
+      "name": "_TierStats",
+      "filePath": "mnemosyne/core/recall_diagnostics.py",
+      "lineRange": [
+        51,
+        76
+      ],
+      "summary": "Dataclass representing per-tier recall counters including calls_with_hits and total_hits for measurement window analysis.",
+      "tags": [
+        "diagnostics",
+        "statistics",
+        "dataclass"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/benchmark_beam.py",
+      "type": "file",
+      "name": "benchmark_beam.py",
+      "filePath": "tests/benchmark_beam.py",
+      "summary": "Simple benchmark script that runs BeamMemory performance tests including writes, episodic insert, recall scaling, sleep, and scratchpad operations.",
+      "tags": [
+        "test",
+        "benchmark",
+        "performance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/benchmark_beam_scale.py",
+      "type": "file",
+      "name": "benchmark_beam_scale.py",
+      "filePath": "tests/benchmark_beam_scale.py",
+      "summary": "Scaling benchmark for BeamMemory that measures recall performance across varying dataset sizes to characterize time complexity.",
+      "tags": [
+        "test",
+        "benchmark",
+        "scaling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/benchmark_beam_working_memory.py",
+      "type": "file",
+      "name": "benchmark_beam_working_memory.py",
+      "filePath": "tests/benchmark_beam_working_memory.py",
+      "summary": "Specialized benchmark focusing on working memory operations in BeamMemory, measuring trim, insert, and recall performance for the hot cache tier.",
+      "tags": [
+        "test",
+        "benchmark",
+        "working-memory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/benchmark_vs_vectordbs.py",
+      "type": "file",
+      "name": "benchmark_vs_vectordbs.py",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "summary": "Head-to-head retrieval benchmark comparing Mnemosyne (FTS5+vec hybrid) against FAISS (flat L2) and ChromaDB (HNSW) on the BEAM dataset. Measures ingestion throughput, storage size, retrieval latency, and Recall@10.",
+      "tags": [
+        "test",
+        "benchmark",
+        "vector-db",
+        "comparison"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_vs_vectordbs.py:load_beam_data",
+      "type": "function",
+      "name": "load_beam_data",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "lineRange": [
+        75,
+        185
+      ],
+      "summary": "Loads BEAM dataset conversations at specified scales for comparative benchmark testing.",
+      "tags": [
+        "dataset",
+        "loading",
+        "benchmark"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_vs_vectordbs.py:benchmark_mnemosyne",
+      "type": "function",
+      "name": "benchmark_mnemosyne",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "lineRange": [
+        192,
+        270
+      ],
+      "summary": "Benchmarks Mnemosyne's hybrid (FTS5+vec) retrieval, measuring ingestion throughput and recall quality.",
+      "tags": [
+        "benchmark",
+        "mnemosyne",
+        "retrieval"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_vs_vectordbs.py:benchmark_faiss",
+      "type": "function",
+      "name": "benchmark_faiss",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "lineRange": [
+        277,
+        346
+      ],
+      "summary": "Benchmarks FAISS flat L2 vector search for comparative retrieval performance measurement.",
+      "tags": [
+        "benchmark",
+        "faiss",
+        "vector-search"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_vs_vectordbs.py:benchmark_chroma",
+      "type": "function",
+      "name": "benchmark_chroma",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "lineRange": [
+        353,
+        447
+      ],
+      "summary": "Benchmarks ChromaDB HNSW vector search for comparative retrieval performance measurement.",
+      "tags": [
+        "benchmark",
+        "chromadb",
+        "vector-search"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_vs_vectordbs.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tests/benchmark_vs_vectordbs.py",
+      "lineRange": [
+        490,
+        552
+      ],
+      "summary": "Entry point that parses CLI args and orchestrates the full head-to-head benchmark across all three database backends.",
+      "tags": [
+        "entry-point",
+        "cli",
+        "orchestration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_ab_toggles.py",
+      "type": "file",
+      "name": "test_ab_toggles.py",
+      "filePath": "tests/test_ab_toggles.py",
+      "summary": "Regression tests for the BEAM-recovery experiment A/B toggles. Each toggle is default-ON (production behavior unchanged) and disables the corresponding feature when set to a falsy env value. Tests pin default behavior, falsy disable, and functional ablation surface.",
+      "tags": [
+        "test",
+        "a-b-testing",
+        "regression",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_ab_toggles.py:TestEnvDisabledHelper",
+      "type": "class",
+      "name": "TestEnvDisabledHelper",
+      "filePath": "tests/test_ab_toggles.py",
+      "lineRange": [
+        59,
+        84
+      ],
+      "summary": "Tests the _env_disabled helper function that parses A/B toggle environment variables.",
+      "tags": [
+        "test",
+        "toggle",
+        "environment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_ab_toggles.py:TestPolyphonicVoiceToggles",
+      "type": "class",
+      "name": "TestPolyphonicVoiceToggles",
+      "filePath": "tests/test_ab_toggles.py",
+      "lineRange": [
+        92,
+        150
+      ],
+      "summary": "Tests the polyphonic voice feature toggle (MNEMOSYNE_POLYPHONIC_VOICE) ensuring default-enabled behavior and falsy disable.",
+      "tags": [
+        "test",
+        "polyphonic",
+        "toggle",
+        "feature-flag"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_ab_toggles.py:TestLinearBonusToggles",
+      "type": "class",
+      "name": "TestLinearBonusToggles",
+      "filePath": "tests/test_ab_toggles.py",
+      "lineRange": [
+        158,
+        271
+      ],
+      "summary": "Tests linear recall bonus feature toggles including entity/fact boost controls.",
+      "tags": [
+        "test",
+        "linear",
+        "bonus",
+        "toggle"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_ab_toggles.py:TestVeracityMultiplierToggle",
+      "type": "class",
+      "name": "TestVeracityMultiplierToggle",
+      "filePath": "tests/test_ab_toggles.py",
+      "lineRange": [
+        279,
+        345
+      ],
+      "summary": "Tests the veracity multiplier toggle that controls truthfulness-weighted recall scoring.",
+      "tags": [
+        "test",
+        "veracity",
+        "toggle",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_ab_toggles.py:TestCrossTierDedupToggle",
+      "type": "class",
+      "name": "TestCrossTierDedupToggle",
+      "filePath": "tests/test_ab_toggles.py",
+      "lineRange": [
+        353,
+        412
+      ],
+      "summary": "Tests the cross-tier deduplication feature toggle in recall results.",
+      "tags": [
+        "test",
+        "dedup",
+        "toggle",
+        "recall"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_beam_db_path_string_coercion.py",
+      "type": "file",
+      "name": "test_beam_db_path_string_coercion.py",
+      "filePath": "tests/test_beam_db_path_string_coercion.py",
+      "summary": "Tests for BeamMemory database path string coercion ensuring Path objects and string paths are handled consistently during database initialization and connection.",
+      "tags": [
+        "test",
+        "regression",
+        "path-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_beam_db_path_string_coercion.py:TestBeamMemoryDbPathCoercion",
+      "type": "class",
+      "name": "TestBeamMemoryDbPathCoercion",
+      "filePath": "tests/test_beam_db_path_string_coercion.py",
+      "lineRange": [
+        31,
+        71
+      ],
+      "summary": "Tests that BeamMemory handles both Path objects and string paths consistently throughout database operations.",
+      "tags": [
+        "test",
+        "path",
+        "coercion",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_beam_e3_additive_sleep.py",
+      "type": "file",
+      "name": "test_beam_e3_additive_sleep.py",
+      "filePath": "tests/test_beam_e3_additive_sleep.py",
+      "summary": "Regression tests for E3 additive sleep contract where source working_memory rows remain after sleep (instead of being deleted), a consolidated_at timestamp column tracks processed rows, and recall surfaces both original and episodic summary rows.",
+      "tags": [
+        "test",
+        "sleep-cycle",
+        "consolidation",
+        "regression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_beam_e3_additive_sleep.py:TestE3AdditiveSleep",
+      "type": "class",
+      "name": "TestE3AdditiveSleep",
+      "filePath": "tests/test_beam_e3_additive_sleep.py",
+      "lineRange": [
+        80,
+        477
+      ],
+      "summary": "Comprehensive tests for the additive sleep contract: source rows remain, consolidated_at is set, no double-summarization, and recall surfaces both tiers.",
+      "tags": [
+        "test",
+        "sleep",
+        "consolidation",
+        "regression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "type": "file",
+      "name": "test_beam_e5_polyphonic_recall.py",
+      "filePath": "tests/test_beam_e5_polyphonic_recall.py",
+      "summary": "Tests for E5 polyphonic recall engine including feature flags, engine plumbing, filter enforcement, multiplier composition, telemetry updates, engine caching, and result shape validation.",
+      "tags": [
+        "test",
+        "polyphonic-recall",
+        "feature-flag",
+        "telemetry"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5FeatureFlag",
+      "type": "class",
+      "name": "TestE5FeatureFlag",
+      "filePath": "tests/test_beam_e5_polyphonic_recall.py",
+      "lineRange": [
+        62,
+        173
+      ],
+      "summary": "Tests the E5 polyphonic recall feature flag gating behavior.",
+      "tags": [
+        "test",
+        "feature-flag",
+        "polyphonic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5EnginePlumbing",
+      "type": "class",
+      "name": "TestE5EnginePlumbing",
+      "filePath": "tests/test_beam_e5_polyphonic_recall.py",
+      "lineRange": [
+        176,
+        245
+      ],
+      "summary": "Tests the internal plumbing of the polyphonic recall engine including RRF scoring.",
+      "tags": [
+        "test",
+        "polyphonic",
+        "engine",
+        "rrf"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5FilterEnforcement",
+      "type": "class",
+      "name": "TestE5FilterEnforcement",
+      "filePath": "tests/test_beam_e5_polyphonic_recall.py",
+      "lineRange": [
+        248,
+        350
+      ],
+      "summary": "Tests that polyphonic recall properly enforces tier and content-type filters.",
+      "tags": [
+        "test",
+        "polyphonic",
+        "filter",
+        "enforcement"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_benchmark_pure_recall_gate.py",
+      "type": "file",
+      "name": "test_benchmark_pure_recall_gate.py",
+      "filePath": "tests/test_benchmark_pure_recall_gate.py",
+      "summary": "Tests for the pure recall gate that bypasses full-context formatting when MNEMOSYNE_PURE_RECALL env var is set, ensuring recall-only mode disables bypasses, handles env value parsing, and correctly routes through recall.",
+      "tags": [
+        "test",
+        "recall-gate",
+        "feature-flag",
+        "regression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallModeDisablesBypasses",
+      "type": "class",
+      "name": "TestPureRecallModeDisablesBypasses",
+      "filePath": "tests/test_benchmark_pure_recall_gate.py",
+      "lineRange": [
+        131,
+        302
+      ],
+      "summary": "Tests that pure recall mode properly disables full-context formatting bypasses.",
+      "tags": [
+        "test",
+        "recall-gate",
+        "mode"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallEnvValueParsing",
+      "type": "class",
+      "name": "TestPureRecallEnvValueParsing",
+      "filePath": "tests/test_benchmark_pure_recall_gate.py",
+      "lineRange": [
+        305,
+        340
+      ],
+      "summary": "Tests environment variable value parsing for the MNEMOSYNE_PURE_RECALL toggle.",
+      "tags": [
+        "test",
+        "environment",
+        "parsing",
+        "toggle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallPrecedenceOverFullContext",
+      "type": "class",
+      "name": "TestPureRecallPrecedenceOverFullContext",
+      "filePath": "tests/test_benchmark_pure_recall_gate.py",
+      "lineRange": [
+        343,
+        398
+      ],
+      "summary": "Tests that pure recall mode takes precedence over full-context configuration.",
+      "tags": [
+        "test",
+        "recall-gate",
+        "precedence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_c4_recall_diagnostics.py",
+      "type": "file",
+      "name": "test_c4_recall_diagnostics.py",
+      "filePath": "tests/test_c4_recall_diagnostics.py",
+      "summary": "Tests for C4 recall diagnostics including RecallDiagnostics class behavior, process-global singleton management, BeamMemory recall instrumentation, and review hardening scenarios.",
+      "tags": [
+        "test",
+        "diagnostics",
+        "recall",
+        "instrumentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c4_recall_diagnostics.py:TestRecallDiagnosticsClass",
+      "type": "class",
+      "name": "TestRecallDiagnosticsClass",
+      "filePath": "tests/test_c4_recall_diagnostics.py",
+      "lineRange": [
+        63,
+        163
+      ],
+      "summary": "Tests the RecallDiagnostics class API including counter increment, query, and reset operations.",
+      "tags": [
+        "test",
+        "diagnostics",
+        "recall"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c4_recall_diagnostics.py:TestBeamRecallInstrumentation",
+      "type": "class",
+      "name": "TestBeamRecallInstrumentation",
+      "filePath": "tests/test_c4_recall_diagnostics.py",
+      "lineRange": [
+        182,
+        312
+      ],
+      "summary": "Tests that BeamMemory.recall properly instruments recall diagnostics counters for FTS, vec, and fallback paths.",
+      "tags": [
+        "test",
+        "instrumentation",
+        "recall",
+        "diagnostics"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c4_recall_diagnostics.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_c4_recall_diagnostics.py",
+      "lineRange": [
+        315,
+        515
+      ],
+      "summary": "Review hardening tests for edge cases in recall diagnostics including thread safety and concurrent access.",
+      "tags": [
+        "test",
+        "hardening",
+        "concurrency"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_e1_benchmark_adapter_additive.py",
+      "type": "file",
+      "name": "test_e1_benchmark_adapter_additive.py",
+      "filePath": "tests/test_e1_benchmark_adapter_additive.py",
+      "summary": "Tests for E1 additive benchmark adapter ingest, verifying that the benchmark adapter correctly processes messages through BeamMemory's remember pipeline without altering production defaults.",
+      "tags": [
+        "test",
+        "benchmark",
+        "adapter",
+        "ingest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e1_benchmark_adapter_additive.py:TestE1AdditiveBenchmarkIngest",
+      "type": "class",
+      "name": "TestE1AdditiveBenchmarkIngest",
+      "filePath": "tests/test_e1_benchmark_adapter_additive.py",
+      "lineRange": [
+        90,
+        345
+      ],
+      "summary": "Tests E1 additive benchmark adapter ingest ensuring correct message processing through BeamMemory's remember pipeline.",
+      "tags": [
+        "test",
+        "benchmark",
+        "adapter",
+        "ingest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_e2_remember_batch_enrichment.py",
+      "type": "file",
+      "name": "test_e2_remember_batch_enrichment.py",
+      "filePath": "tests/test_e2_remember_batch_enrichment.py",
+      "summary": "Tests for E2 remember_batch enrichment including temporal annotations, source tracking, gist extraction, consolidated facts, per-row veracity, entity extraction, LLM fact extraction, and parity with single remember.",
+      "tags": [
+        "test",
+        "batch-ingest",
+        "enrichment",
+        "annotations"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_e2_remember_batch_enrichment.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_e2_remember_batch_enrichment.py",
+      "lineRange": [
+        406,
+        590
+      ],
+      "summary": "Review hardening for edge cases in remember_batch enrichment including error tolerance and partial failures.",
+      "tags": [
+        "test",
+        "hardening",
+        "batch",
+        "enrichment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "type": "file",
+      "name": "test_e3a3_cross_tier_dedup.py",
+      "filePath": "tests/test_e3a3_cross_tier_dedup.py",
+      "summary": "Tests for E3A3 cross-tier deduplication ensuring that working memory and episodic memory results are properly deduplicated in both linear and polyphonic recall paths.",
+      "tags": [
+        "test",
+        "deduplication",
+        "recall",
+        "cross-tier"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_e3a3_cross_tier_dedup.py:TestDedupHelperUnit",
+      "type": "class",
+      "name": "TestDedupHelperUnit",
+      "filePath": "tests/test_e3a3_cross_tier_dedup.py",
+      "lineRange": [
+        75,
+        205
+      ],
+      "summary": "Unit tests for cross-tier deduplication helper functions that merge working and episodic memory results.",
+      "tags": [
+        "test",
+        "dedup",
+        "unit",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e3a3_cross_tier_dedup.py:TestLinearRecallPathIntegration",
+      "type": "class",
+      "name": "TestLinearRecallPathIntegration",
+      "filePath": "tests/test_e3a3_cross_tier_dedup.py",
+      "lineRange": [
+        208,
+        267
+      ],
+      "summary": "Tests cross-tier deduplication integration in the linear recall path.",
+      "tags": [
+        "test",
+        "dedup",
+        "linear",
+        "integration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e3a3_cross_tier_dedup.py:TestPolyphonicRecallPathIntegration",
+      "type": "class",
+      "name": "TestPolyphonicRecallPathIntegration",
+      "filePath": "tests/test_e3a3_cross_tier_dedup.py",
+      "lineRange": [
+        285,
+        396
+      ],
+      "summary": "Tests cross-tier deduplication integration in the polyphonic recall path with RRF scoring.",
+      "tags": [
+        "test",
+        "dedup",
+        "polyphonic",
+        "integration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_e3a3_cross_tier_dedup.py:TestReviewHardening",
+      "type": "class",
+      "name": "TestReviewHardening",
+      "filePath": "tests/test_e3a3_cross_tier_dedup.py",
+      "lineRange": [
+        399,
+        614
+      ],
+      "summary": "Review hardening tests for cross-tier dedup edge cases including empty results and boundary conditions.",
+      "tags": [
+        "test",
+        "hardening",
+        "dedup",
+        "edge-cases"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:mnemosyne/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_beam.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_beam_scale.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_beam_working_memory.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_db_path_string_coercion.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e3_additive_sleep.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_benchmark_pure_recall_gate.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c4_recall_diagnostics.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c4_recall_diagnostics.py",
+      "target": "file:mnemosyne/core/recall_diagnostics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e1_benchmark_adapter_additive.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e2_remember_batch_enrichment.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "class:mnemosyne/core/beam.py:BeamMemory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "class:mnemosyne/core/beam.py:_BeamConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:init_beam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_get_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_detect_vec_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_lexical_relevance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_vec_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_wm_vec_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_fts_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_cjk_like_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_vec_insert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_extract_and_store_entities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_extract_and_store_facts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_recency_decay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_temporal_boost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_strict_fact_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_source_to_trust_tier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_normalize_weights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_cjk_fts_terms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_find_memories_by_entity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_find_memories_by_fact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_in_memory_vec_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_deferred_commits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_sanitize_utf8",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_detect_veracity_weight_overrides",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_store_facts_in_table",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_truthy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_float",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_disabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_warn_about_veracity_weight_overrides",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/recall_diagnostics.py",
+      "target": "class:mnemosyne/core/recall_diagnostics.py:RecallDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/recall_diagnostics.py",
+      "target": "class:mnemosyne/core/recall_diagnostics.py:_TierStats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:normalize_chat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:normalize_batch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:extraction_rate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "function:tests/benchmark_vs_vectordbs.py:load_beam_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "function:tests/benchmark_vs_vectordbs.py:benchmark_mnemosyne",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "function:tests/benchmark_vs_vectordbs.py:benchmark_faiss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "function:tests/benchmark_vs_vectordbs.py:benchmark_chroma",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "function:tests/benchmark_vs_vectordbs.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "class:tests/test_ab_toggles.py:TestEnvDisabledHelper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "class:tests/test_ab_toggles.py:TestPolyphonicVoiceToggles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "class:tests/test_ab_toggles.py:TestLinearBonusToggles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "class:tests/test_ab_toggles.py:TestVeracityMultiplierToggle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_ab_toggles.py",
+      "target": "class:tests/test_ab_toggles.py:TestCrossTierDedupToggle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_db_path_string_coercion.py",
+      "target": "class:tests/test_beam_db_path_string_coercion.py:TestBeamMemoryDbPathCoercion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e3_additive_sleep.py",
+      "target": "class:tests/test_beam_e3_additive_sleep.py:TestE3AdditiveSleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "target": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5FeatureFlag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "target": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5EnginePlumbing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "target": "class:tests/test_beam_e5_polyphonic_recall.py:TestE5FilterEnforcement",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_benchmark_pure_recall_gate.py",
+      "target": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallModeDisablesBypasses",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_benchmark_pure_recall_gate.py",
+      "target": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallEnvValueParsing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_benchmark_pure_recall_gate.py",
+      "target": "class:tests/test_benchmark_pure_recall_gate.py:TestPureRecallPrecedenceOverFullContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c4_recall_diagnostics.py",
+      "target": "class:tests/test_c4_recall_diagnostics.py:TestRecallDiagnosticsClass",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c4_recall_diagnostics.py",
+      "target": "class:tests/test_c4_recall_diagnostics.py:TestBeamRecallInstrumentation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c4_recall_diagnostics.py",
+      "target": "class:tests/test_c4_recall_diagnostics.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e1_benchmark_adapter_additive.py",
+      "target": "class:tests/test_e1_benchmark_adapter_additive.py:TestE1AdditiveBenchmarkIngest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e2_remember_batch_enrichment.py",
+      "target": "class:tests/test_e2_remember_batch_enrichment.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "target": "class:tests/test_e3a3_cross_tier_dedup.py:TestDedupHelperUnit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "target": "class:tests/test_e3a3_cross_tier_dedup.py:TestLinearRecallPathIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "target": "class:tests/test_e3a3_cross_tier_dedup.py:TestPolyphonicRecallPathIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "target": "class:tests/test_e3a3_cross_tier_dedup.py:TestReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "class:mnemosyne/core/beam.py:BeamMemory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "class:mnemosyne/core/beam.py:_BeamConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:init_beam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_get_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_detect_vec_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_lexical_relevance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_vec_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_wm_vec_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_fts_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_cjk_like_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_vec_insert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_extract_and_store_entities",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_extract_and_store_facts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_recency_decay",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_temporal_boost",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_strict_fact_matches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_source_to_trust_tier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_normalize_weights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_cjk_fts_terms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_find_memories_by_entity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_find_memories_by_fact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_in_memory_vec_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_deferred_commits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_sanitize_utf8",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_detect_veracity_weight_overrides",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_store_facts_in_table",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_truthy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_float",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_env_disabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "function:mnemosyne/core/beam.py:_warn_about_veracity_weight_overrides",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/recall_diagnostics.py",
+      "target": "class:mnemosyne/core/recall_diagnostics.py:RecallDiagnostics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/recall_diagnostics.py",
+      "target": "class:mnemosyne/core/recall_diagnostics.py:_TierStats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:normalize_chat",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:normalize_batch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/chat_normalize.py",
+      "target": "function:mnemosyne/core/chat_normalize.py:extraction_rate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/benchmark_beam.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/benchmark_beam_scale.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/benchmark_beam_working_memory.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/benchmark_vs_vectordbs.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_ab_toggles.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_beam_db_path_string_coercion.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_beam_e3_additive_sleep.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_beam_e5_polyphonic_recall.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_benchmark_pure_recall_gate.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_c4_recall_diagnostics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_e1_benchmark_adapter_additive.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_e2_remember_batch_enrichment.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_e3a3_cross_tier_dedup.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_gap_e_g_analysis.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_orphan_vec_episodes_cleanup.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_telemetry_and_env_followups.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_temporal_recall.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/beam.py",
+      "target": "file:tests/test_voice_attribution_and_beam_opt.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/core/recall_diagnostics.py",
+      "target": "file:tests/test_c4_recall_diagnostics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "function:mnemosyne/core/beam.py:_warn_about_veracity_weight_overrides",
+      "target": "function:mnemosyne/core/beam.py:_detect_veracity_weight_overrides",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mnemosyne/core/beam.py:_get_connection",
+      "target": "function:mnemosyne/core/beam.py:_default_db_path",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mnemosyne/core/beam.py:init_beam",
+      "target": "function:mnemosyne/core/beam.py:_get_connection",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mnemosyne/core/beam.py:_detect_vec_type",
+      "target": "function:mnemosyne/core/beam.py:_get_connection",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_vs_vectordbs.py",
+      "target": "file:tools/evaluate_beam_end_to_end.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

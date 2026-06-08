@@ -1,0 +1,259 @@
+{
+  "batchIndex": 19,
+  "description": "VS Code Mnemosyne integration (config/doc files)",
+  "files": {
+    "README.md": {
+      "path": "/root/mnemosyne/integrations/vscode-mnemosyne/README.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "README documentation for the VS Code Mnemosyne extension",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 44,
+        "content": "# Mnemosyne for VS Code\n\nBrowse, search, and manage Mnemosyne memory directly in VS Code.\n\n## Features\n\n- **Memory sidebar** — View recent memories without leaving your editor\n- **Search** — Full-text search across all stored memories\n- **Store** — Save important context to Mnemosyne with a command\n- **Stats** — See memory counts per tier at a glance\n- **Auto-refresh** — Memories update on file save (configurable)\n\n## Requirements\n\n- [Mnemosyne](https://github.com/AxDSan/mnemosyne) installed (`p",
+        "rawContent": "# Mnemosyne for VS Code\n\nBrowse, search, and manage Mnemosyne memory directly in VS Code.\n\n## Features\n\n- **Memory sidebar** — View recent memories without leaving your editor\n- **Search** — Full-text search across all stored memories\n- **Store** — Save important context to Mnemosyne with a command\n- **Stats** — See memory counts per tier at a glance\n- **Auto-refresh** — Memories update on file save (configurable)\n\n## Requirements\n\n- [Mnemosyne](https://github.com/AxDSan/mnemosyne) installed (`pip install mnemosyne-memory`)\n- Python 3.9+ available on PATH\n\n## Extension Settings\n\n| Setting | Default | Description |\n|---------|---------|-------------|\n| `mnemosyne.dbPath` | `~/.hermes/mnemosyne/data/default.db` | Path to the Mnemosyne database |\n| `mnemosyne.autoRefresh` | `true` | Refresh memories on file save |\n\n## Commands\n\n| Command | Description |\n|---------|-------------|\n| `Mnemosyne: Refresh Memories` | Refresh the memory list |\n| `Mnemosyne: Search Memories` | Search across all memories |\n| `Mnemosyne: Store a Memory` | Save a new memory |\n| `Mnemosyne: Open Mnemosyne MCP Config` | Open the MCP config file |\n\n## For Developers\n\n```bash\ngit clone https://github.com/AxDSan/mnemosyne.git\ncd integrations/vscode-mnemosyne\nnpm install\nnpm run compile\n```\n\nThen press F5 in VS Code to launch the extension host.\n"
+      }
+    },
+    "package.json": {
+      "path": "/root/mnemosyne/integrations/vscode-mnemosyne/package.json",
+      "category": "config",
+      "type": "json",
+      "description": "VS Code extension manifest and configuration",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 105,
+        "content": "{\n  \"name\": \"mnemosyne-browser\",\n  \"displayName\": \"Mnemosyne Memory Browser\",\n  \"description\": \"Browse, search, and manage Mnemosyne memory directly in VS Code. See what your AI agent remembers.\",\n  \"version\": \"0.1.0\",\n  \"publisher\": \"AxDSan\",\n  \"license\": \"MIT\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/AxDSan/mnemosyne\"\n  },\n  \"engines\": {\n    \"vscode\": \"^1.85.0\"\n  },\n  \"categories\": [\n    \"Other\"\n  ],\n  \"keywords\": [\n    \"memory\",\n    \"ai\",\n    \"agent\",\n    \"mnemosyn",
+        "rawContent": "{\n  \"name\": \"mnemosyne-browser\",\n  \"displayName\": \"Mnemosyne Memory Browser\",\n  \"description\": \"Browse, search, and manage Mnemosyne memory directly in VS Code. See what your AI agent remembers.\",\n  \"version\": \"0.1.0\",\n  \"publisher\": \"AxDSan\",\n  \"license\": \"MIT\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/AxDSan/mnemosyne\"\n  },\n  \"engines\": {\n    \"vscode\": \"^1.85.0\"\n  },\n  \"categories\": [\n    \"Other\"\n  ],\n  \"keywords\": [\n    \"memory\",\n    \"ai\",\n    \"agent\",\n    \"mnemosyne\",\n    \"mcp\"\n  ],\n  \"activationEvents\": [\n    \"onView:mnemosyneMemories\"\n  ],\n  \"main\": \"./out/extension.js\",\n  \"contributes\": {\n    \"viewsContainers\": {\n      \"activitybar\": [\n        {\n          \"id\": \"mnemosyne-sidebar\",\n          \"title\": \"Mnemosyne\",\n          \"icon\": \"assets/memory.svg\"\n        }\n      ]\n    },\n    \"views\": {\n      \"mnemosyne-sidebar\": [\n        {\n          \"type\": \"webview\",\n          \"id\": \"mnemosyneMemories\",\n          \"name\": \"Memories\"\n        },\n        {\n          \"type\": \"webview\",\n          \"id\": \"mnemosyneStats\",\n          \"name\": \"Stats\"\n        }\n      ]\n    },\n    \"commands\": [\n      {\n        \"command\": \"mnemosyne.refresh\",\n        \"title\": \"Refresh Memories\"\n      },\n      {\n        \"command\": \"mnemosyne.search\",\n        \"title\": \"Search Memories\"\n      },\n      {\n        \"command\": \"mnemosyne.remember\",\n        \"title\": \"Store a Memory\"\n      },\n      {\n        \"command\": \"mnemosyne.openMcpConfig\",\n        \"title\": \"Open Mnemosyne MCP Config\"\n      }\n    ],\n    \"configuration\": {\n      \"title\": \"Mnemosyne\",\n      \"properties\": {\n        \"mnemosyne.dbPath\": {\n          \"type\": \"string\",\n          \"default\": \"~/.hermes/mnemosyne/data/default.db\",\n          \"description\": \"Path to the Mnemosyne SQLite database\"\n        },\n        \"mnemosyne.mcpCommand\": {\n          \"type\": \"string\",\n          \"default\": \"mnemosyne mcp\",\n          \"description\": \"Command to start the Mnemosyne MCP server\"\n        },\n        \"mnemosyne.autoRefresh\": {\n          \"type\": \"boolean\",\n          \"default\": true,\n          \"description\": \"Auto-refresh memories on file save\"\n        }\n      }\n    }\n  },\n  \"scripts\": {\n    \"vscode:prepublish\": \"npm run compile\",\n    \"compile\": \"tsc -p ./\",\n    \"watch\": \"tsc -watch -p ./\",\n    \"lint\": \"eslint src --ext ts\"\n  },\n  \"devDependencies\": {\n    \"@types/vscode\": \"^1.85.0\",\n    \"@types/node\": \"^20.0.0\",\n    \"typescript\": \"^5.3.0\",\n    \"eslint\": \"^8.50.0\"\n  }\n}\n"
+      }
+    },
+    "tsconfig.json": {
+      "path": "/root/mnemosyne/integrations/vscode-mnemosyne/tsconfig.json",
+      "category": "config",
+      "type": "json",
+      "description": "TypeScript compiler configuration for the extension",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 16,
+        "content": "{\n  \"compilerOptions\": {\n    \"module\": \"commonjs\",\n    \"target\": \"ES2021\",\n    \"outDir\": \"out\",\n    \"lib\": [\"ES2021\"],\n    \"sourceMap\": true,\n    \"rootDir\": \"src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"skipLibCheck\": true\n  },\n  \"include\": [\"src\"],\n  \"exclude\": [\"node_modules\", \"out\"]\n}\n",
+        "rawContent": "{\n  \"compilerOptions\": {\n    \"module\": \"commonjs\",\n    \"target\": \"ES2021\",\n    \"outDir\": \"out\",\n    \"lib\": [\"ES2021\"],\n    \"sourceMap\": true,\n    \"rootDir\": \"src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"skipLibCheck\": true\n  },\n  \"include\": [\"src\"],\n  \"exclude\": [\"node_modules\", \"out\"]\n}\n"
+      }
+    }
+  },
+  "batchImportData": {
+    "README.md": {
+      "type": "documentation",
+      "sections": [
+        "Features",
+        "Requirements",
+        "Extension Settings",
+        "Commands",
+        "For Developers"
+      ],
+      "key_topics": [
+        "memory sidebar",
+        "full-text search",
+        "memory storage",
+        "stats view",
+        "auto-refresh",
+        "MCP config"
+      ],
+      "external_refs": [
+        "Mnemosyne",
+        "Python 3.9+",
+        "npm"
+      ]
+    },
+    "package.json": {
+      "extension_name": "mnemosyne-browser",
+      "display_name": "Mnemosyne Memory Browser",
+      "version": "0.1.0",
+      "publisher": "AxDSan",
+      "vscode_engine": "^1.85.0",
+      "activation_events": [
+        "onView:mnemosyneMemories"
+      ],
+      "main": "./out/extension.js",
+      "views": [
+        "mnemosyneMemories (webview)",
+        "mnemosyneStats (webview)"
+      ],
+      "commands": [
+        "mnemosyne.refresh",
+        "mnemosyne.search",
+        "mnemosyne.remember",
+        "mnemosyne.openMcpConfig"
+      ],
+      "settings": [
+        "mnemosyne.dbPath",
+        "mnemosyne.mcpCommand",
+        "mnemosyne.autoRefresh"
+      ],
+      "dev_dependencies": [
+        "@types/vscode ^1.85.0",
+        "@types/node ^20.0.0",
+        "typescript ^5.3.0",
+        "eslint ^8.50.0"
+      ]
+    },
+    "tsconfig.json": {
+      "compiler_options": {
+        "module": "commonjs",
+        "target": "ES2021",
+        "outDir": "out",
+        "rootDir": "src",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "sourceMap": true
+      },
+      "include": [
+        "src"
+      ],
+      "exclude": [
+        "node_modules",
+        "out"
+      ]
+    }
+  },
+  "neighborMap": {
+    "README.md": {
+      "neighbors": [
+        "package.json",
+        "tsconfig.json"
+      ],
+      "relationship": "README documents usage and developer setup for the VS Code extension whose metadata is in package.json and build config in tsconfig.json",
+      "shared_context": "VS Code Mnemosyne extension - documentation, manifest, and build config"
+    },
+    "package.json": {
+      "neighbors": [
+        "README.md",
+        "tsconfig.json"
+      ],
+      "relationship": "package.json defines the extension metadata, commands, views, and settings documented in README.md; tsconfig.json compiles the TypeScript source referenced by package.json's main entry",
+      "shared_context": "Extension manifest defining commands, views, settings, and build toolchain"
+    },
+    "tsconfig.json": {
+      "neighbors": [
+        "README.md",
+        "package.json"
+      ],
+      "relationship": "tsconfig.json compiles TypeScript source to JS output (./out/extension.js) as specified in package.json's main and scripts; README documents the compile step for developers",
+      "shared_context": "TypeScript build configuration for the VS Code extension"
+    }
+  },
+  "semanticAnalysis": {
+    "README.md": {
+      "fileName": "README.md",
+      "filePath": "/root/mnemosyne/integrations/vscode-mnemosyne/README.md",
+      "category": "docs",
+      "type": "document",
+      "description": "README documentation for the VS Code Mnemosyne extension",
+      "purpose": "Document the VS Code Mnemosyne Memory Browser extension: its features, requirements, settings, commands, and developer setup instructions",
+      "keyFindings": [
+        "Extension provides five core features: memory sidebar, full-text search, memory storage command, tier-based stats view, and auto-refresh on file save",
+        "Requires Mnemosyne (pip install mnemosyne-memory) and Python 3.9+ on PATH",
+        "Two configurable settings: mnemosyne.dbPath (default: ~/.hermes/mnemosyne/data/default.db) and mnemosyne.autoRefresh (default: true)",
+        "Four commands exposed: Refresh Memories, Search Memories, Store a Memory, Open Mnemosyne MCP Config",
+        "Developer setup follows standard VS Code extension workflow: git clone, npm install, npm run compile, then F5 to launch"
+      ],
+      "dependencies": ["Mnemosyne (pip install mnemosyne-memory)", "Python 3.9+", "npm"],
+      "exportedItems": ["mnemosyne.dbPath setting", "mnemosyne.autoRefresh setting", "4 extension commands"],
+      "securityConcerns": [
+        "Default dbPath points to ~/.hermes/mnemosyne/data/default.db - ensure this path is not exposed via screenshots/sharing",
+        "MCP config command opens configuration file which may contain API keys or connection secrets"
+      ],
+      "recommendations": [
+        "Add troubleshooting section for common issues (Python not found, database path errors)",
+        "Consider documenting the MCP config file format and contents",
+        "Add a section on privacy: the extension reads local SQLite database, no data is sent externally"
+      ]
+    },
+    "package.json": {
+      "fileName": "package.json",
+      "filePath": "/root/mnemosyne/integrations/vscode-mnemosyne/package.json",
+      "category": "config",
+      "type": "json",
+      "description": "VS Code extension manifest and configuration",
+      "purpose": "Define the VS Code extension metadata, activation behavior, contribution points (views, commands, settings), and build toolchain dependencies",
+      "keyFindings": [
+        "Extension named 'mnemosyne-browser' with display name 'Mnemosyne Memory Browser' v0.1.0, published by 'AxDSan' under MIT license",
+        "Repository lives at https://github.com/AxDSan/mnemosyne",
+        "Requires VS Code engine ^1.85.0",
+        "Activation on-demand via 'onView:mnemosyneMemories' - no startup performance impact",
+        "Contributes an activity bar view container ('Mnemosyne') with a memory.svg icon",
+        "Two webview views: 'mnemosyneMemories' (Memories) and 'mnemosyneStats' (Stats)",
+        "Four commands registered: refresh, search, remember, openMcpConfig",
+        "Three configuration properties: dbPath (string), mcpCommand (string, default 'mnemosyne mcp'), autoRefresh (boolean, default true)",
+        "Build system: TypeScript compilation via tsc, linting via eslint",
+        "Dev dependencies: @types/vscode, @types/node, typescript ^5.3.0, eslint ^8.50.0"
+      ],
+      "dependencies": ["@types/vscode ^1.85.0", "@types/node ^20.0.0", "typescript ^5.3.0", "eslint ^8.50.0"],
+      "exportedItems": [
+        {"type": "view", "id": "mnemosyneMemories", "name": "Memories"},
+        {"type": "view", "id": "mnemosyneStats", "name": "Stats"},
+        {"type": "command", "id": "mnemosyne.refresh", "title": "Refresh Memories"},
+        {"type": "command", "id": "mnemosyne.search", "title": "Search Memories"},
+        {"type": "command", "id": "mnemosyne.remember", "title": "Store a Memory"},
+        {"type": "command", "id": "mnemosyne.openMcpConfig", "title": "Open Mnemosyne MCP Config"},
+        {"type": "setting", "id": "mnemosyne.dbPath"},
+        {"type": "setting", "id": "mnemosyne.mcpCommand"},
+        {"type": "setting", "id": "mnemosyne.autoRefresh"}
+      ],
+      "securityConcerns": [
+        "mnemosyne.mcpCommand setting runs an arbitrary command string - ensure proper input validation",
+        "Webview-based views could potentially be exploited if unsanitized content is rendered; standard VS Code webview isolation applies"
+      ],
+      "recommendations": [
+        "Add a marketplace category like 'Programming Languages' or 'Machine Learning' instead of 'Other' for better discoverability",
+        "Consider adding activationEvents for the openMcpConfig command so it works before view activation",
+        "Add 'mnemosyne' to the extension icon path check - verify assets/memory.svg exists in the packaged extension"
+      ]
+    },
+    "tsconfig.json": {
+      "fileName": "tsconfig.json",
+      "filePath": "/root/mnemosyne/integrations/vscode-mnemosyne/tsconfig.json",
+      "category": "config",
+      "type": "json",
+      "description": "TypeScript compiler configuration for the extension",
+      "purpose": "Configure the TypeScript compiler to compile src/ TypeScript source files into out/ CommonJS JavaScript for the VS Code extension runtime",
+      "keyFindings": [
+        "Targets ES2021 with CommonJS module output - appropriate for Node.js-based VS Code extension host",
+        "Source code in src/ directory, compiled output in out/ directory",
+        "Strict mode enabled: full type checking including strictNullChecks, noImplicitAny, etc.",
+        "esModuleInterop enabled: allows default imports from CommonJS modules with CJS/ESM interop",
+        "skipLibCheck enabled: skips type checking of declaration files for faster compilation",
+        "sourceMap enabled: generates .js.map files for debugging TypeScript in VS Code extension host",
+        "Excludes node_modules and out/ from compilation"
+      ],
+      "dependencies": ["typescript ^5.3.0"],
+      "exportedItems": [
+        {"compilerOption": "module", "value": "commonjs"},
+        {"compilerOption": "target", "value": "ES2021"},
+        {"compilerOption": "strict", "value": true},
+        {"compilerOption": "outDir", "value": "out"},
+        {"compilerOption": "rootDir", "value": "src"}
+      ],
+      "securityConcerns": [
+        "sourceMap enabled in production builds could expose source code to extension consumers; acceptable for VS Code extensions as source maps are not published to marketplace without sources"
+      ],
+      "recommendations": [
+        "Consider adding 'declaration': true if the extension exports types that other extensions might consume",
+        "Add 'forceConsistentCasingInFileNames': true for cross-platform filename consistency",
+        "Consider setting 'noUnusedLocals' and 'noUnusedParameters' for stricter code quality enforcement"
+      ]
+    }
+  },
+  "metadata": {
+    "generatedAt": "2026-06-03T00:10:38.179Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 3,
+    "categories": [
+      "docs",
+      "config"
+    ],
+    "types": [
+      "document",
+      "json"
+    ]
+  }
+}

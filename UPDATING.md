@@ -3,6 +3,37 @@
 Covers all upgrade paths: v2.7 → latest, source installs, PyPI installs,
 and systems with Python's `externally-managed-environment` (PEP 668).
 
+## Upgrading to v3.4.1 — vec_facts dual-write fix
+
+Released 2026-06-08. Critical bug fix — no schema changes, no new deps.
+
+### What changed
+
+`_store_facts_in_table()` (beam.py:1296) only wrote to the relational
+`facts` table, completely omitting the `vec_facts` sqlite-vec virtual
+table. Facts accumulated without vector embeddings, silently degrading
+semantic recall for `fact_recall()` and `polyphonic_recall.py`.
+
+The fix adds dual-write (relational + vec_facts) inside the fact
+insertion loop, matching the pattern already used by
+`BeamMemory.remember()` and `consolidate_to_episodic()`.
+
+A `backfill_vec_facts()` function runs automatically on every
+BeamMemory init, filling gaps for users who accumulated facts
+before the fix. Idempotent — zero-cost on already-complete databases.
+
+### User action
+
+```bash
+pip install --upgrade mnemosyne-memory
+# or: pipx upgrade mnemosyne-hermes
+hermes gateway restart
+```
+
+The backfill runs on first startup automatically. No manual migration needed.
+
+---
+
 If you're on **v3.3.0** and want the latest (v3.4.0), jump to
 [Upgrading to v3.4.0](#upgrading-to-v340-llm-fallback--multilingual-recall).
 

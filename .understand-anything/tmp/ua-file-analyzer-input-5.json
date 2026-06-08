@@ -1,0 +1,37 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {"path": "mnemosyne/core/annotations.py", "language": "python", "sizeLines": 552, "fileCategory": "code"},
+    {"path": "mnemosyne/core/entities.py", "language": "python", "sizeLines": 237, "fileCategory": "code"},
+    {"path": "mnemosyne/core/triples.py", "language": "python", "sizeLines": 497, "fileCategory": "code"},
+    {"path": "mnemosyne/integrations/openclaw.py", "language": "python", "sizeLines": 356, "fileCategory": "code"},
+    {"path": "mnemosyne/migrations/__init__.py", "language": "python", "sizeLines": 9, "fileCategory": "code"},
+    {"path": "mnemosyne/migrations/e6_triplestore_split.py", "language": "python", "sizeLines": 250, "fileCategory": "code"},
+    {"path": "scripts/migrate_triplestore_split.py", "language": "python", "sizeLines": 104, "fileCategory": "code"},
+    {"path": "tests/test_annotations.py", "language": "python", "sizeLines": 421, "fileCategory": "code"},
+    {"path": "tests/test_beam_e6_auto_migrate.py", "language": "python", "sizeLines": 262, "fileCategory": "code"},
+    {"path": "tests/test_c28_import_all_content_aware.py", "language": "python", "sizeLines": 604, "fileCategory": "code"},
+    {"path": "tests/test_e6a_followup_gaps.py", "language": "python", "sizeLines": 205, "fileCategory": "code"},
+    {"path": "tests/test_entities.py", "language": "python", "sizeLines": 221, "fileCategory": "code"},
+    {"path": "tests/test_entity_integration.py", "language": "python", "sizeLines": 260, "fileCategory": "code"},
+    {"path": "tests/test_extraction_integration.py", "language": "python", "sizeLines": 287, "fileCategory": "code"},
+    {"path": "tests/test_migrate_triplestore_split.py", "language": "python", "sizeLines": 467, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "mnemosyne/core/annotations.py": [],
+    "mnemosyne/core/entities.py": [],
+    "mnemosyne/core/triples.py": [],
+    "mnemosyne/integrations/openclaw.py": ["mnemosyne/core/memory.py", "mnemosyne/core/triples.py"],
+    "mnemosyne/migrations/__init__.py": [],
+    "mnemosyne/migrations/e6_triplestore_split.py": ["mnemosyne/core/annotations.py"],
+    "scripts/migrate_triplestore_split.py": ["mnemosyne/migrations/e6_triplestore_split.py"],
+    "tests/test_annotations.py": ["mnemosyne/core/annotations.py", "mnemosyne/core/triples.py"],
+    "tests/test_beam_e6_auto_migrate.py": ["mnemosyne/core/__init__.py", "mnemosyne/core/annotations.py", "mnemosyne/core/beam.py"],
+    "tests/test_c28_import_all_content_aware.py": ["mnemosyne/core/annotations.py", "mnemosyne/core/triples.py"],
+    "tests/test_e6a_followup_gaps.py": ["mnemosyne/core/annotations.py", "mnemosyne/core/beam.py", "mnemosyne/core/memory.py", "mnemosyne/core/triples.py"],
+    "tests/test_entities.py": ["mnemosyne/core/entities.py"],
+    "tests/test_entity_integration.py": ["mnemosyne/core/entities.py", "mnemosyne/core/memory.py", "mnemosyne/core/triples.py"],
+    "tests/test_extraction_integration.py": ["mnemosyne/core/beam.py", "mnemosyne/core/memory.py", "mnemosyne/core/triples.py"],
+    "tests/test_migrate_triplestore_split.py": ["mnemosyne/core/annotations.py", "mnemosyne/core/triples.py", "mnemosyne/migrations/__init__.py"]
+  }
+}

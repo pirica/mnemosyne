@@ -1,0 +1,829 @@
+{
+  "batchIndex": 21,
+  "part": 2,
+  "totalParts": 2,
+  "description": "Scripts + setup.py + skills doc + tests (files 13-25)",
+  "fileRange": "files 13-25 (backfill_temporal_triples.py through test_cli_usage_errors.py)",
+  "metadata": {
+    "generatedAt": "2026-06-03T00:00:00Z",
+    "toolVersion": "2.0.0",
+    "fileCount": 13,
+    "categories": ["script", "config", "docs", "code"],
+    "types": ["python", "document"],
+    "nodeCount": 46
+  },
+  "nodes": [
+    {
+      "id": "file:scripts/backfill_temporal_triples.py",
+      "type": "file",
+      "category": "script",
+      "label": "backfill_temporal_triples.py",
+      "path": "/root/mnemosyne/scripts/backfill_temporal_triples.py",
+      "description": "One-time migration to backfill temporal triples for v1.13.0",
+      "sizeLines": 218,
+      "summary": "Generates occurred_on and has_source triples for all existing working_memory and episodic_memory entries that lack them. Supports --dry-run and --db-path flags.",
+      "classes": [],
+      "functions": ["get_db_path", "count_missing_triples", "backfill_working_memory", "backfill_episodic_memory", "main"],
+      "imports": ["os", "sqlite3", "argparse", "pathlib", "datetime", "typing"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:temporal_triples_backfill",
+      "type": "concept",
+      "label": "Temporal Triples Migration",
+      "domain": "migration",
+      "description": "One-time migration script for Mnemosyne v1.13.0. Backfills occurred_on and has_source triples into legacy triples table. Post-E6, these belong in annotations table with auto-migrate hook."
+    },
+
+    {
+      "id": "file:scripts/cleanup_noisy_mentions.py",
+      "type": "file",
+      "category": "script",
+      "label": "cleanup_noisy_mentions.py",
+      "path": "/root/mnemosyne/scripts/cleanup_noisy_mentions.py",
+      "description": "Remove noisy mention annotations leaked before entity stopword fix",
+      "sizeLines": 115,
+      "summary": "Removes 26 known noise words from annotations table kind='mentions'. Creates backup before modifying. Supports --dry-run and --db flags.",
+      "classes": [],
+      "functions": ["main"],
+      "imports": ["sqlite3", "sys", "pathlib", "datetime"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "data:NOISE_WORDS",
+      "type": "data",
+      "label": "NOISE_WORDS",
+      "file": "scripts/cleanup_noisy_mentions.py",
+      "description": "26 noise words removed: ASSISTANT, USER, SKILL, Review, Target, CLASS, LEVEL, Signals, Phase, API, Summary, Added, Active, Be, Not, Whether, All, No, Replying, AI, Memory, False, True, None, Signal, Hermes, Agent, Model, System, Fact, Mnemosyne.",
+      "size": 26
+    },
+    {
+      "id": "concept:noisy_mention_cleanup",
+      "type": "concept",
+      "label": "Noisy Mention Cleanup",
+      "domain": "data_quality",
+      "description": "Removes meta-system noise words from annotations table that leaked in before the entity extraction stopword fix (PR #120). Creates timestamped backup first."
+    },
+
+    {
+      "id": "file:scripts/heal_quality.py",
+      "type": "file",
+      "category": "script",
+      "label": "heal_quality.py",
+      "path": "/root/mnemosyne/scripts/heal_quality.py",
+      "description": "Self-healing LLM-as-Judge pipeline for degraded episodic entries",
+      "sizeLines": 495,
+      "summary": "Detects degraded entries (bullet-format, <300 chars) and repairs via 4-stage LLM loop: Extract memory units from session JSONs -> Generate summary with M2.7/local LLM -> Judge across 4 dimensions -> Repair with fault-specific strategies. Supports MiniMax M2.7 or local GGUF.",
+      "classes": [],
+      "functions": ["_call_mmx", "_call_mnemosyne_llm", "_estimate_tokens", "extract_memory_units", "judge_summary", "generate_summary", "repair_summary", "_extract_facts_from_text", "should_retry", "get_db_path", "get_session_path", "detect_degraded_entries", "update_entry", "get_episodic_stats", "heal_entry", "run_heal_pipeline", "main"],
+      "imports": ["argparse", "json", "os", "sys", "time", "datetime", "pathlib", "typing", "sqlite3"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:llm_as_judge_pipeline",
+      "type": "concept",
+      "label": "LLM-as-Judge Quality Pipeline",
+      "domain": "data_quality",
+      "description": "4-stage pipeline: Extract memory units from session files -> Generate summary via M2.7/local LLM -> Judge across 4 dimensions (factual density, format compliance, length sufficiency, grounding) -> Repair with fault-specific strategies (truncated, generic, missing_facts, wrong_format). Retry loop with M2.7 escalation.",
+      "stageCount": 4
+    },
+    {
+      "id": "concept:quality_judge_dimensions",
+      "type": "concept",
+      "label": "Quality Judge 4 Dimensions",
+      "domain": "data_quality",
+      "description": "1. FACTUAL_DENSITY (names, paths, versions). 2. FORMAT_COMPLIANCE (plain prose, no bullets). 3. LENGTH_SUFFICIENCY (>300 chars). 4. GROUNDING (matches source memories). Each scored 0-100."
+    },
+    {
+      "id": "data:env_config_heal",
+      "type": "data",
+      "label": "Env Config for Heal Quality",
+      "description": "Config knobs: MNEMOSYNE_HEAL_JUDGE_THRESHOLD=75, MNEMOSYNE_HEAL_MAX_RETRIES=3, MNEMOSYNE_HEAL_MIN_LEN=300, MNEMOSYNE_HEAL_BUDGET=4000, MNEMOSYNE_HEAL_ESCALATE_AFTER=2, MNEMOSYNE_HEAL_JUDGE_MODEL=MiniMax-M2.7",
+      "size": 6
+    },
+
+    {
+      "id": "file:scripts/memoria_audit.py",
+      "type": "file",
+      "category": "script",
+      "label": "memoria_audit.py",
+      "path": "/root/mnemosyne/scripts/memoria_audit.py",
+      "description": "Health audit tool for 5 MEMORIA tables with noise classification",
+      "sizeLines": 316,
+      "summary": "Audits 5 MEMORIA tables: memoria_facts, memoria_instructions, memoria_preferences, memoria_timelines, memoria_kg. Samples 100 entries per table, classifies each as useful/noise/ambiguous, generates summary with ASCII bar charts.",
+      "classes": [],
+      "functions": ["classify_fact", "classify_instruction", "classify_preference", "classify_timeline", "classify_kg", "run_audit"],
+      "imports": ["argparse", "sqlite3", "re", "collections", "datetime"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:memoria_audit_tables",
+      "type": "concept",
+      "label": "5 MEMORIA Tables",
+      "domain": "data_quality",
+      "description": "memoria_facts (key-value facts), memoria_instructions (imperatives/constraints), memoria_preferences (user preferences), memoria_timelines (temporal events), memoria_kg (knowledge graph triples)."
+    },
+    {
+      "id": "concept:noise_classification_rules",
+      "type": "concept",
+      "label": "Noise Classification Rules",
+      "domain": "data_quality",
+      "description": "Facts: noise_weather, noise_fragment, noise_system_metric, noise_low_importance, noise_date_mention. Instructions: noise_false_positive, noise_should_conversational. Preferences: noise_informational, noise_vague_want. Timelines: noise_filepath, noise_no_event_context. KG: noise_negation_fragment, noise_decision_fragment."
+    },
+
+    {
+      "id": "file:scripts/migrate_from_legacy.py",
+      "type": "file",
+      "category": "script",
+      "label": "migrate_from_legacy.py",
+      "path": "/root/mnemosyne/scripts/migrate_from_legacy.py",
+      "description": "Migrate memories from ephemeral/legacy DBs to canonical persisted path",
+      "sizeLines": 323,
+      "summary": "Migrates from ~/.mnemosyne/data/ (ephemeral, lost on Fly.io restart) to ~/.hermes/mnemosyne/data/ (persisted). Copies memories, embeddings; promotes meaningful entries to episodic_memory and top 30 high-importance to working_memory. Supports --purge-tools.",
+      "classes": [],
+      "functions": ["ensure_schema", "get_existing_ids", "migrate_legacy_db", "main"],
+      "imports": ["argparse", "os", "sqlite3", "sys", "pathlib"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:canonical_db_path",
+      "type": "concept",
+      "label": "Canonical DB Path",
+      "domain": "deployment",
+      "description": "Canonical path: ~/.hermes/mnemosyne/data/mnemosyne.db (persisted across restarts). Legacy: ~/.mnemosyne/data/mnemosyne.db (ephemeral on Fly.io)."
+    },
+    {
+      "id": "data:LEGACY_CANDIDATES",
+      "type": "data",
+      "label": "Legacy DB Candidates",
+      "file": "scripts/migrate_from_legacy.py",
+      "description": "3 legacy paths scanned: ~/.mnemosyne/data/mnemosyne.db, ~/.mnemosyne/data/mnemosyne_native.db, ~/.hermes/mnemosyne/data/mnemosyne_native.db",
+      "size": 3
+    },
+
+    {
+      "id": "file:scripts/mnemosyne-stats.py",
+      "type": "file",
+      "category": "script",
+      "label": "mnemosyne-stats.py",
+      "path": "/root/mnemosyne/scripts/mnemosyne-stats.py",
+      "description": "Terminal-based BEAM health dashboard with snapshot/trend tracking",
+      "sizeLines": 401,
+      "summary": "Full health dashboard reading directly from SQLite. Shows: working memory breakdown (source, importance, recall distributions), episodic stats, KG triples, annotations, consolidation log, Dreamer runs, embeddings, wiki status, top recalled, memory age, session activity. Quality scoring (A-F grade), trend tracking via snapshots.",
+      "classes": [],
+      "functions": ["collect", "show", "save_snapshot", "load_trends", "show_trends", "main"],
+      "imports": ["os", "sqlite3", "sys", "json", "pathlib", "datetime"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:health_dashboard_quality_score",
+      "type": "concept",
+      "label": "Health Dashboard Quality Score",
+      "domain": "monitoring",
+      "description": "7-point quality score: noise<30%, recall>30%, global>5%, embeddings>0, consolidation>0, dreamer>0, wiki>10 pages. Grade: A(6-7), B(5), C(4), D(3), F(0-2)."
+    },
+    {
+      "id": "concept:stats_trend_tracking",
+      "type": "concept",
+      "label": "Stats Snapshot and Trend Tracking",
+      "domain": "monitoring",
+      "description": "Timestamped JSON snapshots saved to ~/.hermes/mnemosyne/stats/snap_*.json. Trend tracking compares last 2 valid snapshots with delta and % change for 12 metrics."
+    },
+
+    {
+      "id": "file:setup.py",
+      "type": "file",
+      "category": "config",
+      "label": "setup.py",
+      "path": "/root/mnemosyne/setup.py",
+      "description": "Package build configuration for mnemosyne-memory",
+      "sizeLines": 86,
+      "summary": "Standard setup.py with setuptools. Package name: mnemosyne-memory. Author: Abdias J. MIT license. Python >=3.10. Optional deps: llm (ctransformers, llama-cpp-python), embeddings (fastembed), mcp, openclaw, all. Console scripts: mnemosyne-install, mnemosyne-uninstall, mnemosyne, mnemosyne-browser, mnemosyne-auto-save.",
+      "classes": [],
+      "functions": [],
+      "imports": ["setuptools", "pathlib"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "data:package_keywords",
+      "type": "data",
+      "label": "Package Keywords",
+      "file": "setup.py",
+      "description": "ai, memory, sqlite, agent, llm, context, embeddings, vector-store, honcho, zep, mcp, openwebui, openclaw, cursor, claude-code, codex, hermes, model-context-protocol",
+      "size": 18
+    },
+    {
+      "id": "data:console_scripts",
+      "type": "data",
+      "label": "Console Scripts",
+      "file": "setup.py",
+      "description": "mnemosyne-install -> install(), mnemosyne-uninstall -> uninstall(), mnemosyne -> mnemosyne.cli:run_cli, mnemosyne-browser -> memory_browser:main, mnemosyne-auto-save -> auto_save_openwebui:main",
+      "size": 5
+    },
+    {
+      "id": "data:extra_require_groups",
+      "type": "data",
+      "label": "Extra Require Groups",
+      "file": "setup.py",
+      "description": "llm (ctransformers+llama-cpp-python+huggingface-hub), embeddings (fastembed), mcp (mcp+anyio), openclaw, all (combined), dev (pytest+build+twine)",
+      "size": 6
+    },
+
+    {
+      "id": "file:skills/mnemosyne-memory-override.md",
+      "type": "file",
+      "category": "docs",
+      "label": "mnemosyne-memory-override.md",
+      "path": "/root/mnemosyne/skills/mnemosyne-memory-override.md",
+      "description": "Hard rule override forcing Mnemosyne for durable memory storage",
+      "sizeLines": 64,
+      "summary": "Hermes Agent skill document that overrides the legacy memory tool with Mnemosyne for durable facts. Provides mapping table (old memory -> new mnemosyne_remember). Defines when legacy memory is acceptable (ephemeral session state only). Migration cleanup procedure: save to Mnemosyne, then remove from legacy.",
+      "classes": [],
+      "functions": [],
+      "imports": [],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "concept:memory_override_rule",
+      "type": "concept",
+      "label": "Mnemosyne Memory Override Rule",
+      "domain": "agent_behavior",
+      "description": "CRITICAL: Never use legacy 'memory' tool for durable facts. Use mnemosyne_remember() instead. Legacy has 2,200 char limit and no vector search. Exceptions: ephemeral session state, when Mnemosyne is confirmed down."
+    },
+
+    {
+      "id": "file:tests/conftest.py",
+      "type": "file",
+      "category": "code",
+      "label": "conftest.py",
+      "path": "/root/mnemosyne/tests/conftest.py",
+      "description": "Shared test fixtures with SQLite connection cleanup and LLM auto-disable",
+      "sizeLines": 187,
+      "summary": "Pytest fixtures: autouse connection resetter for SQLite thread-local caches, autouse local LLM disabler to prevent real CPU inference during tests (reduces suite from 15+ mins to ~20s). local_llm_enabled fixture for tests needing fake LLM with dual ctransformers/llama-cpp-python interface.",
+      "classes": [],
+      "functions": ["_close_cached_connections"],
+      "imports": ["pytest"],
+      "exports": ["_reset_thread_local_connections", "_disable_local_llm_inference", "local_llm_enabled"],
+      "secrets": []
+    },
+    {
+      "id": "fixture:_reset_thread_local_connections",
+      "type": "fixture",
+      "label": "_reset_thread_local_connections",
+      "file": "tests/conftest.py",
+      "description": "Autouse fixture that closes SQLite connection caches in beam, memory, hermes_plugin, and llm_backends modules before and after every test."
+    },
+    {
+      "id": "fixture:_disable_local_llm_inference",
+      "type": "fixture",
+      "label": "_disable_local_llm_inference",
+      "file": "tests/conftest.py",
+      "description": "Autouse fixture that monkeypatches _load_llm to return None and clears cached LLM state, preventing real CPU inference from auto-loaded GGUF models."
+    },
+    {
+      "id": "fixture:local_llm_enabled",
+      "type": "fixture",
+      "label": "local_llm_enabled",
+      "file": "tests/conftest.py",
+      "description": "Opt-in fixture providing a fake LLM with both __call__ (ctransformers) and create_chat_completion (llama-cpp-python) interfaces. Configurable response."
+    },
+
+    {
+      "id": "file:tests/test_benchmark_preflight.py",
+      "type": "file",
+      "category": "code",
+      "label": "test_benchmark_preflight.py",
+      "path": "/root/mnemosyne/tests/test_benchmark_preflight.py",
+      "description": "Preflight regression tests for BEAM benchmark harness",
+      "sizeLines": 120,
+      "summary": "Tests that evaluate_beam_end_to_end.py refuses to run with harness oracles active unless --pure-recall or --allow-harness-oracles is set. 7 tests covering CLI flags, env vars, and preflight ordering before dataset load.",
+      "classes": ["TestPreflightRefusesWithoutPureRecall"],
+      "functions": ["clean_env", "_run_harness"],
+      "imports": ["os", "subprocess", "sys", "pathlib", "pytest"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "class:TestPreflightRefusesWithoutPureRecall",
+      "type": "class",
+      "label": "TestPreflightRefusesWithoutPureRecall",
+      "file": "tests/test_benchmark_preflight.py",
+      "description": "7 test methods verifying preflight gate in benchmark harness.",
+      "methods": ["test_no_flags_no_env_exits_with_error", "test_full_context_alone_is_not_enough", "test_pure_recall_flag_satisfies_preflight", "test_pure_recall_env_satisfies_preflight", "test_pure_recall_env_accepts_on", "test_allow_harness_oracles_explicit_opt_in", "test_preflight_runs_before_dataset_load"]
+    },
+    {
+      "id": "concept:benchmark_preflight_gate",
+      "type": "concept",
+      "label": "Benchmark Harness Preflight Gate",
+      "domain": "testing",
+      "description": "Harness refuses unless MNEMOSYNE_BENCHMARK_PURE_RECALL=1 (or --pure-recall) or --allow-harness-oracles. Prevents oracle-contaminated arm comparisons. Fails before dataset load with exit code 2."
+    },
+
+    {
+      "id": "file:tests/test_cli_errors.py",
+      "type": "file",
+      "category": "code",
+      "label": "test_cli_errors.py",
+      "path": "/root/mnemosyne/tests/test_cli_errors.py",
+      "description": "CLI error handling regression tests",
+      "sizeLines": 171,
+      "summary": "Tests CLI error handling for: invalid importance values, import missing file, JSON validation, export/import roundtrip counts, bank CRUD operations. Verifies clean error messages without Python tracebacks. 7 test functions.",
+      "classes": [],
+      "functions": ["run_cli", "test_import_hindsight_errors_return_nonzero_exit", "test_invalid_cli_input_reports_error_without_traceback", "test_import_non_object_json_reports_error_without_traceback", "test_import_malformed_json_reports_error_without_traceback", "test_export_reports_actual_exported_memory_counts", "test_import_reports_actual_imported_memory_counts", "test_bank_cli_list_create_delete_uses_configured_data_dir", "test_bank_cli_validation_errors_are_user_facing"],
+      "imports": ["json", "os", "subprocess", "sys"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "data:COMMANDS_error_cases",
+      "type": "data",
+      "label": "CLI Error Test Cases",
+      "file": "tests/test_cli_errors.py",
+      "description": "store(importance not float), recall(top_k not int), update(importance not float), import(missing file). Each expects non-zero exit, clear error message, no traceback.",
+      "size": 4
+    },
+
+    {
+      "id": "file:tests/test_cli_operation_failures.py",
+      "type": "file",
+      "category": "code",
+      "label": "test_cli_operation_failures.py",
+      "path": "/root/mnemosyne/tests/test_cli_operation_failures.py",
+      "description": "CLI operation failure regression tests (update/delete missing)",
+      "sizeLines": 28,
+      "summary": "Tests that update and delete commands on non-existent memory IDs return exit code 1 with 'Memory not found' error message.",
+      "classes": [],
+      "functions": ["run_cli", "test_update_delete_missing_memory_report_operation_failure"],
+      "imports": ["os", "subprocess", "sys"],
+      "exports": [],
+      "secrets": []
+    },
+
+    {
+      "id": "file:tests/test_cli_usage_errors.py",
+      "type": "file",
+      "category": "code",
+      "label": "test_cli_usage_errors.py",
+      "path": "/root/mnemosyne/tests/test_cli_usage_errors.py",
+      "description": "CLI usage error regression tests",
+      "sizeLines": 57,
+      "summary": "Tests that missing required args on 7 CLI commands (store, recall, update, delete, import, import-hindsight, bank) produce correct usage strings. Also tests unknown command error and --help exit.",
+      "classes": [],
+      "functions": ["run_cli", "test_missing_required_args_report_usage_error_without_traceback", "test_unknown_command_reports_error_without_traceback", "test_help_exits_successfully"],
+      "imports": ["os", "subprocess", "sys"],
+      "exports": [],
+      "secrets": []
+    },
+    {
+      "id": "data:USAGE_COMMANDS",
+      "type": "data",
+      "label": "CLI Usage Test Cases",
+      "file": "tests/test_cli_usage_errors.py",
+      "description": "7 commands tested for correct usage strings: store, recall, update, delete, import, import-hindsight, bank.",
+      "size": 7
+    },
+
+    {
+      "id": "concept:cli_error_hygiene",
+      "type": "concept",
+      "label": "CLI Error Message Hygiene",
+      "domain": "testing",
+      "description": "All CLI tests verify: non-zero exit code (1 or 2), clear user-facing error message in stderr, NO Python tracebacks in output. Consistent error behavior across 7+ CLI commands."
+    }
+  ],
+  "edges": [
+    {"source": "file:scripts/backfill_temporal_triples.py", "target": "concept:temporal_triples_backfill", "type": "implements", "label": "Script implements the temporal triples migration"},
+    {"source": "file:scripts/cleanup_noisy_mentions.py", "target": "concept:noisy_mention_cleanup", "type": "implements", "label": "Script implements noisy mention cleanup"},
+    {"source": "file:scripts/heal_quality.py", "target": "concept:llm_as_judge_pipeline", "type": "implements", "label": "Script implements LLM-as-Judge quality pipeline"},
+    {"source": "file:scripts/memoria_audit.py", "target": "concept:memoria_audit_tables", "type": "audits", "label": "Script audits the 5 MEMORIA tables"},
+    {"source": "file:scripts/migrate_from_legacy.py", "target": "concept:canonical_db_path", "type": "migrates_to", "label": "Script migrates from legacy to canonical DB path"},
+    {"source": "file:scripts/mnemosyne-stats.py", "target": "concept:health_dashboard_quality_score", "type": "implements", "label": "Script implements the health quality scoring"},
+    {"source": "file:scripts/mnemosyne-stats.py", "target": "concept:stats_trend_tracking", "type": "implements", "label": "Script implements snapshot trend tracking"},
+    {"source": "file:setup.py", "target": "file:scripts/mnemosyne-stats.py", "type": "entry_point", "label": "setup.py registers console_scripts referencing cli and browser"},
+    {"source": "file:skills/mnemosyne-memory-override.md", "target": "concept:memory_override_rule", "type": "defines", "label": "Skill document defines the memory override rule"},
+    {"source": "file:tests/conftest.py", "target": "fixture:_reset_thread_local_connections", "type": "defines", "label": "conftest.py defines the connection reset fixture"},
+    {"source": "file:tests/conftest.py", "target": "fixture:_disable_local_llm_inference", "type": "defines", "label": "conftest.py defines the LLM disable fixture"},
+    {"source": "file:tests/conftest.py", "target": "fixture:local_llm_enabled", "type": "defines", "label": "conftest.py defines the opt-in LLM fixture"},
+    {"source": "file:tests/test_benchmark_preflight.py", "target": "concept:benchmark_preflight_gate", "type": "tests", "label": "Tests verify the preflight gate behavior"},
+    {"source": "file:tests/test_cli_errors.py", "target": "concept:cli_error_hygiene", "type": "tests", "label": "Tests verify CLI error message hygiene"},
+    {"source": "file:tests/test_cli_operation_failures.py", "target": "concept:cli_error_hygiene", "type": "tests", "label": "Tests verify operation failure error messages"},
+    {"source": "file:tests/test_cli_usage_errors.py", "target": "concept:cli_error_hygiene", "type": "tests", "label": "Tests verify usage error messages"},
+    {"source": "file:scripts/heal_quality.py", "target": "file:scripts/memoria_audit.py", "type": "related", "label": "Both are data quality tools: heal repairs, audit classifies"},
+    {"source": "file:scripts/migrate_from_legacy.py", "target": "file:scripts/backfill_temporal_triples.py", "type": "related", "label": "Both are migration scripts for database evolution"},
+    {"source": "file:scripts/mnemosyne-stats.py", "target": "file:scripts/heal_quality.py", "type": "related", "label": "stats dashboard can identify issues that heal pipeline fixes"},
+    {"source": "file:setup.py", "target": "file:mnemosyne/install.py", "type": "entry_point", "label": "setup.py creates console_script mnemosyne-install -> install"},
+    {"source": "file:setup.py", "target": "file:mnemosyne/integrations/memory_browser.py", "type": "entry_point", "label": "setup.py creates console_script mnemosyne-browser -> memory_browser:main"},
+    {"source": "data:NOISE_WORDS", "target": "concept:noisy_mention_cleanup", "type": "defines", "label": "NOISE_WORDS is the dataset for cleanup"},
+    {"source": "data:env_config_heal", "target": "file:scripts/heal_quality.py", "type": "configures", "label": "Environment variables configure the heal pipeline"},
+    {"source": "data:console_scripts", "target": "file:setup.py", "type": "defined_in", "label": "Console scripts defined in setup.py"},
+    {"source": "fixture:_disable_local_llm_inference", "target": "concept:cli_error_hygiene", "type": "supports", "label": "LLM disable fixture ensures test determinism for CLI tests"}
+  ],
+  "batchImportData": {
+    "backfill_temporal_triples.py": {
+      "type": "migration_script",
+      "version_target": "v1.13.0",
+      "triple_predicates": ["occurred_on", "has_source"],
+      "sources_backfilled": ["working_memory", "episodic_memory"],
+      "default_db": "~/.hermes/mnemosyne/data/mnemosyne.db",
+      "flags": ["--dry-run", "--db-path"]
+    },
+    "cleanup_noisy_mentions.py": {
+      "type": "data_cleanup_script",
+      "table_target": "annotations WHERE kind='mentions'",
+      "noise_word_count": 26,
+      "backup_created": true,
+      "flags": ["--dry-run", "--db"]
+    },
+    "heal_quality.py": {
+      "type": "quality_pipeline",
+      "stages": ["extract_memory_units", "generate_summary", "judge_summary", "repair_summary"],
+      "llm_backends": ["MiniMax M2.7 (mmx-cli)", "local GGUF (ctransformers/llama-cpp-python)"],
+      "judge_dimensions": ["factual_density", "format_compliance", "length_sufficiency", "grounding"],
+      "repair_strategies": ["truncated", "generic", "missing_facts", "wrong_format", "escalate"],
+      "config_knobs": 6,
+      "flags": ["--detect-only", "--entry-id", "--dry-run"]
+    },
+    "memoria_audit.py": {
+      "type": "audit_script",
+      "tables_audited": 5,
+      "sample_size": 100,
+      "classification_categories": ["useful", "noise", "ambiguous"],
+      "default_paths": 3
+    },
+    "migrate_from_legacy.py": {
+      "type": "migration_script",
+      "legacy_paths": 3,
+      "canonical_path": "~/.hermes/mnemosyne/data/mnemosyne.db",
+      "legacy_path": "~/.mnemosyne/data/mnemosyne.db",
+      "copies": ["memories", "memory_embeddings"],
+      "promotes": ["episodic_memory (all meaningful)", "working_memory (top 30 by importance)"],
+      "flags": ["--dry-run", "--purge-tools"]
+    },
+    "mnemosyne-stats.py": {
+      "type": "dashboard_script",
+      "sections": ["Working Memory", "Episodic", "Knowledge Graph", "Consolidation", "Dreamer", "Embeddings", "Wiki", "Memory Age", "Session Activity", "Quality Indicators", "Recommendations"],
+      "quality_indicators": 7,
+      "snapshot_fields": 15,
+      "flags": ["--compact", "--json", "--save-snapshot", "--trends"]
+    },
+    "setup.py": {
+      "package_name": "mnemosyne-memory",
+      "version": "from __init__.py",
+      "python_requires": ">=3.10",
+      "license": "MIT",
+      "classifiers": 11,
+      "keywords": 18,
+      "extras": {"llm": 3, "embeddings": 1, "mcp": 2, "openclaw": 1, "all": 7, "dev": 3},
+      "console_scripts": 5,
+      "author": "Abdias J"
+    },
+    "mnemosyne-memory-override.md": {
+      "type": "hermes_skill",
+      "skill_name": "mnemosyne-memory-override",
+      "trigger": "legacy memory tool calls for durable data",
+      "mapping_rules": 4,
+      "enforcement": "cancel tool call, use mnemosyne_remember, set importance>=0.7"
+    },
+    "conftest.py": {
+      "type": "test_fixtures",
+      "autouse_fixtures": ["_reset_thread_local_connections", "_disable_local_llm_inference"],
+      "opt_in_fixtures": ["local_llm_enabled"],
+      "modules_cleaned": ["mnemosyne.core.beam", "mnemosyne.core.memory", "hermes_plugin", "mnemosyne.core.llm_backends"],
+      "purpose": "Prevent cross-test DB lock contamination and disable real CPU inference"
+    },
+    "test_benchmark_preflight.py": {
+      "type": "regression_tests",
+      "harness_path": "tools/evaluate_beam_end_to_end.py",
+      "preflight_modes": ["--pure-recall", "MNEMOSYNE_BENCHMARK_PURE_RECALL=1", "--allow-harness-oracles"],
+      "test_count": 7,
+      "class_name": "TestPreflightRefusesWithoutPureRecall"
+    },
+    "test_cli_errors.py": {
+      "type": "regression_tests",
+      "error_cases": 4,
+      "test_functions": 7,
+      "verified_behaviors": ["non-zero exit", "clear error message in stderr", "no Python tracebacks", "export/import roundtrip counts", "bank CRUD operations"]
+    },
+    "test_cli_operation_failures.py": {
+      "type": "regression_tests",
+      "operation_cases": ["update missing-id", "delete missing-id"],
+      "expected_exit_code": 1,
+      "expected_message": "Memory not found:"
+    },
+    "test_cli_usage_errors.py": {
+      "type": "regression_tests",
+      "usage_cases": 7,
+      "test_functions": 3,
+      "verified_behaviors": ["usage string in stderr", "non-zero exit", "no traceback", "empty stdout"]
+    }
+  },
+  "neighborMap": {
+    "backfill_temporal_triples.py": {
+      "neighbors": ["migrate_from_legacy.py"],
+      "relationship": "Both are one-time migration scripts for database evolution; backfill adds temporal triples, migrate moves data to canonical path",
+      "shared_context": "Database migration: temporal schema evolution and data relocation"
+    },
+    "cleanup_noisy_mentions.py": {
+      "neighbors": ["memoria_audit.py"],
+      "relationship": "Both deal with data quality in annotation/MEMORIA tables; cleanup removes noise, audit classifies quality",
+      "shared_context": "Data quality: noise detection, removal, and classification"
+    },
+    "heal_quality.py": {
+      "neighbors": ["memoria_audit.py", "mnemosyne-stats.py"],
+      "relationship": "heal_quality repairs degraded episodic entries; memoria_audit classifies table quality; mnemosyne-stats shows overall health indicators that can trigger healing",
+      "shared_context": "Memory quality pipeline: detection, classification, repair, and monitoring"
+    },
+    "migrate_from_legacy.py": {
+      "neighbors": ["backfill_temporal_triples.py"],
+      "relationship": "Both migration scripts: migrate moves data to canonical path, backfill adds temporal triples on top",
+      "shared_context": "Database migration and schema evolution"
+    },
+    "setup.py": {
+      "neighbors": ["install.py", "memory_browser.py"],
+      "relationship": "setup.py registers console_scripts that point to install.py and memory_browser.py as entry points",
+      "shared_context": "Package distribution and entry point registration"
+    },
+    "mnemosyne-memory-override.md": {
+      "neighbors": ["install.py"],
+      "relationship": "The skill enforces Mnemosyne usage for durable memory; install.py sets up Mnemosyne as the memory provider",
+      "shared_context": "Mnemosyne adoption: installation + behavioral enforcement"
+    },
+    "conftest.py": {
+      "neighbors": ["test_benchmark_preflight.py", "test_cli_errors.py", "test_cli_operation_failures.py", "test_cli_usage_errors.py"],
+      "relationship": "conftest.py provides shared fixtures (SQLite cleanup, LLM disable) used by all test files in the tests/ directory",
+      "shared_context": "Test infrastructure: shared fixtures and setup/teardown logic"
+    }
+  },
+  "semanticAnalysis": {
+    "backfill_temporal_triples.py": {
+      "fileName": "backfill_temporal_triples.py",
+      "filePath": "/root/mnemosyne/scripts/backfill_temporal_triples.py",
+      "category": "script",
+      "type": "python",
+      "description": "One-time migration to backfill temporal triples for v1.13.0",
+      "purpose": "Generate occurred_on and has_source triples for all existing working_memory and episodic_memory entries lacking them",
+      "keyFindings": [
+        "Generates occurred_on and has_source triples into legacy triples table",
+        "Post-E6: rows belong in annotations table, auto-migrated on next BeamMemory() init",
+        "Batch processing with 500-row commit intervals",
+        "Non-interactive mode auto-proceeds",
+        "Idempotent: only processes entries without existing occurred_on triple"
+      ],
+      "dependencies": ["sqlite3", "argparse", "pathlib", "datetime"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": ["Prefer running on pre-E6 database; on post-E6 the auto-migrate hook handles it"]
+    },
+    "cleanup_noisy_mentions.py": {
+      "fileName": "cleanup_noisy_mentions.py",
+      "filePath": "/root/mnemosyne/scripts/cleanup_noisy_mentions.py",
+      "category": "script",
+      "type": "python",
+      "description": "Remove noisy mention annotations leaked before entity stopword fix",
+      "purpose": "Remove meta-system noise words from annotations table that leaked before PR #120 entity extraction stopword fix",
+      "keyFindings": [
+        "Removes 26 known noise words from annotations kind='mentions'",
+        "Creates timestamped backup before modifying database",
+        "Shows breakdown by noise word and top 15 surviving mentions after cleanup",
+        "Supports dry-run mode for preview"
+      ],
+      "dependencies": ["sqlite3", "pathlib", "datetime", "shutil"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "heal_quality.py": {
+      "fileName": "heal_quality.py",
+      "filePath": "/root/mnemosyne/scripts/heal_quality.py",
+      "category": "script",
+      "type": "python",
+      "description": "Self-healing LLM-as-Judge pipeline for degraded episodic entries",
+      "purpose": "Detect and repair degraded episodic memory entries via LLM-as-Judge loop",
+      "keyFindings": [
+        "4-stage pipeline: Extract -> Generate -> Judge -> Repair",
+        "Detects degraded entries: bullet-format <150 chars or <100 chars with few spaces",
+        "MiniMax M2.7 via mmx-cli as primary LLM, local GGUF as fallback",
+        "4 judge dimensions scored 0-100: factual density, format compliance, length sufficiency, grounding",
+        "Fault-specific repair strategies: truncated, generic, missing_facts, wrong_format, escalate to M2.7",
+        "Retry loop with configurable max retries (3) and M2.7 escalation after 2 retries",
+        "Session file extraction from ~/.hermes/sessions/ with 4K token budget",
+        "Metadata tracking: quality_score, fault_before_repair, retry_loop_count, needs_human_review"
+      ],
+      "dependencies": ["sqlite3", "json", "pathlib", "datetime", "subprocess"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": ["Requires mmx-cli installed for M2.7 access; falls back gracefully"]
+    },
+    "memoria_audit.py": {
+      "fileName": "memoria_audit.py",
+      "filePath": "/root/mnemosyne/scripts/memoria_audit.py",
+      "category": "script",
+      "type": "python",
+      "description": "Health audit tool for 5 MEMORIA tables with noise classification",
+      "purpose": "Audit the quality of MEMORIA table entries: classify as useful, noise, or ambiguous",
+      "keyFindings": [
+        "Audits 5 tables: memoria_facts, memoria_instructions, memoria_preferences, memoria_timelines, memoria_kg",
+        "Samples 100 random entries per table with classification rules",
+        "Facts: checks weather noise, fragments, system metrics, date mentions",
+        "Instructions: detects false positives, imperative quality, technical 'should' usage",
+        "Preferences: filters informational wants vs real preferences",
+        "Timelines: identifies events vs file paths vs noise",
+        "KG triples: evaluates negation/decision coherence",
+        "ASCII bar chart visualization per category"
+      ],
+      "dependencies": ["sqlite3", "re", "collections", "datetime"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": ["Run periodically to track MEMORIA data quality trends"]
+    },
+    "migrate_from_legacy.py": {
+      "fileName": "migrate_from_legacy.py",
+      "filePath": "/root/mnemosyne/scripts/migrate_from_legacy.py",
+      "category": "script",
+      "type": "python",
+      "description": "Migrate memories from ephemeral/legacy DBs to canonical persisted path",
+      "purpose": "Move memories from ~/.mnemosyne/ (ephemeral on Fly.io) to ~/.hermes/mnemosyne/ (persisted)",
+      "keyFindings": [
+        "Critical for Fly.io/ephemeral VMs: only ~/.hermes persists across restarts",
+        "Ensures canonical DB schema with all tables: memories, memory_embeddings, working_memory, episodic_memory, scratchpad, FTS5",
+        "Copies missing memories and embeddings idempotently",
+        "Migrates meaningful non-tool memories into episodic_memory",
+        "Promotes top 30 high-importance memories into working_memory",
+        "Supports --purge-tools to remove legacy tool_execution memories",
+        "Scans 3 legacy paths for sources"
+      ],
+      "dependencies": ["sqlite3", "os", "pathlib", "shutil", "argparse"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": ["Run after deploying to Fly.io to ensure data persistence"]
+    },
+    "mnemosyne-stats.py": {
+      "fileName": "mnemosyne-stats.py",
+      "filePath": "/root/mnemosyne/scripts/mnemosyne-stats.py",
+      "category": "script",
+      "type": "python",
+      "description": "Terminal-based BEAM health dashboard with snapshot/trend tracking",
+      "purpose": "Provide comprehensive health overview of the Mnemosyne BEAM memory system",
+      "keyFindings": [
+        "Zero dependencies (reads SQLite directly with sqlite3 stdlib)",
+        "Shows: working memory by source, importance distribution, recall distribution",
+        "Episodic memory: total, avg importance, recent entries preview",
+        "Knowledge graph: triples total, predicate breakdown",
+        "Consolidation: events, items, recent runs",
+        "Dreamer: runs, proposals, conflicts, recent runs with status",
+        "Embeddings, scratchpad, wiki page counts",
+        "Memory age distribution (today/this week/this month/older)",
+        "Session activity (last 7 days)",
+        "7-point quality grade: A through F with individual indicator checks",
+        "Actionable recommendations for detected issues",
+        "Snapshot/trend tracking with delta computation"
+      ],
+      "dependencies": ["sqlite3", "json", "os", "pathlib", "datetime"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "setup.py": {
+      "fileName": "setup.py",
+      "filePath": "/root/mnemosyne/setup.py",
+      "category": "config",
+      "type": "python",
+      "description": "Package build configuration for mnemosyne-memory",
+      "purpose": "Define Python package metadata, dependencies, and entry points for mnemosyne-memory",
+      "keyFindings": [
+        "Package: mnemosyne-memory, MIT license",
+        "Python >=3.10, production/stable classifier",
+        "6 optional dependency groups: llm, embeddings, mcp, openclaw, all, dev",
+        "5 console scripts: install, uninstall, CLI, browser, auto-save",
+        "18 keywords covering AI/memory ecosystem integrations",
+        "Version auto-read from mnemosyne/__init__.py"
+      ],
+      "dependencies": ["setuptools", "pathlib"],
+      "exportedItems": ["setup()"],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "mnemosyne-memory-override.md": {
+      "fileName": "mnemosyne-memory-override.md",
+      "filePath": "/root/mnemosyne/skills/mnemosyne-memory-override.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Hard rule override forcing Mnemosyne for durable memory storage",
+      "purpose": "Override the agent's reflex to use legacy memory() tool; redirect all durable memory writes to mnemosyne_remember()",
+      "keyFindings": [
+        "CRITICAL: Never use legacy memory tool for durable facts",
+        "4 mapping rules: add target=user -> mnemosyne_remember(importance=0.9+, source=preference)",
+        "Legacy memory has 2,200 char limit and no vector search",
+        "Legacy acceptable only for ephemeral session state",
+        "Migration procedure: save to Mnemosyne first, then remove from legacy",
+        "Self-enforcement: cancel, use correct tool, set importance>=0.7"
+      ],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "conftest.py": {
+      "fileName": "conftest.py",
+      "filePath": "/root/mnemosyne/tests/conftest.py",
+      "category": "code",
+      "type": "python",
+      "description": "Shared test fixtures with SQLite connection cleanup and LLM auto-disable",
+      "purpose": "Provide clean, deterministic test environment by resetting shared state and disabling LLM inference",
+      "keyFindings": [
+        "Autouse fixture resets thread-local SQLite connections in beam, memory, hermes_plugin, llm_backends",
+        "Resets global Mnemosyne default instance and hermes_plugin singletons",
+        "Autouse fixture disables local LLM model loader to prevent CPU inference in tests",
+        "Reduces test suite from 15+ minutes to ~20 seconds when GGUF model on disk",
+        "Opt-in local_llm_enabled fixture provides fake LLM with dual interface",
+        "Supports monkeypatch and unittest.mock override patterns"
+      ],
+      "dependencies": ["pytest"],
+      "exportedItems": ["_reset_thread_local_connections", "_disable_local_llm_inference", "local_llm_enabled"],
+      "securityConcerns": [],
+      "recommendations": ["Tests that need LLM should use local_llm_enabled fixture"]
+    },
+    "test_benchmark_preflight.py": {
+      "fileName": "test_benchmark_preflight.py",
+      "filePath": "/root/mnemosyne/tests/test_benchmark_preflight.py",
+      "category": "code",
+      "type": "python",
+      "description": "Preflight regression tests for BEAM benchmark harness",
+      "purpose": "Verify that the benchmark harness correctly refuses to run with active oracles unless explicitly allowed",
+      "keyFindings": [
+        "7 tests in TestPreflightRefusesWithoutPureRecall class",
+        "Tests CLI flags (--pure-recall, --allow-harness-oracles)",
+        "Tests env vars (MNEMOSYNE_BENCHMARK_PURE_RECALL)",
+        "Tests that preflight fails before dataset load",
+        "Uses subprocess to invoke harness in argument-parsing mode",
+        "Expected exit code 2 for refusal, clean error message in stderr"
+      ],
+      "dependencies": ["os", "subprocess", "sys", "pathlib", "pytest"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "test_cli_errors.py": {
+      "fileName": "test_cli_errors.py",
+      "filePath": "/root/mnemosyne/tests/test_cli_errors.py",
+      "category": "code",
+      "type": "python",
+      "description": "CLI error handling regression tests",
+      "purpose": "Verify CLI produces clean user-facing error messages for invalid inputs",
+      "keyFindings": [
+        "Tests 4 input validation error cases",
+        "Tests import error cases: missing file, non-object JSON, malformed JSON",
+        "Tests export/import roundtrip with correct memory counts",
+        "Tests bank CRUD operations with validation",
+        "All tests verify: non-zero exit, error in stderr, NO tracebacks"
+      ],
+      "dependencies": ["json", "os", "subprocess", "sys"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "test_cli_operation_failures.py": {
+      "fileName": "test_cli_operation_failures.py",
+      "filePath": "/root/mnemosyne/tests/test_cli_operation_failures.py",
+      "category": "code",
+      "type": "python",
+      "description": "CLI operation failure regression tests (update/delete missing)",
+      "purpose": "Verify CLI reports clean 'Memory not found' error for non-existent memory IDs",
+      "keyFindings": [
+        "Tests update and delete on missing memory IDs",
+        "Expected: exit code 1, empty stdout, 'Memory not found' in stderr",
+        "No Python tracebacks in output"
+      ],
+      "dependencies": ["os", "subprocess", "sys"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "test_cli_usage_errors.py": {
+      "fileName": "test_cli_usage_errors.py",
+      "filePath": "/root/mnemosyne/tests/test_cli_usage_errors.py",
+      "category": "code",
+      "type": "python",
+      "description": "CLI usage error regression tests",
+      "purpose": "Verify CLI produces correct usage strings when required arguments are missing",
+      "keyFindings": [
+        "Tests 7 CLI commands for correct usage strings",
+        "Tests unknown command with helpful error message",
+        "Tests --help exits successfully with usage info",
+        "All tests: non-zero exit, usage in stderr, empty stdout, no tracebacks"
+      ],
+      "dependencies": ["os", "subprocess", "sys"],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    }
+  }
+}

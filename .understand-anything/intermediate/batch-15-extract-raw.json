@@ -1,0 +1,413 @@
+{
+  "batchIndex": 15,
+  "description": "Documentation files for Mnemosyne project (docs batch)",
+  "files": {
+    "contributing-guide.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/contributing-guide.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Contributing guide for Mnemosyne contributors"
+      }
+    },
+    "data-privacy.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/data-privacy.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Data privacy policy and practices"
+      }
+    },
+    "deployment.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/deployment.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Deployment guide for Mnemosyne"
+      }
+    },
+    "diagram-flow.mermaid": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/diagram-flow.mermaid",
+        "category": "docs",
+        "type": "document",
+        "description": "Architecture flow diagram in Mermaid format"
+      }
+    },
+    "faq.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/faq.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Frequently asked questions"
+      }
+    },
+    "getting-started.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/getting-started.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Getting started guide for Mnemosyne",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 81,
+        "content": "# Getting Started\n\n## Requirements\n\n- Python 3.9 or later\n- (Optional) Hermes Agent Framework for plugin integration\n\n## Installation\n\n### From PyPI (recommended)\n\n```bash\npip install mnemosyne-memory\n```\n\nWith all optional features (dense retrieval via fastembed + local LLM consolidation):\n\n```bash\npip install mnemosyne-memory[all]\n```\n\n**Ubuntu 24.04 / Debian 12:** If `pip install` fails with `externally-managed-environment`, use a virtual environment:\n\n```bash\npython3 -m venv .venv\nsource .ve",
+        "rawContent": "# Getting Started\n\n## Requirements\n\n- Python 3.9 or later\n- (Optional) Hermes Agent Framework for plugin integration\n\n## Installation\n\n### From PyPI (recommended)\n\n```bash\npip install mnemosyne-memory\n```\n\nWith all optional features (dense retrieval via fastembed + local LLM consolidation):\n\n```bash\npip install mnemosyne-memory[all]\n```\n\n**Ubuntu 24.04 / Debian 12:** If `pip install` fails with `externally-managed-environment`, use a virtual environment:\n\n```bash\npython3 -m venv .venv\nsource .venv/bin/activate\npip install mnemosyne-memory[all]\n```\n\n### From Source (for contributors)\n\n```bash\ngit clone https://github.com/AxDSan/mnemosyne.git\ncd mnemosyne\npip install -e \".[all,dev]\"\n```\n\n### Hermes Provider\n\n```bash\npip install mnemosyne-hermes\nhermes config set memory.provider mnemosyne\nhermes gateway restart\n```\n\nNo deploy script needed. The pip package handles everything.\n\n## Your First Memory\n\n```python\nfrom mnemosyne import remember, recall\n\n# Store a fact\nremember(\"User prefers dark mode interfaces\", importance=0.9, source=\"preference\")\n\n# Store a global fact (visible in every session)\nremember(\"User email is alice@example.com\", importance=0.95, source=\"profile\", scope=\"global\")\n\n# Store temporary data with expiry\nremember(\"API key: sk-abc123\", importance=0.8, source=\"credential\", valid_until=\"2026-12-31T00:00:00\")\n\n# Search memories\nresults = recall(\"interface preferences\", top_k=3)\nfor r in results:\n    print(r[\"content\"])\n```\n\n## Verify Installation\n\n```python\nfrom mnemosyne import get_stats\nprint(get_stats())\n```\n\n## Next Steps\n\n- [Architecture](architecture.md) — understand how BEAM tiers work\n- [API Reference](api-reference.md) — full Python API documentation\n- [Configuration](configuration.md) — tune performance and storage\n- [Hermes Integration](hermes-integration.md) — use as a Hermes memory backend\n"
+      }
+    },
+    "glossary.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/glossary.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Glossary of Mnemosyne terms"
+      }
+    },
+    "integration-with-honcho-and-other-memory-layers.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/integration-with-honcho-and-other-memory-layers.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Integration guide for Honcho and other memory layers"
+      }
+    },
+    "README.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/integrations/README.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Integrations overview and quick start",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 45,
+        "content": "# Mnemosyne Integrations\n\nMnemosyne runs everywhere. Pick your platform:\n\n| Platform | Method | Config |\n|----------|--------|--------|\n| [Cursor](cursor-mcp.md) | MCP (stdio) | `.cursor/mcp.json` |\n| [Claude Code](claude-code-mcp.md) | MCP (stdio) | `claude.json` |\n| [OpenAI Codex CLI](codex-mcp.md) | MCP (stdio) | `.codex/mcp.json` |\n| [Windsurf](windsurf-mcp.md) | MCP (stdio) | `.windsurf/mcp_config.json` |\n| [OpenWebUI](openwebui-tool.md) | Native @tool | Workspace tool config |\n| [Hermes Ag",
+        "rawContent": "# Mnemosyne Integrations\n\nMnemosyne runs everywhere. Pick your platform:\n\n| Platform | Method | Config |\n|----------|--------|--------|\n| [Cursor](cursor-mcp.md) | MCP (stdio) | `.cursor/mcp.json` |\n| [Claude Code](claude-code-mcp.md) | MCP (stdio) | `claude.json` |\n| [OpenAI Codex CLI](codex-mcp.md) | MCP (stdio) | `.codex/mcp.json` |\n| [Windsurf](windsurf-mcp.md) | MCP (stdio) | `.windsurf/mcp_config.json` |\n| [OpenWebUI](openwebui-tool.md) | Native @tool | Workspace tool config |\n| [Hermes Agent](hermes-mcp.md) | MCP + Plugin | `~/.hermes/config.yaml` |\n\n## Quick Start (any MCP client)\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\nMake sure the `mcp` extra is installed:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\nThat's it. Three tools become available: `mnemosyne_remember`, `mnemosyne_recall`, `mnemosyne_forget`.\n\n## Not using MCP?\n\nUse the [Python API](../api-reference.md) directly:\n\n```python\nfrom mnemosyne import remember, recall\nremember(\"User prefers dark mode\")\nresults = recall(\"user preferences\")\n```\n"
+      }
+    },
+    "claude-code-mcp.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/integrations/claude-code-mcp.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Integration setup for Claude Code MCP",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 65,
+        "content": "# Mnemosyne + Claude Code\n\nGive Claude Code persistent memory across sessions. It remembers your preferences, project context, and decisions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `claude.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Claude Code. The tools register automatically.\n\n## Usage\n\nIn Claude",
+        "rawContent": "# Mnemosyne + Claude Code\n\nGive Claude Code persistent memory across sessions. It remembers your preferences, project context, and decisions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `claude.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Claude Code. The tools register automatically.\n\n## Usage\n\nIn Claude Code:\n\n```\n/remember User prefers pnpm over npm\n/recall project architecture decisions\n```\n\nOr ask naturally:\n- \"Remember that I use 2-space indentation\"\n- \"What do you know about our auth system?\"\n- \"Recall the discussion about the database schema\"\n\n## CLI shortcuts\n\nClaude Code slash commands:\n- `mnemosyne_remember` — Store a memory\n- `mnemosyne_recall` — Search memories\n- `mnemosyne_forget` — Delete a memory\n\n## Project isolation\n\nUse per-project memory banks to keep contexts separate:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\", \"--bank\", \"my-project\"],\n      \"env\": {}\n    }\n  }\n}\n```\n"
+      }
+    },
+    "codex-mcp.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/integrations/codex-mcp.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Integration setup for OpenAI Codex CLI MCP",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 51,
+        "content": "# Mnemosyne + OpenAI Codex CLI\n\nConnect Codex CLI to Mnemosyne for long-term memory across coding sessions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `.codex/mcp.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Codex CLI. Tools appear automatically.\n\n## Usage\n\nAsk Codex:\n- \"Remember my preferred test framew",
+        "rawContent": "# Mnemosyne + OpenAI Codex CLI\n\nConnect Codex CLI to Mnemosyne for long-term memory across coding sessions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `.codex/mcp.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Codex CLI. Tools appear automatically.\n\n## Usage\n\nAsk Codex:\n- \"Remember my preferred test framework is pytest\"\n- \"Recall our discussion about migration strategy\"\n- \"What preferences do you have stored for me?\"\n\n## Memory Banks\n\nCodex projects can use separate memory banks to keep context isolated per project:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\", \"--bank\", \"codex-{{project-name}}\"],\n      \"env\": {}\n    }\n  }\n}\n```\n"
+      }
+    },
+    "cursor-mcp.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/integrations/cursor-mcp.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Integration setup for Cursor MCP",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 52,
+        "content": "# Mnemosyne + Cursor\n\nConnect Mnemosyne to Cursor as an MCP tool for persistent memory across sessions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to Cursor's MCP config at `.cursor/mcp.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Cursor. The Mnemosyne tools (remember, recall, forget) appear automatically i",
+        "rawContent": "# Mnemosyne + Cursor\n\nConnect Mnemosyne to Cursor as an MCP tool for persistent memory across sessions.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to Cursor's MCP config at `.cursor/mcp.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Cursor. The Mnemosyne tools (remember, recall, forget) appear automatically in your agent's tool palette.\n\n## Usage\n\nAsk Cursor's agent:\n- \"Remember that I prefer tab-width 4 for Go files\"\n- \"What do you know about my development preferences?\"\n- \"Recall any notes about the deployment pipeline\"\n\n## Tips\n\n- Memories persist across projects when using the default bank\n- Use different banks per project for isolation:\n  ```json\n  {\n    \"mcpServers\": {\n      \"mnemosyne\": {\n        \"command\": \"mnemosyne\",\n        \"args\": [\"mcp\", \"--bank\", \"project-xyz\"],\n        \"env\": {}\n      }\n    }\n  }\n  ```\n- To check your memory stats: ask \"how many memories do I have?\"\n"
+      }
+    },
+    "custom-mcp-server.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/integrations/custom-mcp-server.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Guide for creating custom MCP server integrations"
+      }
+    },
+    "openwebui-bridge.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/integrations/openwebui-bridge.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Integration setup for OpenWebUI bridge"
+      }
+    },
+    "vscode.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/integrations/vscode.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Integration setup for VS Code extension"
+      }
+    },
+    "windsurf-mcp.md": {
+      "path": "/root/.hermes/projects/mnemosyne/docs/integrations/windsurf-mcp.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Integration setup for Windsurf MCP",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 35,
+        "content": "# Mnemosyne + Windsurf\n\nAdd persistent memory to Windsurf via MCP.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `.windsurf/mcp_config.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Windsurf. Tools register automatically.\n\n## Usage\n\nAsk Windsurf's agent:\n- \"Remember my commit message style\"\n- \"What did we lea",
+        "rawContent": "# Mnemosyne + Windsurf\n\nAdd persistent memory to Windsurf via MCP.\n\n## Setup\n\n1. Install Mnemosyne with MCP support:\n\n```bash\npip install \"mnemosyne-memory[mcp]\"\n```\n\n2. Add to `.windsurf/mcp_config.json` in your project root:\n\n```json\n{\n  \"mcpServers\": {\n    \"mnemosyne\": {\n      \"command\": \"mnemosyne\",\n      \"args\": [\"mcp\"],\n      \"env\": {}\n    }\n  }\n}\n```\n\n3. Restart Windsurf. Tools register automatically.\n\n## Usage\n\nAsk Windsurf's agent:\n- \"Remember my commit message style\"\n- \"What did we learn about the API rate limits?\"\n- \"Recall any stored context about this codebase\"\n"
+      }
+    },
+    "known-limitations.md": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/.hermes/projects/mnemosyne/docs/known-limitations.md",
+        "category": "docs",
+        "type": "document",
+        "description": "Known limitations and caveats"
+      }
+    }
+  },
+  "batchImportData": {},
+  "neighborMap": {},
+  "semanticAnalysis": {
+    "contributing-guide.md": {
+      "fileName": "contributing-guide.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/contributing-guide.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Contributing guide for Mnemosyne contributors",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "data-privacy.md": {
+      "fileName": "data-privacy.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/data-privacy.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Data privacy policy and practices",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "deployment.md": {
+      "fileName": "deployment.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/deployment.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Deployment guide for Mnemosyne",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "diagram-flow.mermaid": {
+      "fileName": "diagram-flow.mermaid",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/diagram-flow.mermaid",
+      "category": "docs",
+      "type": "document",
+      "description": "Architecture flow diagram in Mermaid format",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "faq.md": {
+      "fileName": "faq.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/faq.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Frequently asked questions",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "getting-started.md": {
+      "fileName": "getting-started.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/getting-started.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Getting started guide for Mnemosyne",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "glossary.md": {
+      "fileName": "glossary.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/glossary.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Glossary of Mnemosyne terms",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "integration-with-honcho-and-other-memory-layers.md": {
+      "fileName": "integration-with-honcho-and-other-memory-layers.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integration-with-honcho-and-other-memory-layers.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration guide for Honcho and other memory layers",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "README.md": {
+      "fileName": "README.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/README.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integrations overview and quick start",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "claude-code-mcp.md": {
+      "fileName": "claude-code-mcp.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/claude-code-mcp.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for Claude Code MCP",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "codex-mcp.md": {
+      "fileName": "codex-mcp.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/codex-mcp.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for OpenAI Codex CLI MCP",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "cursor-mcp.md": {
+      "fileName": "cursor-mcp.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/cursor-mcp.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for Cursor MCP",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "custom-mcp-server.md": {
+      "fileName": "custom-mcp-server.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/custom-mcp-server.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Guide for creating custom MCP server integrations",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "openwebui-bridge.md": {
+      "fileName": "openwebui-bridge.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/openwebui-bridge.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for OpenWebUI bridge",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "vscode.md": {
+      "fileName": "vscode.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/vscode.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for VS Code extension",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "windsurf-mcp.md": {
+      "fileName": "windsurf-mcp.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/integrations/windsurf-mcp.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Integration setup for Windsurf MCP",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "known-limitations.md": {
+      "fileName": "known-limitations.md",
+      "filePath": "/root/.hermes/projects/mnemosyne/docs/known-limitations.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Known limitations and caveats",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    }
+  },
+  "metadata": {
+    "generatedAt": "2026-06-03T00:04:50.593Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 17,
+    "categories": [
+      "docs"
+    ],
+    "types": [
+      "document"
+    ]
+  }
+}

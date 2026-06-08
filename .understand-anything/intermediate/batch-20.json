@@ -1,0 +1,1187 @@
+{
+  "batchIndex": 20,
+  "description": "Mixed batch: Mnemosyne core, integrations, config, git hooks, and docs — 25 mixed files (code/docs/config/scripts)",
+  "files": {
+    "__init__.py": {
+      "path": "/root/mnemosyne/mnemosyne/__init__.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Mnemosyne package init — lazy imports, v3.3.0, optional MCP server",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 49,
+        "content": "\"\"\"\nMnemosyne - The Zero-Dependency AI Memory System\n\nA native, sub-millisecond memory system for AI agents using SQLite.\nNo HTTP, no servers, no API keys — just Python and SQLite.\n\nExample:\n    >>> from mnemosyne import remember, recall\n    >>> remember(\"User prefers dark mode\", importance=0.9)\n    >>> results = recall(\"user preferences\")\n\"\"\"\n\n__version__ = \"3.3.0\"\n__author__ = \"Abdias J\"\n__license__ = \"MIT\"\n\n# Lazy imports to allow mnemosyne.install to run without heavy deps\n# (e.g. numpy is n",
+        "rawContent": "\"\"\"\nMnemosyne - The Zero-Dependency AI Memory System\n\nA native, sub-millisecond memory system for AI agents using SQLite.\nNo HTTP, no servers, no API keys — just Python and SQLite.\n\nExample:\n    >>> from mnemosyne import remember, recall\n    >>> remember(\"User prefers dark mode\", importance=0.9)\n    >>> results = recall(\"user preferences\")\n\"\"\"\n\n__version__ = \"3.3.0\"\n__author__ = \"Abdias J\"\n__license__ = \"MIT\"\n\n# Lazy imports to allow mnemosyne.install to run without heavy deps\n# (e.g. numpy is not yet installed during first-time setup)\n_imported = False\n_lazy_exports = {\n    \"Mnemosyne\": (\".core.memory\", \"Mnemosyne\"),\n    \"remember\": (\".core.memory\", \"remember\"),\n    \"recall\": (\".core.memory\", \"recall\"),\n    \"get_context\": (\".core.memory\", \"get_context\"),\n    \"get_stats\": (\".core.memory\", \"get_stats\"),\n    \"get\": (\".core.memory\", \"get\"),\n    \"forget\": (\".core.memory\", \"forget\"),\n    \"update\": (\".core.memory\", \"update\"),\n}\n\ndef __getattr__(name: str):\n    global _imported\n    if name in _lazy_exports:\n        mod_path, attr_name = _lazy_exports[name]\n        mod = __import__(f\"mnemosyne{mod_path}\", fromlist=[attr_name])\n        return getattr(mod, attr_name)\n    raise AttributeError(f\"module 'mnemosyne' has no attribute '{name}'\")\n\n__all__ = list(_lazy_exports.keys())\n\n# Conditionally expose MCP server if mcp package is installed\ntry:\n    import mcp\n    from mnemosyne.mcp_server import run_mcp_server\n    _lazy_exports[\"run_mcp_server\"] = (\".mcp_server\", \"run_mcp_server\")\n    __all__.append(\"run_mcp_server\")\nexcept ImportError:\n    pass  # MCP is optional — core works without it\n"
+      }
+    },
+    "pre-commit": {
+      "path": "/root/mnemosyne/.githooks/pre-commit",
+      "category": "other",
+      "type": "unknown",
+      "description": "Pre-commit hook blocking commits containing personal email PII",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 23,
+        "content": "#!/bin/sh\n# Pre-commit hook: block commits containing personal email\nHOOK_FILE=\".githooks/pre-commit\"\n\nPII_PATTERNS=\"1641797+AxDSan@users.noreply.github.com\"\n\nstaged=$(git diff --cached --name-only | grep -v \"^$HOOK_FILE$\" || true)\nif [ -n \"$staged\" ]; then\n  if echo \"$staged\" | xargs grep -l \"$PII_PATTERNS\" 2>/dev/null; then\n    echo \"ERROR: PII detected in staged files. Remove before committing.\"\n    echo \"Found pattern: $PII_PATTERNS\"\n    exit 1\n  fi\nfi\n\n# Also check git config\nCURRENT_EMAIL=",
+        "rawContent": "#!/bin/sh\n# Pre-commit hook: block commits containing personal email\nHOOK_FILE=\".githooks/pre-commit\"\n\nPII_PATTERNS=\"1641797+AxDSan@users.noreply.github.com\"\n\nstaged=$(git diff --cached --name-only | grep -v \"^$HOOK_FILE$\" || true)\nif [ -n \"$staged\" ]; then\n  if echo \"$staged\" | xargs grep -l \"$PII_PATTERNS\" 2>/dev/null; then\n    echo \"ERROR: PII detected in staged files. Remove before committing.\"\n    echo \"Found pattern: $PII_PATTERNS\"\n    exit 1\n  fi\nfi\n\n# Also check git config\nCURRENT_EMAIL=$(git config user.email)\nif [ \"$CURRENT_EMAIL\" = \"1641797+AxDSan@users.noreply.github.com\" ]; then\n  echo \"INFO: Git user.email set to the noreply address (expected for Mnemosyne repo). Skipping check.\"\nfi\n\nexit 0\n"
+      }
+    },
+    "pre-push": {
+      "path": "/root/mnemosyne/.githooks/pre-push",
+      "category": "other",
+      "type": "unknown",
+      "description": "Pre-push hook validating tags against __version__ and SemVer rules",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 77,
+        "content": "#!/bin/bash\n# Mnemosyne pre-push hook — validates tags against __version__ and SemVer rules.\n# Install: git config core.hooksPath .githooks\n\nset -euo pipefail\n\nVERSION_FILE=\"mnemosyne/__init__.py\"\n\n# Only run during tag pushes\nrefs=()\nwhile read -r local_ref local_sha remote_ref remote_sha; do\n    if [[ \"$remote_ref\" == refs/tags/* ]]; then\n        refs+=(\"${remote_ref#refs/tags/}\")\n    fi\ndone\n\nif [ ${#refs[@]} -eq 0 ]; then\n    exit 0\nfi\n\n# Parse version from __init__.py\nif [ ! -f \"$VERSION_FI",
+        "rawContent": "#!/bin/bash\n# Mnemosyne pre-push hook — validates tags against __version__ and SemVer rules.\n# Install: git config core.hooksPath .githooks\n\nset -euo pipefail\n\nVERSION_FILE=\"mnemosyne/__init__.py\"\n\n# Only run during tag pushes\nrefs=()\nwhile read -r local_ref local_sha remote_ref remote_sha; do\n    if [[ \"$remote_ref\" == refs/tags/* ]]; then\n        refs+=(\"${remote_ref#refs/tags/}\")\n    fi\ndone\n\nif [ ${#refs[@]} -eq 0 ]; then\n    exit 0\nfi\n\n# Parse version from __init__.py\nif [ ! -f \"$VERSION_FILE\" ]; then\n    echo \"ERROR: $VERSION_FILE not found. Run from repo root.\"\n    exit 1\nfi\n\npkg_version=$(grep -E \"^__version__\\s*=\" \"$VERSION_FILE\" | sed -E \"s/__version__\\s*=\\s*['\\\"]([^'\\\"]+)['\\\"].*/\\1/\")\nif [ -z \"$pkg_version\" ]; then\n    echo \"ERROR: Could not extract __version__ from $VERSION_FILE\"\n    exit 1\nfi\n\nfor tag in \"${refs[@]}\"; do\n    # Validate format: vMAJOR.MINOR.PATCH\n    if ! echo \"$tag\" | grep -qE '^v[0-9]+\\.[0-9]+\\.[0-9]+$'; then\n        echo \"ERROR: Tag '$tag' must match format vMAJOR.MINOR.PATCH (e.g. v3.1.2)\"\n        echo \"  Got:      $tag\"\n        echo \"  Expected: vMAJOR.MINOR.PATCH\"\n        exit 1\n    fi\n\n    # Strip 'v' prefix for comparison\n    tag_version=\"${tag#v}\"\n\n    # Must match __version__\n    if [ \"$tag_version\" != \"$pkg_version\" ]; then\n        echo \"ERROR: Tag version '$tag_version' does not match __version__ in $VERSION_FILE\"\n        echo \"  Tag:         $tag\"\n        echo \"  __version__: $pkg_version\"\n        echo \"\"\n        echo \"  Fix: Update mnemosyne/__init__.py or use the correct tag.\"\n        exit 1\n    fi\n\n    # Extract components\n    major=$(echo \"$tag_version\" | cut -d. -f1)\n    minor=$(echo \"$tag_version\" | cut -d. -f2)\n    patch=$(echo \"$tag_version\" | cut -d. -f3)\n\n    # Check that the tag isn't backtracking (new tag must be >= all existing tags)\n    # Uses git tag sorting (version sort, so v3.1.9 < v3.1.10)\n    latest_existing=$(git tag --sort=-v:refname 2>/dev/null | head -1 || echo \"\")\n    if [ -n \"$latest_existing\" ]; then\n        latest_ver=\"${latest_existing#v}\"\n        # Only compare if the new tag would go backwards\n        if [ \"$(printf '%s\\n' \"$tag_version\" \"$latest_ver\" | sort -V | head -1)\" = \"$tag_version\" ] && [ \"$tag_version\" != \"$latest_ver\" ]; then\n            echo \"ERROR: Tag '$tag_version' is behind existing tag '$latest_ver'\"\n            echo \"  New tag must be greater than the latest existing tag.\"\n            exit 1\n        fi\n    fi\n\n    echo \"✓ Tag '$tag' matches __version__ ('$pkg_version')\"\ndone\n\nexit 0\n"
+      }
+    },
+    "FUNDING.yml": {
+      "path": "/root/mnemosyne/.github/FUNDING.yml",
+      "category": "config",
+      "type": "yaml",
+      "description": "GitHub funding configuration — AxDSan (GitHub Sponsors, Ko-fi)",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 5,
+        "content": "# These are supported funding model platforms\n\ngithub: AxDSan\nko_fi: axdsan\n",
+        "rawContent": "# These are supported funding model platforms\n\ngithub: AxDSan\nko_fi: axdsan\n"
+      }
+    },
+    "PULL_REQUEST_TEMPLATE.md": {
+      "path": "/root/mnemosyne/.github/PULL_REQUEST_TEMPLATE.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "Pull request template with checklist for version bump, CHANGELOG, README",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 33,
+        "content": "## Description\n\nWhat does this change do and why? Keep it focused.\n\n## Related Issue\n\nCloses #(issue)\n\n## Type of Change\n\n- [ ] Bug fix\n- [ ] New feature\n- [ ] Documentation update\n- [ ] Refactor / performance\n- [ ] Test improvement\n- [ ] CI / build tooling\n\n## How Has This Been Tested?\n\n- [ ] Existing tests still pass (`pytest tests/ -v`)\n- [ ] New tests added for any new functionality\n- [ ] Manual verification (describe what you tested)\n\n## Checklist\n\n- [ ] Version bumped in `mnemosyne/__init_",
+        "rawContent": "## Description\n\nWhat does this change do and why? Keep it focused.\n\n## Related Issue\n\nCloses #(issue)\n\n## Type of Change\n\n- [ ] Bug fix\n- [ ] New feature\n- [ ] Documentation update\n- [ ] Refactor / performance\n- [ ] Test improvement\n- [ ] CI / build tooling\n\n## How Has This Been Tested?\n\n- [ ] Existing tests still pass (`pytest tests/ -v`)\n- [ ] New tests added for any new functionality\n- [ ] Manual verification (describe what you tested)\n\n## Checklist\n\n- [ ] Version bumped in `mnemosyne/__init__.py`\n- [ ] `CHANGELOG.md` updated with a brief entry\n- [ ] README updated if user-facing behavior changed\n- [ ] Code follows the project's principles:\n  - No new external dependencies without good reason\n  - No cloud / API key requirement for core functionality\n  - SQLite is the only database dependency\n"
+      }
+    },
+    ".mailmap": {
+      "path": "/root/mnemosyne/.mailmap",
+      "category": "other",
+      "type": "unknown",
+      "description": "Git .mailmap mapping multiple author name variants to canonical 'Abdias J'",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 10,
+        "content": "# Mnemosyne .mailmap\n# Maps old commit author names/emails to canonical form\n# See: https://git-scm.com/docs/gitmailmap\n\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias J <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias Joel <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias J Moya Perez <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias J",
+        "rawContent": "# Mnemosyne .mailmap\n# Maps old commit author names/emails to canonical form\n# See: https://git-scm.com/docs/gitmailmap\n\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias J <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias Joel <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias J Moya Perez <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> Abdias Joel Moya Perez <1641797+AxDSan@users.noreply.github.com>\nAbdias J <1641797+AxDSan@users.noreply.github.com> AJ Moya <1641797+AxDSan@users.noreply.github.com>\n"
+      }
+    },
+    ".understandignore": {
+      "error": "File not found",
+      "fileEntry": {
+        "path": "/root/mnemosyne/.understand-anything/.understandignore",
+        "category": "config",
+        "type": "code",
+        "description": "Understand-anything ignore patterns (FILE NOT FOUND)"
+      }
+    },
+    "2026-05-12-beam-recovery-arms-abc.md": {
+      "path": "/root/mnemosyne/docs/experiments/2026-05-12-beam-recovery-arms-abc.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "BEAM recovery experiment plan — 10-phase ablation sequence, theses, toggles, and implementation gaps",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 308,
+        "content": "# BEAM-Recovery Experiment -- Test Sequence and Theses\n\n**Date:** 2026-05-12 | **Status:** Plan, pre-execution. References [docs/benchmarking.md](../benchmarking.md) for env-var definitions and methodology.\n\nThis is a dated experiment artifact. For the reusable test-infrastructure reference (env vars, diagnostic instrumentation, pure-recall mode, recording template), see [benchmarking.md](../benchmarking.md). This file describes the specific 10-phase ablation sequence planned for the post-May-20",
+        "rawContent": "# BEAM-Recovery Experiment -- Test Sequence and Theses\n\n**Date:** 2026-05-12 | **Status:** Plan, pre-execution. References [docs/benchmarking.md](../benchmarking.md) for env-var definitions and methodology.\n\nThis is a dated experiment artifact. For the reusable test-infrastructure reference (env vars, diagnostic instrumentation, pure-recall mode, recording template), see [benchmarking.md](../benchmarking.md). This file describes the specific 10-phase ablation sequence planned for the post-May-2026 fix bundle and the theses each phase tests.\n\n---\n\n## Why this exists\n\nThe goal is to measure, per tool, what each component of the Mnemosyne recall stack contributes to BEAM scores -- not to demonstrate Mnemosyne wins. PRs #80-#91 were filed specifically to enable that per-tool isolation, and **stats collected before those land are not credible evidence for or against any specific tool**, because the prior pipeline had silent failure modes and harness-side oracles that made it impossible to attribute deltas to a single change.\n\nThe proposed sequence below is designed to commit each tool to a measurable A/B test rather than a \"polyphonic vs linear\" bundle comparison.\n\n---\n\n## Hard prerequisites before any phase runs\n\n### Code prerequisites -- PRs to merge first\n\n**This plan is only valid against a checkout that has these PRs merged:** #80 (polyphonic vector voice rewire to `memory_embeddings` + sqlite-vec), #82 (`remember_batch` enrichment parity), #88 (cross-tier dedup), #89 (veracity preservation through consolidation), #90 (pure-recall harness gate), #91 (env-parser + telemetry). On current `main` (pre-merge) several plan claims are factually wrong -- `_dedup_cross_tier_summary_links` doesn't exist, `_recall_polyphonic` still uses `BinaryVectorStore`, the harness has no `--pure-recall` flag. If those PRs haven't merged when you run this, stop and merge them first.\n\n### Python / system dependencies\n\n```bash\n# Core (already in pyproject as optional groups):\npip install 'mnemosyne-memory[embeddings]'   # fastembed (≥0.3.0) -- recall vector voice\npip install 'mnemosyne-memory[llm]'          # llama-cpp-python -- sleep summarization (else AAAK fallback)\n\n# Benchmark-only -- NOT in pyproject yet:\npip install datasets                          # HuggingFace BEAM dataset loader (tools/evaluate_beam_end_to_end.py:183)\npip install sqlite-vec                        # vec_episodes ANN backend (linear path + polyphonic post-#80)\npip install numpy                             # tools/evaluate_beam_end_to_end.py:54 import is unconditional\n```\n\n`numpy` and `datasets` are runtime requirements of the benchmark harness but not declared as installable extras of the package -- install them in the same venv. Recommend tracking these in a `requirements-benchmark.txt` (see Implementation Gaps §6 below).\n\n### External services / API keys\n\n| Variable | Required for | Source |\n|---|---|---|\n| `OPENROUTER_API_KEY` | LLM that answers benchmark questions | OpenRouter account |\n| `HF_TOKEN` (optional) | If BEAM dataset turns gated; currently public at `Mohammadta/BEAM` | HuggingFace |\n| `OPENROUTER_BASE_URL` (optional) | API base URL override; default `https://openrouter.ai/api/v1` | env-only |\n\nThe harness falls back to reading `OPENROUTER_API_KEY` from `/tmp/opencode_key.txt` or `/tmp/openrouter_key.txt` if the env isn't set (`tools/evaluate_beam_end_to_end.py:60-71`).\n\n### Compute / resource budget\n\n| Resource | 100K phase | 250K phase |\n|---|---|---|\n| Wall clock | ~20-30 min per run | ~60-90 min per run |\n| Peak RSS | ~2-4 GB (fastembed + LLM) | ~4-8 GB |\n| Disk for DB | ~500 MB per conversation | ~2-4 GB per conversation |\n| LLM API spend | ~$0.50-$2 per phase | ~$5-$15 per phase |\n\nAPI spend is dominated by per-question answer LLM calls (BEAM has up to 50 questions per conversation per scale). Cache hits via deduplication of identical queries can lower this; quantify on first phase before committing to all 10.\n\n**Preflight (run once per session, then per phase):**\n\n1. **Assert pure-recall mode is active.** The harness should refuse to run if `MNEMOSYNE_BENCHMARK_PURE_RECALL` is unset. The bypasses don't produce identical answers across arms; running without the gate silently invalidates every comparison.\n2. **Dump every `MNEMOSYNE_*` env var into results JSON.** A toggle the operator forgot is a confound in disguise.\n3. **Pin all ranking knobs.** `MNEMOSYNE_VEC_WEIGHT`, `MNEMOSYNE_FTS_WEIGHT`, `MNEMOSYNE_IMPORTANCE_WEIGHT`, `MNEMOSYNE_TEMPORAL_HALFLIFE_HOURS`, `MNEMOSYNE_VEC_TYPE`, `MNEMOSYNE_BEAM_OPTIMIZATIONS`, `MNEMOSYNE_TIER{1,2,3}_WEIGHT`, `MNEMOSYNE_*_WEIGHT` veracity values must be set identically across phases -- pin them in a `.env` file or assert in the runner.\n4. **Sanity-check the active recall path.** Log whether each call went through linear or polyphonic; the env var is read at call time, not init time, so accidental flips mid-run are possible.\n5. **Record per-result `voice_scores` and tier provenance** (from C4 + C13.b diagnostics). Without these, a \"tool contributes nothing\" finding is unfalsifiable.\n\n---\n\n## Why prior stats are suspect\n\n- The benchmark harness answered TR/CR/IE/KU questions from a regex-extracted timeline, raw-message contradiction detection, and a `_context_facts` side-index -- bypassing `BeamMemory.recall()` entirely on those ability dimensions (PR #90).\n- Every answer prompt was always prepended with the last 12 raw conversation messages, so any recency-anchored answer could succeed regardless of recall quality and arm choice (PR #90).\n- Post-E3 additive sleep left both the source `working_memory` row and the episodic summary discoverable by recall, double-incrementing `recall_count` and ranking duplicates side-by-side under the linear scorer while polyphonic's diversity rerank silently collapsed them -- asymmetric dedup confounded any arm-vs-arm comparison (PR #88).\n- `consolidate_to_episodic` never populated the `veracity` column on the summary row, so post-E4 per-row veracity got destroyed the moment sleep ran -- every episodic row scored at the 0.8 `unknown` multiplier (PR #89).\n- `remember_batch` swallowed partial embedding failures via a bare `except Exception: pass`, silently losing entire batches of vectors at scale (PR #89).\n- Pre-E1 the benchmark adapter wrote template summaries and destroyed source rows; the corpus most prior runs actually recalled against was ~500 episodic rows of \"Batch N: first_3_msg_contents[:100chars]\" stubs, not the 250K-message dataset (PR #75).\n\nEach is fixed; their combined effect on prior numbers is unknowable.\n\n---\n\n## What's now controllable for A/B\n\n**Key disambiguation up front:** the linear path and the polyphonic engine implement related signals through DIFFERENT mechanisms. The linear scorer applies `graph_bonus` / `fact_bonus` / `binary_bonus` as inline additions (`beam.py:~2497-2545`); the polyphonic engine runs separate voices (`polyphonic_recall.py:_graph_voice`, `_fact_voice`, `_vector_voice` which is binary-vector-driven). They have different failure modes and different ablation surfaces. Toggles must specify which engine they gate.\n\n| Tool / axis | Engine | On/off mechanism | Landed in |\n|---|---|---|---|\n| Polyphonic engine vs linear scorer | both | `MNEMOSYNE_POLYPHONIC_RECALL=1` selects polyphonic | E5 (#76) |\n| Polyphonic vector voice (post-#80: `memory_embeddings` + sqlite-vec ANN; pre-#80: `BinaryVectorStore`) | polyphonic | Implicit when polyphonic on; ANN gated by `_vec_available`. **Proposed:** `MNEMOSYNE_VOICE_VECTOR=0` for ablation | E5.a (#80) |\n| Polyphonic graph voice (`find_gists_by_participant` / `find_facts_by_subject`) | polyphonic | **Proposed:** `MNEMOSYNE_VOICE_GRAPH=0` |  |\n| Linear graph bonus (edge-count LIKE-match on `graph_edges`) | linear | **Proposed:** `MNEMOSYNE_GRAPH_BONUS=0`; **separate toggle from polyphonic graph voice** |  |\n| Polyphonic fact voice (synthetic `cf_*` IDs from `consolidated_facts`) | polyphonic | **Proposed:** `MNEMOSYNE_VOICE_FACT=0` |  |\n| Linear fact bonus (per-row `facts` table query) | linear | **Proposed:** `MNEMOSYNE_FACT_BONUS=0` |  |\n| Polyphonic temporal voice | polyphonic | **Proposed:** `MNEMOSYNE_VOICE_TEMPORAL=0` |  |\n| Linear temporal boost (`_temporal_boost` × `temporal_weight`) | linear | `temporal_weight=0` per-call arg (already exposed); needs harness flag |  |\n| Linear binary-vector bonus (capped at 0.08) | linear | **Proposed:** `MNEMOSYNE_BINARY_BONUS=0` |  |\n| Veracity multiplier | both | **Proposed:** `MNEMOSYNE_VERACITY_MULTIPLIER=0` -- gates the multiplier in linear + polyphonic |  |\n| Tier-degradation multiplier | both | `MNEMOSYNE_TIER{1,2,3}_WEIGHT=1.0` neutralizes (existing env vars) |  |\n| Cross-tier (summary, source) dedup | both | **Proposed:** `MNEMOSYNE_CROSS_TIER_DEDUP=0` (requires #88 merged) | E3.a.3 (#88) |\n| Algorithmic enrichment in `remember_batch` | ingest | `extract_entities=False`, `extract=False` kwargs (rule-based always-on post-E2 is not separately toggled) | E2 (#82) |\n| LLM extraction | ingest | `extract=True` kwarg (per-row cost); out of scope for Arms A-C |  |\n| Pure-recall mode (no harness oracles) | harness | `--pure-recall` or `MNEMOSYNE_BENCHMARK_PURE_RECALL=1` (requires #90/#91) | #90, #91 |\n| Veracity tagging at ingest | ingest | `remember_batch(items, veracity=...)` per-item or default | E4 (#74), E4.a.1 (#89) |\n| Score-component weights | linear | `MNEMOSYNE_VEC_WEIGHT`, `MNEMOSYNE_FTS_WEIGHT`, `MNEMOSYNE_IMPORTANCE_WEIGHT` (existing; normalized to 1.0) |  |\n| FTS5 / vec scan breadth | both | `MNEMOSYNE_BEAM_OPTIMIZATIONS=1` widens FTS OR-semantics + raises vec scan limits |  |\n| Vector storage backend | both | `MNEMOSYNE_VEC_TYPE` ∈ {`float32`, `int8`, `bit`} |  |\n| Recall diagnostics (per-tier hits, fallback rate) | observability | `mnemosyne.core.recall_diagnostics.get_recall_diagnostics()` | C4 (#79) |\n| Extraction diagnostics (per-tier extract counts) | observability | `mnemosyne.extraction.diagnostics.get_extraction_stats()` | C13.b (#78) |\n\nThe \"proposed\" rows are the gap between today's code (assuming #80-#91 merged) and a clean A/B matrix. Scope is in §6.\n\n---\n\n## Proposed test sequence\n\nEach phase changes exactly one variable from the prior. Run on the 100K slice unless noted; budget ~20-30 minutes per phase on a single conversation. Use `--pure-recall` on every phase -- running without it reintroduces the harness oracles and invalidates per-tool deltas.\n\nPhases 3a-3d ablate components of the polyphonic engine specifically. They can run in parallel from a frozen DB snapshot taken at Phase 2 ingest completion, since each toggle is independent of the others. Phase 3-LIN-* exercises the analogous LINEAR-path bonus blocks separately -- those aren't redundant with 3a-3d because the linear graph/fact mechanisms are different functions on different data.\n\n**Every phase requires:** `MNEMOSYNE_BENCHMARK_PURE_RECALL=1` (or `--pure-recall`), `OPENROUTER_API_KEY` set, and the Python deps from §1 installed. The per-phase table below lists only the variables that change from defaults.\n\n| Phase | Name | Setup (delta from prior) | What to measure | Expectation |\n|---|---|---|---|---|\n| 0 | Baseline floor | Linear scorer, pure-recall, `MNEMOSYNE_VERACITY_MULTIPLIER=0` (explicit toggle, NOT data labeling -- uniform `unknown` rows still get the 0.8 multiplier), no enrichment | Per-ability score + total | The \"raw working_memory + episodic via FTS + numpy-vec, no multipliers\" floor |\n| 1 | + veracity | Phase 0 + `MNEMOSYNE_VERACITY_MULTIPLIER=1`, rows tagged via `remember_batch` defaults | Δ vs phase 0 | Test Thesis 5 (prior: small Δ on uniform corpora; report CIs) |\n| 2 | + polyphonic engine | Phase 1 + `MNEMOSYNE_POLYPHONIC_RECALL=1`, all voices on | Δ vs phase 1 | Net engine contribution -- RRF + diversity rerank vs linear scorer |\n| 3a | − fact voice (polyphonic) | Phase 2 + `MNEMOSYNE_VOICE_FACT=0` | Δ vs phase 2 | Test Thesis 1: predict near-zero -- see thesis details below |\n| 3b | − graph voice (polyphonic) | Phase 2 + `MNEMOSYNE_VOICE_GRAPH=0` | Δ vs phase 2 | Test Thesis 2a (polyphonic graph voice contribution) |\n| 3c | − temporal voice (polyphonic) | Phase 2 + `MNEMOSYNE_VOICE_TEMPORAL=0` | Δ vs phase 2 | Question-mix dependent |\n| 3d | − polyphonic vector voice | Phase 2 + `MNEMOSYNE_VOICE_VECTOR=0` | Δ vs phase 2 | **This is the polyphonic-engine analog of \"no vector signal\" -- gates `_vector_voice()` in `polyphonic_recall.py:113-151`, NOT the linear binary_bonus block. Vector voice is the heaviest contributor; predict large Δ.** |\n| 3-LIN-bin | − linear binary bonus | Phase 1 (linear) + `MNEMOSYNE_BINARY_BONUS=0` (gates `beam.py:2527-2545`) | Δ vs phase 1 | Test Thesis 3a (linear-only binary bonus deprecation) -- predict near-zero |\n| 3-LIN-graph | − linear graph bonus | Phase 1 + `MNEMOSYNE_GRAPH_BONUS=0` (gates `beam.py:2497-2521`, 2632-2656) | Δ vs phase 1 | Test Thesis 2b (linear graph-bonus contribution) |\n| 3-LIN-fact | − linear fact bonus | Phase 1 + `MNEMOSYNE_FACT_BONUS=0` (gates `beam.py:2508-2521`, 2640-2655) | Δ vs phase 1 | Test Thesis 1b (linear fact-bonus contribution) |\n| 4 | + cross-tier dedup off | Phase 2 + `MNEMOSYNE_CROSS_TIER_DEDUP=0` | Δ vs phase 2 | Test Thesis 4 |\n| 5 | + algorithmic enrichment | Phase 2 + `extract_entities=True` at ingest | Δ vs phase 2 | Graph+fact data populated → voices have substance |\n| 6 | Full 250K confirmation | Top-2 configurations from phases 0-5 + Phase 0 floor | Per-ability + total + latency | Confirms 100K findings hold at scale |\n\nA full 2^N factorial across the voices is more rigorous but costs N²-ish runs; the single-variable ablations capture the dominant per-component contributions cheaply. If any 3a-3d delta surprises (e.g., voice X looks important when predicted dead), follow up with a paired-voice ablation (X + Y both off).\n\n---\n\n## Theses\n\nEach is a **prior** with code grounding, plus the test that would prove or disprove it. **The quantitative predictions are priors, not measurement-backed claims** -- there are no pilot runs with confidence intervals behind them. Report bootstrap CIs or per-question paired deltas during execution; a \"prediction confirmed\" with overlapping CIs is not confirmation.\n\n**Thesis 1a -- The polyphonic fact voice contributes effectively zero to final recall.**\n`_fact_voice` (`polyphonic_recall.py:~200-217`) emits synthetic `cf_{subject}_{predicate}_{object}` IDs. `_recall_polyphonic` (`beam.py:~2935-2938`) skips any ID starting with `cf_` because `_fetch_polyphonic_row` can't map them to a real row. `_combine_voices` (`polyphonic_recall.py:~295-336`) does not join `cf_*` IDs to source memory rows -- the consolidator's `sources` list isn't threaded through. So when the fact voice \"fires,\" its rows are filtered out before composition. Indirect contribution via RRF on memory_ids surfaced by other voices is also zero in this code, because the fact voice doesn't surface those IDs. **Prior:** Δ ≤ 0.5pp on total score, indistinguishable from noise. **Test:** Phase 3a. If true, the polyphonic fact voice is currently dead code in the recall path -- the cost is the consolidator's ingest-time Bayesian compounding, which has separate value but isn't tested here.\n\n**Thesis 1b -- The LINEAR fact bonus is on a different mechanism and should be tested separately.**\nThe linear path at `beam.py:~2508-2521` per-row queries the `facts` table by `source_msg_id` and adds a capped bonus (max 0.1) when query tokens overlap with extracted fact tokens. This is NOT the same code path as the polyphonic fact voice -- it operates on `facts`, not `consolidated_facts`. **Prior:** Δ small-but-positive (1-3pp) on questions whose answer involves an extracted fact; zero on others. **Test:** Phase 3-LIN-fact.\n\n**Thesis 2a -- The polyphonic graph voice's contribution depends heavily on entity-extraction quality.**\n`_graph_voice` (`polyphonic_recall.py:~160-183`) extracts capitalized tokens from the query and calls `find_gists_by_participant` / `find_facts_by_subject`. Failure modes: case-sensitivity (lowercase entities ignored), brittle entity extraction, and the suspect `fact.id.split(\"_\")[-1]` mapping that assumes a particular ID schema. **Prior:** uneven Δ -- 2-4pp on questions with clearly-capitalized proper-noun entities, near-zero otherwise. **Test:** Phase 3b. Stratify the analysis by whether the question contains capitalized tokens.\n\n**Thesis 2b -- The LINEAR graph bonus rewards connectivity, not query relevance.**\n`beam.py:~2497-2505` counts edges in `graph_edges` via `subject LIKE %memory_id% OR target LIKE %memory_id%`, capped at 0.08. Densely-connected rows get the bonus regardless of whether they're actually relevant to the query -- well-connected rows are surfaced more often than they should be. **Prior:** Δ near-zero on total score (the cap is small), possibly negative on questions where the densely-connected rows aren't the answer. **Test:** Phase 3-LIN-graph.\n\n**Thesis 3a -- The LINEAR binary-vector bonus block is deprecation-eligible.**\n`beam.py:~2527-2545` adds a tanh-normalized Hamming-distance bonus capped at 0.08 from the `binary_vector` column when both query and row vectors are present. The float-vector signal in `vec_results` already drives most of the ranking through `vec_sim * vw`. **Prior:** Δ < 1pp. **Test:** Phase 3-LIN-bin.\n\n**Thesis 3b -- The POLYPHONIC vector voice is the heaviest contributor and should NOT be conflated with 3a.**\n`_vector_voice` (`polyphonic_recall.py:113-151`) runs `BinaryVectorStore.search` (pre-#80) or sqlite-vec ANN over `memory_embeddings` (post-#80). Either way it's the highest-RRF-rank-weight voice and dominates the polyphonic engine's signal. Deprecating it via Phase 3d would tank polyphonic recall scores. **Prior:** Δ large-negative (5-20pp) when disabled. **Test:** Phase 3d. **Do not conclude binary-vector deprecation from Phase 3d** -- that decision is Phase 3-LIN-bin's territory, not 3d's.\n\n**Thesis 4 -- Cross-tier dedup matters more for linear than polyphonic.**\nPre-#88 the linear path returned (summary, source) pairs ranked side-by-side. Polyphonic's diversity rerank handles this approximately via embedding similarity. **Prior:** linear regresses 3-8pp without dedup; polyphonic regresses <2pp. **Test:** Phase 4 × {Phase 0 baseline, Phase 2}. Requires #88 merged (`_dedup_cross_tier_summary_links` doesn't exist pre-merge).\n\n**Thesis 5 -- Veracity multiplier is near-noise on uniform-veracity BEAM data.**\nIf every WM and EP row has the same veracity label, the multiplier becomes a global scalar that doesn't change ranking. Post-#89 the consolidator now aggregates source veracity, so summary rows can have different veracity from sources -- slightly breaking uniformity. **Prior:** Δ < 1pp on total score, possibly larger on questions answered from consolidated summaries vs raw sources. **Test:** Phase 1 vs Phase 0 with explicit multiplier toggle (NOT data labeling -- uniform rows still get the multiplier applied; only the toggle short-circuits it).\n\n**Thesis 6 -- The RECENT CONVERSATION leak was the dominant prior driver of arm-vs-arm equivalence.**\nPre-#90 every answer prompt included the last 12 raw messages. Recency-anchored answers succeeded without needing recall -- arm choice was invisible. **Prior:** pure-recall mode shows arm-vs-arm deltas 2-5× larger than legacy mode. **Test:** Phase 2 with `--pure-recall` vs without (legacy harness behavior). Also serves as a sanity check that #90's gate is actually firing.\n\n**Thesis 7 -- sqlite-vec ANN vs numpy exact-vec affects latency, not score (post-#80).**\nThe polyphonic engine over-fetches `top_k * 2`; the final RRF + multiplier + dedup pipeline returns top_k. ANN-vs-exact differences in the long tail past position ~60 get truncated. **Prior:** Δ score < 0.5pp; p95 latency divergence 5-20×. **Test:** Phase 2 with `sqlite-vec` importable vs mocked-unavailable (numpy fallback). Requires #80 merged.\n\n**Thesis 8 -- Algorithmic enrichment captures most of what LLM extraction would.**\nBEAM facts are predominantly subject-verb-object patterns the regex extractor handles. LLM extraction catches more nuance at $25-$2500 + 35-138h per 250K pass (E2.a.3 ledger note). **Prior:** ≤5pp gap between Phase 5 (algorithmic) and a separate `extract=True` LLM-extraction run. **Test:** Phase 5 vs a separate Arm D run. If gap ≤5pp, LLM extraction is cost overhead; if gap >10pp, it's a real capability.\n\n---\n\n## Toggles needed before full A/B\n\nEach toggle is its own scope (not 5 LOC). LOC estimates include the env-parse code, the gate site(s), invalidation of cached `PolyphonicRecallEngine` if the toggle affects voice construction, and 2-3 regression tests per toggle.\n\n| Toggle | Purpose | Sites | LOC (incl. tests) |\n|---|---|---|---|\n| `MNEMOSYNE_VOICE_VECTOR=0/1` | Phase 3d -- polyphonic vector voice | `polyphonic_recall.py:_vector_voice` early-return when off | ~25 |\n| `MNEMOSYNE_VOICE_GRAPH=0/1` | Phase 3b -- polyphonic graph voice | `polyphonic_recall.py:_graph_voice` early-return | ~25 |\n| `MNEMOSYNE_VOICE_FACT=0/1` | Phase 3a -- polyphonic fact voice | `polyphonic_recall.py:_fact_voice` early-return | ~25 |\n| `MNEMOSYNE_VOICE_TEMPORAL=0/1` | Phase 3c -- polyphonic temporal voice | `polyphonic_recall.py:_temporal_voice` early-return | ~25 |\n| `MNEMOSYNE_GRAPH_BONUS=0/1` | Phase 3-LIN-graph -- linear graph bonus | Gate `beam.py:~2497-2521` (main ep loop) AND `:~2632-2645` (fallback) | ~30 |\n| `MNEMOSYNE_FACT_BONUS=0/1` | Phase 3-LIN-fact -- linear fact bonus | Gate `beam.py:~2508-2521` AND `:~2640-2655` | ~30 |\n| `MNEMOSYNE_BINARY_BONUS=0/1` | Phase 3-LIN-bin -- linear binary-vector bonus | Gate `beam.py:~2527-2545` | ~20 |\n| `MNEMOSYNE_VERACITY_MULTIPLIER=0/1` | Phase 0/1 -- disable veracity multiplier in both engines | Short-circuit to 1.0 in linear (`beam.py:~2700-2719`) + polyphonic (`beam.py:~3015-3017`) | ~25 |\n| `MNEMOSYNE_CROSS_TIER_DEDUP=0/1` | Phase 4 -- disable E3.a.3 dedup | Short-circuit `_dedup_cross_tier_summary_links` to return input list unchanged | ~20 |\n\nTotal ~225 LOC across ~30 tests if all nine are implemented in one PR. A subset is fine if you want to prioritize: vector-voice toggle (3d) + veracity toggle (0/1) + cross-tier toggle (4) are the three most important for the experiment's central claims. The linear-bonus toggles (3-LIN-*) matter only if you want to deprecate components of the linear scorer; they're independent of the polyphonic-vs-linear comparison.\n\n---\n\n## Implementation gaps -- what the plan needs that does NOT yet exist\n\nThis is the complete list of functionality the plan assumes exists but doesn't (as of 2026-05-12, prior to PRs #80-#91 merging). The plan can't be executed cleanly until these gaps close. Each item is callable as its own small PR; estimates include tests.\n\n### Gap A -- PR merges (no new code; just merge what's open) -- ✅ closed 2026-05-12\n\nMerging PRs #80, #82, #88, #89, #90, #91 closes most of the prerequisite footprint. PRs #83, #85, #86, #87 are also open but not strictly required for the experiment to run -- they harden surrounding paths against silent failure but don't gate the test sequence itself.\n\n### Gap B -- Nine A/B toggles (the big one -- ~225 LOC) -- ✅ closed in PR A\n\nSee §6 above. Without these, phases 0, 1, 3a-3d, 3-LIN-*, and 4 cannot be run cleanly -- they either change multiple variables at once or have no working knob. **Required to execute phases 0-5 as designed.**\n\n### Gap C -- Harness preflight assertions (~80 LOC) -- ✅ closed in this PR\n\nAdd to `tools/evaluate_beam_end_to_end.py:main()` near argument parsing:\n\n1. **Pure-recall guard:** `sys.exit(1)` with explanatory message if `MNEMOSYNE_BENCHMARK_PURE_RECALL` is not truthy AND `--pure-recall` was not passed AND a new `--allow-harness-oracles` opt-out wasn't passed (existing benchmark workflows might legitimately want the legacy mode for ceiling tests; require explicit opt-in to be sure).\n2. **Env-var dump:** at run start, snapshot every env var matching `^MNEMOSYNE_|^FULL_CONTEXT_MODE$|^OPENROUTER_BASE_URL$` into the results JSON under `config.env`.\n3. **Active recall path logger:** wrap `BeamMemory.recall` to record whether each call took the linear or polyphonic branch; emit a count in the per-conversation summary so an accidental mid-run mode flip is visible.\n4. **Sentinel feature checks:** assert importable: `_dedup_cross_tier_summary_links` from `beam.py` (proves #88 merged), `aggregate_veracity` from `veracity_consolidation.py` (proves #89 merged), `_env_truthy` from the harness module itself (proves #91 merged). Fail fast with the missing-PR name.\n\n### Gap D -- Harness diagnostic capture (~60 LOC) -- ✅ closed in this PR\n\nWire the harness to call `get_recall_diagnostics()` and `get_extraction_stats()` and write their JSON snapshots into `results/beam_e2e_results.json` per-conversation per-phase. Also call `reset_recall_diagnostics()` at the start of each phase to keep counters clean. The functions exist (PR #78 + #79); the harness simply doesn't use them.\n\n### Gap E -- Per-question paired-outcome recording for CIs (~40 LOC) -- ✅ closed\n\nCurrently the harness writes per-question scores but doesn't structure them for paired statistical analysis. Add: for each (config, question) pair, record whether the answer was correct. Output a flat `paired_outcomes.jsonl` with `{config_id, question_id, ability, correct}` rows so a downstream notebook can bootstrap CIs without re-parsing the main results.\n\n### Gap F -- `requirements-benchmark.txt` (~5 LOC) -- ✅ closed in this PR\n\nAdd a top-level file listing `numpy`, `datasets`, `sqlite-vec`, `fastembed`, optionally `llama-cpp-python` and `huggingface-hub`. Reference it from the README under \"Running the BEAM benchmark.\" The current pyproject `[project.optional-dependencies]` groups (`llm`, `embeddings`, `mcp`, `all`) don't cover the benchmark-only deps (`numpy`, `datasets`, `sqlite-vec`).\n\n### Gap G -- Voice-score capture in linear-path results (~20 LOC) -- ✅ closed\n\nThe polyphonic results already carry `voice_scores: dict` per result dict (`beam.py:~2969`). Linear-path results don't -- they have `dense_score`, `keyword_score`, `fts_score` separately but no unified provenance dict. For uniform post-hoc analysis (\"which signal drove this row?\"), add a similarly-shaped provenance dict to linear results too. Not strictly required to run the plan, but materially eases analysis. Defer if scope is tight.\n\n### Total effort to close all gaps\n\n- Required for plan execution (A + B + C + D): ~365 LOC + 40 tests + 6 PR merges\n- Highly recommended (E + F): ~45 LOC + 1 doc file\n- Nice-to-have (G): ~20 LOC\n\nA single \"experiment-readiness\" PR bundling B + C + D + E + F is ~510 LOC and one /review pass. Or split into three smaller PRs:\n1. Toggles (B) -- biggest, most reviewable on its own\n2. Preflight + diagnostic capture (C + D + F) -- harness-only, no recall-path changes\n3. Paired-outcome recording (E) -- orthogonal, easy\n\nTell me which order you want them in.\n\n---\n\n## What to record per run\n\nFor full output-file schemas + analysis recipes (paired bootstrap CIs, ability deltas, fallback-rate sanity checks), see [`../benchmark-results-analysis.md`](../benchmark-results-analysis.md). Quick reference:\n\nCapture into `results/beam_e2e_results.json`:\n\n- **Per-ability score** -- TR / CR / IE / KU / MR / ABS / EO / SUM, plus total.\n- **Run config** -- phase number, all toggle states, polyphonic flag, sample size, scale.\n- **Recall diagnostics** (`mnemosyne.core.recall_diagnostics.get_recall_diagnostics()` returns a JSON-serializable Dict snapshot; call once per recall and aggregate, OR once at run end): per-tier kept counts (`wm_fts`, `wm_vec`, `wm_fallback`, `em_fts`, `em_vec`, `em_fallback`), `fallback_rate`, `truly_empty` count. Use `reset_recall_diagnostics()` from the same module to clear counters before each phase. **The harness currently does NOT call these -- wiring this in is part of the implementation-gaps list below.**\n- **Extraction diagnostics** (`mnemosyne.extraction.diagnostics.get_extraction_stats()`): per-tier extract counts + bounded error samples. Also not currently called by the harness.\n- **Latency** -- p50 / p95 / p99 per-question recall + answer roundtrip.\n- **Storage** -- final row counts in `working_memory`, `episodic_memory`, `memory_embeddings`, `vec_episodes`, `annotations`, `consolidated_facts`.\n- **Peak RSS** during ingest phase and recall phase separately.\n\nThe diagnostics fields are the single biggest improvement to post-hoc analysis -- they tell you WHICH tier produced each kept row, which lets you attribute score deltas to specific code paths instead of guessing.\n\n**Statistical reporting:** record per-question paired outcomes (was the answer correct in config A and config B for the same question?) and compute bootstrap CIs on the per-ability score deltas. With ~50 questions per conversation and 1-3 conversations per scale, a 2pp delta on total score is likely within noise; treat sub-3pp deltas as inconclusive until CIs separate. Where a thesis predicts \"near-zero Δ,\" the right falsification criterion is \"95% CI excludes ±2pp,\" not point-estimate equality.\n\n---\n\n## Recommended sequence of runs\n\nMinimum credible A/B requires ~10-12 runs:\n\n1. Phase 0 -- 100K (baseline floor, all multipliers off)\n2. Phase 1 -- 100K (+ veracity multiplier)\n3. Phase 2 -- 100K (+ polyphonic engine)\n4. Phase 3a -- 100K (− polyphonic fact voice)\n5. Phase 3b -- 100K (− polyphonic graph voice)\n6. Phase 3c -- 100K (− polyphonic temporal voice)\n7. Phase 3d -- 100K (− polyphonic vector voice -- expected large negative Δ; this is the polyphonic-engine analog of \"no vector signal\")\n8. Phase 4 -- 100K (− cross-tier dedup)\n9. Phase 5 -- 100K (+ algorithmic enrichment, populates entity/fact data)\n10. Phase 6 -- 250K confirmation on the top-2 configs + Phase-0 floor\n\nPhases 3a-3d can run in parallel from a Phase-2 DB snapshot since each toggle is independent of the others.\n\nApproximate wall-clock budget: 5-6 hours total if 100K phases land in ~20 min each and the 250K run takes 60-90 min. Run a sample-1 conversation dry-run first to confirm corpus loaded, embeddings populated, and the preflight assertions fire.\n\n**Optional linear-scorer ablations** (only if you want to deprecate components of the linear path; not required for the polyphonic-vs-linear comparison):\n\n- Phase 3-LIN-bin -- linear binary-vector bonus off\n- Phase 3-LIN-graph -- linear graph bonus off\n- Phase 3-LIN-fact -- linear fact bonus off\n\n**Optional ceiling and lower-bound bookends:**\n\n- Phase 7 -- `--full-context` (LLM ceiling without recall). Sets the upper bound.\n- Phase 8 -- Phase 6 with `MNEMOSYNE_VERACITY_MULTIPLIER=0`. Cleanest possible linear-vs-polyphonic A/B at scale.\n\nIf any thesis turns out wildly wrong (e.g., fact voice contributes 5+pp on Thesis 1a), pause and investigate before continuing -- the surprise likely indicates a code path the plan doesn't account for. The PRs ship the harness changes; the testing remains yours.\n\n---\n\n**Open PRs at handoff:** #80, #82, #83, #85, #86, #87, #88, #89, #90, #91. None are experiment-blocking individually, but the experiment can't run cleanly until at least #82, #88, #89, and #90 are merged. The rest improve specific tools' measurability and observability.\n"
+      }
+    },
+    "hermes_llm_adapter.py": {
+      "path": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Hermes Auxiliary LLM Adapter (duplicate of hermes_memory_provider version) for integration package",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 165,
+        "content": "\"\"\"\nHermes Auxiliary LLM Adapter\n============================\nBridges Mnemosyne's host-LLM registry (``mnemosyne.core.llm_backends``) and\nHermes' authenticated auxiliary client (``agent.auxiliary_client.call_llm``).\n\nWhy this lives in ``mnemosyne_hermes`` and not in ``mnemosyne.core``:\n\n- Mnemosyne core must remain Hermes-free. ``agent.*`` is imported only inside\n  the call path of this adapter, never at module import time.\n- The adapter is registered when the Hermes memory provider initializes ",
+        "rawContent": "\"\"\"\nHermes Auxiliary LLM Adapter\n============================\nBridges Mnemosyne's host-LLM registry (``mnemosyne.core.llm_backends``) and\nHermes' authenticated auxiliary client (``agent.auxiliary_client.call_llm``).\n\nWhy this lives in ``mnemosyne_hermes`` and not in ``mnemosyne.core``:\n\n- Mnemosyne core must remain Hermes-free. ``agent.*`` is imported only inside\n  the call path of this adapter, never at module import time.\n- The adapter is registered when the Hermes memory provider initializes and\n  unregistered on shutdown, leaving standalone Mnemosyne use untouched.\n\nBehavior:\n\n- ``HermesAuxLLMBackend.complete()`` is the host-LLM entry point. It calls\n  ``call_llm(task=\"compression\", ...)`` so Hermes handles auth, OAuth refresh,\n  Codex Responses API translation, and provider fallback.\n- ``register_hermes_host_llm()`` installs the backend in the registry.\n- ``unregister_hermes_host_llm()`` removes it (called from\n  ``MnemosyneMemoryProvider.shutdown()`` so a process that later runs Mnemosyne\n  outside Hermes does not retain a stale Hermes reference).\n\nFailure mode: any failure (Hermes import error, ``call_llm`` exception, no\nextractable content) returns ``None``. The Mnemosyne caller treats that as\n\"host attempted, no usable text\" and falls through to the local GGUF path\n(never to ``MNEMOSYNE_LLM_BASE_URL`` — see decision A3 in the plan).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport logging\nfrom typing import Optional\n\nlogger = logging.getLogger(__name__)\n\n\nclass HermesAuxLLMBackend:\n    \"\"\"LLMBackend implementation that routes through Hermes' aux client.\n\n    The ``task`` attribute pins the Hermes auxiliary slot used for memory ops.\n    ``compression`` is the closest existing fit; introducing a Hermes-side\n    ``memory`` task is left as a follow-up.\n    \"\"\"\n\n    name = \"hermes\"\n    task = \"compression\"\n\n    def complete(\n        self,\n        prompt: str,\n        *,\n        max_tokens: int,\n        temperature: float,\n        timeout: float,\n        provider: Optional[str] = None,\n        model: Optional[str] = None,\n    ) -> Optional[str]:\n        try:\n            from agent.auxiliary_client import call_llm\n        except Exception as exc:\n            logger.debug(\"Hermes aux LLM unavailable: %s\", exc)\n            return None\n\n        kwargs = {\n            \"task\": self.task,\n            \"messages\": [\n                {\n                    \"role\": \"system\",\n                    \"content\": (\n                        \"You are a memory consolidation engine. Follow the user prompt exactly. \"\n                        \"Preserve durable facts, names, preferences, decisions, and chronology. \"\n                        \"Do not add facts not present in the input.\"\n                    ),\n                },\n                {\"role\": \"user\", \"content\": prompt},\n            ],\n            \"temperature\": temperature,\n            \"max_tokens\": max_tokens,\n            \"timeout\": timeout,\n        }\n        # Optional non-secret overrides — only include when set, so Hermes' own\n        # auxiliary.compression resolution remains the default.\n        if provider:\n            kwargs[\"provider\"] = provider\n        if model:\n            kwargs[\"model\"] = model\n\n        try:\n            response = call_llm(**kwargs)\n        except Exception as exc:\n            logger.warning(\"Hermes aux LLM call failed; falling back: %s\", exc)\n            return None\n\n        return _extract_content(response)\n\n\ndef _extract_content(response) -> Optional[str]:\n    \"\"\"Extract usable text from a Hermes response, handling reasoning models.\n\n    Prefers Hermes' canonical helper (``extract_content_or_reasoning``) when\n    available — it correctly handles providers like Codex/o1-style reasoning\n    models where ``message.content`` may be empty but ``reasoning`` carries\n    the real output. Falls back to ad-hoc shape matching for older Hermes\n    builds that lack the helper.\n    \"\"\"\n    # 1. Hermes' canonical parser (correct for reasoning models).\n    try:\n        from agent.auxiliary_client import extract_content_or_reasoning  # type: ignore\n        text = extract_content_or_reasoning(response)\n        if isinstance(text, str) and text.strip():\n            return text.strip()\n    except Exception:\n        # Helper not available or threw — fall through to defensive parsing.\n        pass\n\n    # 2. OpenAI-style object response.\n    try:\n        content = response.choices[0].message.content\n        if isinstance(content, str) and content.strip():\n            return content.strip()\n    except Exception:\n        pass\n\n    # 3. Dict-shaped response (test mocks, some normalized wrappers).\n    if isinstance(response, dict):\n        try:\n            content = response[\"choices\"][0][\"message\"][\"content\"]\n            if isinstance(content, str) and content.strip():\n                return content.strip()\n        except Exception:\n            pass\n\n    # 4. Object exposing ``.content`` directly (some Hermes wrappers).\n    content = getattr(response, \"content\", None)\n    if isinstance(content, str) and content.strip():\n        return content.strip()\n\n    return None\n\n\ndef register_hermes_host_llm() -> bool:\n    \"\"\"Install :class:`HermesAuxLLMBackend` in the Mnemosyne host-LLM registry.\n\n    Returns True on success, False if the Mnemosyne registry is unavailable.\n    Registration alone does not change Mnemosyne behavior — the user still\n    has to set ``MNEMOSYNE_HOST_LLM_ENABLED=true``.\n    \"\"\"\n    try:\n        from mnemosyne.core.llm_backends import set_host_llm_backend\n        set_host_llm_backend(HermesAuxLLMBackend())\n        return True\n    except Exception as exc:\n        logger.debug(\"Failed to register Hermes host LLM backend: %s\", exc)\n        return False\n\n\ndef unregister_hermes_host_llm() -> None:\n    \"\"\"Symmetric unregistration for shutdown(). Never raises.\"\"\"\n    try:\n        from mnemosyne.core.llm_backends import set_host_llm_backend\n        set_host_llm_backend(None)\n    except Exception as exc:\n        logger.debug(\"Failed to unregister Hermes host LLM backend: %s\", exc)\n"
+      }
+    },
+    "plugin.yaml": {
+      "path": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+      "category": "config",
+      "type": "yaml",
+      "description": "Hermes plugin manifest for mnemosyne-hermes integration package (v0.1.1)",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 28,
+        "content": "name: hermes-mnemosyne\nversion: 0.1.1\ndescription: \"Native local memory for Hermes — SQLite with vector search, FTS5 hybrid ranking, episodic consolidation, and temporal triples. Zero cloud. Zero latency. Deployed via plugin system.\"\nauthor: Abdias J\nprovides_tools:\n  - mnemosyne_remember\n  - mnemosyne_recall\n  - mnemosyne_stats\n  - mnemosyne_triple_add\n  - mnemosyne_triple_query\n  - mnemosyne_sleep\n  - mnemosyne_scratchpad_write\n  - mnemosyne_scratchpad_read\n  - mnemosyne_scratchpad_clear\n  - m",
+        "rawContent": "name: hermes-mnemosyne\nversion: 0.1.1\ndescription: \"Native local memory for Hermes — SQLite with vector search, FTS5 hybrid ranking, episodic consolidation, and temporal triples. Zero cloud. Zero latency. Deployed via plugin system.\"\nauthor: Abdias J\nprovides_tools:\n  - mnemosyne_remember\n  - mnemosyne_recall\n  - mnemosyne_stats\n  - mnemosyne_triple_add\n  - mnemosyne_triple_query\n  - mnemosyne_sleep\n  - mnemosyne_scratchpad_write\n  - mnemosyne_scratchpad_read\n  - mnemosyne_scratchpad_clear\n  - mnemosyne_invalidate\n  - mnemosyne_export\n  - mnemosyne_import\n  - mnemosyne_update\n  - mnemosyne_forget\n  - mnemosyne_diagnose\n  - mnemosyne_graph_query\n  - mnemosyne_graph_link\nprovides_hooks:\n  - pre_llm_call\n  - on_session_start\n  - post_tool_call\ndependencies: []\n"
+      }
+    },
+    "README.md": {
+      "path": "/root/mnemosyne/hermes_memory_provider/README.md",
+      "category": "other",
+      "type": "unknown",
+      "description": "README for deploying Mnemosyne as Hermes memory provider via plugin system",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 90,
+        "content": "# Mnemosyne Memory Provider for Hermes\n\nDeploy Mnemosyne as a **first-class MemoryProvider** through Hermes' plugin system.\n\n## What This Gives You\n\nWhen deployed, Mnemosyne gets the **same integration tier** as Honcho, mem0, and supermemory:\n\n- **System prompt injection** — `# Mnemosyne Memory` header in every prompt\n- **Pre-turn prefetch** — Relevant memories injected via `<memory-context>` fence before each API call\n- **Post-turn sync** — User and assistant messages automatically stored to ep",
+        "rawContent": "# Mnemosyne Memory Provider for Hermes\n\nDeploy Mnemosyne as a **first-class MemoryProvider** through Hermes' plugin system.\n\n## What This Gives You\n\nWhen deployed, Mnemosyne gets the **same integration tier** as Honcho, mem0, and supermemory:\n\n- **System prompt injection** — `# Mnemosyne Memory` header in every prompt\n- **Pre-turn prefetch** — Relevant memories injected via `<memory-context>` fence before each API call\n- **Post-turn sync** — User and assistant messages automatically stored to episodic memory\n- **Tool dispatch** — 15 memory tools auto-injected into the model's tool surface\n- **CLI commands** — `hermes mnemosyne {stats|sleep|version|inspect|clear|export|import}`\n- **Setup wizard** — Listed in `hermes memory setup`\n\n**All of this without touching Hermes core.** Deployed purely through the plugin directory.\n\n## Deploy\n\n```bash\n# One-time setup: symlink into Hermes plugin directory\nln -s $(pwd)/hermes_memory_provider ~/.hermes/plugins/mnemosyne\n\n# Activate in config\nhermes config set memory.provider mnemosyne\n```\n\nOr manually edit `~/.hermes/config.yaml`:\n\n```yaml\nmemory:\n  provider: mnemosyne\n  mnemosyne:\n    auto_sleep: true\n    sleep_threshold: 50\n    vector_type: float32  # float32 | int8 | bit\n```\n\n## Verify\n\n```bash\nhermes memory status    # Should show \"mnemosyne\" as active provider\nhermes mnemosyne stats  # Show memory statistics\n```\n\n## Architecture\n\n```\n~/.hermes/plugins/mnemosyne/   ← symlink to hermes_memory_provider/\n├── __init__.py                  ← MnemosyneMemoryProvider (MemoryProvider ABC)\n├── cli.py                       ← hermes mnemosyne subcommands\n├── plugin.yaml                  ← Manifest for discovery\n└── README.md                    ← This file\n```\n\nThe provider is discovered by `plugins.memory.discover_memory_providers()` which scans:\n1. Bundled providers: `hermes-agent/plugins/memory/<name>/`\n2. **User plugins: `$HERMES_HOME/plugins/<name>/`** ← This is where Mnemosyne lives\n\nUser plugins take precedence over bundled plugins on name collision.\n\n## Tools (Auto-Injected)\n\n| Tool | Purpose |\n|------|---------|\n| `mnemosyne_remember` | Store durable memory with importance, scope, expiry |\n| `mnemosyne_recall` | Hybrid search (50% vector + 30% FTS + 20% importance) |\n| `mnemosyne_stats` | Show working + episodic counts |\n| `mnemosyne_triple_add` | Add temporal facts to the knowledge graph |\n| `mnemosyne_triple_query` | Query temporal knowledge graph facts |\n| `mnemosyne_sleep` | Consolidate working → episodic memory |\n| `mnemosyne_scratchpad_write` | Write short-lived scratchpad context |\n| `mnemosyne_scratchpad_read` | Read scratchpad context |\n| `mnemosyne_scratchpad_clear` | Clear scratchpad context |\n| `mnemosyne_invalidate` | Mark memory as expired/superseded |\n| `mnemosyne_export` | Export memories for backup or migration |\n| `mnemosyne_import` | Import memories from backup files or providers |\n| `mnemosyne_update` | Update an existing memory |\n| `mnemosyne_forget` | Delete a memory |\n| `mnemosyne_diagnose` | Run diagnostics on the memory store |\n\n## Undeploy\n\n```bash\nrm ~/.hermes/plugins/mnemosyne\nhermes config set memory.provider null\n```\n\nHermes falls back to built-in memory only.\n"
+      }
+    },
+    "audit.py": {
+      "path": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/audit.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Append-only SQLite-backed memory audit log for Mnemosyne provider",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 139,
+        "content": "\"\"\"Memory audit log for Mnemosyne provider.\n\nRecords memory mutation events in a SQLite table co-located with the\nactive provider DB. Non-blocking, fire-and-forget — audit failures\nnever break memory operations.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport logging\nimport sqlite3\nimport time\nfrom pathlib import Path\nfrom typing import Any, Dict, Optional\n\nlogger = logging.getLogger(__name__)\n\n_CREATE_TABLE = \"\"\"\nCREATE TABLE IF NOT EXISTS memory_events (\n    event_id INTEGER PRIMAR",
+        "rawContent": "\"\"\"Memory audit log for Mnemosyne provider.\n\nRecords memory mutation events in a SQLite table co-located with the\nactive provider DB. Non-blocking, fire-and-forget — audit failures\nnever break memory operations.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport logging\nimport sqlite3\nimport time\nfrom pathlib import Path\nfrom typing import Any, Dict, Optional\n\nlogger = logging.getLogger(__name__)\n\n_CREATE_TABLE = \"\"\"\nCREATE TABLE IF NOT EXISTS memory_events (\n    event_id INTEGER PRIMARY KEY AUTOINCREMENT,\n    timestamp REAL NOT NULL,\n    action TEXT NOT NULL,\n    memory_id TEXT,\n    bank TEXT,\n    scope TEXT,\n    profile TEXT,\n    session_id TEXT,\n    source_tool TEXT,\n    tokens_used INTEGER,\n    reason TEXT,\n    metadata_json TEXT\n)\n\"\"\"\n\n_INSERT = \"\"\"\nINSERT INTO memory_events\n    (timestamp, action, memory_id, bank, scope, profile, session_id, source_tool, tokens_used, reason, metadata_json)\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\n\"\"\"\n\n_MIGRATE_TOKENS = \"\"\"\nALTER TABLE memory_events ADD COLUMN tokens_used INTEGER\n\"\"\"\n\n\nclass AuditLog:\n    \"\"\"Append-only audit log backed by a SQLite table.\"\"\"\n\n    def __init__(self, db_path: Path):\n        self._db_path = db_path\n        self._conn: Optional[sqlite3.Connection] = None\n        self._ensure_table()\n\n    def _ensure_table(self) -> None:\n        try:\n            self._conn = sqlite3.connect(str(self._db_path), timeout=5)\n            self._conn.execute(_CREATE_TABLE)\n            # Migration: add tokens_used column for existing databases\n            try:\n                self._conn.execute(_MIGRATE_TOKENS)\n            except Exception:\n                pass  # Column already exists\n            self._conn.commit()\n        except Exception as exc:\n            logger.warning(\"audit: failed to create table: %s\", exc)\n            self._conn = None\n\n    def record(\n        self,\n        action: str,\n        *,\n        memory_id: Optional[str] = None,\n        bank: Optional[str] = None,\n        scope: Optional[str] = None,\n        profile: Optional[str] = None,\n        session_id: Optional[str] = None,\n        source_tool: Optional[str] = None,\n        tokens_used: Optional[int] = None,\n        reason: Optional[str] = None,\n        metadata: Optional[Dict[str, Any]] = None,\n    ) -> None:\n        \"\"\"Record one audit event. Never raises.\"\"\"\n        if self._conn is None:\n            return\n        try:\n            meta_str = json.dumps(metadata) if metadata else None\n            self._conn.execute(\n                _INSERT,\n                (\n                    time.time(),\n                    action,\n                    memory_id,\n                    bank,\n                    scope,\n                    profile,\n                    session_id,\n                    source_tool,\n                    tokens_used,\n                    reason,\n                    meta_str,\n                ),\n            )\n            self._conn.commit()\n        except Exception as exc:\n            logger.debug(\"audit: failed to record event: %s\", exc)\n\n    def query(self, limit: int = 50) -> list[Dict[str, Any]]:\n        \"\"\"Return recent events. For diagnostics/testing.\"\"\"\n        if self._conn is None:\n            return []\n        try:\n            cur = self._conn.execute(\n                \"SELECT event_id, timestamp, action, memory_id, bank, scope, \"\n                \"profile, session_id, source_tool, tokens_used, reason, metadata_json \"\n                \"FROM memory_events ORDER BY event_id DESC LIMIT ?\",\n                (limit,),\n            )\n            cols = [d[0] for d in cur.description]\n            return [dict(zip(cols, row)) for row in cur.fetchall()]\n        except Exception:\n            return []\n\n    def count(self) -> int:\n        if self._conn is None:\n            return 0\n        try:\n            return self._conn.execute(\"SELECT COUNT(*) FROM memory_events\").fetchone()[0]\n        except Exception:\n            return 0\n\n    def close(self) -> None:\n        if self._conn:\n            try:\n                self._conn.close()\n            except Exception:\n                pass\n            self._conn = None\n"
+      }
+    },
+    "cli.py": {
+      "path": "/root/mnemosyne/mnemosyne/cli.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Standalone CLI for Mnemosyne (store, recall, stats, sleep, diagnose, export, import, backup, restore, verify, bank management)",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 453,
+        "content": "#!/usr/bin/env python3\n\"\"\"\nMnemosyne CLI - v2\n==================\nCommand-line interface for the Mnemosyne memory system.\nAll commands use the v2 BEAM architecture (Mnemosyne/BeamMemory).\n\"\"\"\n\nimport os\nimport sys\nimport json\nfrom pathlib import Path\nfrom typing import NoReturn\n\n# Data directory - respects MNEMOSYNE_DATA_DIR env var\nDATA_DIR = os.environ.get(\"MNEMOSYNE_DATA_DIR\") or str(\n    Path.home() / \".hermes\" / \"mnemosyne\" / \"data\"\n)\nos.makedirs(DATA_DIR, exist_ok=True)\n\n\ndef _fail(message:",
+        "rawContent": "#!/usr/bin/env python3\n\"\"\"\nMnemosyne CLI - v2\n==================\nCommand-line interface for the Mnemosyne memory system.\nAll commands use the v2 BEAM architecture (Mnemosyne/BeamMemory).\n\"\"\"\n\nimport os\nimport sys\nimport json\nfrom pathlib import Path\nfrom typing import NoReturn\n\n# Data directory - respects MNEMOSYNE_DATA_DIR env var\nDATA_DIR = os.environ.get(\"MNEMOSYNE_DATA_DIR\") or str(\n    Path.home() / \".hermes\" / \"mnemosyne\" / \"data\"\n)\nos.makedirs(DATA_DIR, exist_ok=True)\n\n\ndef _fail(message: str, exit_code: int = 2) -> NoReturn:\n    \"\"\"Print a CLI error and exit without a Python traceback.\"\"\"\n    print(f\"Error: {message}\", file=sys.stderr)\n    raise SystemExit(exit_code)\n\n\ndef _usage(message: str, exit_code: int = 2) -> NoReturn:\n    \"\"\"Print command usage for invalid invocations and exit.\"\"\"\n    print(message, file=sys.stderr)\n    raise SystemExit(exit_code)\n\n\ndef _parse_float(value: str, name: str) -> float:\n    \"\"\"Parse a float argument or exit with a user-facing CLI error.\"\"\"\n    try:\n        return float(value)\n    except ValueError:\n        _fail(f\"{name} must be a number: {value}\")\n\n\ndef _parse_int(value: str, name: str) -> int:\n    \"\"\"Parse an integer argument or exit with a user-facing CLI error.\"\"\"\n    try:\n        return int(value)\n    except ValueError:\n        _fail(f\"{name} must be an integer: {value}\")\n\n\ndef _get_memory():\n    \"\"\"Get a Mnemosyne v2 instance.\"\"\"\n    from mnemosyne.core.memory import Mnemosyne\n    return Mnemosyne(db_path=os.path.join(DATA_DIR, \"mnemosyne.db\"))\n\n\ndef cmd_store(args):\n    \"\"\"Store a new memory.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne store <content> [source] [importance]\")\n    content = args[0]\n    source = args[1] if len(args) > 1 else \"cli\"\n    importance = _parse_float(args[2], \"importance\") if len(args) > 2 else 0.5\n\n    mem = _get_memory()\n    memory_id = mem.remember(\n        content,\n        source=source,\n        importance=importance,\n        extract_entities=True,\n    )\n    print(f\"Stored: {memory_id}\")\n\n\ndef cmd_recall(args):\n    \"\"\"Search memories.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne recall <query> [top_k]\")\n    query = args[0]\n    top_k = _parse_int(args[1], \"top_k\") if len(args) > 1 else 5\n\n    mem = _get_memory()\n    results = mem.recall(query, top_k=top_k)\n    print(f\"\\nResults for: {query}\\n\")\n    for r in results:\n        content = r.get(\"content\", \"\")\n        score = r.get(\"score\", 0)\n        print(f\"  ID: {r.get('id', '?')}\")\n        print(f\"  Content: {content[:150]}{'...' if len(content) > 150 else ''}\")\n        print(f\"  Score: {score:.3f}\")\n        if r.get(\"entity_match\"):\n            print(f\"  [entity match]\")\n        print()\n\n\ndef cmd_update(args):\n    \"\"\"Update an existing memory.\"\"\"\n    if len(args) < 2:\n        _usage(\"Usage: mnemosyne update <memory_id> <new_content> [importance]\")\n    memory_id = args[0]\n    content = args[1]\n    importance = _parse_float(args[2], \"importance\") if len(args) > 2 else None\n\n    mem = _get_memory()\n    success = mem.update(memory_id, content=content, importance=importance)\n    if success:\n        print(f\"Updated: {memory_id}\")\n    else:\n        _fail(f\"Memory not found: {memory_id}\", exit_code=1)\n\n\ndef cmd_delete(args):\n    \"\"\"Delete a memory.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne delete <memory_id>\")\n    memory_id = args[0]\n\n    mem = _get_memory()\n    success = mem.forget(memory_id)\n    if success:\n        print(f\"Deleted: {memory_id}\")\n    else:\n        _fail(f\"Memory not found: {memory_id}\", exit_code=1)\n\n\ndef cmd_stats(args):\n    \"\"\"Show memory system statistics.\"\"\"\n    mem = _get_memory()\n    stats = mem.get_stats()\n    beam = stats.get(\"beam\", {})\n    wm = beam.get(\"working_memory\", {})\n    ep = beam.get(\"episodic_memory\", {})\n    triples = beam.get(\"triples\", {})\n    print(\"\\nMnemosyne Stats\\n\")\n    print(f\"  Total memories: {stats.get('total_memories', 0)}\")\n    print(f\"  Working memory: {wm.get('total', 0)}\")\n    print(f\"  Episodic memory: {ep.get('total', 0)}\")\n    print(f\"  Knowledge triples: {triples.get('total', 0)}\")\n    if stats.get(\"banks\"):\n        print(f\"\\n  Banks: {', '.join(stats['banks'])}\")\n    print(f\"  DB path: {stats.get('database', 'N/A')}\")\n\n\ndef cmd_sleep(args):\n    \"\"\"Run consolidation cycle.\"\"\"\n    mem = _get_memory()\n    result = mem.sleep_all_sessions()\n    print(f\"Consolidation complete: {result}\")\n\n\ndef cmd_diagnose(args):\n    \"\"\"Run PII-safe diagnostics. Use --fix to auto-install missing dependencies.\"\"\"\n    fix_mode = \"--fix\" in args\n    dry_run = \"--dry-run\" in args\n    clean_args = [a for a in args if not a.startswith(\"--\")]\n\n    try:\n        from mnemosyne.diagnose import run_diagnostics, auto_fix\n        result = run_diagnostics()\n        print(\"\\nMnemosyne Diagnostics\\n\")\n        print(f\"  Checks passed: {result.get('checks_passed', 0)}/{result.get('checks_total', 0)}\")\n        if result.get(\"key_findings\"):\n            print(\"\\n  Key findings:\")\n            for finding in result[\"key_findings\"]:\n                print(f\"    - {finding}\")\n        else:\n            print(\"\\n  No issues detected\")\n\n        if fix_mode or dry_run:\n            print(\"\\n--- Auto-fix ---\")\n            fix_result = auto_fix(result.get(\"entries\", []), dry_run=dry_run)\n            if fix_result[\"fixed\"]:\n                label = \"Would fix\" if dry_run else \"Fixed\"\n                for item in fix_result[\"fixed\"]:\n                    print(f\"  ✅ {item}\")\n            if fix_result[\"failed\"]:\n                for item in fix_result[\"failed\"]:\n                    print(f\"  ❌ {item['label']}: {item['error']}\")\n            if not fix_result[\"fixed\"] and not fix_result[\"failed\"]:\n                print(\"  Nothing to fix - all dependencies are healthy.\")\n    except Exception as e:\n        print(f\"Diagnostic failed: {e}\")\n\n\ndef cmd_export(args):\n    \"\"\"Export memories to JSON.\"\"\"\n    output_path = args[0] if args else os.path.join(DATA_DIR, \"mnemosyne_export.json\")\n    mem = _get_memory()\n    result = mem.export_to_file(output_path)\n    print(\n        f\"Exported \"\n        f\"{result.get('working_memory_count', 0)} working, \"\n        f\"{result.get('episodic_memory_count', 0)} episodic, \"\n        f\"{result.get('legacy_memories_count', 0)} legacy, \"\n        f\"{result.get('triples_count', 0)} triples, \"\n        f\"{result.get('annotations_count', 0)} annotations \"\n        f\"to {output_path}\"\n    )\n\n\ndef cmd_import(args):\n    \"\"\"Import memories from JSON.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne import <file.json>\")\n    mem = _get_memory()\n    try:\n        result = mem.import_from_file(args[0])\n    except FileNotFoundError:\n        _fail(f\"Import file not found: {args[0]}\")\n    except json.JSONDecodeError as e:\n        _fail(f\"Invalid JSON in import file {args[0]}: {e}\")\n    except ValueError as e:\n        _fail(str(e))\n    beam_stats = result.get(\"beam\", {})\n\n    def _format_store_stats(stats, label):\n        \"\"\"Format an import_all stats dict, exposing every bucket so the\n        renumbered count from C28 (rows preserved under a fresh id after\n        an id collision) doesn't silently disappear from the CLI summary.\n\n        Returns the label preceded by the count breakdown, e.g.\n        '3 new + 2 renumbered triples' or '5 triples'.\n        \"\"\"\n        if not isinstance(stats, dict):\n            return f\"0 {label}\"\n        new = stats.get(\"inserted\", 0)\n        renumbered = stats.get(\"imported_renumbered\", 0)\n        skipped = stats.get(\"skipped\", 0)\n        overwritten = stats.get(\"overwritten\", 0)\n        parts = []\n        if new:\n            parts.append(f\"{new} new\")\n        if renumbered:\n            parts.append(f\"{renumbered} renumbered\")\n        if overwritten:\n            parts.append(f\"{overwritten} overwritten\")\n        if skipped:\n            parts.append(f\"{skipped} skipped\")\n        if not parts:\n            return f\"0 {label}\"\n        return f\"{' + '.join(parts)} {label}\"\n\n    print(\n        f\"Imported \"\n        f\"{beam_stats.get('working_memory', {}).get('inserted', 0)} working, \"\n        f\"{beam_stats.get('episodic_memory', {}).get('inserted', 0)} episodic, \"\n        f\"{result.get('legacy', {}).get('inserted', 0)} legacy, \"\n        f\"{_format_store_stats(result.get('triples', {}), 'triples')}, \"\n        f\"{_format_store_stats(result.get('annotations', {}), 'annotations')} \"\n        f\"from {args[0]}\"\n    )\n\n\ndef cmd_import_hindsight(args):\n    \"\"\"Import memories from a Hindsight JSON export or API.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne import-hindsight <file.json|base_url> [bank]\")\n    target = args[0]\n    bank = args[1] if len(args) > 1 else \"hermes\"\n    mem = _get_memory()\n    from mnemosyne.core.importers.hindsight import import_from_hindsight\n    if target.startswith(\"http://\") or target.startswith(\"https://\"):\n        result = import_from_hindsight(mem, base_url=target, bank=bank)\n    else:\n        result = import_from_hindsight(mem, file_path=target, bank=bank)\n    print(result.to_json())\n    if result.errors:\n        raise SystemExit(1)\n\n\ndef cmd_mcp(args):\n    \"\"\"Start MCP server.\"\"\"\n    try:\n        from mnemosyne.mcp_server import main as mcp_main\n        mcp_main(args)\n    except ImportError:\n        print(\"MCP not available. Install with: pip install mnemosyne-memory[mcp]\")\n        sys.exit(1)\n\n\ndef cmd_backup(args):\n    \"\"\"Create a compressed backup of the database.\"\"\"\n    from mnemosyne.dr.recovery import create_backup\n    output_dir = Path(args[0]) if args else None\n    try:\n        result = create_backup(backup_dir=output_dir)\n        print(f\"Backup created: {result['backup_path']}\")\n        print(f\"  Original size: {result['original_size']:,} bytes\")\n        print(f\"  Backup size:   {result['backup_size']:,} bytes\")\n        print(f\"  Checksum:      {result['db_checksum']}\")\n    except Exception as e:\n        _fail(str(e))\n\n\ndef cmd_restore(args):\n    \"\"\"Restore database from a backup file.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne restore <backup_file.db.gz>\")\n    from mnemosyne.dr.recovery import restore_backup\n    try:\n        result = restore_backup(Path(args[0]))\n        status = \"valid\" if result[\"integrity_check\"] else \"corrupt\"\n        print(f\"Restored from: {result['backup_used']}\")\n        print(f\"  Database:     {result['database_path']}\")\n        print(f\"  Integrity:    {status}\")\n        if not result[\"integrity_check\"]:\n            _fail(\"Restored database failed integrity check. Emergency backup preserved.\")\n    except FileNotFoundError as e:\n        _fail(str(e))\n\n\ndef cmd_verify(args):\n    \"\"\"Verify database integrity.\"\"\"\n    from mnemosyne.dr.recovery import verify_integrity\n    db_path = Path(args[0]) if args else None\n    quick = \"--quick\" in args\n    try:\n        if quick:\n            import sqlite3\n            db = db_path or Path(DATA_DIR) / \"mnemosyne.db\"\n            conn = sqlite3.connect(str(db))\n            cursor = conn.cursor()\n            cursor.execute(\"PRAGMA quick_check\")\n            result = cursor.fetchone()\n            conn.close()\n            ok = result[0] == \"ok\"\n        else:\n            ok = verify_integrity(db_path)\n        if ok:\n            print(\"Database integrity check passed\")\n        else:\n            print(\"Database is corrupt. Run 'mnemosyne restore' from a backup.\")\n            raise SystemExit(1)\n    except Exception as e:\n        _fail(str(e))\n\n\ndef cmd_backups_list(args):\n    \"\"\"List available backups.\"\"\"\n    from mnemosyne.dr.recovery import list_backups\n    backup_dir = Path(args[0]) if args else None\n    backups = list_backups(backup_dir=backup_dir)\n    if not backups:\n        print(\"No backups found.\")\n        print(f\"  Backups directory: {backup_dir or Path.home() / '.mnemosyne' / 'backups'}\")\n        return\n    print(f\"\\nBackups ({len(backups)} total):\\n\")\n    for b in backups:\n        meta = b.get(\"metadata\", {})\n        print(f\"  {b['name']}\")\n        print(f\"    Size:       {b['size']:,} bytes\")\n        print(f\"    Created:    {meta.get('timestamp', b['modified'])}\")\n        if meta.get(\"db_checksum\"):\n            print(f\"    Checksum:   {meta['db_checksum']}\")\n        print()\n\n\ndef cmd_bank(args):\n    \"\"\"Manage memory banks.\"\"\"\n    if not args:\n        _usage(\"Usage: mnemosyne bank <list|create|delete> [name]\")\n\n    from mnemosyne.core.banks import BankManager\n    bm = BankManager(Path(DATA_DIR))\n\n    subcmd = args[0]\n    try:\n        if subcmd == \"list\":\n            banks = bm.list_banks()\n            print(\"\\nMemory Banks:\\n\")\n            for b in banks:\n                print(f\"  - {b}\")\n        elif subcmd == \"create\":\n            if len(args) < 2:\n                _fail(\"Usage: mnemosyne bank create <name>\")\n            bm.create_bank(args[1])\n            print(f\"Created bank: {args[1]}\")\n        elif subcmd == \"delete\":\n            if len(args) < 2:\n                _fail(\"Usage: mnemosyne bank delete <name>\")\n            if bm.delete_bank(args[1]):\n                print(f\"Deleted bank: {args[1]}\")\n            else:\n                _fail(f\"Bank not found: {args[1]}\", exit_code=1)\n        else:\n            _fail(f\"Unknown bank command: {subcmd}\")\n    except ValueError as e:\n        _fail(str(e))\n\n\nCOMMANDS = {\n    \"store\": cmd_store,\n    \"remember\": cmd_store,\n    \"recall\": cmd_recall,\n    \"search\": cmd_recall,\n    \"update\": cmd_update,\n    \"edit\": cmd_update,\n    \"delete\": cmd_delete,\n    \"forget\": cmd_delete,\n    \"stats\": cmd_stats,\n    \"sleep\": cmd_sleep,\n    \"consolidate\": cmd_sleep,\n    \"diagnose\": cmd_diagnose,\n    \"doctor\": cmd_diagnose,\n    \"export\": cmd_export,\n    \"import\": cmd_import,\n    \"import-hindsight\": cmd_import_hindsight,\n    \"mcp\": cmd_mcp,\n    \"bank\": cmd_bank,\n    \"backup\": cmd_backup,\n    \"restore\": cmd_restore,\n    \"verify\": cmd_verify,\n    \"backups\": cmd_backups_list,\n}\n\n\ndef run_cli():\n    \"\"\"Main CLI entry point.\"\"\"\n    if len(sys.argv) < 2 or sys.argv[1] in (\"--help\", \"-h\", \"help\"):\n        print(\"Mnemosyne - Local AI Memory System\\n\")\n        print(\"Usage: mnemosyne <command> [args]\\n\")\n        print(\"Commands:\")\n        print(\"  store <content> [source] [importance]  Store a memory\")\n        print(\"  recall <query> [top_k]                 Search memories\")\n        print(\"  update <id> <content> [importance]     Update a memory\")\n        print(\"  delete <id>                            Delete a memory\")\n        print(\"  stats                                  Show statistics\")\n        print(\"  sleep                                  Run consolidation\")\n        print(\"  diagnose [--fix] [--dry-run]           Run diagnostics (--fix auto-installs deps)\")\n        print(\"  export [file.json]                     Export memories\")\n        print(\"  import <file.json>                     Import memories\")\n        print(\"  import-hindsight <file|url> [bank]     Import Hindsight memories\")\n        print(\"  bank list|create|delete [name]         Manage memory banks\")\n        print(\"  backup [output_dir]                    Create database backup\")\n        print(\"  restore <backup.db.gz>                 Restore from backup\")\n        print(\"  verify [db_path] [--quick]             Verify database integrity\")\n        print(\"  backups [backup_dir]                   List available backups\")\n        print(\"  mcp [--transport sse] [--port 8080]    Start MCP server\")\n        return\n\n    command = sys.argv[1]\n    handler = COMMANDS.get(command)\n\n    if handler:\n        handler(sys.argv[2:])\n    else:\n        print(f\"Unknown command: {command}\", file=sys.stderr)\n        print(\"Run 'mnemosyne --help' for usage.\", file=sys.stderr)\n        raise SystemExit(2)\n\n\nif __name__ == \"__main__\":\n    run_cli()\n"
+      }
+    },
+    "install.py": {
+      "path": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/install.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Installer CLI for Mnemosyne Hermes memory provider — install/uninstall/status",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 191,
+        "content": "\"\"\"Installer CLI for the Mnemosyne Hermes memory provider.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport importlib\nimport os\nimport shutil\nimport sys\nfrom pathlib import Path\n\nPLUGIN_NAME = \"hermes-mnemosyne\"\nEXCLUDED_DIRS = {\"__pycache__\", \".pytest_cache\", \".ruff_cache\"}\nEXCLUDED_SUFFIXES = {\".pyc\", \".pyo\"}\n\n\ndef hermes_home() -> Path:\n    \"\"\"Return the Hermes home directory used for user-installed plugins.\"\"\"\n    return Path(os.environ.get(\"HERMES_HOME\") or \"~/.hermes\").expand",
+        "rawContent": "\"\"\"Installer CLI for the Mnemosyne Hermes memory provider.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport importlib\nimport os\nimport shutil\nimport sys\nfrom pathlib import Path\n\nPLUGIN_NAME = \"hermes-mnemosyne\"\nEXCLUDED_DIRS = {\"__pycache__\", \".pytest_cache\", \".ruff_cache\"}\nEXCLUDED_SUFFIXES = {\".pyc\", \".pyo\"}\n\n\ndef hermes_home() -> Path:\n    \"\"\"Return the Hermes home directory used for user-installed plugins.\"\"\"\n    return Path(os.environ.get(\"HERMES_HOME\") or \"~/.hermes\").expanduser()\n\n\ndef plugin_source_dir() -> Path:\n    \"\"\"Return the installed mnemosyne_hermes package directory.\"\"\"\n    return Path(__file__).resolve().parent\n\n\ndef plugin_target_dir(hermes_home_path: str | Path | None = None) -> Path:\n    \"\"\"Return the Hermes memory plugin destination for Mnemosyne.\"\"\"\n    base = Path(hermes_home_path).expanduser() if hermes_home_path else hermes_home()\n    return base / \"plugins\" / PLUGIN_NAME\n\n\ndef _ignore_copy_names(_directory: str, names: list[str]) -> set[str]:\n    ignored: set[str] = set()\n    for name in names:\n        path = Path(name)\n        if name in EXCLUDED_DIRS or path.suffix in EXCLUDED_SUFFIXES:\n            ignored.add(name)\n    return ignored\n\n\ndef check_mnemosyne_core() -> bool:\n    \"\"\"Verify mnemosyne-memory core library is installed.\"\"\"\n    try:\n        importlib.import_module(\"mnemosyne.core.beam\")\n        import mnemosyne\n        print(f\"  mnemosyne-memory {mnemosyne.__version__} installed\")\n        return True\n    except ImportError:\n        return False\n\n\ndef install_plugin(\n    *,\n    hermes_home_path: str | Path | None = None,\n    force: bool = False,\n) -> Path:\n    \"\"\"Install the Mnemosyne provider into Hermes' user plugin directory.\"\"\"\n    source = plugin_source_dir()\n    target = plugin_target_dir(hermes_home_path)\n\n    if target.exists():\n        if not force:\n            raise FileExistsError(\n                f\"{target} already exists. Re-run with --force to replace it.\"\n            )\n        if target.is_symlink() or os.path.islink(str(target)):\n            target.unlink()\n        else:\n            shutil.rmtree(target)\n\n    target.parent.mkdir(parents=True, exist_ok=True)\n    shutil.copytree(source, target, ignore=_ignore_copy_names)\n\n    # Also create a convenience plugin.yaml in the target if not present\n    plugin_yaml = target / \"plugin.yaml\"\n    if not plugin_yaml.exists():\n        plugin_yaml.write_text(\n            f\"name: {PLUGIN_NAME}\\n\"\n            \"version: auto\\n\"\n            'description: \"Mnemosyne — local-first AI memory for Hermes\"\\n'\n            \"pip_dependencies:\\n\"\n            \"  - mnemosyne-memory>=3.1\\n\"\n        )\n\n    return target\n\n\ndef uninstall_plugin(*, hermes_home_path: str | Path | None = None) -> Path:\n    \"\"\"Remove the Mnemosyne provider from Hermes' user plugin directory.\"\"\"\n    target = plugin_target_dir(hermes_home_path)\n    if target.exists():\n        if target.is_symlink() or os.path.islink(str(target)):\n            target.unlink()\n        else:\n            shutil.rmtree(target)\n    return target\n\n\ndef is_installed(*, hermes_home_path: str | Path | None = None) -> bool:\n    \"\"\"Return whether the Mnemosyne provider is installed for Hermes discovery.\"\"\"\n    target = plugin_target_dir(hermes_home_path)\n    return (target / \"__init__.py\").is_file() and (target / \"plugin.yaml\").is_file()\n\n\ndef _parser() -> argparse.ArgumentParser:\n    parser = argparse.ArgumentParser(\n        prog=\"mnemosyne-hermes\",\n        description=\"Install the Mnemosyne memory provider for Hermes Agent.\",\n    )\n    parser.add_argument(\n        \"--hermes-home\",\n        help=\"Hermes home directory. Defaults to HERMES_HOME or ~/.hermes.\",\n    )\n\n    subparsers = parser.add_subparsers(dest=\"command\")\n\n    install = subparsers.add_parser(\n        \"install\",\n        help=\"Install Mnemosyne into Hermes' memory provider plugin directory.\",\n    )\n    install.add_argument(\n        \"--force\",\n        action=\"store_true\",\n        help=\"Replace an existing Mnemosyne plugin directory.\",\n    )\n\n    subparsers.add_parser(\n        \"uninstall\",\n        help=\"Remove Mnemosyne from Hermes' memory provider plugin directory.\",\n    )\n    subparsers.add_parser(\n        \"status\",\n        help=\"Show whether Mnemosyne is installed for Hermes memory discovery.\",\n    )\n    return parser\n\n\ndef main(argv: list[str] | None = None) -> int:\n    \"\"\"Run the mnemosyne-hermes installer CLI.\"\"\"\n    parser = _parser()\n    args = parser.parse_args(argv)\n    command = args.command or \"install\"\n\n    try:\n        if command == \"install\":\n            # Check core library first\n            if not check_mnemosyne_core():\n                print(\n                    \"  mnemosyne-memory NOT found. Install it first:\\n\"\n                    \"    pip install mnemosyne-memory\",\n                    file=sys.stderr,\n                )\n                return 1\n\n            target = install_plugin(\n                hermes_home_path=args.hermes_home,\n                force=getattr(args, \"force\", False),\n            )\n            print(f\"Installed Mnemosyne Hermes provider to {target}\")\n            print(\"Next steps:\")\n            print(\"  hermes config set memory.provider mnemosyne\")\n            print(\"  hermes memory setup\")\n            print(\"  hermes memory status\")\n            return 0\n\n        if command == \"uninstall\":\n            target = uninstall_plugin(hermes_home_path=args.hermes_home)\n            print(f\"Removed Mnemosyne Hermes provider from {target}\")\n            return 0\n\n        if command == \"status\":\n            target = plugin_target_dir(args.hermes_home)\n            if is_installed(hermes_home_path=args.hermes_home):\n                print(f\"Mnemosyne Hermes provider is installed at {target}\")\n                print(f\"  Core library: {'OK' if check_mnemosyne_core() else 'MISSING'}\")\n                return 0\n            print(f\"Mnemosyne Hermes provider is not installed at {target}\")\n            return 1\n\n    except Exception as exc:\n        print(f\"error: {exc}\", file=sys.stderr)\n        return 1\n\n    parser.print_help()\n    return 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n"
+      }
+    },
+    "main.ts": {
+      "path": "/root/mnemosyne/integrations/obsidian-mnemosyne/main.ts",
+      "category": "other",
+      "type": "unknown",
+      "description": "Obsidian plugin for Mnemosyne — syncs memories to vault as markdown files",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 319,
+        "content": "import { App, Plugin, PluginSettingTab, Setting, Notice, TFile, TFolder, parseYaml, stringifyYaml } from 'obsidian';\n\ninterface MnemosyneSettings {\n  dataDir: string;\n  bank: string;\n  syncFolder: string;\n  autoSync: boolean;\n  syncInterval: number;\n  includeAssistant: boolean;\n}\n\nconst DEFAULT_SETTINGS: MnemosyneSettings = {\n  dataDir: '.hermes/mnemosyne/data',\n  bank: 'default',\n  syncFolder: 'Mnemosyne',\n  autoSync: false,\n  syncInterval: 30,\n  includeAssistant: false,\n};\n\nexport default clas",
+        "rawContent": "import { App, Plugin, PluginSettingTab, Setting, Notice, TFile, TFolder, parseYaml, stringifyYaml } from 'obsidian';\n\ninterface MnemosyneSettings {\n  dataDir: string;\n  bank: string;\n  syncFolder: string;\n  autoSync: boolean;\n  syncInterval: number;\n  includeAssistant: boolean;\n}\n\nconst DEFAULT_SETTINGS: MnemosyneSettings = {\n  dataDir: '.hermes/mnemosyne/data',\n  bank: 'default',\n  syncFolder: 'Mnemosyne',\n  autoSync: false,\n  syncInterval: 30,\n  includeAssistant: false,\n};\n\nexport default class MnemosynePlugin extends Plugin {\n  settings: MnemosyneSettings;\n  private _syncTimer: number | null = null;\n\n  async onload() {\n    await this.loadSettings();\n\n    this.addCommand({\n      id: 'mnemosyne-sync',\n      name: 'Sync memories to vault',\n      callback: () => this.syncMemories(),\n    });\n\n    this.addCommand({\n      id: 'mnemosyne-search',\n      name: 'Search memories',\n      callback: () => {\n        new Notice('Use Obsidian search in the Mnemosyne folder');\n      },\n    });\n\n    this.addCommand({\n      id: 'mnemosyne-stats',\n      name: 'Show memory stats',\n      callback: () => this.showStats(),\n    });\n\n    this.addRibbonIcon('database', 'Mnemosyne Sync', () => this.syncMemories());\n\n    this.addSettingTab(new MnemosyneSettingTab(this.app, this));\n\n    if (this.settings.autoSync) {\n      this.startAutoSync();\n    }\n  }\n\n  onunload() {\n    this.stopAutoSync();\n  }\n\n  async loadSettings() {\n    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());\n  }\n\n  async saveSettings() {\n    await this.saveData(this.settings);\n    if (this.settings.autoSync) {\n      this.startAutoSync();\n    } else {\n      this.stopAutoSync();\n    }\n  }\n\n  startAutoSync() {\n    this.stopAutoSync();\n    this._syncTimer = window.setInterval(\n      () => this.syncMemories(),\n      this.settings.syncInterval * 60 * 1000\n    );\n  }\n\n  stopAutoSync() {\n    if (this._syncTimer !== null) {\n      clearInterval(this._syncTimer);\n      this._syncTimer = null;\n    }\n  }\n\n  /**\n   * Run the Python sync script that exports memories as markdown files.\n   */\n  async syncMemories() {\n    new Notice('Mnemosyne: Syncing memories...');\n\n    try {\n      const { execSync } = require('child_process');\n      const path = require('path');\n      const fs = require('fs');\n\n      const vaultPath = (this.app.vault as any).adapter.basePath;\n      const dataDir = path.join(\n        require('os').homedir(),\n        this.settings.dataDir\n      );\n      const dbPath = path.join(dataDir, `${this.settings.bank}.db`);\n      const outputDir = path.join(vaultPath, this.settings.syncFolder);\n\n      // Ensure output directory exists\n      if (!fs.existsSync(outputDir)) {\n        fs.mkdirSync(outputDir, { recursive: true });\n      }\n\n      // Python script to export memories as markdown\n      const pyScript = `\nimport json, sqlite3, os, sys\nfrom datetime import datetime\nfrom pathlib import Path\n\ndb_path = ${JSON.stringify(dbPath)}\noutput_dir = ${JSON.stringify(outputDir)}\ninclude_assistant = ${this.settings.includeAssistant}\n\nconn = sqlite3.connect(db_path)\nconn.row_factory = sqlite3.Row\ncursor = conn.cursor()\n\ncursor.execute(\"SELECT name FROM sqlite_master WHERE type='table'\")\ntables = {r[0] for r in cursor.fetchall()}\n\ncount = 0\nfor table in ['working_memory', 'episodic_memory', 'memories']:\n    if table not in tables: continue\n    try:\n        cursor.execute(f\"SELECT * FROM {table} ORDER BY timestamp DESC\")\n        for row in cursor.fetchall():\n            content = row['content'] or ''\n            source = row.get('source', 'unknown')\n            ts = str(row.get('timestamp', ''))[:19]\n            imp = row.get('importance', 0)\n\n            if source == 'openwebui:assistant' and not include_assistant:\n                continue\n\n            safe_id = str(row['id']).replace('/', '_').replace(':', '_')\n            frontmatter = {\n                'id': str(row['id']),\n                'source': source,\n                'tier': table,\n                'timestamp': ts,\n                'importance': imp,\n                'synced': datetime.now().isoformat()[:19],\n            }\n\n            md = '---\\\\n'\n            md += json.dumps(frontmatter, indent=2)\n          md += '\\\\n---\\\\n\\\\n'\n            md += f'**Source:** {source}  \\\\n'\n            md += f'**Tier:** {table}  \\\\n'\n            md += f'**Time:** {ts}  \\\\n'\n            md += f'**Importance:** {imp}  \\\\n\\\\n'\n            md += content\n\n            filepath = os.path.join(output_dir, f'{safe_id}.md')\n            # Avoid overwriting newer notes\n            if os.path.exists(filepath):\n                existing = open(filepath).read()\n                if 'synced' in existing:\n                    continue\n\n            with open(filepath, 'w') as f:\n                f.write(md)\n            count += 1\n\n    except Exception as e:\n        print(f'Error in {table}: {e}', file=sys.stderr)\n\nconn.close()\nprint(f'Synced {count} memories to {output_dir}')\n`;\n      const result = execSync(`python3 -c ${JSON.stringify(pyScript)}`, {\n        timeout: 30000,\n        encoding: 'utf-8',\n      });\n\n      // Refresh vault to show new files\n      await this.app.vault.createFolder(this.settings.syncFolder).catch(() => {});\n\n      new Notice(`Mnemosyne: Synced memories to \"${this.settings.syncFolder}/\"`);\n      console.log('Mnemosyne sync result:', result.trim());\n\n    } catch (err: any) {\n      new Notice(`Mnemosyne sync failed: ${err.message || err}`);\n      console.error('Mnemosyne sync error:', err);\n    }\n  }\n\n  async showStats() {\n    try {\n      const { execSync } = require('child_process');\n      const result = execSync(\n        `python3 -c \"\nimport json, sqlite3\nfrom pathlib import Path\ndb = str(Path.home() / ${JSON.stringify(this.settings.dataDir)} / '${this.settings.bank}.db')\nconn = sqlite3.connect(db)\nc = conn.cursor()\nc.execute(\\\\\\\"SELECT name FROM sqlite_master WHERE type='table'\\\\\\\")\ntables = {r[0] for r in c.fetchall()}\nstats = {}\nfor t in ['working_memory','episodic_memory','memories']:\n    if t in tables:\n        c.execute(f'SELECT COUNT(*) FROM {t}')\n        stats[t] = c.fetchone()[0]\nconn.close()\nprint(json.dumps(stats))\n\"`,\n        { timeout: 10000, encoding: 'utf-8' }\n      );\n      const stats = JSON.parse(result.trim());\n      const lines = Object.entries(stats).map(\n        ([t, c]) => `- **${t.replace('_', ' ')}:** ${c}`\n      );\n      new Notice(\n        `Mnemosyne Stats:\\n${lines.join('\\n')}`,\n        8000\n      );\n    } catch (err) {\n      new Notice('Failed to get Mnemosyne stats');\n    }\n  }\n}\n\nclass MnemosyneSettingTab extends PluginSettingTab {\n  plugin: MnemosynePlugin;\n\n  constructor(app: App, plugin: MnemosynePlugin) {\n    super(app, plugin);\n    this.plugin = plugin;\n  }\n\n  display(): void {\n    const { containerEl } = this;\n    containerEl.empty();\n\n    containerEl.createEl('h2', { text: 'Mnemosyne Sync Settings' });\n\n    new Setting(containerEl)\n      .setName('Data directory')\n      .setDesc('Path relative to home (~) where Mnemosyne stores its database')\n      .addText(text => text\n        .setPlaceholder('.hermes/mnemosyne/data')\n        .setValue(this.plugin.settings.dataDir)\n        .onChange(async val => {\n          this.plugin.settings.dataDir = val;\n          await this.plugin.saveSettings();\n        }));\n\n    new Setting(containerEl)\n      .setName('Memory bank')\n      .setDesc('Which Mnemosyne memory bank to sync')\n      .addText(text => text\n        .setPlaceholder('default')\n        .setValue(this.plugin.settings.bank)\n        .onChange(async val => {\n          this.plugin.settings.bank = val;\n          await this.plugin.saveSettings();\n        }));\n\n    new Setting(containerEl)\n      .setName('Sync folder')\n      .setDesc('Folder in your vault to store synced memories')\n      .addText(text => text\n        .setPlaceholder('Mnemosyne')\n        .setValue(this.plugin.settings.syncFolder)\n        .onChange(async val => {\n          this.plugin.settings.syncFolder = val;\n          await this.plugin.saveSettings();\n        }));\n\n    new Setting(containerEl)\n      .setName('Auto-sync')\n      .setDesc('Automatically sync memories on an interval')\n      .addToggle(toggle => toggle\n        .setValue(this.plugin.settings.autoSync)\n        .onChange(async val => {\n          this.plugin.settings.autoSync = val;\n          await this.plugin.saveSettings();\n        }));\n\n    new Setting(containerEl)\n      .setName('Sync interval')\n      .setDesc('Minutes between auto-syncs')\n      .addSlider(slider => slider\n        .setLimits(5, 120, 5)\n        .setValue(this.plugin.settings.syncInterval)\n        .setDynamicTooltip()\n        .onChange(async val => {\n          this.plugin.settings.syncInterval = val;\n          await this.plugin.saveSettings();\n        }));\n\n    new Setting(containerEl)\n      .setName('Include assistant messages')\n      .setDesc('Also sync AI assistant responses (not just user messages)')\n      .addToggle(toggle => toggle\n        .setValue(this.plugin.settings.includeAssistant)\n        .onChange(async val => {\n          this.plugin.settings.includeAssistant = val;\n          await this.plugin.saveSettings();\n        }));\n\n    containerEl.createEl('hr');\n    containerEl.createEl('p', {\n      text: 'Use the ribbon icon or command palette to sync memories manually.',\n      attr: { style: 'opacity: 0.7; font-size: 0.9em;' }\n    });\n  }\n}\n"
+      }
+    },
+    ".vscodeignore": {
+      "path": "/root/mnemosyne/integrations/vscode-mnemosyne/.vscodeignore",
+      "category": "other",
+      "type": "unknown",
+      "description": "VS Code extension ignore patterns (node_modules, out, src, *.ts)",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 7,
+        "content": "node_modules\nout\nsrc\ntsconfig.json\n.vscode\n*.ts\n",
+        "rawContent": "node_modules\nout\nsrc\ntsconfig.json\n.vscode\n*.ts\n"
+      }
+    },
+    "MANIFEST.in": {
+      "path": "/root/mnemosyne/MANIFEST.in",
+      "category": "other",
+      "type": "unknown",
+      "description": "Python sdist manifest — includes README, CHANGELOG, LICENSE, docs, assets",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 12,
+        "content": "include README.md\ninclude CHANGELOG.md\ninclude LICENSE\ninclude UPDATING.md\ninclude CONTRIBUTING.md\nrecursive-include docs *.md\nrecursive-include assets *\nglobal-exclude *.pyc\nglobal-exclude __pycache__\nglobal-exclude .DS_Store\nglobal-exclude *.db\n",
+        "rawContent": "include README.md\ninclude CHANGELOG.md\ninclude LICENSE\ninclude UPDATING.md\ninclude CONTRIBUTING.md\nrecursive-include docs *.md\nrecursive-include assets *\nglobal-exclude *.pyc\nglobal-exclude __pycache__\nglobal-exclude .DS_Store\nglobal-exclude *.db\n"
+      }
+    },
+    "aaak.py": {
+      "path": "/root/mnemosyne/mnemosyne/core/aaak.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "AAAK dialect compression — LLM-readable shorthand encoding for memory context",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 153,
+        "content": "\"\"\"\nMnemosyne AAAK Dialect\nFull-fledged compression scheme for AI memory context.\nLossless shorthand that LLMs parse efficiently without a decoder.\n\"\"\"\n\nimport re\nfrom typing import List, Tuple\n\n# Category prefixes → AAAK codes\nCATEGORY_MAP = {\n    \"PREFERENCE\": \"PREF\",\n    \"TRAIT\": \"TRAIT\",\n    \"STATUS\": \"STAT\",\n    \"INSTRUCTION\": \"INST\",\n    \"PROJECT\": \"PROJ\",\n    \"LOCATION\": \"LOC\",\n    \"FAMILY\": \"FAM\",\n    \"OCCUPATION\": \"OCC\",\n    \"DECISION\": \"DEC\",\n    \"EVENT\": \"EVT\",\n    \"TOOL\": \"TOOL\",\n   ",
+        "rawContent": "\"\"\"\nMnemosyne AAAK Dialect\nFull-fledged compression scheme for AI memory context.\nLossless shorthand that LLMs parse efficiently without a decoder.\n\"\"\"\n\nimport re\nfrom typing import List, Tuple\n\n# Category prefixes → AAAK codes\nCATEGORY_MAP = {\n    \"PREFERENCE\": \"PREF\",\n    \"TRAIT\": \"TRAIT\",\n    \"STATUS\": \"STAT\",\n    \"INSTRUCTION\": \"INST\",\n    \"PROJECT\": \"PROJ\",\n    \"LOCATION\": \"LOC\",\n    \"FAMILY\": \"FAM\",\n    \"OCCUPATION\": \"OCC\",\n    \"DECISION\": \"DEC\",\n    \"EVENT\": \"EVT\",\n    \"TOOL\": \"TOOL\",\n    \"FACT\": \"FACT\",\n    \"OPINION\": \"OPN\",\n}\n\n# Common structural phrases → compressed forms\nPHRASE_MAP = {\n    \"User asked \": \"ASK \",\n    \"User wants \": \"WANT \",\n    \"User prefers \": \"PREF \",\n    \"User likes \": \"LIKE \",\n    \"User dislikes \": \"DISLIKE \",\n    \"User is \": \"IS \",\n    \"User has \": \"HAS \",\n    \"User built \": \"BUILT \",\n    \"User asked for \": \"ASK \",\n    \"User requested \": \"REQ \",\n    \"Married to \": \"MARRIED→\",\n    \"Email: \": \"@\",\n    \"GitHub: \": \"GH:\",\n    \"Location: \": \"LOC:\",\n    \"Phone: \": \"PH:\",\n    \"User email is \": \"@\",\n    \"User voice message \": \"VM \",\n    \"User stack: \": \"STACK|\",\n    \"Full-stack developer\": \"FSDEV\",\n    \"Software Developer\": \"SDEV\",\n    \"AI Systems Engineer\": \"AIENG\",\n    \"real-time\": \"RT\",\n    \"Real-time\": \"RT\",\n    \"bilingual\": \"bi\",\n    \"Bilingual\": \"bi\",\n    \"self-hosted\": \"selfhost\",\n    \"automation\": \"auto\",\n    \"transcription\": \"transc\",\n    \"translation\": \"transl\",\n}\n\n# Structural replacements (order matters)\nSTRUCTURAL_REPLACEMENTS: List[Tuple[str, str]] = [\n    # Sentence/phrase separators\n    (\" - \", \" | \"),\n    (\" -- \", \" | \"),\n    (\" | \", \" | \"),  # normalize\n    \n    # Lists become pipe-delimited\n    (\", \", \" | \"),\n    \n    # Conjunctions\n    (\" and \", \"+\"),\n    (\" or \", \"/\"),\n    \n    # Directional / relational\n    (\" for \", \"→\"),\n    (\" to \", \"→\"),\n    (\" with \", \" w/ \"),\n    (\" over \", \">\"),\n    (\" instead of \", \"!>\"),\n    (\" because of \", \"∵\"),\n    (\" due to \", \"∵\"),\n    \n    # Container words\n    (\" using \", \"→\"),\n    (\" built \", \"→\"),\n    (\" in \", \":\"),\n    (\" at \", \"@\"),\n    (\" on \", \"@\"),\n    (\" from \", \"<-\"),\n]\n\n# Reverse maps for decode\nREV_CATEGORY = {v: k for k, v in CATEGORY_MAP.items()}\nREV_PHRASE = {v: k for k, v in PHRASE_MAP.items()}\n\n\ndef _apply_category_prefixes(text: str) -> str:\n    \"\"\"Compress CATEGORY: prefix to CODE|\"\"\"\n    for full, code in CATEGORY_MAP.items():\n        if text.startswith(f\"{full}: \"):\n            return text.replace(f\"{full}: \", f\"{code}|\", 1)\n    return text\n\n\ndef _apply_phrases(text: str) -> str:\n    \"\"\"Replace common phrases with shorthand.\"\"\"\n    # Sort by length descending to avoid partial matches\n    for phrase, shorthand in sorted(PHRASE_MAP.items(), key=lambda x: -len(x[0])):\n        text = text.replace(phrase, shorthand)\n    return text\n\n\ndef _apply_structural(text: str) -> str:\n    \"\"\"Apply structural compression.\"\"\"\n    for pattern, replacement in STRUCTURAL_REPLACEMENTS:\n        text = text.replace(pattern, replacement)\n    return text\n\n\ndef _compact_parens(text: str) -> str:\n    \"\"\"Remove spaces inside parentheses.\"\"\"\n    return re.sub(r\"\\(\\s*\", \"(\", text).replace(\" )\", \")\")\n\n\ndef encode(text: str) -> str:\n    \"\"\"\n    Compress natural language memory into AAAK dialect.\n    \n    Example:\n        >>> encode(\"PREFERENCE: Imperial units for GPS, 12-hour time format (5:30 PM)\")\n        \"PREF|imperial-units→GPS|12h-timefmt(5:30PM)\"\n    \"\"\"\n    if not text:\n        return text\n    \n    # Skip if already looks like AAAK (has pipe delimiters and no spaces)\n    if \"|\" in text and len(text.split()) <= 3:\n        return text\n    \n    result = text.strip()\n    result = _apply_category_prefixes(result)\n    result = _apply_phrases(result)\n    result = _apply_structural(result)\n    result = _compact_parens(result)\n    \n    # Compact common trailing phrases\n    result = result.replace(\"working correctly\", \"OK\")\n    result = result.replace(\"working\", \"OK\")\n    result = result.replace(\"complete\", \"DONE\")\n    result = result.replace(\"completed\", \"DONE\")\n    \n    return result.strip()\n"
+      }
+    },
+    "content_sanitizer.py": {
+      "path": "/root/mnemosyne/mnemosyne/core/content_sanitizer.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Content sanitizer — detects binary/base64/high-entropy data, extracts to blob storage",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 170,
+        "content": "\"\"\"\nContent sanitizer for Mnemosyne ingest paths.\n\nDetects binary-shaped content (base64 data URIs, large payloads, encoded\nblobs) and extracts it to content-addressed blob storage, replacing the\nin-row content with a stub and a blob reference in metadata.\n\nBlob storage: ~/.hermes/mnemosyne/blobs/<hash[0:2]>/<hash[0:4]>/<full-hash>\n\"\"\"\n\nimport base64\nimport hashlib\nimport math\nimport os\nimport re\nfrom collections import Counter\nfrom pathlib import Path\nfrom typing import Dict, Optional, Tuple\n\n\n",
+        "rawContent": "\"\"\"\nContent sanitizer for Mnemosyne ingest paths.\n\nDetects binary-shaped content (base64 data URIs, large payloads, encoded\nblobs) and extracts it to content-addressed blob storage, replacing the\nin-row content with a stub and a blob reference in metadata.\n\nBlob storage: ~/.hermes/mnemosyne/blobs/<hash[0:2]>/<hash[0:4]>/<full-hash>\n\"\"\"\n\nimport base64\nimport hashlib\nimport math\nimport os\nimport re\nfrom collections import Counter\nfrom pathlib import Path\nfrom typing import Dict, Optional, Tuple\n\n\n# --- Detection thresholds ---\nSIZE_HARD_CAP = 1_000_000        # 1 MB — always extract regardless of content type\nSIZE_BASE64_CHECK = 100_000      # 100 KB — run the base64 heuristic\nENTROPY_THRESHOLD = 5.0          # Shannon entropy bits-per-char > 5.0 suggests encoded data\n\nDATA_URI_RE = re.compile(\n    r\"^data:(?P<mime>[^;]+)?(?:;base64)?,(?P<payload>.*)\",\n    re.IGNORECASE,\n)\n\n\ndef _blob_root() -> Path:\n    \"\"\"Root directory for content-addressed blobs.\"\"\"\n    root = os.environ.get(\"MNEMOSYNE_BLOB_DIR\", \"\")\n    if root:\n        return Path(root)\n    return Path.home() / \".hermes\" / \"mnemosyne\" / \"blobs\"\n\n\ndef _compute_sha256(data: bytes) -> str:\n    return hashlib.sha256(data).hexdigest()\n\n\ndef _is_data_uri(content: str) -> bool:\n    \"\"\"Check if content starts with a data: URI scheme.\"\"\"\n    return content.startswith(\"data:\")\n\n\ndef _parse_data_uri(content: str) -> Optional[Tuple[str, bytes]]:\n    \"\"\"Parse a data: URI, returning (mime_type, raw_bytes) or None.\"\"\"\n    m = DATA_URI_RE.match(content)\n    if not m:\n        return None\n    mime_type = m.group(\"mime\") or \"application/octet-stream\"\n    payload = m.group(\"payload\")\n    try:\n        raw = base64.b64decode(payload, validate=True)\n    except Exception:\n        return None\n    return mime_type, raw\n\n\ndef _shannon_entropy(text: str) -> float:\n    \"\"\"Shannon entropy in bits per character. Higher = more random/uniform.\"\"\"\n    if not text:\n        return 0.0\n    n = len(text)\n    counts = Counter(text)\n    entropy = 0.0\n    for count in counts.values():\n        p = count / n\n        entropy -= p * math.log2(p)\n    return entropy\n\n\ndef _looks_like_base64_blob(content: str) -> bool:\n    \"\"\"\n    Heuristic: does this string look like a base64-encoded binary blob?\n\n    Uses Shannon entropy. Base64-encoded binary data has near-maximum entropy\n    (~5.5-6.0 bits/char) because the character distribution is close to uniform.\n    Natural language text (English, code, logs) sits at ~3.5-4.5 bits/char.\n\n    Returns True if entropy exceeds ENTROPY_THRESHOLD.\n    \"\"\"\n    if len(content) < SIZE_BASE64_CHECK:\n        return False\n    return _shannon_entropy(content) > ENTROPY_THRESHOLD\n\n\ndef _store_blob(raw_bytes: bytes) -> str:\n    \"\"\"Store raw bytes as a content-addressed blob. Returns sha256 hex hash.\"\"\"\n    sha256 = _compute_sha256(raw_bytes)\n    blob_root = _blob_root()\n    blob_dir = blob_root / sha256[:2] / sha256[:4]\n    blob_dir.mkdir(parents=True, exist_ok=True)\n    blob_path = blob_dir / sha256\n    if not blob_path.exists():\n        blob_path.write_bytes(raw_bytes)\n    return sha256\n\n\ndef sanitize_content(content: str) -> Tuple[str, Dict]:\n    \"\"\"\n    Inspect content for binary-shaped payloads and extract to blob storage.\n\n    Returns (sanitized_content, blob_metadata).\n    blob_metadata is empty dict if no extraction occurred; otherwise contains\n    blob_ref, original_size, and (if known) mime.\n\n    Detection rules (checked in order):\n    1. data: URI prefix → decode base64 payload, extract to blob\n    2. Size > 1 MB → extract entire content to blob\n    3. Size > 100 KB AND entropy > 5.0 bits/char → likely encoded blob\n    \"\"\"\n    blob_meta = {}\n    original_size = len(content.encode(\"utf-8\"))\n\n    # Rule 1: data: URI\n    if _is_data_uri(content):\n        parsed = _parse_data_uri(content)\n        if parsed:\n            mime_type, raw_bytes = parsed\n            sha256 = _store_blob(raw_bytes)\n            blob_meta = {\n                \"blob_ref\": f\"blob://sha256/{sha256}\",\n                \"original_size\": len(raw_bytes),\n                \"mime\": mime_type,\n                \"extraction_reason\": \"data_uri\",\n            }\n            return (\n                f\"[Binary content extracted: {mime_type}, \"\n                f\"{len(raw_bytes):,} bytes → blob://sha256/{sha256}]\",\n                blob_meta,\n            )\n\n    # Rule 2: size hard cap\n    if original_size > SIZE_HARD_CAP:\n        raw_bytes = content.encode(\"utf-8\")\n        sha256 = _store_blob(raw_bytes)\n        blob_meta = {\n            \"blob_ref\": f\"blob://sha256/{sha256}\",\n            \"original_size\": original_size,\n            \"extraction_reason\": \"size_cap\",\n        }\n        return (\n            f\"[Large content extracted: {original_size:,} bytes → \"\n            f\"blob://sha256/{sha256}]\",\n            blob_meta,\n        )\n\n    # Rule 3: high-entropy (likely encoded blob)\n    if original_size > SIZE_BASE64_CHECK and _looks_like_base64_blob(content):\n        raw_bytes = content.encode(\"utf-8\")\n        sha256 = _store_blob(raw_bytes)\n        entropy = round(_shannon_entropy(content), 2)\n        blob_meta = {\n            \"blob_ref\": f\"blob://sha256/{sha256}\",\n            \"original_size\": original_size,\n            \"entropy\": entropy,\n            \"extraction_reason\": \"high_entropy\",\n        }\n        return (\n            f\"[Encoded content extracted: {original_size:,} bytes, \"\n            f\"entropy {entropy:.1f} bits/char → blob://sha256/{sha256}]\",\n            blob_meta,\n        )\n\n    return content, blob_meta\n"
+      }
+    },
+    "mmr.py": {
+      "path": "/root/mnemosyne/mnemosyne/core/mmr.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "MMR (Maximal Marginal Relevance) diversity re-ranking for recall results",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 96,
+        "content": "\"\"\"\nMMR (Maximal Marginal Relevance) Re-Ranking for Mnemosyne\n==========================================================\nDiversity re-ranking to reduce redundancy in recall results.\n\nAlgorithm: MMR balances relevance (high score) against novelty\n(dissimilarity to already-selected results). This prevents the\ntop-k results from being near-duplicates of each other.\n\nParameters:\n    lambda_param: 0.0 = pure diversity, 1.0 = pure relevance.\n    Default 0.7 balances toward relevance with some diversit",
+        "rawContent": "\"\"\"\nMMR (Maximal Marginal Relevance) Re-Ranking for Mnemosyne\n==========================================================\nDiversity re-ranking to reduce redundancy in recall results.\n\nAlgorithm: MMR balances relevance (high score) against novelty\n(dissimilarity to already-selected results). This prevents the\ntop-k results from being near-duplicates of each other.\n\nParameters:\n    lambda_param: 0.0 = pure diversity, 1.0 = pure relevance.\n    Default 0.7 balances toward relevance with some diversity penalty.\n\nUsage:\n    from mnemosyne.core.mmr import mmr_rerank\n    \n    diverse_results = mmr_rerank(results, lambda_param=0.7, top_k=10)\n\"\"\"\n\nfrom typing import List, Dict, Callable, Optional\nimport math\n\n\ndef _jaccard_similarity(text_a: str, text_b: str) -> float:\n    \"\"\"\n    Compute Jaccard similarity between two text strings.\n    Uses word-level overlap for speed.\n    \"\"\"\n    words_a = set(text_a.lower().split())\n    words_b = set(text_b.lower().split())\n    \n    if not words_a or not words_b:\n        return 0.0\n    \n    intersection = words_a & words_b\n    union = words_a | words_b\n    \n    return len(intersection) / len(union)\n\n\ndef mmr_rerank(\n    results: List[Dict],\n    lambda_param: float = 0.7,\n    top_k: int = 10,\n    similarity_fn: Optional[Callable[[str, str], float]] = None,\n) -> List[Dict]:\n    \"\"\"\n    Re-rank results using MMR for diversity.\n    \n    Args:\n        results: List of result dicts, each with 'content' and 'score' keys\n        lambda_param: Relevance vs diversity tradeoff (0.0-1.0)\n        top_k: Number of results to return\n        similarity_fn: Custom similarity function (text_a, text_b) -> float.\n                       Defaults to Jaccard word overlap.\n                       \n    Returns:\n        Re-ranked list of results\n    \"\"\"\n    if len(results) <= 1:\n        return results[:top_k]\n    \n    if similarity_fn is None:\n        similarity_fn = _jaccard_similarity\n    \n    # Sort by score initially\n    sorted_results = sorted(results, key=lambda r: r.get(\"score\", 0), reverse=True)\n    \n    selected = [sorted_results[0]]\n    remaining = sorted_results[1:]\n    \n    while remaining and len(selected) < top_k:\n        mmr_scores = []\n        for candidate in remaining:\n            relevance = candidate.get(\"score\", 0)\n            \n            # Max similarity to any already-selected result\n            max_sim = max(\n                similarity_fn(candidate.get(\"content\", \"\"), s.get(\"content\", \"\"))\n                for s in selected\n            )\n            \n            # MMR formula: λ * relevance - (1-λ) * max_similarity\n            mmr = lambda_param * relevance - (1.0 - lambda_param) * max_sim\n            mmr_scores.append(mmr)\n        \n        # Select best MMR-scored candidate\n        best_idx = mmr_scores.index(max(mmr_scores))\n        selected.append(remaining.pop(best_idx))\n    \n    # Add remaining if we couldn't fill top_k\n    if len(selected) < top_k:\n        selected.extend(remaining[:top_k - len(selected)])\n    \n    return selected\n"
+      }
+    },
+    "orchestrator.py": {
+      "path": "/root/mnemosyne/mnemosyne/core/orchestrator.py",
+      "category": "other",
+      "type": "unknown",
+      "description": "Expert retrieval orchestrator stub — placeholder for unified FTS/vector search",
+      "structure": {
+        "fileType": "unknown",
+        "rawLines": 20,
+        "content": "\nimport re\n\ndef orchestrate_recall(query: str, conn, top_k=20, **kwargs):\n    \"\"\"\n    Expert retrieval orchestrator for high-reasoning tasks.\n    \"\"\"\n    # 1. Base Recall - call the connection's internal search logic\n    from mnemosyne.core.beam import BeamMemory\n    # This is a hacky way to access the base functionality without wrapping it\n    # We should have a proper _internal_recall method on BeamMemory\n    results = []\n    # Simplified recall execution:\n    # In a production fix, we would c",
+        "rawContent": "\nimport re\n\ndef orchestrate_recall(query: str, conn, top_k=20, **kwargs):\n    \"\"\"\n    Expert retrieval orchestrator for high-reasoning tasks.\n    \"\"\"\n    # 1. Base Recall - call the connection's internal search logic\n    from mnemosyne.core.beam import BeamMemory\n    # This is a hacky way to access the base functionality without wrapping it\n    # We should have a proper _internal_recall method on BeamMemory\n    results = []\n    # Simplified recall execution:\n    # In a production fix, we would call the actual internal FTS/Vector search here.\n    # For now, let's call the standard search method on the connection if possible.\n    \n    # ... logic ...\n    \n    return results\n"
+      }
+    }
+  },
+  "batchImportData": {
+    "__init__.py (root)": {
+      "type": "plugin_entry_point",
+      "package": "mnemosyne",
+      "hermes_plugin_compatible": true,
+      "re_exports": [
+        "__version__",
+        "__author__",
+        "register"
+      ],
+      "issue_refs": [
+        "#53"
+      ],
+      "architecture": "Dual-layout compat (Hermes plugin tree + pip install)"
+    },
+    ".githooks/pre-commit": {
+      "type": "git_hook",
+      "hook_type": "pre-commit",
+      "pii_protection": true,
+      "pii_pattern": "1641797+AxDSan@users.noreply.github.com",
+      "language": "sh",
+      "purpose": "Block commits with personal email PII"
+    },
+    ".githooks/pre-push": {
+      "type": "git_hook",
+      "hook_type": "pre-push",
+      "version_validation": "SemVer enforcement against __version__",
+      "regression_check": "New tag must be >= all existing tags",
+      "language": "bash",
+      "purpose": "Validate release tags match package version"
+    },
+    ".github/FUNDING.yml": {
+      "type": "funding_config",
+      "platforms": [
+        "github: AxDSan",
+        "ko_fi: axdsan"
+      ],
+      "purpose": "Sponsor links for the Mnemosyne project"
+    },
+    ".github/PULL_REQUEST_TEMPLATE.md": {
+      "type": "pr_template",
+      "sections": [
+        "Description",
+        "Related Issue",
+        "Type of Change",
+        "How Has This Been Tested?",
+        "Checklist"
+      ],
+      "project_principles": [
+        "No new external dependencies",
+        "No cloud/API key required",
+        "SQLite only DB"
+      ],
+      "purpose": "PR quality checklist for Mnemosyne contributors"
+    },
+    ".mailmap": {
+      "type": "git_mailmap",
+      "canonical_author": "Abdias J <1641797+AxDSan@users.noreply.github.com>",
+      "mapped_aliases": [
+        "Abdias Joel",
+        "Abdias J Moya Perez",
+        "Abdias Joel Moya Perez",
+        "AJ Moya"
+      ],
+      "purpose": "Normalize commit author names in git log"
+    },
+    ".understand-anything/.understandignore": {
+      "type": "missing_file",
+      "error": "File not found on disk",
+      "purpose": "Understand-anything code analysis ignore patterns"
+    },
+    "docs/experiments/2026-05-12-beam-recovery-arms-abc.md": {
+      "type": "experiment_plan",
+      "phases": 10,
+      "theses": 8,
+      "prerequisites": [
+        "#80",
+        "#82",
+        "#88",
+        "#89",
+        "#90",
+        "#91"
+      ],
+      "toggle_proposals": 9,
+      "implementation_gaps": [
+        "A: PR merges",
+        "B: A/B toggles (~225 LOC)",
+        "C: Harness preflight (~80 LOC)",
+        "D: Diagnostic capture (~60 LOC)",
+        "E: Paired outcome recording (~40 LOC)",
+        "F: requirements-benchmark.txt (~5 LOC)",
+        "G: Voice-score capture (~20 LOC)"
+      ],
+      "external_refs": [
+        "BEAM dataset (Mohammadta/BEAM)",
+        "OpenRouter API",
+        "fastembed>=0.3.0",
+        "llama-cpp-python",
+        "datasets",
+        "sqlite-vec",
+        "numpy"
+      ],
+      "key_concepts": [
+        "polyphonic vs linear recall",
+        "MMR diversity rerank",
+        "voice ablation",
+        "veracity multiplier",
+        "cross-tier dedup",
+        "pure-recall harness gate"
+      ]
+    },
+    "hermes_memory_provider/hermes_llm_adapter.py": {
+      "type": "python_module",
+      "package": "hermes_memory_provider",
+      "class": "HermesAuxLLMBackend",
+      "base_class": "LLMBackend",
+      "key_methods": [
+        "complete",
+        "register_hermes_host_llm",
+        "unregister_hermes_host_llm"
+      ],
+      "dependencies": [
+        "agent.auxiliary_client.call_llm",
+        "mnemosyne.core.llm_backends.set_host_llm_backend"
+      ],
+      "failure_behavior": "Returns None on any failure; caller falls through to local GGUF",
+      "purpose": "Bridge Mnemosyne host-LLM registry with Hermes aux client"
+    },
+    "hermes_memory_provider/plugin.yaml": {
+      "type": "hermes_plugin_manifest",
+      "plugin_name": "mnemosyne",
+      "version": "3.1.0",
+      "tools": [
+        "mnemosyne_remember",
+        "mnemosyne_recall",
+        "mnemosyne_stats",
+        "mnemosyne_triple_add",
+        "mnemosyne_triple_query",
+        "mnemosyne_sleep",
+        "mnemosyne_scratchpad_write",
+        "mnemosyne_scratchpad_read",
+        "mnemosyne_scratchpad_clear",
+        "mnemosyne_invalidate",
+        "mnemosyne_export",
+        "mnemosyne_import",
+        "mnemosyne_update",
+        "mnemosyne_forget",
+        "mnemosyne_diagnose",
+        "mnemosyne_graph_query",
+        "mnemosyne_graph_link"
+      ],
+      "hooks": [
+        "pre_llm_call",
+        "on_session_start",
+        "post_tool_call"
+      ],
+      "description": "Native local memory for Hermes with SQLite vector search, FTS5, episodic consolidation"
+    },
+    "hermes_memory_provider/README.md": {
+      "type": "documentation",
+      "sections": [
+        "Deploy",
+        "Verify",
+        "Architecture",
+        "Tools",
+        "Undeploy"
+      ],
+      "key_topics": [
+        "system prompt injection",
+        "pre-turn prefetch",
+        "post-turn sync",
+        "tool dispatch",
+        "CLI commands",
+        "setup wizard"
+      ],
+      "tool_count": 15,
+      "external_refs": [
+        "hermes-agent",
+        "~/.hermes/plugins/mnemosyne",
+        "Honcho",
+        "mem0",
+        "supermemory"
+      ]
+    },
+    "integrations/hermes/src/mnemosyne_hermes/audit.py": {
+      "type": "python_module",
+      "package": "mnemosyne_hermes",
+      "class": "AuditLog",
+      "key_methods": [
+        "record",
+        "query",
+        "count",
+        "close"
+      ],
+      "schema": "memory_events (event_id, timestamp, action, memory_id, bank, scope, profile, session_id, source_tool, tokens_used, reason, metadata_json)",
+      "purpose": "Non-blocking append-only SQLite audit log for memory mutation events"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/cli.py": {
+      "type": "python_module",
+      "package": "mnemosyne_hermes",
+      "subcommands": [
+        "stats",
+        "sleep",
+        "version",
+        "inspect",
+        "clear",
+        "doctor",
+        "export",
+        "import"
+      ],
+      "import_support": [
+        "Hindsight",
+        "mem0",
+        "supmemory",
+        "honcho"
+      ],
+      "purpose": "Hermes CLI dispatch for Mnemosyne memory provider"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py": {
+      "type": "python_module",
+      "package": "mnemosyne_hermes",
+      "class": "HermesAuxLLMBackend",
+      "base_class": "LLMBackend",
+      "key_methods": [
+        "complete",
+        "register_hermes_host_llm",
+        "unregister_hermes_host_llm"
+      ],
+      "dependencies": [
+        "agent.auxiliary_client.call_llm",
+        "mnemosyne.core.llm_backends.set_host_llm_backend"
+      ],
+      "note": "Functional duplicate of hermes_memory_provider/hermes_llm_adapter.py — both exist for different deployment paths",
+      "purpose": "Bridge Mnemosyne host-LLM registry with Hermes aux client (integration package copy)"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/install.py": {
+      "type": "python_module",
+      "package": "mnemosyne_hermes",
+      "cli_commands": [
+        "install",
+        "uninstall",
+        "status"
+      ],
+      "plugin_name": "hermes-mnemosyne",
+      "purpose": "Installer CLI for Mnemosyne Hermes memory provider"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/plugin.yaml": {
+      "type": "hermes_plugin_manifest",
+      "plugin_name": "hermes-mnemosyne",
+      "version": "0.1.1",
+      "tools": [
+        "mnemosyne_remember",
+        "mnemosyne_recall",
+        "mnemosyne_stats",
+        "mnemosyne_triple_add",
+        "mnemosyne_triple_query",
+        "mnemosyne_sleep",
+        "mnemosyne_scratchpad_write",
+        "mnemosyne_scratchpad_read",
+        "mnemosyne_scratchpad_clear",
+        "mnemosyne_invalidate",
+        "mnemosyne_export",
+        "mnemosyne_import",
+        "mnemosyne_update",
+        "mnemosyne_forget",
+        "mnemosyne_diagnose",
+        "mnemosyne_graph_query",
+        "mnemosyne_graph_link"
+      ],
+      "hooks": [
+        "pre_llm_call",
+        "on_session_start",
+        "post_tool_call"
+      ],
+      "note": "Duplicate of hermes_memory_provider/plugin.yaml but at different version (0.1.1 vs 3.1.0) and under integrations/ path",
+      "purpose": "Plugin manifest for the mnemosyne-hermes pip-installable integration package"
+    },
+    "integrations/obsidian-mnemosyne/main.ts": {
+      "type": "typescript_module",
+      "class": "MnemosynePlugin (extends Plugin)",
+      "commands": [
+        "mnemosyne-sync",
+        "mnemosyne-search",
+        "mnemosyne-stats"
+      ],
+      "settings": [
+        "dataDir",
+        "bank",
+        "syncFolder",
+        "autoSync",
+        "syncInterval",
+        "includeAssistant"
+      ],
+      "dependencies": [
+        "obsidian",
+        "child_process",
+        "sqlite3 (via embedded Python script)"
+      ],
+      "purpose": "Obsidian plugin that syncs Mnemosyne memories to vault as markdown files via embedded Python SQLite exporter"
+    },
+    "integrations/vscode-mnemosyne/.vscodeignore": {
+      "type": "vscode_ignore",
+      "ignored_patterns": [
+        "node_modules",
+        "out",
+        "src",
+        "tsconfig.json",
+        ".vscode",
+        "*.ts"
+      ],
+      "purpose": "VS Code extension packaging — exclude source/build artifacts from published .vsix"
+    },
+    "MANIFEST.in": {
+      "type": "sdist_manifest",
+      "included": [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE",
+        "UPDATING.md",
+        "CONTRIBUTING.md",
+        "docs/*.md",
+        "assets/*"
+      ],
+      "excluded": [
+        "*.pyc",
+        "__pycache__",
+        ".DS_Store",
+        "*.db"
+      ],
+      "purpose": "Python sdist packaging includes for Mnemosyne"
+    },
+    "mnemosyne/__init__.py": {
+      "type": "python_package_init",
+      "version": "3.3.0",
+      "author": "Abdias J",
+      "license": "MIT",
+      "lazy_exports": [
+        "Mnemosyne",
+        "remember",
+        "recall",
+        "get_context",
+        "get_stats",
+        "get",
+        "forget",
+        "update"
+      ],
+      "mcp_optional": true,
+      "purpose": "Main Mnemosyne package entry with lazy imports for fast startup"
+    },
+    "mnemosyne/cli.py": {
+      "type": "python_cli",
+      "commands": [
+        "store",
+        "recall",
+        "update",
+        "delete",
+        "stats",
+        "sleep",
+        "diagnose",
+        "export",
+        "import",
+        "import-hindsight",
+        "bank",
+        "backup",
+        "restore",
+        "verify",
+        "backups",
+        "mcp"
+      ],
+      "data_dir": "MNEMOSYNE_DATA_DIR env var or ~/.hermes/mnemosyne/data",
+      "purpose": "Standalone command-line interface for Mnemosyne v2 BEAM architecture"
+    },
+    "mnemosyne/core/aaak.py": {
+      "type": "python_module",
+      "compression_scheme": "AAAK Dialect",
+      "categories": [
+        "PREFERENCE",
+        "TRAIT",
+        "STATUS",
+        "INSTRUCTION",
+        "PROJECT",
+        "LOCATION",
+        "FAMILY",
+        "OCCUPATION",
+        "DECISION",
+        "EVENT",
+        "TOOL",
+        "FACT",
+        "OPINION"
+      ],
+      "key_functions": [
+        "encode",
+        "decode"
+      ],
+      "purpose": "Lossless shorthand compression for AI memory context — LLMs parse without decoder"
+    },
+    "mnemosyne/core/content_sanitizer.py": {
+      "type": "python_module",
+      "detection_methods": [
+        "data: URI prefix",
+        "Size > 1 MB hard cap",
+        "Shannon entropy > 5.0 bits/char for >100KB"
+      ],
+      "blob_storage": "~/.hermes/mnemosyne/blobs/<hash[0:2]>/<hash[0:4]>/<full-hash>",
+      "key_functions": [
+        "sanitize_content",
+        "_store_blob",
+        "_shannon_entropy"
+      ],
+      "purpose": "Detect binary/encoded content at ingest and extract to content-addressed blob storage"
+    },
+    "mnemosyne/core/mmr.py": {
+      "type": "python_module",
+      "algorithm": "Maximal Marginal Relevance",
+      "default_lambda": 0.7,
+      "similarity": "Jaccard word overlap (default)",
+      "key_function": "mmr_rerank",
+      "purpose": "Diversity re-ranking to reduce redundancy in recall results"
+    },
+    "mnemosyne/core/orchestrator.py": {
+      "type": "python_module",
+      "status": "stub/incomplete",
+      "key_function": "orchestrate_recall",
+      "note": "Currently a placeholder — references BeamMemory but has no real recall logic",
+      "purpose": "Expert retrieval orchestrator for high-reasoning tasks (not yet implemented)"
+    }
+  },
+  "neighborMap": {
+    "__init__.py (root)": {
+      "neighbors": [
+        "mnemosyne/__init__.py",
+        "hermes_memory_provider/plugin.yaml"
+      ],
+      "relationship": "Root __init__.py re-exports from mnemosyne/__init__.py (version, author) for Hermes plugin layout compat; plugin.yaml declares the tools the entry point registers",
+      "shared_context": "Hermes plugin packaging — dual-layout entry point for pip and plugin-tree installs"
+    },
+    ".githooks/pre-commit": {
+      "neighbors": [
+        ".githooks/pre-push",
+        ".mailmap"
+      ],
+      "relationship": "Both git hooks enforce code quality; pre-commit protects PII while pre-push validates version tags; .mailmap normalizes the author identity referenced in pre-commit's PII check",
+      "shared_context": "Git hooks and identity management for Mnemosyne repository"
+    },
+    ".githooks/pre-push": {
+      "neighbors": [
+        ".githooks/pre-commit",
+        "mnemosyne/__init__.py"
+      ],
+      "relationship": "pre-push validates git tags against __version__ from mnemosyne/__init__.py; paired with pre-commit for repo quality enforcement",
+      "shared_context": "Release tag validation vs version string"
+    },
+    ".github/FUNDING.yml": {
+      "neighbors": [
+        ".github/PULL_REQUEST_TEMPLATE.md"
+      ],
+      "relationship": "Both are .github repository metadata files — FUNDING.yml provides sponsor links, PR template guides contributions from those sponsors/community",
+      "shared_context": "GitHub repository metadata (funding + contribution quality)"
+    },
+    ".github/PULL_REQUEST_TEMPLATE.md": {
+      "neighbors": [
+        "mnemosyne/__init__.py",
+        "hermes_memory_provider/plugin.yaml",
+        "MANIFEST.in"
+      ],
+      "relationship": "PR template checklist includes 'version bumped in mnemosyne/__init__.py', 'CHANGELOG.md updated', and principles about no-cloud and SQLite-only that are reflected in plugin.yaml's zero-cloud description and MANIFEST.in's packaging",
+      "shared_context": "Contribution quality standards for Mnemosyne"
+    },
+    ".mailmap": {
+      "neighbors": [
+        ".githooks/pre-commit",
+        "hermes_memory_provider/plugin.yaml"
+      ],
+      "relationship": "Mailmap normalizes author 'Abdias J' referenced in pre-commit hook and as plugin.yaml author field; provides the canonical noreply email used by the PII detector",
+      "shared_context": "Author identity normalization"
+    },
+    "docs/experiments/2026-05-12-beam-recovery-arms-abc.md": {
+      "neighbors": [
+        "mnemosyne/core/mmr.py",
+        "mnemosyne/core/orchestrator.py",
+        "mnemosyne/core/aaak.py"
+      ],
+      "relationship": "Experiment plan references MMR diversity rerank (core/mmr.py) as part of polyphonic engine, proposes toggles for voices that use AAAK compression (core/aaak.py), and the orchestrate_recall stub (core/orchestrator.py) is the kind of unified search the plan's pure-recall mode would route through",
+      "shared_context": "BEAM benchmark experiment design — the plan tests the recall stack these modules implement"
+    },
+    "hermes_memory_provider/hermes_llm_adapter.py": {
+      "neighbors": [
+        "hermes_memory_provider/plugin.yaml",
+        "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+        "hermes_memory_provider/README.md"
+      ],
+      "relationship": "The LLM adapter is one of the modules in the hermes_memory_provider package defined by plugin.yaml and documented in README.md; a near-identical copy exists at integrations/hermes/src/mnemosyne_hermes/ for the pip-installable integration package",
+      "shared_context": "Hermes-Mnemosyne LLM bridging — deploys as part of memory provider plugin"
+    },
+    "hermes_memory_provider/plugin.yaml": {
+      "neighbors": [
+        "hermes_memory_provider/README.md",
+        "hermes_memory_provider/hermes_llm_adapter.py",
+        "__init__.py (root)",
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml"
+      ],
+      "relationship": "plugin.yaml declares the manifest (tools, hooks, version) for the provider package that includes hermes_llm_adapter.py and is documented by README.md; a duplicate manifest with different version exists under integrations/",
+      "shared_context": "Hermes plugin manifest — declares tools and hooks for the memory provider"
+    },
+    "hermes_memory_provider/README.md": {
+      "neighbors": [
+        "hermes_memory_provider/plugin.yaml",
+        "hermes_memory_provider/hermes_llm_adapter.py",
+        "integrations/hermes/src/mnemosyne_hermes/cli.py"
+      ],
+      "relationship": "README documents deployment and tools from plugin.yaml; CLI commands match tools listed in manifest; LLM adapter enables the host-LLM integration mentioned in architecture",
+      "shared_context": "User-facing documentation for Mnemosyne Hermes deployment"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/audit.py": {
+      "neighbors": [
+        "integrations/hermes/src/mnemosyne_hermes/cli.py",
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml"
+      ],
+      "relationship": "AuditLog is used by the CLI's diagnostics path; both are part of the mnemosyne_hermes integration package defined by plugin.yaml",
+      "shared_context": "Hermes integration package — audit logging for memory mutation observability"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/cli.py": {
+      "neighbors": [
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+        "integrations/hermes/src/mnemosyne_hermes/audit.py",
+        "integrations/hermes/src/mnemosyne_hermes/install.py",
+        "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py"
+      ],
+      "relationship": "CLI dispatches subcommands that use all other modules in the package: audit for diagnostics, install for setup/teardown, LLM adapter for LLM ops; plugin.yaml defines the tools the CLI manages",
+      "shared_context": "Hermes CLI integration for memory provider management"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py": {
+      "neighbors": [
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+        "hermes_memory_provider/hermes_llm_adapter.py"
+      ],
+      "relationship": "Duplicate of hermes_memory_provider version — same class, same purpose, different deployment path (pip package vs direct plugin symlink)",
+      "shared_context": "Hermes aux LLM bridging — duplicated for two deployment paths"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/install.py": {
+      "neighbors": [
+        "integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+        "hermes_memory_provider/plugin.yaml",
+        "hermes_memory_provider/README.md"
+      ],
+      "relationship": "Install.py copies the integration package to ~/.hermes/plugins/ referencing plugin.yaml and documented deployment from README.md; both plugin.yamls declare the same tool surface",
+      "shared_context": "Deployment installer for Mnemosyne Hermes provider"
+    },
+    "integrations/hermes/src/mnemosyne_hermes/plugin.yaml": {
+      "neighbors": [
+        "integrations/hermes/src/mnemosyne_hermes/cli.py",
+        "integrations/hermes/src/mnemosyne_hermes/audit.py",
+        "integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+        "integrations/hermes/src/mnemosyne_hermes/install.py",
+        "hermes_memory_provider/plugin.yaml"
+      ],
+      "relationship": "Plugin manifest for the integration package — declares all tools and hooks used by the CLI, audit, and LLM adapter modules; version differs (0.1.1) from the provider-level manifest (3.1.0) reflecting different release cadences",
+      "shared_context": "Hermes plugin manifest for the pip-installable integration distribution"
+    },
+    "integrations/obsidian-mnemosyne/main.ts": {
+      "neighbors": [
+        "mnemosyne/cli.py",
+        "mnemosyne/core/content_sanitizer.py"
+      ],
+      "relationship": "Obsidian plugin embeds a Python script that queries Mnemosyne's SQLite DB directly (same DB the CLI writes to); content sanitizer processes the memory content that gets exported to markdown vault files",
+      "shared_context": "External integration — read-only access to Mnemosyne DB from Obsidian"
+    },
+    "integrations/vscode-mnemosyne/.vscodeignore": {
+      "neighbors": [
+        "integrations/obsidian-mnemosyne/main.ts"
+      ],
+      "relationship": "Both are IDE integration packaging files — .vscodeignore controls the VSIX publish content for the VS Code extension, while main.ts is the active source for the Obsidian plugin",
+      "shared_context": "IDE integration publishing and packaging"
+    },
+    "MANIFEST.in": {
+      "neighbors": [
+        "mnemosyne/__init__.py",
+        "hermes_memory_provider/plugin.yaml"
+      ],
+      "relationship": "MANIFEST.in includes README, CHANGELOG, LICENSE referenced in PR template; excludes *.db (runtime data); version in mnemosyne/__init__.py determines sdist version uploaded to PyPI",
+      "shared_context": "Python sdist packaging for PyPI distribution"
+    },
+    "mnemosyne/__init__.py": {
+      "neighbors": [
+        "mnemosyne/cli.py",
+        "mnemosyne/core/mmr.py",
+        "mnemosyne/core/aaak.py",
+        "mnemosyne/core/content_sanitizer.py",
+        "mnemosyne/core/orchestrator.py",
+        "__init__.py (root)"
+      ],
+      "relationship": "Package init lazy-imports all core modules (memory, MMR, AAAK, content_sanitizer, orchestrator); CLI dispatches to these cores; root __init__.py re-exports version from this module",
+      "shared_context": "Mnemosyne core package — the central hub that connects all submodules"
+    },
+    "mnemosyne/cli.py": {
+      "neighbors": [
+        "mnemosyne/__init__.py",
+        "mnemosyne/core/mmr.py",
+        "mnemosyne/core/content_sanitizer.py",
+        "integrations/hermes/src/mnemosyne_hermes/cli.py"
+      ],
+      "relationship": "Standalone CLI uses core modules directly; hermes CLI is a wrapper that delegates to the same BeamMemory backend; MMR is used in recall path, content sanitizer in ingest path",
+      "shared_context": "CLI interface — standalone and Hermes-integrated paths to Mnemosyne"
+    },
+    "mnemosyne/core/aaak.py": {
+      "neighbors": [
+        "mnemosyne/core/content_sanitizer.py",
+        "mnemosyne/core/mmr.py"
+      ],
+      "relationship": "AAAK compression is applied in the ingest/sleep pipeline alongside content sanitizer (both pre-process memory content); MMR re-ranks compressed/encoded memory during recall",
+      "shared_context": "Memory content processing pipeline — compression, sanitization, and re-ranking"
+    },
+    "mnemosyne/core/content_sanitizer.py": {
+      "neighbors": [
+        "mnemosyne/core/aaak.py",
+        "integrations/obsidian-mnemosyne/main.ts"
+      ],
+      "relationship": "Sanitizer extracts binary content to blob storage before AAAK compression or storage; Obsidian plugin reads the processed content from the same DB",
+      "shared_context": "Content safety and preprocessing — binary extraction and blob storage"
+    },
+    "mnemosyne/core/mmr.py": {
+      "neighbors": [
+        "mnemosyne/core/orchestrator.py",
+        "docs/experiments/2026-05-12-beam-recovery-arms-abc.md"
+      ],
+      "relationship": "MMR diversity rerank is a key component of the recall path used by orchestrator (when implemented); experiment plan's polyphonic engine relies on MMR for voice combination",
+      "shared_context": "Recall result processing — diversity re-ranking for relevance"
+    },
+    "mnemosyne/core/orchestrator.py": {
+      "neighbors": [
+        "mnemosyne/core/mmr.py",
+        "docs/experiments/2026-05-12-beam-recovery-arms-abc.md"
+      ],
+      "relationship": "Orchestrator stub is intended to call FTS/vector search and return results; experiment plan proposes the pure-recall mode that orchestrator would route through; currently placeholder only",
+      "shared_context": "Expert retrieval orchestration (not yet implemented) — planned unified search API"
+    }
+  },
+  "semanticAnalysis": {
+    "__init__.py": {
+      "fileName": "__init__.py",
+      "filePath": "/root/mnemosyne/mnemosyne/__init__.py",
+      "category": "code",
+      "type": "python",
+      "description": "Mnemosyne package init — lazy imports, v3.3.0, optional MCP server",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "pre-commit": {
+      "fileName": "pre-commit",
+      "filePath": "/root/mnemosyne/.githooks/pre-commit",
+      "category": "script",
+      "type": "shell",
+      "description": "Pre-commit hook blocking commits containing personal email PII",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "pre-push": {
+      "fileName": "pre-push",
+      "filePath": "/root/mnemosyne/.githooks/pre-push",
+      "category": "script",
+      "type": "shell",
+      "description": "Pre-push hook validating tags against __version__ and SemVer rules",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "FUNDING.yml": {
+      "fileName": "FUNDING.yml",
+      "filePath": "/root/mnemosyne/.github/FUNDING.yml",
+      "category": "config",
+      "type": "yaml",
+      "description": "GitHub funding configuration — AxDSan (GitHub Sponsors, Ko-fi)",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "PULL_REQUEST_TEMPLATE.md": {
+      "fileName": "PULL_REQUEST_TEMPLATE.md",
+      "filePath": "/root/mnemosyne/.github/PULL_REQUEST_TEMPLATE.md",
+      "category": "docs",
+      "type": "document",
+      "description": "Pull request template with checklist for version bump, CHANGELOG, README",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    ".mailmap": {
+      "fileName": ".mailmap",
+      "filePath": "/root/mnemosyne/.mailmap",
+      "category": "config",
+      "type": "data",
+      "description": "Git .mailmap mapping multiple author name variants to canonical 'Abdias J'",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    ".understandignore": {
+      "fileName": ".understandignore",
+      "filePath": "/root/mnemosyne/.understand-anything/.understandignore",
+      "category": "config",
+      "type": "code",
+      "description": "Understand-anything ignore patterns (FILE NOT FOUND)",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "2026-05-12-beam-recovery-arms-abc.md": {
+      "fileName": "2026-05-12-beam-recovery-arms-abc.md",
+      "filePath": "/root/mnemosyne/docs/experiments/2026-05-12-beam-recovery-arms-abc.md",
+      "category": "docs",
+      "type": "document",
+      "description": "BEAM recovery experiment plan — 10-phase ablation sequence, theses, toggles, and implementation gaps",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "hermes_llm_adapter.py": {
+      "fileName": "hermes_llm_adapter.py",
+      "filePath": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/hermes_llm_adapter.py",
+      "category": "code",
+      "type": "python",
+      "description": "Hermes Auxiliary LLM Adapter (duplicate of hermes_memory_provider version) for integration package",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "plugin.yaml": {
+      "fileName": "plugin.yaml",
+      "filePath": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/plugin.yaml",
+      "category": "config",
+      "type": "yaml",
+      "description": "Hermes plugin manifest for mnemosyne-hermes integration package (v0.1.1)",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "README.md": {
+      "fileName": "README.md",
+      "filePath": "/root/mnemosyne/hermes_memory_provider/README.md",
+      "category": "docs",
+      "type": "document",
+      "description": "README for deploying Mnemosyne as Hermes memory provider via plugin system",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "audit.py": {
+      "fileName": "audit.py",
+      "filePath": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/audit.py",
+      "category": "code",
+      "type": "python",
+      "description": "Append-only SQLite-backed memory audit log for Mnemosyne provider",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "cli.py": {
+      "fileName": "cli.py",
+      "filePath": "/root/mnemosyne/mnemosyne/cli.py",
+      "category": "code",
+      "type": "python",
+      "description": "Standalone CLI for Mnemosyne (store, recall, stats, sleep, diagnose, export, import, backup, restore, verify, bank management)",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "install.py": {
+      "fileName": "install.py",
+      "filePath": "/root/mnemosyne/integrations/hermes/src/mnemosyne_hermes/install.py",
+      "category": "code",
+      "type": "python",
+      "description": "Installer CLI for Mnemosyne Hermes memory provider — install/uninstall/status",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "main.ts": {
+      "fileName": "main.ts",
+      "filePath": "/root/mnemosyne/integrations/obsidian-mnemosyne/main.ts",
+      "category": "code",
+      "type": "typescript",
+      "description": "Obsidian plugin for Mnemosyne — syncs memories to vault as markdown files",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    ".vscodeignore": {
+      "fileName": ".vscodeignore",
+      "filePath": "/root/mnemosyne/integrations/vscode-mnemosyne/.vscodeignore",
+      "category": "config",
+      "type": "code",
+      "description": "VS Code extension ignore patterns (node_modules, out, src, *.ts)",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "MANIFEST.in": {
+      "fileName": "MANIFEST.in",
+      "filePath": "/root/mnemosyne/MANIFEST.in",
+      "category": "config",
+      "type": "code",
+      "description": "Python sdist manifest — includes README, CHANGELOG, LICENSE, docs, assets",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "aaak.py": {
+      "fileName": "aaak.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/aaak.py",
+      "category": "code",
+      "type": "python",
+      "description": "AAAK dialect compression — LLM-readable shorthand encoding for memory context",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "content_sanitizer.py": {
+      "fileName": "content_sanitizer.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/content_sanitizer.py",
+      "category": "code",
+      "type": "python",
+      "description": "Content sanitizer — detects binary/base64/high-entropy data, extracts to blob storage",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "mmr.py": {
+      "fileName": "mmr.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/mmr.py",
+      "category": "code",
+      "type": "python",
+      "description": "MMR (Maximal Marginal Relevance) diversity re-ranking for recall results",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    },
+    "orchestrator.py": {
+      "fileName": "orchestrator.py",
+      "filePath": "/root/mnemosyne/mnemosyne/core/orchestrator.py",
+      "category": "code",
+      "type": "python",
+      "description": "Expert retrieval orchestrator stub — placeholder for unified FTS/vector search",
+      "purpose": "",
+      "keyFindings": [],
+      "dependencies": [],
+      "exportedItems": [],
+      "securityConcerns": [],
+      "recommendations": []
+    }
+  },
+  "metadata": {
+    "generatedAt": "2026-06-03T00:12:46.929Z",
+    "toolVersion": "1.0.0",
+    "fileCount": 25,
+    "categories": [
+      "code",
+      "script",
+      "config",
+      "docs"
+    ],
+    "types": [
+      "python",
+      "shell",
+      "yaml",
+      "document",
+      "data",
+      "code",
+      "typescript"
+    ]
+  }
+}

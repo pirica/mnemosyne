@@ -1,0 +1,39 @@
+{
+  "projectRoot": "/root/.hermes/projects/mnemosyne",
+  "batchFiles": [
+    {"path": "integrations/hermes/src/mnemosyne_hermes/__init__.py", "language": "python", "sizeLines": 1557, "fileCategory": "code"},
+    {"path": "integrations/hermes/src/mnemosyne_hermes/tools.py", "language": "python", "sizeLines": 460, "fileCategory": "code"},
+    {"path": "mnemosyne/core/binary_vectors.py", "language": "python", "sizeLines": 372, "fileCategory": "code"},
+    {"path": "mnemosyne/core/episodic_graph.py", "language": "python", "sizeLines": 595, "fileCategory": "code"},
+    {"path": "mnemosyne/core/polyphonic_recall.py", "language": "python", "sizeLines": 878, "fileCategory": "code"},
+    {"path": "mnemosyne/core/typed_memory.py", "language": "python", "sizeLines": 349, "fileCategory": "code"},
+    {"path": "mnemosyne/core/veracity_consolidation.py", "language": "python", "sizeLines": 947, "fileCategory": "code"},
+    {"path": "tests/test_beam_e4_remember_batch_veracity.py", "language": "python", "sizeLines": 451, "fileCategory": "code"},
+    {"path": "tests/test_consolidate_fact_concurrency.py", "language": "python", "sizeLines": 537, "fileCategory": "code"},
+    {"path": "tests/test_consolidate_fact_id_collision.py", "language": "python", "sizeLines": 439, "fileCategory": "code"},
+    {"path": "tests/test_consolidate_fact_sibling_races.py", "language": "python", "sizeLines": 582, "fileCategory": "code"},
+    {"path": "tests/test_e5a_vector_voice_dense_rewire.py", "language": "python", "sizeLines": 853, "fileCategory": "code"},
+    {"path": "tests/test_graph_tools.py", "language": "python", "sizeLines": 272, "fileCategory": "code"},
+    {"path": "tests/test_integration.py", "language": "python", "sizeLines": 268, "fileCategory": "code"},
+    {"path": "tests/test_pre_experiment_fidelity.py", "language": "python", "sizeLines": 588, "fileCategory": "code"},
+    {"path": "tests/test_proactive_linking.py", "language": "python", "sizeLines": 332, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "integrations/hermes/src/mnemosyne_hermes/__init__.py": ["integrations/hermes/src/mnemosyne_hermes/tools.py", "mnemosyne/core/episodic_graph.py"],
+    "integrations/hermes/src/mnemosyne_hermes/tools.py": [],
+    "mnemosyne/core/binary_vectors.py": [],
+    "mnemosyne/core/episodic_graph.py": [],
+    "mnemosyne/core/polyphonic_recall.py": ["mnemosyne/core/episodic_graph.py", "mnemosyne/core/typed_memory.py", "mnemosyne/core/veracity_consolidation.py"],
+    "mnemosyne/core/typed_memory.py": [],
+    "mnemosyne/core/veracity_consolidation.py": [],
+    "tests/test_beam_e4_remember_batch_veracity.py": ["mnemosyne/core/beam.py", "mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_consolidate_fact_concurrency.py": ["mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_consolidate_fact_id_collision.py": ["mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_consolidate_fact_sibling_races.py": ["mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_e5a_vector_voice_dense_rewire.py": ["mnemosyne/core/beam.py", "mnemosyne/core/polyphonic_recall.py"],
+    "tests/test_graph_tools.py": ["hermes_memory_provider/__init__.py", "mnemosyne/core/beam.py", "mnemosyne/core/episodic_graph.py"],
+    "tests/test_integration.py": ["mnemosyne/core/binary_vectors.py", "mnemosyne/core/episodic_graph.py", "mnemosyne/core/polyphonic_recall.py", "mnemosyne/core/typed_memory.py", "mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_pre_experiment_fidelity.py": ["mnemosyne/core/beam.py", "mnemosyne/core/veracity_consolidation.py"],
+    "tests/test_proactive_linking.py": ["mnemosyne/core/beam.py", "mnemosyne/core/episodic_graph.py"]
+  }
+}

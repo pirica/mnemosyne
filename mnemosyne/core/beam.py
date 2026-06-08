@@ -1295,11 +1295,22 @@ def _extract_and_store_facts(beam: "BeamMemory", memory_id: str, content: str, s
 
 def _store_facts_in_table(beam: "BeamMemory", memory_id: str,
                           content: str, source: str, facts: list):
-    """Store extracted free-text facts as simple SPO entries in the facts table."""
+    """Store extracted free-text facts as SPO entries in the facts table.
+
+    Dual-writes: relational ``facts`` table for keyword matching, plus
+    ``vec_facts`` sqlite-vec virtual table for semantic similarity in
+    ``fact_recall()`` and ``polyphonic_recall.py``.
+
+    Vector inserts are best-effort: if embeddings aren't available or
+    sqlite-vec isn't loaded, the relational insert still succeeds.
+    """
     import hashlib
     cursor = beam.conn.cursor()
     timestamp = __import__('datetime').datetime.now().isoformat()
-    
+
+    # Cache embedding availability for the loop — avoids per-fact calls
+    vec_ok = _vec_available(beam.conn) and _embeddings.available()
+
     for i, fact_text in enumerate(facts):
         # Derive subject from source, predicate = "stated", object = fact text
         subject = source or "user"
@@ -1323,10 +1334,83 @@ def _store_facts_in_table(beam: "BeamMemory", memory_id: str,
                 memory_id,
                 0.7,
             ))
+            # Dual-write into vec_facts so fact_recall() and polyphonic
+            # recall can use vector similarity on fact text. Best-effort:
+            # embedding generation may fail, sqlite-vec may be absent.
+            if vec_ok:
+                try:
+                    fact_rowid = cursor.lastrowid
+                    if fact_rowid:
+                        fact_vec = _embeddings.embed_query(fact_text)
+                        if fact_vec is not None:
+                            _vec_insert(beam.conn, fact_rowid, fact_vec,
+                                        table="vec_facts")
+                except Exception:
+                    pass  # Vector insert is best-effort
         except Exception:
             continue  # Best-effort per fact
-    
+
     beam.conn.commit()
+
+
+def backfill_vec_facts(beam: "BeamMemory") -> Dict[str, int]:
+    """Idempotently insert missing vec_facts embeddings for existing facts.
+
+    Finds facts rows that exist in the relational ``facts`` table but
+    have no corresponding row in the ``vec_facts`` sqlite-vec virtual
+    table, generates embeddings, and inserts them.
+
+    Only runs if both sqlite-vec and embeddings are available.  Returns
+    ``{"found": N, "inserted": M, "skipped": S}`` for monitoring.
+
+    Safe to call on every startup — runs the check in O(N) with a single
+    LEFT JOIN.  If vec_facts doesn't exist or the gaps are already
+    filled, returns immediately with zero counts.
+    """
+    if not _vec_available(beam.conn) or not _embeddings.available():
+        return {"found": 0, "inserted": 0, "skipped": 0}
+
+    cursor = beam.conn.cursor()
+
+    # Verify vec_facts virtual table exists
+    try:
+        cursor.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='vec_facts'"
+        )
+        if not cursor.fetchone():
+            return {"found": 0, "inserted": 0, "skipped": 0}
+    except Exception:
+        return {"found": 0, "inserted": 0, "skipped": 0}
+
+    # Find facts missing from vec_facts
+    try:
+        cursor.execute("""
+            SELECT f.rowid, f.object
+            FROM facts f
+            LEFT JOIN vec_facts vf ON vf.rowid = f.rowid
+            WHERE vf.rowid IS NULL
+            ORDER BY f.rowid
+        """)
+        missing = cursor.fetchall()
+    except Exception:
+        return {"found": 0, "inserted": 0, "skipped": 0}
+
+    found = len(missing)
+    inserted = 0
+    skipped = 0
+
+    for rowid, fact_text in missing:
+        try:
+            fact_vec = _embeddings.embed_query(fact_text)
+            if fact_vec is not None:
+                _vec_insert(beam.conn, rowid, fact_vec, table="vec_facts")
+                inserted += 1
+            else:
+                skipped += 1
+        except Exception:
+            skipped += 1
+
+    return {"found": found, "inserted": inserted, "skipped": skipped}
 
 
 def _find_memories_by_entity(beam: "BeamMemory", entity_name: str, threshold: float = 0.8) -> List[str]:
@@ -1758,7 +1842,8 @@ def _effective_vec_type(conn: sqlite3.Connection) -> str:
     return "float32"
 
 
-def _vec_insert(conn: sqlite3.Connection, rowid: int, embedding: List[float]):
+def _vec_insert(conn: sqlite3.Connection, rowid: int, embedding: List[float],
+                 table: str = "vec_episodes"):
     """Insert embedding into sqlite-vec table with quantization via SQL functions.
 
     Manually normalizes the embedding to unit length before quantization.
@@ -1766,6 +1851,9 @@ def _vec_insert(conn: sqlite3.Connection, rowid: int, embedding: List[float]):
     1024-dim vectors (works for 3-dim, silently passes through unnormalized
     vectors at high dimensions).  Pre-normalizing works around the bug until
     upstream sqlite-vec ships a fix.
+
+    ``table`` selects the target virtual table: ``vec_episodes`` (default,
+    episodic memory) or ``vec_facts`` (structured SPO facts).
     """
     vec_type = _effective_vec_type(conn)
     # Normalize to unit length before quantization
@@ -1778,17 +1866,17 @@ def _vec_insert(conn: sqlite3.Connection, rowid: int, embedding: List[float]):
     emb_json = json.dumps(emb_arr.tolist())
     if vec_type == "bit":
         conn.execute(
-            "INSERT INTO vec_episodes(rowid, embedding) VALUES (?, vec_quantize_binary(?))",
+            f"INSERT INTO {table}(rowid, embedding) VALUES (?, vec_quantize_binary(?))",
             (rowid, emb_json)
         )
     elif vec_type == "int8":
         conn.execute(
-            "INSERT INTO vec_episodes(rowid, embedding) VALUES (?, vec_quantize_int8(?, 'unit'))",
+            f"INSERT INTO {table}(rowid, embedding) VALUES (?, vec_quantize_int8(?, 'unit'))",
             (rowid, emb_json)
         )
     else:
         conn.execute(
-            "INSERT INTO vec_episodes(rowid, embedding) VALUES (?, ?)",
+            f"INSERT INTO {table}(rowid, embedding) VALUES (?, ?)",
             (rowid, emb_json)
         )
     # Ensure the insert is committed even when the caller's connection
@@ -2073,6 +2161,22 @@ class BeamMemory:
                 self.veracity_consolidator = VeracityConsolidator(conn=self.conn, db_path=self.db_path)
             except Exception:
                 logger.info("Regex extraction failed, skipping", exc_info=True)
+
+        # Auto-backfill missing vec_facts embeddings on every init.
+        # Idempotent — on fresh installs or already-complete databases,
+        # compute+vector cost is O(0).  Only pays cost when the gap
+        # exists (e.g. facts stored by older _store_facts_in_table
+        # before the dual-write fix).  Background, best-effort, silent
+        # on failure.
+        try:
+            result = backfill_vec_facts(self)
+            if result.get("found", 0) > 0:
+                logger.info(
+                    "vec_facts backfill: %s found, %s embedded, %s skipped",
+                    result["found"], result["inserted"], result["skipped"],
+                )
+        except Exception:
+            pass  # Never block init for a backfill error
 
     # ------------------------------------------------------------------
     # E6 schema split + auto-migration

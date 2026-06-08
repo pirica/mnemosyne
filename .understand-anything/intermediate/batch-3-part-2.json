@@ -1,0 +1,1447 @@
+{
+  "nodes": [
+    {
+      "id": "file:mnemosyne/mcp_server.py",
+      "type": "file",
+      "name": "mcp_server.py",
+      "filePath": "mnemosyne/mcp_server.py",
+      "summary": "MCP server entry point supporting stdio and SSE transports, with auth resolution for loopback/remote hosts.",
+      "tags": [
+        "mcp",
+        "server",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:_is_loopback",
+      "type": "function",
+      "name": "_is_loopback",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        64,
+        66
+      ],
+      "summary": "Function _is_loopback in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:_resolve_sse_auth",
+      "type": "function",
+      "name": "_resolve_sse_auth",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        69,
+        87
+      ],
+      "summary": "Function _resolve_sse_auth in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:_run_stdio",
+      "type": "function",
+      "name": "_run_stdio",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        94,
+        116
+      ],
+      "summary": "Function _run_stdio in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:_build_sse_app",
+      "type": "function",
+      "name": "_build_sse_app",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        119,
+        211
+      ],
+      "summary": "Function _build_sse_app in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:_run_sse",
+      "type": "function",
+      "name": "_run_sse",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        214,
+        230
+      ],
+      "summary": "Function _run_sse in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:run_mcp_server",
+      "type": "function",
+      "name": "run_mcp_server",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        237,
+        261
+      ],
+      "summary": "Function run_mcp_server in mnemosyne/mcp_server.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_server.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "mnemosyne/mcp_server.py",
+      "lineRange": [
+        264,
+        299
+      ],
+      "summary": "Entry point that parses arguments and runs mcp_server.py main logic.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mnemosyne/mcp_tools.py",
+      "type": "file",
+      "name": "mcp_tools.py",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "summary": "Implements MCP tool handlers for remember, recall, sleep, scratchpad, stats, and triple-store operations backed by Mnemosyne core.",
+      "tags": [
+        "mcp",
+        "tool-definition",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_create_instance",
+      "type": "function",
+      "name": "_create_instance",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        240,
+        261
+      ],
+      "summary": "Function _create_instance in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_resolve_bank",
+      "type": "function",
+      "name": "_resolve_bank",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        264,
+        266
+      ],
+      "summary": "Function _resolve_bank in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_remember",
+      "type": "function",
+      "name": "_handle_remember",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        273,
+        297
+      ],
+      "summary": "Function _handle_remember in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_recall",
+      "type": "function",
+      "name": "_handle_recall",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        300,
+        338
+      ],
+      "summary": "Function _handle_recall in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_sleep",
+      "type": "function",
+      "name": "_handle_sleep",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        341,
+        359
+      ],
+      "summary": "Function _handle_sleep in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_read",
+      "type": "function",
+      "name": "_handle_scratchpad_read",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        362,
+        374
+      ],
+      "summary": "Function _handle_scratchpad_read in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_write",
+      "type": "function",
+      "name": "_handle_scratchpad_write",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        377,
+        389
+      ],
+      "summary": "Function _handle_scratchpad_write in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_get_stats",
+      "type": "function",
+      "name": "_handle_get_stats",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        392,
+        413
+      ],
+      "summary": "Function _handle_get_stats in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_triple_add",
+      "type": "function",
+      "name": "_handle_triple_add",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        416,
+        490
+      ],
+      "summary": "Function _handle_triple_add in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:_handle_triple_query",
+      "type": "function",
+      "name": "_handle_triple_query",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        493,
+        533
+      ],
+      "summary": "Function _handle_triple_query in mnemosyne/mcp_tools.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:handle_tool_call",
+      "type": "function",
+      "name": "handle_tool_call",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        552,
+        570
+      ],
+      "summary": "Routes MCP tool calls by name to the appropriate handler function.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mnemosyne/mcp_tools.py:get_tool_definitions",
+      "type": "function",
+      "name": "get_tool_definitions",
+      "filePath": "mnemosyne/mcp_tools.py",
+      "lineRange": [
+        573,
+        575
+      ],
+      "summary": "Returns the list of MCP tool definitions for schema registration.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/benchmark_beam_comprehensive.py",
+      "type": "file",
+      "name": "benchmark_beam_comprehensive.py",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "summary": "Benchmark suite measuring write throughput, episodic insert, recall scaling, sleep cycle, legacy vs beam comparison, and scratchpad performance.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_writes",
+      "type": "function",
+      "name": "benchmark_writes",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        17,
+        24
+      ],
+      "summary": "Benchmark measuring writes performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_episodic_insert",
+      "type": "function",
+      "name": "benchmark_episodic_insert",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        27,
+        38
+      ],
+      "summary": "Benchmark measuring episodic insert performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_recall_scaling",
+      "type": "function",
+      "name": "benchmark_recall_scaling",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        41,
+        57
+      ],
+      "summary": "Benchmark measuring recall scaling performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_sleep",
+      "type": "function",
+      "name": "benchmark_sleep",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        60,
+        75
+      ],
+      "summary": "Benchmark measuring sleep performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_legacy_vs_beam",
+      "type": "function",
+      "name": "benchmark_legacy_vs_beam",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        78,
+        110
+      ],
+      "summary": "Benchmark measuring legacy vs beam performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:benchmark_scratchpad",
+      "type": "function",
+      "name": "benchmark_scratchpad",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        113,
+        125
+      ],
+      "summary": "Benchmark measuring scratchpad performance.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/benchmark_beam_comprehensive.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tests/benchmark_beam_comprehensive.py",
+      "lineRange": [
+        128,
+        149
+      ],
+      "summary": "Entry point that parses arguments and runs benchmark_beam_comprehensive.py main logic.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_c25_deltasync_allowlist.py",
+      "type": "file",
+      "name": "test_c25_deltasync_allowlist.py",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "summary": "Tests for delta-sync table/column allowlist enforcement, injection prevention, checkpoint isolation, and end-to-end roundtrip integrity.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_c25_deltasync_allowlist.py:temp_db",
+      "type": "function",
+      "name": "temp_db",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        49,
+        51
+      ],
+      "summary": "Function temp_db in tests/test_c25_deltasync_allowlist.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_c25_deltasync_allowlist.py:mnem",
+      "type": "function",
+      "name": "mnem",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        55,
+        61
+      ],
+      "summary": "Function mnem in tests/test_c25_deltasync_allowlist.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_c25_deltasync_allowlist.py:sync_ckpt_dir",
+      "type": "function",
+      "name": "sync_ckpt_dir",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        65,
+        66
+      ],
+      "summary": "Function sync_ckpt_dir in tests/test_c25_deltasync_allowlist.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_c25_deltasync_allowlist.py:TestC25TableAllowlist",
+      "type": "class",
+      "name": "TestC25TableAllowlist",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        69,
+        144
+      ],
+      "summary": "Class TestC25TableAllowlist.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_c25_deltasync_allowlist.py:TestC25ColumnAllowlist",
+      "type": "class",
+      "name": "TestC25ColumnAllowlist",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        147,
+        303
+      ],
+      "summary": "Class TestC25ColumnAllowlist.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c25_deltasync_allowlist.py:TestC25ReviewHardening",
+      "type": "class",
+      "name": "TestC25ReviewHardening",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        306,
+        557
+      ],
+      "summary": "Class TestC25ReviewHardening.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_c25_deltasync_allowlist.py:TestC25EndToEndRoundtrip",
+      "type": "class",
+      "name": "TestC25EndToEndRoundtrip",
+      "filePath": "tests/test_c25_deltasync_allowlist.py",
+      "lineRange": [
+        560,
+        607
+      ],
+      "summary": "Class TestC25EndToEndRoundtrip.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_cli_stats.py",
+      "type": "file",
+      "name": "test_cli_stats.py",
+      "filePath": "tests/test_cli_stats.py",
+      "summary": "Regression tests for CLI stats output, verifying working/episodic/triple counts and bank-aware stats display.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_cli_stats.py:_seed",
+      "type": "function",
+      "name": "_seed",
+      "filePath": "tests/test_cli_stats.py",
+      "lineRange": [
+        18,
+        31
+      ],
+      "summary": "Function _seed in tests/test_cli_stats.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_cli_stats.py:_run_cmd_stats",
+      "type": "function",
+      "name": "_run_cmd_stats",
+      "filePath": "tests/test_cli_stats.py",
+      "lineRange": [
+        34,
+        39
+      ],
+      "summary": "Function _run_cmd_stats in tests/test_cli_stats.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_cli_stats.py:_line_value",
+      "type": "function",
+      "name": "_line_value",
+      "filePath": "tests/test_cli_stats.py",
+      "lineRange": [
+        42,
+        52
+      ],
+      "summary": "Function _line_value in tests/test_cli_stats.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_cli_stats.py:TestCliStatsRegression",
+      "type": "class",
+      "name": "TestCliStatsRegression",
+      "filePath": "tests/test_cli_stats.py",
+      "lineRange": [
+        55,
+        93
+      ],
+      "summary": "Class TestCliStatsRegression.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_cli_stats.py:TestGetStatsShape",
+      "type": "class",
+      "name": "TestGetStatsShape",
+      "filePath": "tests/test_cli_stats.py",
+      "lineRange": [
+        96,
+        121
+      ],
+      "summary": "Class TestGetStatsShape.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_configurable_scoring.py",
+      "type": "file",
+      "name": "test_configurable_scoring.py",
+      "filePath": "tests/test_configurable_scoring.py",
+      "summary": "Tests for configurable recall scoring weights, including environment variable overrides, normalization, and edge cases.",
+      "tags": [
+        "test",
+        "pytest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_configurable_scoring.py:temp_db",
+      "type": "function",
+      "name": "temp_db",
+      "filePath": "tests/test_configurable_scoring.py",
+      "lineRange": [
+        115,
+        120
+      ],
+      "summary": "Function temp_db in tests/test_configurable_scoring.py.",
+      "tags": [
+        "function",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_configurable_scoring.py:TestNormalizeWeights",
+      "type": "class",
+      "name": "TestNormalizeWeights",
+      "filePath": "tests/test_configurable_scoring.py",
+      "lineRange": [
+        35,
+        107
+      ],
+      "summary": "Class TestNormalizeWeights.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_configurable_scoring.py:TestRecallConfigurableWeights",
+      "type": "class",
+      "name": "TestRecallConfigurableWeights",
+      "filePath": "tests/test_configurable_scoring.py",
+      "lineRange": [
+        123,
+        235
+      ],
+      "summary": "Class TestRecallConfigurableWeights.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:tests/test_configurable_scoring.py:TestPublicRecallConfigurableWeights",
+      "type": "class",
+      "name": "TestPublicRecallConfigurableWeights",
+      "filePath": "tests/test_configurable_scoring.py",
+      "lineRange": [
+        238,
+        280
+      ],
+      "summary": "Class TestPublicRecallConfigurableWeights.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_configurable_scoring.py:TestEdgeCases",
+      "type": "class",
+      "name": "TestEdgeCases",
+      "filePath": "tests/test_configurable_scoring.py",
+      "lineRange": [
+        287,
+        315
+      ],
+      "summary": "Class TestEdgeCases.",
+      "tags": [
+        "class",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_is_loopback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_is_loopback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_resolve_sse_auth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_resolve_sse_auth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_run_stdio",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_run_stdio",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_build_sse_app",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_build_sse_app",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_run_sse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:_run_sse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:run_mcp_server",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:run_mcp_server",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "function:mnemosyne/mcp_server.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_create_instance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_create_instance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_resolve_bank",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_resolve_bank",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_remember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_remember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_recall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_recall",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_sleep",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_read",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_read",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_write",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_scratchpad_write",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_get_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_get_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_triple_add",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_triple_add",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_triple_query",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:_handle_triple_query",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:handle_tool_call",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:handle_tool_call",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:get_tool_definitions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "function:mnemosyne/mcp_tools.py:get_tool_definitions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_writes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_writes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_episodic_insert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_episodic_insert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_recall_scaling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_recall_scaling",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_sleep",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_legacy_vs_beam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_legacy_vs_beam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_scratchpad",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:benchmark_scratchpad",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "function:tests/benchmark_beam_comprehensive.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:temp_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:temp_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:mnem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:mnem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:sync_ckpt_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "function:tests/test_c25_deltasync_allowlist.py:sync_ckpt_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25TableAllowlist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25TableAllowlist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25ColumnAllowlist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25ColumnAllowlist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25ReviewHardening",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25ReviewHardening",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25EndToEndRoundtrip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "class:tests/test_c25_deltasync_allowlist.py:TestC25EndToEndRoundtrip",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_run_cmd_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_run_cmd_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_line_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "function:tests/test_cli_stats.py:_line_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "class:tests/test_cli_stats.py:TestCliStatsRegression",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "class:tests/test_cli_stats.py:TestCliStatsRegression",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "class:tests/test_cli_stats.py:TestGetStatsShape",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "class:tests/test_cli_stats.py:TestGetStatsShape",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "function:tests/test_configurable_scoring.py:temp_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "function:tests/test_configurable_scoring.py:temp_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestNormalizeWeights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestNormalizeWeights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestRecallConfigurableWeights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestRecallConfigurableWeights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestPublicRecallConfigurableWeights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestPublicRecallConfigurableWeights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestEdgeCases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "class:tests/test_configurable_scoring.py:TestEdgeCases",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mnemosyne/mcp_server.py",
+      "target": "file:mnemosyne/mcp_tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/benchmark_beam_comprehensive.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_c25_deltasync_allowlist.py",
+      "target": "file:mnemosyne/core/streaming.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_cli_stats.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "file:mnemosyne/core/beam.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_configurable_scoring.py",
+      "target": "file:mnemosyne/core/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "file:tests/test_mcp_server.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mnemosyne/mcp_tools.py",
+      "target": "file:tests/test_multi_agent_identity.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}
